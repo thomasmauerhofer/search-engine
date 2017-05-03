@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>search-engine</title>
+
+	<script type=text/javascript>
+  	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+	</script>
+
+	<!-- jquery -->
+	<script type=text/javascript src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+	<!-- AngularJS -->
+	<script type=text/javascript src="{{ url_for('static', filename='bower_components/angular/angular.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/angular/angular-csp.css') }}">
+
+
+</head>
+
+<body>
+	{% block body %}{% endblock %}
+</body>
+
+</html>

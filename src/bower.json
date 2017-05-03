@@ -1,0 +1,9 @@
+{
+"name": "search-engine",
+"version": "0.0.1",
+"dependencies": {
+	"jquery": "3.2.1",
+	"angular":"1.6.4"
+},
+"private": true
+}
