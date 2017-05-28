@@ -11,14 +11,22 @@
 	<!-- jquery -->
 	<script type=text/javascript src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
 
-	<!-- AngularJS -->
-	<script type=text/javascript src="{{ url_for('static', filename='bower_components/angular/angular.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/angular/angular-csp.css') }}">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+	<script type=text/javascript src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
 
 </head>
-
 <body>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Search <span class="sr-only">(current)</span></a></li>
+        <li><a href="/upload">Upload</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
 	{% block body %}{% endblock %}
 </body>
 
