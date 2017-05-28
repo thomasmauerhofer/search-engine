@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from flask import Blueprint, render_template, request, make_response, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect
 from flask import current_app as app
 import os
 
@@ -21,7 +21,7 @@ def index():
 def upload():
 	if request.method == 'POST':
 		file = request.files['file']
-		
+
 		if file.filename == '':
 			return redirect(request.url)
 
@@ -29,4 +29,3 @@ def upload():
 		return redirect(request.url)
 
 	return render_template('upload.html')
-

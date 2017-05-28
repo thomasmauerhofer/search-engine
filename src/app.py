@@ -2,10 +2,7 @@
 # encoding: utf-8
 
 from flask import Flask
-from backend.backend import backend
-
-UPLOAD_FOLDER = 'static/data'
-ALLOWED_EXTENSIONS = set(['pdf'])
+from config import UPLOAD_FOLDER, ALLOWED_EXTENSIONS
 
 app = Flask(__name__)
 app.register_blueprint(backend)

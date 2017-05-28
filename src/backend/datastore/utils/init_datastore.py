@@ -1,10 +1,10 @@
+#!/usr/bin/env python3
 # encoding: utf-8
 from optparse import OptionParser
 import tkinter, os, shutil
 from tkinter import filedialog
-from api import add_paper
-
-UPLOAD_FOLDER = '../../static/data/'
+from config import path_to_datastore
+from backend.importer.importer_teambeam import add_paper
 
 def init_datastore(folder):
 	init_database()
@@ -19,8 +19,8 @@ def add_files(folder):
 		if filename.endswith('.pdf'):
 			print (filename)
 			src = folder + "/" + filename
-			dst = UPLOAD_FOLDER + filename		
-			#shutil.copy(src, dst)
+			dst = path_to_datastore + filename
+			shutil.copy(src, dst)
 
 			add_paper(dst)
 
@@ -41,4 +41,3 @@ if __name__ == "__main__":
 	folder = get_foldername()
 	if(folder):
 		init_datastore(folder)
-
