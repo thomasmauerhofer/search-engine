@@ -3,6 +3,7 @@
 
 from flask import Flask
 from config import UPLOAD_FOLDER, ALLOWED_EXTENSIONS
+from backend.backend import backend
 
 app = Flask(__name__)
 app.register_blueprint(backend)
