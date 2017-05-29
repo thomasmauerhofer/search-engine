@@ -3,7 +3,7 @@
 import os
 
 #Fileupload params
-UPLOAD_FOLDER = '/static/data'
+UPLOAD_FOLDER = '/static/data/'
 ALLOWED_EXTENSIONS = set(['pdf'])
 
 #paths
