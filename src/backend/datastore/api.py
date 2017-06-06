@@ -8,8 +8,6 @@ def add_paper(filename):
 	if allowed__upload_file(filename):
 		importer = ImporterTeambeam()
 		importer.import_paper(filename)
-	else:
-		print("error!")
 
 def allowed__upload_file(filename):
     return '.' in filename and \
