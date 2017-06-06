@@ -3,28 +3,24 @@
 from optparse import OptionParser
 import os, shutil
 from config import path_to_datastore
-from backend.importer.importer_teambeam import ImporterTeambeam
+from backend.datastore.api import add_paper
 
-def init_datastore(folder):
-	init_database()
-	add_files(folder)
+def __init_datastore__(folder):
+	__init_database__()
+	__add_files__(folder)
 
-def init_database():
+def __init_database__():
 	print ('implement method')
 
-def add_files(folder):
+def __add_files__(folder):
 	for filename in os.listdir(folder):
-
 		if filename.endswith('.pdf'):
-			print (filename)
 			src = folder + "/" + filename
 			dst = path_to_datastore + filename
 			shutil.copy(src, dst)
+			add_paper(filename)
 
-			importer = ImporterTeambeam()
-			importer.import_paper(dst)
-
-def get_foldername():
+def __get_foldername__():
 	parser = OptionParser()
 	parser.add_option("-f", "--folder", dest="folder",
                   help="import all data from folder to database", metavar="FOLDER")
@@ -33,8 +29,8 @@ def get_foldername():
 
 
 if __name__ == "__main__":
-	folder = get_foldername()
+	folder = __get_foldername__()
 	if(folder):
-		init_datastore(folder)
+		__init_datastore__(folder)
 	else:
 		print("Usage: No Parameter! Use -f FOLDERPATH to upload all files of a folder, or -h for help")

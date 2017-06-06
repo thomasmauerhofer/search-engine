@@ -3,10 +3,20 @@
 	<title>Upload new File</title>
 	<h1>Upload new File</h1>
 
-	<form role='form' method='POST' action='/upload' enctype='multipart/form-data'>
-      		<input type=file name=file>
-		<input type=submit value=Upload>
+	<form id="form-upload" role='form' method='POST' action='/upload' enctype='multipart/form-data'>
+      		<input type="file" id="file" name="file" accept=".pdf"/>
 	</form>
 
 </div> <!-- /.container -->
+
+<script type="text/javascript">
+	$('#file').on('click touchstart' , function(){
+		$(this).val('');
+	});
+
+	$("#file").change(function(e) {
+		$("#form-upload").submit();
+	});
+</script>
+
 {% endblock %}

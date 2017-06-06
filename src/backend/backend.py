@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-from flask import Blueprint, render_template, request, redirect
-from flask import current_app as app
+from flask import Blueprint, render_template, request, redirect, current_app
 import os
+from backend.datastore.api import allowed__upload_file, add_paper
 
 backend = Blueprint('profile', __name__)
 
@@ -24,8 +24,8 @@ def upload():
 
 		if file.filename == '':
 			return redirect(request.url)
-
-		file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-		return redirect(request.url)
+		elif allowed__upload_file(file.filename):
+			file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
+			add_paper(file.filename)
 
 	return render_template('upload.html')
