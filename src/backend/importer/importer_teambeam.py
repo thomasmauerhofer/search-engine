@@ -5,6 +5,7 @@ from xml.dom import minidom
 from config import path_to_teambeam_executable, path_to_datastore
 from backend.importer.importer_base import ImporterBase
 from backend.datastore.structure.paper import Paper
+from backend.datastore.structure.section import SectionType, TextType
 
 EXTENTION_TEXT = ".txt"
 EXTENTION_STRUCTURE = ".xml"
@@ -29,7 +30,17 @@ class ImporterTeambeam(ImporterBase):
 			start = int(parent.getAttribute("start"))
 			end = int(parent.getAttribute("end"))
 
-			if value == 'reference':
+			if value == 'section':
+				paper.add_section(SectionType.SECTION, data[start:end])
+			elif value == 'subsection':
+				paper.add_section(SectionType.SUBSECTION, data[start:end])
+			elif value == 'main':
+				paper.add_text_to_current_section(TextType.MAIN, data[start:end])
+			elif value == 'sparse':
+				paper.add_text_to_current_section(TextType.SPARSE, data[start:end])
+			elif value == 'caption':
+				paper.add_text_to_current_section(TextType.CAPTION, data[start:end])
+			elif value == 'reference':
 				paper.add_reference(data[start:end])
 			elif value == 'ref-authorSurname' or \
 				value == 'ref-authorGivenName' or \
@@ -39,12 +50,17 @@ class ImporterTeambeam(ImporterBase):
 				value == 'ref-date' or \
 				value == 'ref-note':
 				reference_values.append([value, data[start:end]])
+			elif value is 'authors':
+				print(value + ": " + data[start:end])
+			else:
+				if value is not '':
+					print(value + ": " + data[start:end])
 
-
-			#print(value + ": " + data[start:end])
 		self.__add_values_to_references__(paper, reference_values)
 		print(paper)
 
+
+#-------------------------------------------------------------------------------
 	def __add_values_to_references__(self, paper, reference_values):
 		next_reference = previous = False
 		i = j = 0
