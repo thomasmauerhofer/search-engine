@@ -1,58 +1,59 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
+from enum import Enum
+from backend.exceptions.import_exceptions import WrongReferenceError
+
 class Reference(object):
 	def __init__(self, complete_reference):
 		self.complete_reference = complete_reference
 		self.authors = []
-		self.other = ""
-		self.title = ""
-		self.source = ""
-		self.date = ""
-		self.note = ""
+		self.title = ''
+		self.reference_info = []
 
 	def __str__(self):
-		return str(self.complete_reference) + "\n\n" + \
-			str(self.title) + "\n" + \
-			str(self.authors) + "\n" + \
-			str(self.other) + "\n" + \
-			str(self.source) + "\n" + \
-			str(self.date) + "\n" + \
-			str(self.note)
+		ref_str = self.complete_reference + '\n\n'
+		ref_str += self.title
 
-	def add_author(self, sur_name, given_name):
-		if sur_name not in self.complete_reference or \
-			given_name not in self.complete_reference:
-			raise Exception("Error: Reference does not contain author")
+		for author in self.authors:
+			ref_str += author[0].name + ": " + author[1] + " " + author[2] + '\n'
 
-		self.authors.append([sur_name, given_name])
+		for info in self.reference_info:
+			ref_str += info[0].name + ": " + info[1] + '\n'
+
+		ref_str += '\n'
+		return ref_str
+
+	def add_author(self, author_type, sur_name, given_name):
+		if given_name not in self.complete_reference:
+			raise WrongReferenceError('Error: Reference does not contain author')
+
+		if sur_name not in self.complete_reference:
+			sur_name = ''
+
+		self.authors.append([author_type, sur_name, given_name])
 
 	def add_title(self, title):
 		if title not in self.complete_reference:
-			raise Exception("Error: Reference does not contain title")
+			raise WrongReferenceError('Error: Reference does not contain title')
 
 		self.title += title
 
-	def add_other(self, other):
-		if other not in self.complete_reference:
-			raise Exception("Error: Reference does not contain other")
+	def add_reference_info(self, reference_type, text):
+		if text not in self.complete_reference:
+			raise WrongReferenceError('Error: Reference does not contain text')
 
-		self.other += other
+		self.reference_info.append([reference_type, text])
 
-	def add_source(self, source):
-		if source not in self.complete_reference:
-			raise Exception("Error: Reference does not contain source")
-
-		self.source += source
-
-	def add_date(self, date):
-		if date not in self.complete_reference:
-			raise Exception("Error: Reference does not contain date")
-
-		self.date += date
-
-	def add_note(self, note):
-		if note not in self.complete_reference:
-			raise Exception("Error: Reference does not contain note")
-
-		self.note += note
+class ReferenceType(Enum):
+	SOURCE = 50
+	EDITOR = 51
+	DATE = 52
+	NOTE = 53
+	LOCATION = 54
+	PUBLISHER = 55
+	VOLUME = 56
+	ISSUE = 57
+	OTHER = 58
+	AUTHOR = 100
+	AUTHOR_OTHER = 101

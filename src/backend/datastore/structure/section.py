@@ -11,8 +11,8 @@ class Section(object):
 		self.subsections = []
 
 	def __str__(self):
-		str_section = self.section_type.name + ":\n"
-		str_section += self.heading + "\n\n"
+		str_section = self.section_type.name
+		str_section += self.heading + "\n"
 
 		for obj in self.text:
 		    str_section += obj[0].name
@@ -35,8 +35,11 @@ class Section(object):
 class SectionType(Enum):
 	SECTION = 1
 	SUBSECTION = 2
+	SUBSUBSECTION = 3
 
 class TextType(Enum):
     MAIN = 10
-    SPARSE = 11
-    CAPTION = 12
+    TABLE = 11
+    SPARSE = 12
+    CAPTION = 13
+    PARAGRAPH = 14
