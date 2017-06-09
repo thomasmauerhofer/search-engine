@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from backend.exceptions.exception import Error
+from backend.utils.exceptions.exception import Error
 
 class WrongReferenceError(Error):
     """Raised when reference don't contain text"""

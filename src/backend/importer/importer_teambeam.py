@@ -7,7 +7,7 @@ from backend.importer.importer_base import ImporterBase
 from backend.datastore.structure.paper import Paper
 from backend.datastore.structure.section import SectionType, TextType
 from backend.datastore.structure.reference import ReferenceType
-from backend.exceptions.import_exceptions import WrongReferenceError
+from backend.utils.exceptions.import_exceptions import WrongReferenceError
 
 EXTENTION_TEXT = ".txt"
 EXTENTION_STRUCTURE = ".xml"
@@ -32,33 +32,34 @@ class ImporterTeambeam(ImporterBase):
 			parent = feature.parentNode
 			start = int(parent.getAttribute("start"))
 			end = int(parent.getAttribute("end"))
+			text = data[start:end].rstrip('\n')
 
 			if value == 'section':
-				paper.add_section(data[start:end])
+				paper.add_section(text)
 			elif value == 'subsection':
-				paper.add_subsection(data[start:end])
+				paper.add_subsection(text)
 			elif value == 'subsubsection':
-				paper.add_subsubsection(data[start:end])
+				paper.add_subsubsection(text)
 			elif value == 'main':
-				paper.add_text_to_current_section(TextType.MAIN, data[start:end])
+				paper.add_text_to_current_section(TextType.MAIN, text)
 			elif value == 'table':
-				paper.add_text_to_current_section(TextType.TABLE, data[start:end])
+				paper.add_text_to_current_section(TextType.TABLE, text)
 			elif value == 'sparse':
-				paper.add_text_to_current_section(TextType.SPARSE, data[start:end])
+				paper.add_text_to_current_section(TextType.SPARSE, text)
 			elif value == 'caption':
-				paper.add_text_to_current_section(TextType.CAPTION, data[start:end])
+				paper.add_text_to_current_section(TextType.CAPTION, text)
 			elif value == 'paragraph':
-				paper.add_text_to_current_section(TextType.PARAGRAPH, data[start:end])
+				paper.add_text_to_current_section(TextType.PARAGRAPH, text)
 			elif value == 'reference':
-				paper.add_reference(data[start:end])
+				paper.add_reference(text)
 			elif 'ref-' in value:
-				reference_values.append([value, data[start:end]])
+				reference_values.append([value, text])
 			elif value == 'authors' or \
 				value == 'given-name' or \
 				value == 'surname' or \
 				value == 'email' or \
 				value == 'affiliations':
-				author_values.append([value, data[start:end]])
+				author_values.append([value, text])
 			#else:
 			#	if (value != '') and (value != 'heading') and len(value) < 50:
 			#		print("VALUE NOT IN LIST!")
@@ -66,34 +67,34 @@ class ImporterTeambeam(ImporterBase):
 
 		self.__add_values_to_references__(paper, reference_values)
 		self.__add_values_to_authors__(paper, author_values)
-		print(paper)
+		return paper
 
 
 #-------------------------------------------------------------------------------
 	def __add_values_to_references__(self, paper, reference_values):
 		next_reference = previous = False
 		i = j = 0
-		surname = ""
 
 		while j < len(reference_values):
 			value, data = reference_values[j]
 
 			try:
 				if value == 'ref-authorSurname':
-					surname = data
 					#new reference always starts with ref-authorSurname.
 					#Needed additionally to exception handling, because authors can be repeatedly in different references
 					if next_reference:
 						i+=1
 						next_reference = False
 				elif value == 'ref-authorGivenName':
-					paper.references[i].add_author(ReferenceType.AUTHOR, surname, data)
+					last_value, last_data = reference_values[j - 1]
+					surname = last_data if last_value == 'ref-authorSurname' else ''
+					paper.references[i].add_author(ReferenceType.AUTHOR, data, last_data)
 				elif value == 'ref-authorOther':
 					name = data.split(',')
 					if(len(name) < 2):
 						name.append('')
 
-					paper.references[i].add_author(ReferenceType.AUTHOR_OTHER, name[0], name[1])
+					paper.references[i].add_author(ReferenceType.AUTHOR_OTHER, name[1], name[0])
 				elif value == 'ref-title':
 					paper.references[i].add_title(data)
 					next_reference = True
@@ -132,25 +133,16 @@ class ImporterTeambeam(ImporterBase):
 			value, data = author_values[i]
 
 			if value == 'authors':
-				paper.authors.add_authors_text(data)
+				paper.add_authors_text(data)
 			elif value == 'surname':
 				last_value, last_data = author_values[i-1]
 
 				if last_value == 'given-name':
-					paper.add_author(last_data, data)
+					paper.authors[-1].add_author(last_data, data)
 			elif value == 'email':
-				surname_value, surname_data = author_values[i-1]
-				givenname_value, givenname_data = author_values[i-2]
-
-				if (givenname_value == 'given-name') and (surname_value == 'surname'):
-					paper.authors.add_email(givenname_data, surname_data, data)
-
+				paper.authors[-1].add_email(data)
 			elif value == 'affiliations':
-				surname_value, surname_data = author_values[i-1]
-				givenname_value, givenname_data = author_values[i-2]
-
-				if (givenname_value == 'given-name') and (surname_value == 'surname'):
-					paper.authors.add_affiliation(givenname_data, surname_data, data)
+				paper.authors[-1].add_affiliation(data)
 
 			i += 1
 

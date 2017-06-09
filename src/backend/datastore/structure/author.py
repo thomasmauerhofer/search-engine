@@ -1,68 +1,79 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from backend.exceptions.import_exceptions import WrongAuthorError
+from backend.utils.exceptions.import_exceptions import WrongAuthorError
+from backend.utils.string_utils import is_valid_email, remove_special_chars, longest_subsequence
 
 class Authors(object):
-    def __init__(self):
-        self.all_authors_text = []
+    def __init__(self, all_authors_text):
+        self.all_authors_text = all_authors_text
         self.authors = []
 
     def __str__(self):
-        str_authors = 'All:\n'
-        for text in self.all_authors_text:
-            str_authors += text + "\n"
+        str_authors = self.all_authors_text + "\n\n"
 
-        str_authors = 'Single:\n'
         for author in self.authors:
-            str_authors += str(author) + "\n"
+            str_authors += str(author)
 
-        str_authors += "\n"
         return str_authors
 
-    def add_authors_text(self, text):
-        self.all_authors_text.append(text)
-
     def add_author(self, prename, surname):
-        if not any((prename == el.prename) and (surname == el.surname) for el in self.authors):
-            self.authors.append(Author(surname, prename))
+        if surname not in self.all_authors_text:
+            raise WrongAuthorError('Error: Authors does not contain surname')
 
-    def add_email(self, prename, surname, email):
-        author = [el for el in self.authors if el.prename ==  prename and el.surname ==  surname]
-        if author:
-            author.email = email
+        if not (prename, surname) in [(obj.prename, obj.surname) for obj in self.authors]:
+            self.authors.append(Author(prename, surname))
 
-    def add_affiliation(self, prename, surname, affiliation):
-        author = [el for el in self.authors if el.prename ==  prename and el.surname ==  surname]
-        if author:
-            author.affiliation.append(affiliation)
+    def add_email(self, email):
+        if is_valid_email(email):
+            name = remove_special_chars(email.split('@')[0]).lower()
+            longest_sequence_list = []
+
+            for author in self.authors:
+                author_str = remove_special_chars(author.prename + author.surname).lower()
+                match = longest_subsequence(name, author_str)
+                longest_sequence_list.append([match.size, author])
+
+                author_str = remove_special_chars(author.surname + author.prename).lower()
+                match = longest_subsequence(name, author_str)
+                longest_sequence_list.append([match.size, author])
+
+            higest = max(longest_sequence_list, key=lambda item:item[0])
+            if higest[0] >= len(higest[1].surname):
+                higest[1].email = email
+
+    def add_affiliation(self, affiliation):
+        tmp_affiliation = remove_special_chars(affiliation).lower()
+        longest_sequence_list = []
+
+        for author in self.authors:
+            author_str = remove_special_chars(author.prename + author.surname).lower()
+            match = longest_subsequence(tmp_affiliation, author_str)
+            longest_sequence_list.append([match.size, author])
+
+            author_str = remove_special_chars(author.surname + author.prename).lower()
+            match = longest_subsequence(tmp_affiliation, author_str)
+            longest_sequence_list.append([match.size, author])
+
+        higest = max(longest_sequence_list, key=lambda item:item[0])
+        if higest[0] >= len(higest[1].surname):
+            higest[1].affiliation = affiliation
+
 
 class Author(object):
     def __init__(self, prename, surname):
         self.surname = surname
-        self.prename = ''
+        self.prename = prename
         self.email = ''
-        self.affiliations = []
+        self.affiliation = ''
+
+    def __eq__(self, other):
+        return (self.surname == other.surname) and (self.prename == other.prename)
 
     def __str__(self):
-        str_author = 'Surname: ' + self.surname + '\n'
-        str_author += 'Prename: ' + self.prename + '\n'
-        str_author += 'email: ' + self.email + '\n'
-
-        for affiliation in self.affiliations:
-            str_author += 'affiliation:' + self.affiliation
-
+        str_author = self.surname + '\n'
+        str_author += self.prename + '\n'
+        str_author += self.email + '\n'
+        str_author += self.affiliation + '\n'
         str_author += '\n'
         return str_author
-
-    def add_email(self, prename, surname, email):
-        if (self.surname != surname) and (self.prename != prename):
-            raise WrongAuthorError('Error: Can not add email')
-
-        self.email = email
-
-    def add_affiliation(self, prename, surname, affiliation):
-        if (self.surname != surname) and (self.prename != prename):
-            raise WrongAuthorError('Error: Can not add email')
-
-        self.affiliations.append(affiliation)

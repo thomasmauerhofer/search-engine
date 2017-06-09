@@ -7,7 +7,7 @@ from backend.datastore.structure.author import Authors
 
 class Paper(object):
 	def __init__(self):
-		self.authors = Authors()
+		self.authors = []
 		self.sections = []
 		self.references = []
 
@@ -15,7 +15,8 @@ class Paper(object):
 		str_paper = "--------------------------------------------------------------------------------\n"
 
 		str_paper += "Authors:\n"
-		str_paper += str(self.authors)
+		for author in self.authors:
+			str_paper += str(author) + "\n"
 		str_paper += "\n"
 
 		str_paper += "Sections:\n"
@@ -57,5 +58,5 @@ class Paper(object):
 	def add_reference(self, full_reference):
 		self.references.append(Reference(full_reference))
 
-	def add_author(self, prename, surname):
-		self.authors.add_author(prename, surname)
+	def add_authors_text(self, full_authors):
+		self.authors.append(Authors(full_authors))

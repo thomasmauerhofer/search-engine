@@ -2,7 +2,8 @@
 # encoding: utf-8
 
 from enum import Enum
-from backend.exceptions.import_exceptions import WrongReferenceError
+from backend.datastore.structure.author import Author
+from backend.utils.exceptions.import_exceptions import WrongReferenceError
 
 class Reference(object):
 	def __init__(self, complete_reference):
@@ -13,10 +14,10 @@ class Reference(object):
 
 	def __str__(self):
 		ref_str = self.complete_reference + '\n\n'
-		ref_str += self.title
+		ref_str += self.title + '\n'
 
 		for author in self.authors:
-			ref_str += author[0].name + ": " + author[1] + " " + author[2] + '\n'
+			ref_str += author[0].name + ": " + author[1].surname + " " + author[1].prename + '\n'
 
 		for info in self.reference_info:
 			ref_str += info[0].name + ": " + info[1] + '\n'
@@ -24,14 +25,11 @@ class Reference(object):
 		ref_str += '\n'
 		return ref_str
 
-	def add_author(self, author_type, sur_name, given_name):
-		if given_name not in self.complete_reference:
+	def add_author(self, author_type, prename, surname):
+		if surname not in self.complete_reference:
 			raise WrongReferenceError('Error: Reference does not contain author')
 
-		if sur_name not in self.complete_reference:
-			sur_name = ''
-
-		self.authors.append([author_type, sur_name, given_name])
+		self.authors.append([author_type, Author(prename, surname)])
 
 	def add_title(self, title):
 		if title not in self.complete_reference:
