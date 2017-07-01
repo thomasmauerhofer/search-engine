@@ -12,4 +12,7 @@ def add_paper(filename):
 	if allowed_upload_file(filename):
 		importer = ImporterTeambeam()
 		paper = importer.import_paper(filename)
+
+		textout = open(filename + ".out", "w")
+		textout.write(str(paper))
 		print(paper)

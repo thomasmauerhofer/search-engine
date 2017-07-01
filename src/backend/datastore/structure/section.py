@@ -43,3 +43,4 @@ class TextType(Enum):
     SPARSE = 12
     CAPTION = 13
     PARAGRAPH = 14
+    CITATION = 15

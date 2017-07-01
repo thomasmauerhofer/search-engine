@@ -27,19 +27,19 @@ class Reference(object):
 
 	def add_author(self, author_type, prename, surname):
 		if surname not in self.complete_reference:
-			raise WrongReferenceError('Error: Reference does not contain author')
+			raise WrongReferenceError('Error: Reference does not contain author', 'author', str(Author(prename, surname)))
 
 		self.authors.append([author_type, Author(prename, surname)])
 
 	def add_title(self, title):
 		if title not in self.complete_reference:
-			raise WrongReferenceError('Error: Reference does not contain title')
+			raise WrongReferenceError('Error: Reference does not contain title', 'title', title)
 
 		self.title += title
 
 	def add_reference_info(self, reference_type, text):
 		if text not in self.complete_reference:
-			raise WrongReferenceError('Error: Reference does not contain text')
+			raise WrongReferenceError('Error: Reference does not contain text', 'info', text)
 
 		self.reference_info.append([reference_type, text])
 
