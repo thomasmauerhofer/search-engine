@@ -174,6 +174,9 @@ class ImporterTeambeam(ImporterBase):
 				elif sec_last_value == 'middle-name':
 					middle_name = last_data
 
+				if not len(paper.authors):
+					paper.add_authors_text('')
+
 				paper.authors[-1].add_author(prename, data, middle_name)
 			elif value == 'emails':
 				if len(paper.authors):
