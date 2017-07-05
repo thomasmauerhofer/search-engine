@@ -10,4 +10,6 @@ ALLOWED_EXTENSIONS = set(['pdf'])
 app_path = os.path.abspath(os.path.dirname(__file__))
 path_to_datastore = app_path + "/" + UPLOAD_FOLDER
 
+#importer
+create_output = False
 path_to_teambeam_executable = '/home/thomas11/program/teambeam/bin/'

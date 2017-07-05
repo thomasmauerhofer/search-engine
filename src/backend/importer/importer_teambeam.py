@@ -2,7 +2,7 @@
 
 import os
 from xml.dom import minidom
-from config import path_to_teambeam_executable, path_to_datastore
+from config import path_to_teambeam_executable, path_to_datastore, create_output
 from backend.importer.importer_base import ImporterBase
 from backend.datastore.structure.paper import Paper
 from backend.datastore.structure.section import SectionType, TextType
@@ -12,7 +12,7 @@ from backend.utils.exceptions.import_exceptions import WrongReferenceError
 EXTENTION_TEXT = ".txt"
 EXTENTION_STRUCTURE = ".xml"
 OUTPUT_FILENAME = "output.txt"
-OUTPUT = open(OUTPUT_FILENAME, "w")
+OUTPUT = open(OUTPUT_FILENAME, "w") if create_output else None
 
 IGNORE_CASES = ["heading", "<table border=\"1\" summary=\"\""]
 
@@ -74,7 +74,7 @@ class ImporterTeambeam(ImporterBase):
 				value == 'affiliation':
 				author_values.append([value, text])
 			else:
-				if (len(value.split()) == 1) and (not any(s in value for s in IGNORE_CASES)):
+				if (create_output) and (len(value.split()) == 1) and (not any(s in value for s in IGNORE_CASES)):
 					OUTPUT.write("VALUE NOT IN LIST!\n")
 					OUTPUT.write("Filename: " + filename + " value: " + value + "\ntext: " + text + "\n")
 					OUTPUT.write("\n")
@@ -128,7 +128,7 @@ class ImporterTeambeam(ImporterBase):
 					paper.references[i].add_reference_info(ReferenceType.PAGES, data)
 				elif value == 'ref-conference':
 					paper.references[i].add_reference_info(ReferenceType.CONFERENCE, data)
-				elif (len(value.split()) == 1) and (value != 'ref-authorSurname'):
+				elif (create_output) and (len(value.split()) == 1) and (value != 'ref-authorSurname'):
 					OUTPUT.write("REFERENCE NOT IN LIST!\n")
 					OUTPUT.write("Filename: " + filename + " value: " + value + "\ntext: " + data + "\n")
 					OUTPUT.write("\n")
