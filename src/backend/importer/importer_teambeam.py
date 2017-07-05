@@ -20,7 +20,7 @@ class ImporterTeambeam(ImporterBase):
 	def import_paper(self, filename):
 		paper = Paper(filename)
 		path_to_file = path_to_datastore + filename
-		os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
+		#os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
 
 		with open (path_to_file + EXTENTION_TEXT, "r") as textfile:
 			data = textfile.read()
@@ -174,9 +174,10 @@ class ImporterTeambeam(ImporterBase):
 				elif sec_last_value == 'middle-name':
 					middle_name = last_data
 
-					paper.authors[-1].add_author(prename, data, middle_name)
+				paper.authors[-1].add_author(prename, data, middle_name)
 			elif value == 'emails':
-				paper.authors[-1].emails_text = data
+				if len(paper.authors):
+					paper.authors[-1].emails_text = data
 			elif value == 'email':
 				if len(paper.authors):
 					paper.authors[-1].add_email(data)

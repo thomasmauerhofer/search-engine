@@ -15,4 +15,4 @@ def add_paper(filename):
 
 		textout = open("out/" + filename + ".out", "w")
 		textout.write(str(paper))
-		#print(paper)
+		print(paper)
