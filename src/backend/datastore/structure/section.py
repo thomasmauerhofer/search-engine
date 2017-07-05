@@ -33,9 +33,10 @@ class Section(object):
 		self.subsections.append(Section(section_type, heading))
 
 class SectionType(Enum):
-	SECTION = 1
-	SUBSECTION = 2
-	SUBSUBSECTION = 3
+	ABSTRACT = 1
+	SECTION = 2
+	SUBSECTION = 3
+	SUBSUBSECTION = 4
 
 class TextType(Enum):
     MAIN = 10

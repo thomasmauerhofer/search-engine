@@ -2,11 +2,13 @@
 # encoding: utf-8
 
 from backend.datastore.structure.reference import Reference
-from backend.datastore.structure.section import Section, SectionType
+from backend.datastore.structure.section import Section, SectionType, TextType
 from backend.datastore.structure.author import Authors
 
 class Paper(object):
-	def __init__(self):
+	def __init__(self, filename):
+		self.filename = filename
+		self.title = ''
 		self.authors = []
 		self.sections = []
 		self.references = []
@@ -30,6 +32,15 @@ class Paper(object):
 
 		str_paper +="--------------------------------------------------------------------------------\n\n"
 		return str_paper
+
+	def set_title(self, title):
+		if title == '':
+			self.title = title
+
+	def add_abstract(self, text):
+		self.sections.append(Section(SectionType.ABSTRACT, 'abstract'))
+		self.add_text_to_current_section(TextType.MAIN, text)
+
 
 	def add_section(self, section_name):
 		self.sections.append(Section(SectionType.SECTION, section_name))

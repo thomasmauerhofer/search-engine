@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 from optparse import OptionParser
-import os, shutil
+import os, shutil, base64
 from config import path_to_datastore
 from backend.datastore.api import add_paper
 
@@ -13,7 +13,9 @@ def __init_database__():
 	print ('implement method')
 
 def __add_files__(folder):
-	for filename in os.listdir(folder):
+	for filename in os.listdir(os.path.abspath(folder)):
+
+		print('CURRENT FILE: ' + filename)
 		if filename.endswith('.pdf'):
 			src = folder + "/" + filename
 			dst = path_to_datastore + filename

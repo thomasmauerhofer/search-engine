@@ -13,6 +13,6 @@ def add_paper(filename):
 		importer = ImporterTeambeam()
 		paper = importer.import_paper(filename)
 
-		textout = open(filename + ".out", "w")
+		textout = open("out/" + filename + ".out", "w")
 		textout.write(str(paper))
-		print(paper)
+		#print(paper)

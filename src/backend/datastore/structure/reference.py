@@ -53,5 +53,7 @@ class ReferenceType(Enum):
 	VOLUME = 56
 	ISSUE = 57
 	OTHER = 58
+	PAGES = 59
+	CONFERENCE = 60
 	AUTHOR = 100
 	AUTHOR_OTHER = 101

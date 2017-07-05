@@ -18,9 +18,9 @@ IGNORE_CASES = ["heading", "<table border=\"1\" summary=\"\""]
 
 class ImporterTeambeam(ImporterBase):
 	def import_paper(self, filename):
-		paper = Paper()
+		paper = Paper(filename)
 		path_to_file = path_to_datastore + filename
-		#os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a ' + path_to_file)
+		os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
 
 		with open (path_to_file + EXTENTION_TEXT, "r") as textfile:
 			data = textfile.read()
@@ -40,6 +40,10 @@ class ImporterTeambeam(ImporterBase):
 
 			if value == 'section':
 				paper.add_section(text)
+			elif value == 'abstract':
+				paper.add_abstract(text)
+			elif value == 'title':
+				paper.set_title(text)
 			elif value == 'subsection':
 				paper.add_subsection(text)
 			elif value == 'subsubsection':
@@ -62,14 +66,17 @@ class ImporterTeambeam(ImporterBase):
 				reference_values.append([value, text])
 			elif value == 'authors' or \
 				value == 'given-name' or \
+				value == 'middle-name' or \
 				value == 'surname' or \
 				value == 'email' or \
-				value == 'affiliations':
+				value == 'emails' or \
+				value == 'affiliations' or \
+				value == 'affiliation':
 				author_values.append([value, text])
 			else:
 				if (len(value.split()) == 1) and (not any(s in value for s in IGNORE_CASES)):
 					OUTPUT.write("VALUE NOT IN LIST!\n")
-					OUTPUT.write(value)
+					OUTPUT.write("Filename: " + filename + " value: " + value + "\ntext: " + text + "\n")
 					OUTPUT.write("\n")
 
 		self.__add_values_to_references__(paper, reference_values)
@@ -117,9 +124,13 @@ class ImporterTeambeam(ImporterBase):
 					paper.references[i].add_reference_info(ReferenceType.EDITOR, data)
 				elif value == 'ref-issue':
 					paper.references[i].add_reference_info(ReferenceType.ISSUE, data)
-				elif value != 'ref-authorSurname':
+				elif value == 'ref-pages':
+					paper.references[i].add_reference_info(ReferenceType.PAGES, data)
+				elif value == 'ref-conference':
+					paper.references[i].add_reference_info(ReferenceType.CONFERENCE, data)
+				elif (len(value.split()) == 1) and (value != 'ref-authorSurname'):
 					OUTPUT.write("REFERENCE NOT IN LIST!\n")
-					OUTPUT.write(value)
+					OUTPUT.write("Filename: " + filename + " value: " + value + "\ntext: " + data + "\n")
 					OUTPUT.write("\n")
 
 				full_round = False
@@ -147,14 +158,32 @@ class ImporterTeambeam(ImporterBase):
 			if value == 'authors':
 				paper.add_authors_text(data)
 			elif value == 'surname':
+				prename = ""
+				middle_name = None
+
 				last_value, last_data = author_values[i-1]
+				sec_last_value, sec_last_data = author_values[i-2]
 
 				if last_value == 'given-name':
-					paper.authors[-1].add_author(last_data, data)
+					prename = last_data
+				elif last_value == 'middle-name':
+					middle_name = last_data
+
+				if sec_last_value == 'given-name':
+					prename = last_data
+				elif sec_last_value == 'middle-name':
+					middle_name = last_data
+
+					paper.authors[-1].add_author(prename, data, middle_name)
+			elif value == 'emails':
+				paper.authors[-1].emails_text = data
 			elif value == 'email':
-				paper.authors[-1].add_email(data)
-			elif value == 'affiliations':
-				paper.authors[-1].add_affiliation(data)
+				if len(paper.authors):
+					paper.authors[-1].add_email(data)
+			elif value == 'affiliations' or \
+				value == 'affiliation':
+				if len(paper.authors):
+					paper.authors[-1].add_affiliation(data)
 
 			i += 1
 #-------------------------------------------------------------------------------
