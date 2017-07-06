@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 from backend.datastore.structure.reference import Reference
-from backend.datastore.structure.section import Section, SectionType, TextType
+from backend.datastore.structure.section import Section, SectionType, TextType, IMRaDType
 from backend.datastore.structure.author import Authors
 
 class Paper(object):
@@ -71,3 +71,18 @@ class Paper(object):
 
 	def add_authors_text(self, full_authors):
 		self.authors.append(Authors(full_authors))
+
+	def get_capter_with_imrad_type(self, imrad_type):
+		return next((indro for indro in self.sections if imrad_type in indro.imrad_type), None)
+
+	def get_indroduction(self):
+		return self.get_capter_with_imrad_type(IMRaDType.INDRODUCTION)
+
+	def get_methods(self):
+		return self.get_capter_with_imrad_type(IMRaDType.METHODS)
+
+	def get_results(self):
+		return self.get_capter_with_imrad_type(IMRaDType.RESULTS)
+
+	def get_discussion(self):
+		return self.get_capter_with_imrad_type(IMRaDType.DISCUSSION)

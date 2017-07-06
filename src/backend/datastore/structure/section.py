@@ -5,6 +5,7 @@ from enum import Enum
 
 class Section(object):
 	def __init__(self, section_type, heading):
+		self.imrad_type = []
 		self.section_type = section_type
 		self.heading = heading
 		self.text = []
@@ -32,6 +33,9 @@ class Section(object):
 	def add_subsection(self, section_type, heading):
 		self.subsections.append(Section(section_type, heading))
 
+	def add_to_imrad(self, imrad_type):
+		self.imrad_type.append(imrad_type)
+
 class SectionType(Enum):
 	ABSTRACT = 1
 	SECTION = 2
@@ -45,3 +49,10 @@ class TextType(Enum):
     CAPTION = 13
     PARAGRAPH = 14
     CITATION = 15
+
+
+class IMRaDType(Enum):
+	INDRODUCTION = 21
+	METHODS = 22
+	RESULTS = 23
+	DISCUSSION = 24
