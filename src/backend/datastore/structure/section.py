@@ -16,7 +16,7 @@ class Section(object):
 		str_section += self.heading + "\n"
 
 		for obj in self.text:
-		    str_section += obj[0].name
+		    str_section += obj[0].name + "\n"
 		    str_section += obj[1] + "\n\n"
 
 		for subsection in self.subsections:

@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 import backend.preprocessing.imrad_detection as imrad_detection
-import backend.preprocessing.keyword_detection as keyword_detection
+import backend.preprocessing.text_processing as text_processing
 
 def proceed_paper(paper):
-    imrad_detection.proceed(paper)
-    keyword_detection.proceed(paper)
+    text_processing.proceed(paper)
+    #imrad_detection.proceed(paper)
