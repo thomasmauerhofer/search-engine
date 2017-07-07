@@ -5,15 +5,12 @@ from nltk.corpus import stopwords
 from backend.utils.string_utils import remove_stopwords, remove_digits, remove_single_chars, remove_special_chars
 
 def proceed(paper):
-    #for section in paper.sections:
-    #    print(section)
-
     for section in paper.sections:
         remove_stopwords_from_section(section)
 
-    #for section in paper.sections:
-    #    print(section)
-    #print(proceed_string("A B+B C+CC DDDD EEEEE FFFFFF "))
+    for section in paper.sections:
+        print(section)
+    #print(proceed_string("A B+B C+CC DD++=DD EEEEE FFFFFF "))
 
 
 def remove_stopwords_from_section(section):
@@ -27,7 +24,9 @@ def remove_stopwords_from_section(section):
 
 def proceed_string(text):
     #text = remove_digits(text)
-    text = remove_single_chars(text)
+    # todo: last step - remove the citations e.g.[1]
+    # todo remove empty text - capions
     text = remove_special_chars(text)
+    text = remove_single_chars(text)
     text = remove_stopwords(text)
     return text.strip()
