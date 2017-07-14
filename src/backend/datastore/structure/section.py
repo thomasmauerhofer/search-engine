@@ -12,7 +12,7 @@ class Section(object):
 		self.subsections = []
 
 	def __str__(self):
-		str_section = self.section_type.name
+		str_section = self.section_type.name + "\n"
 		str_section += self.heading + "\n"
 
 		for obj in self.text:
