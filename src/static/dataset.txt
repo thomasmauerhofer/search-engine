@@ -1,0 +1,7368 @@
+CURRENT FILE: Ioannidis - 2005 - Why most published research findings are false.pdf
+:
+summari:
+box examplesci atlow prestudi odd:
+
+
+CURRENT FILE: Kingma, Welling - 2013 - Auto-Encoding Variational Bayes.pdf
+:
+introduct:
+method:
+exampl variat autoencod:
+relat work:
+experi:
+conclus:
+futur work:
+solut kl zp gaussian case:
+mlp probabilist encod decod:
+margin likelihood estim:
+mont carlo em:
+
+
+CURRENT FILE: Radev et al. - 2001 - NewsInEssence A System For Domain-Independent , Real-Time News Clustering and Multi-Document Summarization.pdf
+:
+introduct:
+newsiness system:
+annot sampl run:
+futur work:
+
+
+CURRENT FILE: Manning, Raghavan, Schütze - 2008 - Introduction to Information Retrieval.pdf
+:
+chapter:
+chapter:
+
+
+CURRENT FILE: Strohmaier et al. - 2012 - Evaluation of Folksonomy Induction Algorithms.pdf
+:
+introduct:
+folksonomi induct algorithm:
+semant evalu:
+pragmat evalu:
+experiment setup:
+conclus:
+
+
+CURRENT FILE: Bhatia, Majumdar - 2011 - Query suggestions in the absence of query logs.pdf
+:
+keyword:
+introduct:
+relat work sion:
+propos approach:
+experiment protocol:
+result discuss:
+conclus futur work:
+
+
+CURRENT FILE: Körner et al. - 2010 - Of categorizers and describers An evaluation of quantitative measures for tagging motivation.pdf
+:
+introduct:
+relat work:
+type tag motiv:
+experiment setup:
+qualit evalu:
+quantit evalu:
+conclus outlook:
+acknowledg:
+
+
+CURRENT FILE: Krishnan, Shalit, Sontag - 2015 - Deep Kalman Filters(2).pdf
+:
+abstract:
+abstract:
+introduct:
+background:
+relat work:
+model:
+learn use stochast backpropag:
+experiment section:
+discuss:
+
+
+CURRENT FILE: Krishnan, Shalit, Sontag - 2016 - Structured Inference Networks for Nonlinear State Space Models.pdf
+:
+abstract:
+abstract:
+introduct:
+factor variat lower bound:
+structur infer network:
+evalu:
+appendix learn algorithm:
+appendix polyphon music gener:
+appendix experiment result synthet data:
+
+
+CURRENT FILE: Cattuto, Loreto, Pietronero - 2007 - Semiotic dynamics and collaborative tagging.pdf
+:
+
+
+CURRENT FILE: Metzler, Dumais, Meek - 2007 - Similarity Measures for Short Segments of Text.pdf
+:
+introduct:
+relat work:
+text represent:
+similar measur:
+experiment evalu:
+conclus futur work:
+
+
+CURRENT FILE: Methods, Tests - Unknown - Bootstrap Methods and Permutation Tests 14.1.pdf
+:
+bootstrap standard error se boot statist standard deviat bootstrap distribut statist:
+estim paramet quantiti describ popul use statist correspond quantiti sampl:
+number replic:
+observ mean bia se meandiff:
+bootstrap resampl process use resampl introduc littl addit variat:
+section exercis:
+two confid interv reason agreement:
+bootstrap tilt interv adjust process randomli form resampl though clever implementationallowsuseofthesam resampl bootstrap method:
+number replic:
+pool statist modifi statist:
+
+
+CURRENT FILE: Ounis et al. - 2006 - Terrier A high performance and scalable information retrieval platform.pdf
+:
+introduct:
+relat work:
+implement detail:
+conclus:
+acknowledg:
+background:
+gridcompon:
+griden lucen:
+experiment environ:
+evalu:
+conclus:
+acknowledg:
+introduct:
+metadata keyword tag:
+tag wikipedia:
+nextgener p2p:
+prototyp:
+conclus andfuturework:
+addit author:
+
+
+CURRENT FILE: Strohmaier, Körner, Kern - 2010 - Why do Users Tag Detecting Users’ Motivation for Tagging in Social Tagging Systems.pdf
+:
+introduct:
+relat research:
+tag motiv:
+methodolog setup:
+measur tag motiv:
+influenc tag agreement:
+conclus:
+
+
+CURRENT FILE: Eichberg - 2000 - Goal Supporting a wide-range of Applications.pdf
+:
+
+
+CURRENT FILE: de Marneffe, MacCartney, Manning - 2006 - Generating typed dependency parses from phrase structure parses.pdf
+:
+introduct:
+grammat relat:
+extract method:
+comparison:
+applic:
+
+
+CURRENT FILE: Grefenstette et al. - 2015 - Learning to Transduce with Unbounded Memory.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+model:
+experi:
+result discuss:
+conclus:
+
+
+CURRENT FILE: Middleton - 2003 - Capturing knowledge of user preferences with recommender systems.pdf
+:
+list content:
+list tabl:
+motiv:
+scope central hypothesi scope:
+thesi structur:
+contribut:
+declar:
+chapter recommend system ontolog:
+problem inform overload:
+recommend system help:
+user profil recommend system:
+featur recommend system:
+classif technolog:
+classif work domain:
+semin recommend system:
+recommend system exampl:
+ontolog:
+ontolog exampl:
+conclus:
+chapter profil techniqu machinelearn:
+backusnaur format:
+profil represent:
+profil techniqu timedecay function:
+machinelearn techniqu:
+chapter quickstep recommend system:
+quickstep problem domain:
+overview quickstep system:
+empir evalu:
+quickstep system approach:
+experiment evalu quickstep:
+comparison work literatur:
+conclus quickstep trial:
+synergi ontolog recommend system:
+ontocopi:
+integr quickstep ontocopi akt ontolog:
+exampl integr system oper:
+empir evalu integr system:
+experiment result:
+conclus:
+chapter foxtrot recommend system:
+foxtrot problem domain:
+overview foxtrot system:
+empir evalu:
+interest lesson quickstep system:
+foxtrot system approach:
+experiment evalu:
+comparison work within literatur:
+conclus foxtrot trial:
+conclus:
+futur direct work increment improv:
+natur ontolog recommend system:
+recommend stay:
+appendix summari review system:
+appendix quickstep system design:
+appendix foxtrot system design:
+glossari machinelearn term:
+
+
+CURRENT FILE: Rastan - 2013 - Towards generic framework for tabular data extraction and management in documents.pdf
+:
+keyword:
+introduct:
+relat work:
+tabl manag framework:
+extract layer detail:
+evalu method:
+preliminari implement:
+conclus futur work:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Agirre, Soroa - 2007 - Semeval-2007 task 02 Evaluating word sense induction and discrimination systems.pdf
+:
+introduct:
+evalu wsid system:
+result:
+discuss:
+conclus:
+
+
+CURRENT FILE: Campos et al. - 2016 - On the evaluation of unsupervised outlier detection measures, datasets, and an empirical study.pdf
+:
+keyword unsupervis outlier detect evalu measur dataset:
+complex ofldfi lof:
+adjust index:
+larger maximum must use instead eq:
+adjust ap:
+
+
+CURRENT FILE: Kan, Klavans, Mckeown - 1997 - Linear Segmentation and Segment Significance.pdf
+:
+introduct:
+segmenterlin ar segment:
+segnifierseg signific:
+evalu segment evalu:
+futur work:
+conclus:
+
+
+CURRENT FILE: Unknown - Unknown - semI40_Deliverable_D6 1(D6 1 1-1).doc
+CURRENT FILE: Sarkar, Garthwaite, De Roeck - 2005 - A Bayesian mixture model for term re-occurrence and burstiness.pdf
+:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+introduct:
+term similar base gener knowledg:
+3a wordnet kernel document similar:
+experi:
+relat work:
+conclus:
+corpu annot:
+integr pars model collin headdriven model:
+experiment evalu methodolog:
+relat work:
+conclus:
+acknowledg:
+conclus futur work:
+introduct:
+space solut:
+evalu:
+discuss:
+phmm word similar:
+experiment setup:
+experiment result:
+conclus:
+paramet estim bayesian estim:
+result:
+conclus:
+relat work:
+conclus:
+data methodolog:
+predict class trigram:
+feedbackloop method versu class trigram:
+stack versu class trigram:
+conclus:
+experiment design:
+result valid unsupervis method:
+conclus:
+segment discours represent theori:
+augment redwood treebank discours structur:
+gener pars model:
+discours pars model:
+result:
+conclus:
+intent recognit:
+linguist map:
+discuss:
+notabl situat applic natur languag interfac requir typic limit:
+conclus:
+celex:
+categor pars syllabl structur:
+experi:
+discuss:
+conclus:
+experi methodolog:
+acrobat ic ba alli:
+discuss futur work:
+method:
+evalu:
+conclus:
+applic nl gener task:
+evalu select sampl:
+ave kl max kl token remov:
+ave kl max kl token remov:
+conclus futur work:
+4a review particip system:
+conclus:
+experiment result:
+:
+conclus:
+introduct:
+local model:
+joint model:
+combin local joint model:
+increas robust parser error:
+experi result:
+conclus futur work:
+learn evalu:
+:
+conclus:
+experi:
+:
+conclus:
+experiment set result:
+:
+conclus:
+result:
+:
+conclus:
+hierarch semant role label:
+:
+final remark:
+conclus:
+result:
+conclus:
+experiment result:
+acknowledg:
+:
+evalu:
+:
+conclus:
+acknowledg:
+rerank pars tree use srl inform:
+result discuss:
+sum pars tree:
+conclus relat work:
+conclus:
+:
+acknowledg:
+
+
+CURRENT FILE: Halpin, Robu, Shepherd - 2007 - The complex dynamics of collaborative tagging.pdf
+:
+introduct:
+gener model:
+detect power law tag:
+construct intertag correl graph:
+conclus futur work:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Kanani, Mccallum - 2007 - Efficient Strategies for Improving Partitioning-Based Author Coreference by IncorporatingWeb Pages as Graph No.pdf
+:
+introduct:
+leverag web inform condit entiti resolut model:
+resourcebound inform gather:
+experiment result dataset descript infrastructur:
+conclus futur work:
+
+
+CURRENT FILE: Banko, Etzioni - 2003 - The Tradeoffs Between Open and Traditional Relation Extraction.pdf
+:
+introduct:
+natur relat english:
+relat extract:
+hybrid relat extract:
+experiment result:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Malakasiotis - 2009 - Paraphrase Recognition Using Machine Learning to Combine Similarity Measures(2).pdf
+:
+introduct:
+three method:
+experi:
+relat work:
+conclus work:
+
+
+CURRENT FILE: Kern, Körner, Strohmaier - 2010 - Exploring the Influence of Tagging Motivation on Tagging Behavior.pdf
+introduct:
+develop measur:
+applic measur:
+conclus:
+
+
+CURRENT FILE: Graves, Wayne, Danihelka - 2014 - Neural Turing Machines.pdf
+:
+introduct:
+foundat research psycholog neurosci:
+neural ture machin:
+experi:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Wei, Huang, Fu - 2007 - A survey of e-commerce recommender systems.pdf
+:
+abstract:
+abstract:
+introduct:
+typic methodof recommend techiqu:
+3hybrid filter approach:
+topicsforfutur research:
+
+
+CURRENT FILE: Pearce - 1998 - A Comparative Evaluation of Collocation Extraction Techniques.pdf
+:
+abstract:
+abstract:
+introduct:
+exist colloc extract techniqu:
+experi descript:
+techniqu detail:
+result:
+conclus:
+refer:
+
+
+CURRENT FILE: Agrawal, Srikant - 1994 - Fast Algorithms for Mining Association Rules in Large Databases.pdf
+:
+introduct:
+discov larg itemset:
+perform:
+conclus futur work:
+
+
+CURRENT FILE: Murdock, Lalmas - 2008 - Workshop on aggregated search.pdf
+:
+abstract:
+abstract:
+introduct:
+present:
+panel discuss:
+acknowledg:
+
+
+CURRENT FILE: Chai et al. - 2011 - Automatically Measuring the Quality of User Generated Content in Forums.pdf
+introduct:
+problem definit:
+ugcq assess model:
+experi:
+result:
+discuss:
+relat work:
+conclus:
+
+
+CURRENT FILE: Pedersen, Banerjee, Patwardhan - 2005 - Maximizing semantic relatedness to perform word sense disambiguation.pdf
+:
+introduct:
+previou work related disambigu:
+maximum related disambigu:
+wordnet:
+measur related similar:
+experiment data:
+experiment methodolog:
+experiment result:
+futur work:
+conclus:
+resourc:
+acknowledg:
+
+
+CURRENT FILE: Yih, Meek - 2007 - Improving similarity measures for short segments of text.pdf
+:
+introduct:
+relat work:
+webrelev similar measur:
+learn similar measur:
+experi:
+conclus:
+
+
+CURRENT FILE: Fan et al. - 2011 - Article Clipper-A System for Web Article Extraction.pdf
+:
+categori subject descriptor:
+gener term keyword:
+printlink extract:
+main articl text extract:
+imag caption extract:
+
+
+CURRENT FILE: LeCun et al. - 2015 - Deep learning.pdf
+:
+advanc:
+import refer:
+import refer ii:
+import refer iii:
+import refer iv:
+
+
+CURRENT FILE: Josef Steinberger - 2009 - EVALUATION MEASURES FOR TEXT SUMMARIZATION.pdf
+:
+introduct:
+text summar:
+evalu measur:
+lengthx lengthi edit di:
+lsa summar framework:
+evalu latent semant analysi:
+experi:
+conclus:
+
+
+CURRENT FILE: Svitlana Vakulenko - 2016 - D3.2 Algorithms for Implicit Information Diffusion Networks Across Media.pdf
+:
+execut summari:
+chapter introduct:
+chapter inform diffus model:
+chapter experi:
+chapter conclus futur work:
+
+
+CURRENT FILE: Griffiths et al. - 2007 - A fully Bayesian approach to unsupervised part-of-speech tagging.pdf
+:
+introduct:
+2a bayesian hmm motiv:
+fix hyperparamet experi method:
+hyperparamet infer:
+infer hyperparamet experi vari corpu size:
+conclus:
+
+
+CURRENT FILE: Wenzhangzhi Guo - 2016 - Hair Segmentation Using Heuristically-Trained Neural Networks.pdf
+introduct:
+ii neural network background:
+iii deep neural networkbas hair segment:
+use gener model featur extractor:
+use gener model pretrain weight neural network:
+postprocess:
+introduct:
+overview:
+train set gener:
+hnn experiment result:
+runtim:
+dnn evalud:
+result comparison:
+evalu base perform score:
+conclus:
+
+
+CURRENT FILE: Gravano et al. - 2003 - Text joins in an RDBMS for web data integration.pdf
+:
+gener term keyword:
+introduct:
+backgroundand problem:
+tupl weight vector:
+samplingbas text join:
+samplingandjoiningtuplevector sql:
+differ similar function:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Ben-Gal - 2001 - Outlier detection for high dimensional data.pdf
+:
+singlestep vs sequenti procedur:
+inward outward procedur:
+univari robust measur:
+statist process control spc:
+statist method multivari outlier detect:
+multivari robust measur:
+datamin method outlier detect:
+preprocess procedur:
+
+
+CURRENT FILE: Leaman, Gonzalez - 2008 - BANNER an executable survey of advances in biomedical named entity recognition.pdf
+:
+introduct:
+background:
+architectur:
+analysi:
+comparison:
+conclus futur work:
+
+
+CURRENT FILE: Toller - 2016 - Automated Season Length Detection in Time Series.pdf
+:
+introduct:
+introduct:
+background:
+method:
+evalu:
+conclus:
+
+
+CURRENT FILE: Dolamic, Fautsch, Savoy - 2009 - UniNE at CLEF 2008 TEL, and Persian IR.pdf
+:
+abstract:
+abstract:
+categori subject descriptor:
+robust retriev:
+conclus:
+
+
+CURRENT FILE: Carman et al. - 2009 - A statistical comparison of tag and query logs.pdf
+:
+url order diverg:
+urlsord bydiverg:
+url order diverg:
+urlsord diverg:
+content:
+content:
+
+
+CURRENT FILE: Muhr, Kern, Granitzer - 2010 - Analysis of structural relationships for hierarchical cluster labeling.pdf
+:
+categori subject descriptor:
+maximum term weight label:
+refer collect base label:
+invers cluster weight label:
+hierarch label:
+document label overlap:
+label accuraci:
+
+
+CURRENT FILE: Berndt, Clifford - 1994 - Using dynamic time warping to find patterns in time series.pdf
+:
+introduct:
+dynam time warp:
+simpl experi:
+predatorpreyexperi:
+conclus:
+
+
+CURRENT FILE: Nadeau, Sekine - 2007 - A survey of named entity recognition and classification.pdf
+:
+introduct:
+languag factor:
+textual genr domain factor:
+entiti type factor:
+what next:
+supervis learn:
+semisupervis learn:
+unsupervis learn:
+wordlevel featur:
+list lookup featur:
+muc evalu:
+exactmatch evalu:
+ace evalu:
+
+
+CURRENT FILE: Sugiyama, Kan - 2015 - Towards higher relevance and serendipity in scholarly paper recommendation.pdf
+:
+introduct:
+propos method:
+w4 product w2 w3 rcpplsim final weight scheme multipl combin path length cosin similar take product w2 w3:
+experi:
+conclus futur work:
+
+
+CURRENT FILE: Description - Unknown - 14.8 Savitzky-Golay Smoothing Filters.pdf
+:
+
+
+CURRENT FILE: Kern, Granitzer, Pammer - 2008 - Extending Folksonomies for Image Tagging.pdf
+:
+introduct:
+extend folksonomi:
+associ queri:
+analysi:
+conclus:
+
+
+CURRENT FILE: Kurzmann - 2017 - Data Mining - Variables and Feature Selection with Greedy and Non Greedy Algorithm.pdf
+:
+implement id3 python:
+implement non greedi algorithm python:
+combin non greedi greedi algorithm:
+conclus:
+
+
+CURRENT FILE: Graves, Schmidhuber - 2005 - Framewise phoneme classification with bidirectional LSTM networks.pdf
+:
+introduct:
+ii bidirect recurr neural net:
+bidirect network onlin causal task:
+iii lstm:
+lstm gradient calcul:
+lstm train algorithm:
+iv experiment data:
+train test set:
+topolog:
+output layer:
+network train:
+vii conclus futur work:
+
+
+CURRENT FILE: Potthast et al. - 2010 - Overview of the 2nd International Competition on Plagiarism Detection.pdf
+:
+introduct:
+survey plagiar detector:
+evalu result:
+conclus:
+
+
+CURRENT FILE: Bullinaria, Levy - 2007 - Extracting semantic representations from word co-occurrence statistics A computational study.pdf
+:
+vari compon type distanc measur:
+statist reliabl:
+result smaller corpora:
+discuss conclus:
+
+
+CURRENT FILE: Rennie et al. - 2003 - Tackling the poor assumptions of naive bayes text classifiers.pdf
+:
+introduct:
+multinomi naiv bay:
+correct system error:
+model text better:
+conclus:
+appendix:
+
+
+CURRENT FILE: Zobel et al. - 2004 - Recommended Reading for IR Research Students.pdf
+:
+probabilist model index search:
+index latent semant index:
+basic local align search tool:
+okapi trec:
+fastu cascad finitest transduc extract inform naturallanguag text:
+simpl proven approach text retriev:
+user interfac visual:
+batch user evalu give result:
+contentbas imag retriev end earli year:
+distribut inform retriev:
+factor associ success search medlin appli evid answer clinic question:
+stuff ive seen system person inform retriev reus:
+relev model inform retriev:
+interact crosslanguag document select:
+
+
+CURRENT FILE: Münsch - Unknown - “Rank Aggregation Methods for the Web”.pdf
+:
+einführung vorwort:
+vorüberlegungen definitionen:
+local kemen beschreibung der method:
+aggregationsmethoden:
+vergleich der methoden:
+anwendungsgebiet:
+zusammenfassung und fazit:
+
+
+CURRENT FILE: Christensen, Soderland, Etzioni - 2010 - Semantic Role Labeling for Open Information Extraction.pdf
+:
+introduct:
+background:
+srlie:
+qualit comparison extractor:
+experiment result:
+relat work:
+discuss futur work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Dwork - 2001 - Rank Aggregation Methods for the Web.pdf
+:
+introduct:
+spamresistanceandcondorcet criteria:
+rankaggreg method:
+applic:
+experi result:
+conclus andfurth work:
+
+
+CURRENT FILE: Kilgarriff - 2005 - Language is never, ever, ever, random.pdf
+:
+abstract:
+abstract:
+introduct:
+arbitrari random:
+object maximum likelihood estim mle:
+experi:
+reanalysi previou work:
+conclus:
+appendix:
+
+
+CURRENT FILE: Patel, Bullinaria, Levy - 1998 - Extracting semantic representations from large text corpora.pdf
+:
+introduct:
+previou corpora work:
+implement semant compon read lexic decis model:
+optimis vector creation paramet:
+evalu criteria:
+result:
+conclus:
+
+
+CURRENT FILE: Juffinger, Kern, Granitzer - 2008 - Exploiting Cooccurrence on Corpus and Document Level for Fair Crosslanguage Retrieval.pdf
+:
+introduct:
+system architectur:
+clef queri process:
+experi result:
+conclus:
+
+
+CURRENT FILE: ijdl-2013.pdf
+:
+introduct:
+relat work:
+extract contigu text block:
+extract relat text block:
+categor text block:
+bodi text tabl content extract:
+evalu:
+discuss:
+
+
+CURRENT FILE: Etzioni et al. - 2004 - Web-Scale Information Extraction in KnowItAll ( Preliminary Results ).pdf
+:
+keyword:
+introductionand motiv:
+knowital:
+lesson learn:
+futur work:
+conclus:
+
+
+CURRENT FILE: Jäschke et al. - 2007 - Tag Recommendations in Folksonomies.pdf
+:
+introduct:
+recommend tagsproblem definit state art:
+formal model folksonomi:
+tag recommend system:
+relat work:
+collabor filter:
+basic cf principl:
+cf tag recommend folksonomi:
+4a graph base approach:
+folksonomyadapt pagerank:
+folkranktopicspecif rank:
+evalu:
+dataset:
+core comput:
+evalu methodolog:
+result:
+conclus:
+
+
+CURRENT FILE: Bertin, Atanassova - Unknown - A Study of Lexical Distribution in Citation Contexts through the IMRaD Standard.pdf
+:
+introduct:
+method:
+result:
+conclus:
+
+
+CURRENT FILE: Bullinaria, Levy - 2012 - Extracting semantic representations from word co-occurrence statistics stop-lists, stemming, and SVD.pdf
+:
+abstract:
+abstract:
+introduct:
+comput semant vector:
+semant task:
+perform baselin:
+function word stoplist:
+word stem lemmat:
+singular valu decomposit:
+statist signific model select:
+understand svd result:
+conclus discuss:
+
+
+CURRENT FILE: Pérez Canalda - 2015 - English wiktionary parser & lemmatizer.pdf
+:
+introduct:
+backgorund:
+method implement:
+appendix sourc code:
+
+
+CURRENT FILE: Rector - 2008 - Comparison of Wikipedia and other encyclopedias for accuracy, breadth, and depth in historical articles.pdf
+:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+introduct:
+literatur review:
+methodolog:
+badland:
+chautauqua:
+free soil parti:
+harper ferri raid:
+william kidd:
+mexicanamerican war:
+niagara movement:
+sand creek:
+harriet tubman:
+discuss:
+
+
+CURRENT FILE: Beeferman, Berger, Lafferty - 1999 - Statistical models for text segmentation.pdf
+:
+introduct:
+previou work:
+featurebas approach use exponenti model:
+algorithm featur select exponenti model:
+languag model:
+featur segment:
+exponenti model outperform trigram model:
+featur induct action:
+effici learn:
+algorithm effici featur induct exponenti model:
+probabilist error metric:
+experiment result:
+number featur induc:
+conclus:
+
+
+CURRENT FILE: Gunawardana, Meek - 2008 - Tied boltzmann machines for cold start recommendations.pdf
+:
+introduct:
+relat work:
+themodel:
+cold start movi recommend:
+discuss:
+acknowledg:
+
+
+CURRENT FILE: Horn et al. - 2013 - Using Factual Density to Measure Informativeness of Web Documents.pdf
+:
+introduct:
+relat work:
+build ground truth dataset:
+automat rank:
+experi result:
+conclus futur work:
+
+
+CURRENT FILE: Trainieren, Das, Erreichen - Unknown - Powerbar nutrition coach für läufer ®.pdf
+:
+optimier deinen trainingserfolg und vergiss nicht stronger thinktm:
+informier dich auf wwwpowerbarcom oder frage unser ernährungsexperten unter nutritionteampowerbareuropecom:
+
+
+CURRENT FILE: Kanani, McCallum, Pal - 2007 - Improving author coreference by resource-bounded information gathering from the web.pdf
+:
+introduct:
+condit entiti resolut model:
+corefer leverag web:
+resourc bound web usag:
+theoret problem:
+experiment result dataset infrastructur:
+conclus futur work:
+
+
+CURRENT FILE: Kahng et al. - 2017 - ActiVis Visual Exploration of Industry-Scale Deep Neural Network Models.pdf
+:
+carol data scientist hold phd area natur languag process unlik bob dave work:
+summar key observ interact three particip follow three theme highlight tool help analysi:
+
+
+CURRENT FILE: Ling, Weld - 2007 - Temporal Information Extraction.pdf
+:
+introduct:
+previou work:
+tempor inform extract:
+experiment:
+conclus:
+
+
+CURRENT FILE: Kern, Granitzer - 2009 - Efficient linear text segmentation based on information retrieval techniques(2).pdf
+:
+introduct:
+relat work:
+algorithm:
+evalu:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Barzilay, Elhadad - 1997 - Using lexical chains for text summarization.pdf
+:
+introduct:
+algorithm chain comput:
+build summari use lexic chain:
+limit futur work:
+bayesian network text:
+bayesian network text strongest chain:
+
+
+CURRENT FILE: Kingma, Ba - 2015 - Adam a Method for Stochastic Optimization.pdf
+:
+introduct:
+algorithm:
+initi bia correct:
+converg analysi:
+relat work:
+experi:
+extens:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Graves et al. - Unknown - A Novel Connectionist System for Unconstrained Handwriting Recognition.pdf
+:
+introduct:
+ii onlin data prepar:
+normalis:
+featur extract:
+iii offlin data prepar:
+normalis:
+featur extract:
+recurr neural network:
+long shortterm memori lstm:
+bidirect recurr neural network:
+connectionist tempor classif ctc:
+ctc forward backward algorithm:
+otherwis:
+ctc object function:
+experi result:
+data set:
+languag model dictionari:
+hmm paramet:
+rnn paramet:
+main result:
+influenc dictionari size:
+use context rnn:
+vi discuss:
+vii conclus:
+
+
+CURRENT FILE: Brill - 1992 - A simple rule-based part of speech tagger.pdf
+:
+tagger:
+result:
+conclus:
+
+
+CURRENT FILE: Cucerzan - 2007 - Large-Scale Named Entity Disambiguation Based on Wikipedia Data.pdf
+:
+introduct relat work:
+disambigu paradigm:
+inform extract wikipedia:
+document analysi:
+disambigu compon:
+evalu:
+conclus potenti impact:
+
+
+CURRENT FILE: Navigli - 2012 - A Quick Tour of Word Sense Disambiguation , Induction and Related Approaches.pdf
+:
+introduct:
+word sens disambigu:
+word sens induct:
+lexic substitut:
+techniqu:
+conclus:
+
+
+CURRENT FILE: Gu et al. - Unknown - Continuous Deep Q-Learning with Model-based Acceleration(2).pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+background:
+continu qlearn normal advantag function:
+acceler learn imagin rollout:
+experi:
+discuss:
+
+
+CURRENT FILE: Ceccarelli et al. - Unknown - Improving Europeana Search Experience Using Query Logs.pdf
+:
+introduct:
+relat work:
+europeana queri log:
+4a queri recommend system europeana:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Harth, Decker - 2006 - Optimized index structures for querying rdf from the web.pdf
+:
+introduct:
+preliminari:
+index organ:
+queri process:
+architectur implement:
+experiment result:
+relat work:
+conclus:
+
+
+CURRENT FILE: Marco, Kroon, Mercer - Unknown - Using Hedges to Classify Citations in Scientific Articles.pdf
+:
+hedg scientif write:
+classifi citat scientif write:
+determin import hedg citat context:
+citat index tool biomed literatur analysi:
+conclus futur work:
+acknowledg:
+bibliographi:
+
+
+CURRENT FILE: Lee - 1999 - Measures of Distributional Similarity.pdf
+:
+introduct:
+distribut similar function:
+empir comparison:
+skew diverg:
+discuss:
+acknowledg:
+
+
+CURRENT FILE: Borthakur - 2007 - The hadoop distributed file system Architecture and design.pdf
+:
+introduct:
+assumpt goal hardwar failur:
+namenod datanod:
+file system namespac:
+data replic:
+commun protocol:
+robust:
+data organ data block:
+access:
+space reclam file delet undelet:
+
+
+CURRENT FILE: Whitelaw, Kehlenbeck, Ungar - 2008 - Web-Scale Named Entity Recognition.pdf
+:
+introduct:
+train set gener:
+machin learn:
+result:
+relat work:
+conclus:
+
+
+CURRENT FILE: Kern et al. - 2011 - VoteVeto Meta-Classifier for Authorship Identification.pdf
+:
+introduct:
+authorship attribut system overview:
+result:
+conclus futur work:
+
+
+CURRENT FILE: Ziak, Kern - 2015 - Evaluation of Pseudo Relevance Feedback Techniques for Cross Vertical Aggregated Search.pdf
+:
+introduct:
+system overview:
+system detail:
+evalu:
+result:
+conclus futur work:
+
+
+CURRENT FILE: Liu et al. - 2007 - LETOR Benchmark Dataset for Research on Learning to Rank for Information Retrieval.pdf
+:
+data collect:
+featur extract data partit:
+futur research direct:
+conclus:
+
+
+CURRENT FILE: Hiemstra, Kraaij - 1999 - Twenty-One at TREC-7 Ad-hoc and cross-language track.pdf
+:
+
+
+CURRENT FILE: Luxburg - 2007 - A Tutorial on Spectral Clustering.pdf
+:
+ulrik von luxburg:
+introduct:
+similar graph:
+graph laplacian basic properti:
+unnorm graph laplacian eigenvalu eigenvector use describ mani properti graph see mohar one exampl import spectral cluster follow:
+asit case unnorm graph laplacian multipl eigenvalu normal graph laplacian relat number connect compon:
+spectral cluster algorithm:
+normal spectral cluster accord ng jordan weiss:
+graph cut point view:
+random walk point view:
+formal equival ncut transit probabl random walk observ meila shi:
+perturb theori point view:
+practic detail:
+cluster object satisfi differ algorithm:
+outlook read:
+
+
+CURRENT FILE: Unknown - Unknown - No Title.pdf
+:
+
+
+CURRENT FILE: Brants, Chen, Tsochantaridis - 2002 - Topic-based document segmentation with probabilistic latent semantic analysis.pdf
+:
+categori subject descriptor:
+introduct:
+plsa model:
+document preprocessingand model fit:
+document segment:
+document segment use combin plsa model:
+evalu:
+conclus futur work:
+refer:
+
+
+CURRENT FILE: Loizou, Laouris - 2010 - Developing Prognosis Tools to Identify Learning Difficulties in Children Using Machine Learning Technologies.pdf
+:
+introduct:
+wechsler intellig scale children wisc:
+rapid name:
+task time taken child respond well number correct respons record:
+methodolog:
+prior likelihood posterior evid:
+summari:
+
+
+CURRENT FILE: Luberg et al. - 2012 - Information retrieval and deduplication for tourism recommender Sightsplanner.pdf
+:
+introduct:
+recommend system:
+data acquisit:
+dedupl:
+experi:
+relat work:
+conlus:
+acknowledg:
+
+
+CURRENT FILE: Anderson - 1983 - A spreading activation theory of memory.pdf
+
+
+CURRENT FILE: Finkel, Grenager, Manning - 2005 - Incorporating non-local information into information extraction systems by Gibbs sampling.pdf
+:
+introduct:
+gibb sampl infer sequenc model:
+3a condit random field model:
+current word shape:
+dataset evalu:
+model nonloc structur:
+combin sequenc model:
+result discuss:
+relat work:
+conclus:
+
+
+CURRENT FILE: Keogh, Lin, Fu - 2005 - HOT SAX Finding the most Unusual Time Series Subsequences Algorithms and Application.pdf
+:
+introduct:
+relatedwork background:
+find time seri discord:
+approxim magic:
+empir evaualt:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Bekkerman, McCallum - 2005 - Disambiguating Web appearances of people in a social network.pdf
+:
+introduct:
+problem statement relat work:
+method:
+dataset:
+result discuss:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Klampfl, Kern - 2013 - An Unsupervised Machine Learning Approach to Body Text and Table of Contents Extraction from Digital Scientific A.pdf
+:
+introduct:
+relat work:
+extract relat text block:
+categor text block:
+bodi text tabl content extract:
+evalu:
+discuss conclus:
+
+
+CURRENT FILE: Assent et al. - 2008 - EDSC Efficient density-based subspace clustering.pdf
+:
+introduct:
+relat work:
+effici multistep approach:
+experi:
+conclus:
+
+
+CURRENT FILE: Abbasi, Staab - 2009 - RichVSM enRiched vector space models for folksonomies.pdf
+:
+introduct:
+foundat:
+enrich vector space:
+dataset evalu:
+result discuss:
+relat work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Pasca et al. - 2006 - Organizing and searching the world wide web of facts-step one the one-million fact extraction challenge.pdf
+:
+introduct:
+gener extract pattern basic contextu extract pattern:
+experiment set:
+conclus:
+
+
+CURRENT FILE: Federmann et al. - 2009 - Translation Combination using Factored Word Substitution.pdf
+:
+introduct:
+architectur:
+system select:
+substitut:
+conclus:
+
+
+CURRENT FILE: Leskovec et al. - 2007 - Cascading behavior in large blog graphs Patterns and a model.pdf
+:
+introduct:
+relat work:
+preliminari:
+experiment setup:
+observ pattern law tempor dynam post link:
+propos model insight:
+discuss:
+conclus:
+
+
+CURRENT FILE: Kim et al. - 2011 - Authorship classification a discriminative syntactic tree mining approach.pdf
+:
+introduct:
+relat work:
+preliminari:
+experi:
+discuss:
+conclus:
+
+
+CURRENT FILE: Christ, Kempa-Liehr, Feindt - 2016 - Distributed and parallel time series feature extraction for industrial big data applications.pdf
+:
+introduct:
+time seri featur extract:
+featur filter:
+evalu:
+discuss:
+summari futur work:
+acknowleg:
+
+
+CURRENT FILE: Goldberg - 2015 - A Primer on Neural Network Models for Natural Language Processing.pdf
+:
+introduct:
+neural network architectur:
+featur represent:
+feedforward neural network:
+crossentropyhard classif logŷ:
+word embed:
+neural network train:
+structur output predict:
+convolut layer:
+pool:
+recurr neural network model sequenc stack:
+jump:
+concret rnn architectur:
+model tree recurs neural network:
+conclus:
+
+
+CURRENT FILE: Tan et al. - 2006 - Introduction to data mining.pdf
+:
+number complaint product total number sale product:
+ham distanc number differ bit jaccard similar number match number bit number match:
+node therefor label result concept:
+ye centroid stabl solut two cluster produc singl link:
+min produc natur cluster definit cluster natur cluster correspond wellsepar centerbas contigu densiti:
+
+
+CURRENT FILE: Klieber et al. - 2009 - Knowledge discovery using the KnowMiner framework.pdf
+:
+introduct:
+data model:
+basic servic:
+servic composit:
+design aspect:
+conclus:
+
+
+CURRENT FILE: Caroline Kleist - 2015 - Time Series Data Mining Methods A Review.pdf
+:
+abstract:
+abstract:
+index:
+actual forecast error bound:
+
+
+CURRENT FILE: Krishnan, Shalit, Sontag - 2015 - Deep Kalman Filters.pdf
+:
+abstract:
+abstract:
+introduct:
+background:
+relat work:
+model:
+learn use stochast backpropag:
+experiment section:
+discuss:
+
+
+CURRENT FILE: Hearst - 1997 - TextTiling Segmenting Text into Multi-paragraph Subtopic Passages.pdf
+:
+introduct:
+multiparagraph unit:
+coarsegrain subtop structur subtop structur:
+detect subtop chang via lexic cooccurr pattern:
+texttil algorithm:
+evalu:
+summari futur work:
+
+
+CURRENT FILE: Martinez, Agirre - 2000 - One sense per collocation and genretopic variations.pdf
+:
+introduct:
+resourc use:
+experiment set:
+incorpu experi colloc weak:
+tabl train wsj tag wsj:
+draw train test exampl document affect perform:
+genr topic variat affect perform:
+conclus:
+
+
+CURRENT FILE: Klampfl, Kern - 2015 - Machine Learning Techniques for Automatically Extracting Contextual Information from Scientific Publications.pdf
+:
+introduct:
+unsupervis extract contigu text block basic unit pdf:
+supervis classif author affili metadata:
+detect segment tokenis refer:
+extract fund inform use name entiti recognit:
+conclus discuss:
+
+
+CURRENT FILE: Maji, Malik - 2009 - Fast and accurate digit classification.pdf
+:
+introduct:
+previou work:
+mnist dataset experi:
+usp dataset experi:
+conclus:
+
+
+CURRENT FILE: Li et al. - 2008 - Regular Expression Learning for Information Extraction.pdf
+:
+introduct:
+regex learn problem:
+instanti regex transform:
+reli search algorithm:
+experi:
+summari futur work:
+
+
+CURRENT FILE: Beel et al. - 2013 - Research Paper Recommender System Evaluation A Quantitative Literature Survey.pdf
+:
+keyword:
+introduct:
+prerequisit achiev high accuraci high coverag avail item coverag describ mani paper:
+research object methodolog:
+result:
+summari outlook:
+
+
+CURRENT FILE: Schmidt, Lipson - 2009 - Distilling Free-Form Natural Laws from Experimental Data.pdf
+:
+
+
+CURRENT FILE: Kern et al. - 2012 - TeamBeam - Meta-Data Extraction from Scientific Literature.pdf
+:
+introduct:
+algorithm:
+data set:
+evalu:
+discuss:
+refer:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Magnini, Cavaglia - 2000 - Integrating Subject Field Codes into WordNet.pdf
+:
+introduct:
+subject field code organ:
+annot procedur wordnet:
+result:
+evalu:
+conclus futur work:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Socher, Perelygin, Wu - 2013 - Recursive deep models for semantic compositionality over a sentiment treebank.pdf
+:
+introduct:
+relat work:
+stanford sentiment treebank:
+recurs neural model:
+experi:
+conclus:
+
+
+CURRENT FILE: Cherednichenko, Kinnunen - 2005 - Improving K-Means by Outlier Removal.pdf
+:
+introduct:
+outlier remov follow cluster:
+propos method:
+experi:
+conclus:
+
+
+CURRENT FILE: Salton, Buckley - 1988 - Term-weighting approaches in automatic text retrieval.pdf
+:
+
+
+CURRENT FILE: Mining - Unknown - 2 Association Rules and Frequent Itemsets.pdf
+:
+
+
+CURRENT FILE: Sugiyama, Kan - 2013 - Exploiting Potential Citation Papers in Scholarly Paper Recommendation.pdf
+:
+introduct:
+relat work:
+propos method:
+experi:
+conclus:
+refer:
+
+
+CURRENT FILE: Laufer - 2012 - A general, web-based Information Extraction System using GATE and the Stanford Parser.pdf
+:
+tabl path support main control:
+figur opencalai viewer exampl text:
+test follow annot found categor correctli:
+
+
+CURRENT FILE: Czeczko, Bogacewicz - Unknown - GROTOAP GROund Truth for Open Access Publications.pdf
+:
+categori subject descriptor:
+keyword:
+introduct:
+build test set:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Gale, Church - 1991 - A Program for Aligning Sentences in Bilingual Corpora.pdf
+:
+introduct:
+paragraph align:
+dynam program framework:
+distanc measur:
+english paragraph length:
+dynam program algorithm:
+evalu:
+variat extens measur length term word rather charact:
+conclus:
+michael riley:
+
+
+CURRENT FILE: Brody, Lapata - 2009 - Bayesian Word Sense Induction.pdf
+:
+introduct:
+relat work:
+sens induct model:
+infer:
+evalu setup:
+experi:
+discuss:
+
+
+CURRENT FILE: Zaremba, Sutskever - Unknown - REINFORCEMENT LEARNING NEURAL TURING MACHINES -REVISED.pdf
+:
+introduct:
+neural ture machin relat model:
+reinforc algorithm:
+rlntm:
+experi:
+gradient check:
+conclus:
+
+
+CURRENT FILE: Bischofter - 2014 - Eine Prototypische Umsetzung von Enterprise Search für Engineeringdaten am Virtual Vehicle.pdf
+:
+manag summari:
+einleitung:
+methodik:
+methodik:
+grundlagen:
+systemlabor:
+evaluierung der sharepoint foundat enterpris search:
+evaluierung der sharepoint foundat enterpris search:
+zusammenfassung und ausblick:
+zusammenfassung und ausblick:
+quellen:
+anhang:
+
+
+CURRENT FILE: Zhang et al. - 2015 - Occupancy-Based Frequent Pattern Mining.pdf
+:
+arg max σp λφp:
+max:
+discuss propos algorithm dofra extend handl multipleitemset sequenc tabl viii give exampl databas multipleitemset sequenc:
+
+
+CURRENT FILE: KURGAN, MUSILEK - 2006 - A survey of Knowledge Discovery and Data Mining process models.pdf
+:
+abstract:
+abstract:
+kddm process model:
+thekddm process model:
+analysi ofkddm process model:
+evolut futur kddm process model:
+conclus summari:
+
+
+CURRENT FILE: Marlow et al. - 2006 - HT06, tagging paper, taxonomy, Flickr, academic article, to read.pdf
+:
+inform collect:
+exampl hub bridg question:
+
+
+CURRENT FILE: Studies - Unknown - N-gram Model Hiroshi Nakagawa.pdf
+:
+
+
+CURRENT FILE: Pedersen, Kulkarni - 2006 - Automatic cluster stopping with criterion functions and the gap statistic.pdf
+:
+introduct:
+methodolog:
+acknowledg:
+
+
+CURRENT FILE: Helic et al. - Unknown - How Effective are Tag Clouds for Social Navigation Measuring Navigability of Socially-Constructed Links in Tagg.pdf
+:
+introduct:
+navig tag cloud:
+experiment setup:
+result:
+implic:
+relat work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Mnih et al. - 2015 - Human-level control through deep reinforcement learning.pdf
+:
+
+
+CURRENT FILE: Carlson et al. - Unknown - Toward an Architecture for Never-Ending Language Learning.pdf
+:
+introduct:
+approach:
+relat work:
+implement:
+experiment evalu:
+conclus:
+
+
+CURRENT FILE: Moro et al. - 2013 - Semantic rule filtering for web-scale relation extraction.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+webdar nell:
+wordnet babelnet:
+rule filter relationspecif semant graph:
+experi evalu:
+conclus outlook:
+
+
+CURRENT FILE: Liu, Shah, Jiang - 2004 - On-line outlier detection and data cleaning.pdf
+:
+introduct:
+preliminari:
+origin revis mt filterclean:
+comparison revis mt filterclean hampel filter:
+conclus:
+appendix:
+
+
+CURRENT FILE: Senin, Malinchik - 2013 - SAX-VSM Interpretable Time Series Classification Using SAX and Vector Space Model.pdf
+introduct:
+ii prior relat work:
+iii background:
+symbol aggreg approxim sax:
+bag word represent time seri:
+vector space model vsm adapt:
+iv saxvsm classif algorithm:
+train phase:
+classif:
+slide window size sax paramet select:
+intuit behind saxvsm:
+result:
+analysi classif accuraci:
+scalabl analysi:
+interpret classif:
+robust nois:
+vi conclus futur work:
+
+
+CURRENT FILE: Arguello et al. - 2011 - A Methodology for Evaluating Aggregated Search Results.pdf
+:
+introduct:
+model assumpt problem definit:
+relat work:
+preferencebas evalu methodolog:
+materi method:
+assessor agreement blockpair judgement:
+empir analysi valid:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Joachims - 1997 - A probabilistic analysis of the Rocchio algorithm with TFIDF for text categorization.pdf
+:
+
+
+CURRENT FILE: Silver, Tesauro - 2009 - Monte-Carlo Simulation Balancing.pdf
+:
+introduct:
+strength balanc:
+softmax polici:
+optimis strength:
+optimis balanc:
+experi comput go:
+conclus:
+
+
+CURRENT FILE: Middleton, Shadbolt, De Roure - 2004 - Ontological user profiling in recommender systems.pdf
+:
+recommend confid classif confid topic interest valu:
+synergi relationship fulli explor middleton et al:
+use find foxtrot databas much use recommend facil accur recommend topic:
+
+
+CURRENT FILE: Wang, Zhai - 2008 - Mining term association patterns from search logs for effective query reformulation.pdf
+:
+introduct:
+relat work:
+problem formul:
+term associationpattern mine search log:
+data collect:
+experi:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Karl et al. - 2016 - Deep Variational Bayes Filters Unsupervised Learning of State Space Models from Raw Data.pdf
+:
+abstract:
+abstract:
+introduct:
+deep variat bay filter reparametr transit:
+experi result:
+conclus:
+
+
+CURRENT FILE: Kern, Klampfl - 2013 - Extraction of References Using Layout and Formatting Information from Scientific Articles.pdf
+:
+introduct:
+algorithm:
+evalu:
+discuss:
+conclus:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Bannard, Baldwin - Unknown - Distributional Models of Preposition Semantics.pdf
+:
+abstract:
+abstract:
+introduct:
+interpreposit similar:
+verb particl composition:
+conclus:
+
+
+CURRENT FILE: Huang et al. - Unknown - Clustering Documents using a Wikipedia-based Concept Representation.pdf
+:
+abstract:
+abstract:
+introduct:
+repres document wikipedia articl:
+3a semant enrich document similar measur:
+experi result:
+relat work:
+conclus:
+
+
+CURRENT FILE: Breese et al. - 1998 - Empirical analysis of predictive algorithms for collaborative filtering.pdf
+:
+
+
+CURRENT FILE: Stonebraker, Çetintemel, Zdonik - 2005 - The 8 requirements of real-time stream processing.pdf
+:
+introduct:
+eight rule stream process:
+conclud remark:
+
+
+CURRENT FILE: Carmel, Roitman, Zwerdling - Unknown - Enhancing Cluster Labeling Using Wikipedia.pdf
+:
+introduct:
+relat work:
+gener framework cluster label:
+experi:
+summari:
+
+
+CURRENT FILE: Banko et al. - Unknown - Open Information Extraction from the Web.pdf
+:
+introduct motiv:
+open ie textrunn:
+experiment result:
+relat work:
+conclus:
+acknowledeg:
+
+
+CURRENT FILE: Hochreiter et al. - 1997 - Long short-term memory.pdf
+:
+
+
+CURRENT FILE: Sutskever, Tenenbaum, Salakhutdinov - 2009 - Modelling Relational Data using Bayesian Clustered Tensor Factorization.pdf
+:
+introduct:
+bayesian cluster tensor factor bctf:
+evalu:
+discuss conclus:
+
+
+CURRENT FILE: Zeng et al. - 2014 - Relation Classification via Convolutional Deep Neural Network.pdf
+:
+introduct:
+relat work:
+methodolog:
+dataset evalu metric:
+experi:
+conclus:
+
+
+CURRENT FILE: Schmitz - 2006 - Inducing ontology from flickr tags.pdf
+:
+keyword:
+introduct:
+relat work:
+dataset analysi:
+propos model:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Milne, Witten - 2008 - Learning to link with wikipedia.pdf
+:
+introduct:
+relat work:
+learn todisambigu link:
+learn detect link:
+wikif wild:
+exampl implic:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Steinbach, Karypis, Kumar - 2000 - A comparison of document clustering techniques.pdf
+:
+introduct:
+evalu cluster qualiti:
+bisect kmean:
+agglom hierarch techniqu:
+result:
+agglom hierarch cluster perform poorli:
+conclus:
+
+
+CURRENT FILE: Strohmaier, Körner, Kern - 2012 - Understanding why users tag A survey of tagging motivation literature and results from an empirical s.pdf
+:
+introduct:
+relat work:
+tag motiv:
+methodolog setup:
+measur tag motiv:
+influenc tag agreement:
+limit:
+contribut conclus:
+
+
+CURRENT FILE: Schafer, Konstan, Riedl - 2001 - E-Commerce Recommendation Applications.pdf
+:
+approach:
+amazoncom:
+cdnow:
+drugstorecom:
+ebay:
+moviefindercom:
+reelcom:
+function io:
+recommend method:
+design issu:
+person data:
+privaci polici:
+technolog approach:
+
+
+CURRENT FILE: Hirst - 2005 - Distributional Measures as Proxies for Semantic Relatedness.pdf
+:
+abstract:
+abstract:
+cosin:
+manhattan euclidean distanc:
+pseudofuzzi metric:
+use multipl syntact relat:
+ripe mango fell ground ripe plum fell ground:
+primari composit measur:
+weight pcm:
+determin effect convers exist asymmetr measur part futur work:
+
+
+CURRENT FILE: Xu et al. - 2015 - Classifying Relations via Long Short Term Memory Networks along Shortest Dependency Paths.pdf
+:
+introduct:
+relat work:
+propos sdplstm model:
+experi:
+misti ridg upris surg:
+conclus:
+
+
+CURRENT FILE: Hong, Ramos, Dey - 2012 - Understanding physiological responses to stressors during physical activity.pdf
+:
+introduct:
+relat work:
+data collect:
+aframeworkfor physiolog analysi:
+analysi evalu:
+conclus:
+
+
+CURRENT FILE: Mican, Tomai - Unknown - Association-Rules-Based Recommender System for Personalization in Adaptive Web-Based Applications.pdf
+:
+introduct:
+adapt websit web personalis system:
+wise recommend system wr propos architectur web personalis:
+descript experi carri:
+
+
+CURRENT FILE: Chen et al. - Unknown - DeepDriving Learning Affordance for Direct Perception in Autonomous Driving.pdf
+:
+introduct:
+learn afford drive percept:
+implement:
+torc evalu:
+test realworld data smartphon video:
+visual:
+conclus:
+
+
+CURRENT FILE: Kozima - 1953 - Based text segmentation on similarity between words.pdf
+:
+segment coher:
+lexic cohes profil:
+
+
+CURRENT FILE: Schmitz et al. - 2012 - Open language learning for information extraction.pdf
+:
+yield:
+yield:
+
+
+CURRENT FILE: Church, Hanks - 1990 - Word association norms, mutual information, and lexicography.pdf
+:
+mean associ:
+practic applic:
+word associ psycholinguit:
+inform theoreticmeasur:
+applic lexicographi:
+conclumom:
+
+
+CURRENT FILE: Fruchterman, Reingold - 1991 - Graph drawing by force-directed placement.pdf
+:
+abstract:
+abstract:
+graphdraw problem:
+previou work:
+implement:
+extend exampleth pentagon prism:
+symmetr graph:
+planar graph:
+layout appear threedimension:
+threedimension layout:
+grid variant:
+conclus:
+
+
+CURRENT FILE: Falke - 2016 - Porting an Open Information Extraction System from English to German.pdf
+:
+introduct:
+background:
+analysi portabl:
+german open ie system:
+experi:
+conclus:
+
+
+CURRENT FILE: Fagin, Kumar - 2003 - Ef cient similarity search and classi cation via rank aggregation.pdf
+:
+introduct:
+framework algorithm:
+conclus:
+
+
+CURRENT FILE: Lin, Pantel - 2001 - DIRT@ SBT@ discovery of inference rules from text.pdf
+:
+introduct:
+previou work:
+extract path:
+path binari relat two entiti section present algorithm call dirt automat discov:
+extend distribut hypothesi:
+nsubjvpullvobjnbodynfromn pull bodi:
+experiment result:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Joulin et al. - 2016 - Bag of Tricks for Efficient Text Classification.pdf
+:
+introduct:
+model architectur:
+experi:
+discuss conclus:
+
+
+CURRENT FILE: Zechner, Klampfl, Kern - 2013 - Exploiting Wiktionary for Lightweight Part-of-Speech Tagging for Machine Learning Tasks.pdf
+introduct:
+ii wiktionarybas partofspeech tag:
+iii evalu:
+po tag:
+featur gener cluster classif:
+text cluster:
+text classif:
+iv applic futur work:
+conclus:
+
+
+CURRENT FILE: Androutsopoulos, Malakasiotis - 2010 - A Survey of Paraphrasing and Textual Entailment Methods.pdf
+:
+obj quebec:
+decis:
+det det mod:
+
+
+CURRENT FILE: Juffinger et al. - 2007 - Distributed Web2.0 crawling for ontology evolution.pdf
+:
+introduct:
+web crawl histori classif:
+persist:
+web crawl:
+evalu:
+conclus:
+
+
+CURRENT FILE: Blum, Mitchell - 1998 - Combining labeled and unlabeled data with co-training.pdf
+:
+
+
+CURRENT FILE: Frey - 2014 - Creating Table Ground Truth with PDF Table Annotator.pdf
+:
+introduct:
+relat work:
+relat work:
+theoret background:
+examinationsmidtermφfin:
+descript softwar system:
+evalu:
+discuss:
+discuss:
+conclus:
+obtain instal softwar:
+
+
+CURRENT FILE: Washtell - 2009 - Co-dispersion a windowless approach to lexical association.pdf
+:
+introduct:
+impact window size:
+proxim associ:
+analys scaleindepend:
+conclus futur direct:
+
+
+CURRENT FILE: Michalevsky et al. - 2015 - PowerSpy Location Tracking using Mobile Device Power Analysis.pdf
+:
+gabi nakibl:
+introduct:
+threat model:
+background:
+rout distinguish:
+realtim mobil devic track:
+infer new rout:
+experi data collect:
+futur direct:
+defens:
+relat work:
+conclus:
+choos best infer rout:
+
+
+CURRENT FILE: Snowsill, Fyson, Bie - 2011 - Refining causality who copied from whom.pdf
+:
+introduct:
+preliminari:
+method:
+experiment result:
+conclus:
+
+
+CURRENT FILE: Tonelli, Giuliano - 2009 - Wikipedia as frame information repository.pdf
+:
+introduct:
+framenet wikipedia:
+map algorithm:
+thewsd algorithm:
+map task:
+english framenet expans:
+multilingu framenet expans:
+conclus futur work:
+
+
+CURRENT FILE: Lemaire, Denhière - 2004 - Incremental construction of an associative network from a corpus.pdf
+:
+introduct:
+conclus:
+
+
+CURRENT FILE: Steyvers, Griffiths - 2007 - Probabilistic Topic Models.pdf
+:
+introduct:
+abstract:
+abstract:
+gener model:
+probabilist topic model:
+algorithm extract topic:
+polysemi topic:
+comput similar:
+conclus:
+
+
+CURRENT FILE: Wachsmuth - Unknown - Learning Efficient Information Extraction on Heterogeneous Texts.pdf
+:
+introduct:
+relat work:
+learn effici extract:
+heterogen text:
+evalu:
+conclus:
+
+
+CURRENT FILE: Klein, Manning - 2003 - Fast exact inference with a factored model for natural language parsing.pdf
+:
+introduct:
+2a factor model:
+empir perform:
+conclus:
+
+
+CURRENT FILE: Koini - 2016 - A Privacy Perspective on Tracking Fitness- and Health-Related Data.pdf
+:
+statutori declar:
+eidesstattlich erklärung:
+futur outlook concern health track:
+addit analysi opinion privaci regard age:
+discuss:
+futur work:
+
+
+CURRENT FILE: Cucerzan, Brill - 2004 - Spelling correction as an iterative process that exploits the collective knowledge of web users.pdf
+:
+introduct:
+problem formul prior work:
+error model string edit function:
+languag model exploit larg web queri log:
+queri correct:
+evalu:
+conclus:
+
+
+CURRENT FILE: Horn et al. - Unknown - Using Factual Density to Measure Informativeness of Web Documents.pdf
+:
+introduct:
+relat work:
+build ground truth dataset:
+automat rank:
+experi result:
+conclus futur work:
+
+
+CURRENT FILE: Smucker, Allan, Carterette - 2007 - A comparison of statistical significance tests for information retrieval evaluation.pdf
+:
+introduct:
+significancetest:
+method materi:
+result:
+discuss:
+relat work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Muñoz-García et al. - 2011 - Identifying Topics in Social Media Posts using DBpedia.pdf
+:
+introduct:
+relat work:
+descript method:
+evalu:
+conclus:
+
+
+CURRENT FILE: Horn et al. - Unknown - QZTool – Automatically generated Origin-Destination Matrices from Cell Phone Trajectories.pdf
+:
+30gb raw data gener vast amount store hadoop cluster:
+select time rang:
+either origin destin second:
+
+
+CURRENT FILE: Ji, Zha - Unknown - Domain-independent Text Segmentation Using Anisotropic Diffusion and Dynamic Programming.pdf
+:
+introduct:
+previou work:
+methodolog:
+experi:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Alexandridis, Zapranis - 2013 - Wavelet neural networks A practical guide.pdf
+:
+introduct:
+model select:
+variabl select:
+model uncertainti:
+case studi model daili averag temperatur berlin:
+case studi model daili averag wind speed innew york:
+case studi breast cancer classif wisconsin:
+case studi mackeyglass equat:
+conclus:
+
+
+CURRENT FILE: Resnick et al. - 1994 - GroupLens an open architecture for collaborative filtering of netnews.pdf
+:
+introduct:
+relat work:
+outlin:
+overview:
+distribut rate:
+scale issu:
+ongo experiment:
+chang netnew behavior:
+
+
+CURRENT FILE: Jing, Huang, Shi - 2002 - Improved Feature Selection Approach TFIDF in Text Mining.pdf
+
+
+CURRENT FILE: Michael - 2011 - Results and Raw Experimental Data on the E-Prints Data Set for A Comparison of Metadata Extraction Techniques for Crow.xlsx
+CURRENT FILE: Rimell, G - 2010 - Evaluation of Dependency Parsers on Unbounded Dependencies.pdf
+:
+introduct:
+unbound depend evalu:
+depend parser:
+methodolog:
+result:
+error analysi:
+conclus:
+
+
+CURRENT FILE: Cheng et al. - 2016 - Wide & Deep Learning for Recommender Systems.pdf
+:
+rank:
+vocabulari gener:
+
+
+CURRENT FILE: Zhai - 2008 - Statistical language models for information retrieval.pdf
+:
+univers illinoi urbanachampaign goodwin urbana il usa czhaicsuiucedu:
+introduct:
+acknowledg:
+
+
+CURRENT FILE: Purandare, Pedersen - 2004 - Word sense discrimination by clustering contexts in vector and similarity spaces.pdf
+:
+introduct:
+previou work:
+first order context vector:
+second order context vector:
+cluster:
+experiment data:
+evalu techniqu:
+experiment result:
+analysi discuss:
+futur direct:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Teixeira - 2016 - Early Classification of Time Series and Deep Learning.pdf
+:
+mathemat formul neuron given follow:
+deep learn time seri classif:
+approach formal follow definit use notat partial borrow xing pei philip:
+algorithm earli time seri classif tradeoff curv deriv:
+gener note implement time seri classif:
+nearest neighbor time seri classif:
+deep learn time seri classif:
+earli classif tradeoff curv deriv:
+result:
+detail present dataset follow:
+phase may differ number observ:
+discuss:
+conclus:
+
+
+CURRENT FILE: Véronis - 2003 - HyperLex lexical cartography for information retrieval.pdf
+:
+introduct:
+past research:
+detect highdens compon:
+disambigu:
+view navig:
+evalu:
+conclus:
+epilogu:
+
+
+CURRENT FILE: Kern, Granitzer - 2009 - Efficient linear text segmentation based on information retrieval techniques.pdf
+:
+introduct:
+relat work:
+algorithm:
+evalu:
+conclus:
+
+
+CURRENT FILE: He, Ounis - 2007 - Combining fields for query expansion and adaptive query expansion.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+combin field evid queri expans:
+adapt queri expans:
+avictf:
+experi bm25f:
+conclus futur work:
+
+
+CURRENT FILE: Jianbo, Yu, Shi - 2003 - Multiclass Spectral Clustering.pdf
+:
+multiclass normal cut:
+solv kway normal cut:
+experi:
+relat work:
+
+
+CURRENT FILE: Rilo - 1996 - Automatically Generating Extraction Patterns from Untagged Text Tagged Text Generating Extraction Patterns from Untagged T.pdf
+:
+
+
+CURRENT FILE: Golder, Huberman - 2005 - The structure of collaborative tagging systems.pdf
+:
+keyword list:
+introduct:
+tag taxonomi:
+carticlesafricacat articl african cat:
+delici dynam:
+bookmark:
+conclus:
+refer:
+
+
+CURRENT FILE: Brill - 1992 - A simple rule-based part of speech tagger(2).pdf
+:
+introduct:
+tagger:
+result:
+conclus:
+
+
+CURRENT FILE: Florian et al. - 2002 - Named Entity Recognition through Classifier Combination.pdf
+:
+introduct:
+classif method featur use:
+algorithm:
+combin methodolog experiment result:
+conclus:
+
+
+CURRENT FILE: Zheng et al. - 2008 - Learning transportation mode from raw gps data for geographic applications on the web.pdf
+:
+introduct:
+framework:
+experi:
+relat work:
+conclus:
+
+
+CURRENT FILE: Jung, Jo - Unknown - Semantic Outlier Analysis for Sessionizing Web Logs.pdf
+:
+introduct:
+data model web log problem statement:
+ontologyori heurist session:
+session identif stream web log:
+experi discuss:
+conclus futur work:
+
+
+CURRENT FILE: Bao et al. - 2007 - Optimizing Web Search Using Social Annotations.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+search social annot:
+experiment result:
+disscuss:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Brand - 2006 - Fast low-rank modifications of the thin singular value decomposition.pdf
+:
+abstract:
+abstract:
+singular valu decomposit:
+addit modif:
+rank modif:
+extend decomposit reduc complex:
+relat work:
+discuss approxim sublinear track algorithm:
+acknowledg:
+
+
+CURRENT FILE: Li et al. - 2006 - Exploring Distributional Similarity Based Models for Query Spelling Correction.pdf
+:
+introduct:
+relat work:
+distribut similaritybas model queri spell correct:
+experiment result dataset:
+conclus futur work:
+
+
+CURRENT FILE: Leskovec et al. - 2007 - Cost-effective outbreak detection in networks.pdf
+:
+problem statement:
+placement object:
+properti placement object:
+multicriterion optim:
+bound algorithm:
+onlin bound algorithm:
+speed function evalu:
+reduc function evalu:
+experiment setup:
+object function:
+solut qualiti:
+comparison heurist blog select:
+fraction select blog:
+gener futur data:
+scalabl:
+experiment setup:
+object function:
+solut qualiti:
+multicriterion optim:
+scalabl:
+relationship influenc maxim:
+relat work:
+
+
+CURRENT FILE: Fukazawa et al. - 2016 - IR based Task-Model Learning Automating the hierarchical structuring of tasks.pdf
+:
+introduct:
+relat work:
+methodolog:
+ir base taskmodel learn:
+experiment setup:
+taskmodel evalu:
+conclus:
+
+
+CURRENT FILE: Riordan, Jones - 2000 - Comparing semantic space models using child-directed speech.pdf
+:
+abstract:
+abstract:
+introduct:
+experiment setup:
+experi word pair discrimin:
+experi model adult semant data:
+experi model ageofacquisit:
+conclus:
+
+
+CURRENT FILE: Lex et al. - 2013 - Where am I Using Mobile Sensor Data to Predict a User’s Semantic Place with a Random Forest Algorithm.pdf
+:
+introduct:
+dataset:
+problem statement:
+featur:
+experi result:
+comparison work mdc dataset:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Wu et al. - 2007 - Top 10 algorithms in data mining.pdf
+:
+abstract:
+abstract:
+introduct:
+decis tree:
+ruleset classifi:
+research issu:
+c4 acknowledg:
+algorithm:
+limit:
+gener connect:
+question understand mean svm solid theoret foundat:
+descript algorithm:
+impact algorithm:
+current research:
+introduct:
+:
+maximum likelihood estim normal mixtur:
+number cluster:
+overview:
+algorithm:
+refer pagerank:
+descript algorithm:
+impact algorithm:
+research:
+descript algorithm:
+issu:
+impact:
+current futur research:
+introduct:
+basic principl:
+extens:
+conclud remark naiv bay:
+overview:
+split rule:
+prior probabl class balanc:
+miss valu handl:
+attribut import:
+dynam featur construct:
+costsensit learn:
+stop rule prune tree sequenc tree select:
+probabl tree:
+theoret foundat:
+select biograph detail:
+
+
+CURRENT FILE: Rhodes, Ph.D. - 2000 - Just-In-Time Information Retrieval(2).pdf
+:
+overview implement system:
+theori:
+experi:
+data fusion:
+filter:
+intellig augment:
+high expect effort cost:
+updat knowledg expect benefit cost:
+overview inform retriev:
+method ir:
+prior:
+html html written return emac htmlmode subject titl webpagebeingwritten bodi main text web page written:
+bodi subject:
+locat person:
+index perform raindex follow syntax:
+text retriev similar metric:
+command:
+inspec relev vs use result:
+almost unfair advantag ra start write word brainstorm essay read thing brought:
+phd thesi told meto send list top thing thanksgiv sound dirti arent friend:
+hit werent effect relev use search engin id never use search engin:
+suitor:
+contextawar archeolog assist:
+audio aura:
+machin learn maintain state:
+continuum control:
+communitywar extens:
+util versu relev:
+need integr:
+
+
+CURRENT FILE: Trotman - 2005 - Learning to rank.pdf
+:
+abstract:
+abstract:
+precis:
+signific:
+retriev methodolog:
+genet program:
+avail atom evid:
+document:
+comput vector length:
+combin evid:
+oper:
+taxonomi:
+gp unstructur rank:
+gp structur semistructur rank:
+train test set:
+genet paramet:
+experiment process:
+cross valid:
+numer overflow:
+possibl improv:
+
+
+CURRENT FILE: Lin - 2004 - Rouge A package for automatic evaluation of summaries.pdf
+:
+introduct:
+rougen ngram cooccurr statist:
+rougel longest common subsequ:
+rougew weight longest common subsequ:
+roug skipbigram cooccurr statist:
+evalu roug:
+acknowledg:
+
+
+CURRENT FILE: Schmidek - 2013 - Effectiveness and Efficiency of Open Relation Extraction.pdf
+:
+introduct:
+relat work:
+experiment studi:
+conclus:
+exemplar:
+
+
+CURRENT FILE: Lawrence, Leegiles - 1998 - Inquirus, The NECI Meta Search Engine.pdf
+:
+introduct:
+motiv:
+inquiru meta search engin:
+oper:
+specif express form:
+effici:
+conclus:
+
+
+CURRENT FILE: Sahami, Heilman - 2006 - A web-based kernel function for measuring the similarity of short text snippets.pdf
+:
+introduct:
+relat work:
+new similar function:
+initi result withkernel:
+relat queri suggest:
+conclus futur work:
+
+
+CURRENT FILE: Simmons, Nelson, Simonsohn - 2011 - False-Positive Psychology Undisclosed Flexibility in Data Collection and Analysis Allows Presenting.pdf
+:
+bad bea demonstr chronolog rejuven:
+solut:
+solut action revisit chronolog rejuven:
+gener discuss:
+conclud remark:
+
+
+CURRENT FILE: Bentivogli et al. - Unknown - Revising the WORDNET DOMAINS Hierarchy semantics , coverage and balancing.pdf
+:
+introduct:
+wordnet domain hierarchi:
+revis wdh:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Yu, Palefsky-Smith, Bedi - Unknown - Deep Reinforcement Learning for Simulated Autonomous Vehicle Control.pdf
+:
+introduct:
+relat work:
+method:
+dataset featur:
+experi:
+futur work:
+
+
+CURRENT FILE: Mika et al. - 2008 - Learning to Tag and Tagging to Learn A Case Study on Wikipedia.pdf
+:
+introduct:
+relat work:
+semant annot wikipedia:
+wikipedia adapt metadata enrich:
+evalu:
+discuss futur work:
+
+
+CURRENT FILE: Cui et al. - Unknown - Emotion Tokens Bridging the Gap Among Multilingual Twitter Sentiment Analysis.pdf
+:
+type emot token:
+characterist emot token twitter:
+cooccurr graph construct emot token:
+propag smooth algorithm:
+dataset:
+strategi compar evalu:
+result discuss:
+
+
+CURRENT FILE: Etzioni - 2008 - Open information extraction from the web.pdf
+:
+inform extract:
+open inform extract:
+textrunn system:
+asopen problem futur work:
+applic open ie:
+conclus direct futur work:
+
+
+CURRENT FILE: Bartoli et al. - 2012 - Automatic generation of regular expressions from examples with genetic programming.pdf
+:
+categori subject descriptor:
+introduct:
+approach:
+experiment evalu:
+
+
+CURRENT FILE: Daszykowski, Walczak, Massart - 2002 - On the optimal partitioning of data with K-means, growing K-means, neural gas, and growing neural.pdf
+:
+abstract:
+abstract:
+introduct:
+theori:
+data:
+result discuss:
+conclus:
+
+
+CURRENT FILE: Javed - 2010 - Stack Zooming for Multi-Focus Interaction in Time-Series Data Visualization.pdf
+:
+introduct:
+background:
+stack zoom:
+traxplor system:
+usag scenario:
+discuss:
+conclus futurework:
+
+
+CURRENT FILE: Martinez - 2004 - Supervised Word Sense Disambiguation Facing Current Challenges.pdf
+:
+esker onak acknowledg:
+introduct:
+word sens disambigu wsd:
+word sens disambigu wsd:
+approach wsd:
+state art wsd:
+thu aim shed light need wsd tool tri contribut move field forward explor two main hypothes dissert:
+structur dissert:
+state art resourc system evalu:
+ii introduct:
+ii lexic databas dictionari:
+ii corpora:
+ii learn algorithm:
+ii evalu:
+ii wsd system sensev:
+ii wsd system sensev:
+ii wsd system sensev:
+iii introduct:
+iii relat work:
+iii relat work:
+iii experiment set:
+iii extract featur context:
+iii experi:
+tabl iii execut time dl exampl semcor:
+iii conclus:
+iv introduct:
+translat whole document basqu:
+iv introduct:
+iv relat work:
+iv syntact featur:
+figur iv list po tag minipar:
+iv syntact featur semcor dso:
+iv syntact featur sensev corpu:
+iv syntact featur high precis system:
+coverag:
+iv semant featur:
+iv perform semant featur:
+iv learn select prefer:
+iv evalu select prefer:
+iv conclus:
+introduct:
+relat work:
+relat work:
+experiment set:
+featur:
+featuretyp smooth:
+featuretyp smooth algorithm:
+figur applic featuretyp smooth dl nb vsm:
+evalu sensev:
+except dl:
+evalu sensev:
+2nd best result date sensev winner:
+tabl offici result english basqu lexic task recal:
+conclus:
+conclus:
+vi introduct:
+vi relat work:
+vi relat work:
+vi experiment set:
+vi featur set:
+vi build monosem rel web corpu:
+vi evalu:
+vi conclus:
+vii introduct:
+vii relat work:
+vii experiment set:
+vii featur set:
+vii incorpu experi:
+vii crosscorpora experi:
+vii effect discours:
+vii effect genretop variat:
+vii discuss:
+vii conclus:
+conclus:
+viii contribut work:
+viii detail conclus:
+viii work:
+perform singl featur use semcor:
+
+
+CURRENT FILE: Adomavicius, Tuzhilin - Unknown - Towards the Next Generation of Recommender Systems A Survey of the State-of-the-Art and Possible Exte.pdf
+abstract:
+abstract:
+howev despit advanc current gener recommend system still:
+gener recommend method discuss initi approach extend:
+tabl fragment rate matrix movi recommend system:
+categori base recommend made:
+contentbas method:
+movi high degre similar whatev user prefer would:
+profil inform elicit user explicitli eg questionnair:
+formal let content item profil ie set attribut character:
+graphic imag audio video stream moreov often practic assign attribut:
+can not distinguish wellwritten articl badli written one happen use:
+altern exampl necessarili good idea recommend movi woodi:
+collabor method:
+predict exampl propos probabilist approach collabor filter:
+restrict set simpl collabor filter algorithm almost effect best:
+empir demonstr use combin approach provid better:
+mixtur model calcul recommend latter aspect propos approach:
+even one dissimilar seen past howev collabor system:
+rate techniqu use strategi base item popular item entropi user:
+hybrid method:
+unifi model incorpor contentbas collabor characterist:
+give recommend higher level confid choos:
+summari conclus:
+rate estim use two orthogon dimens classifi recommend system:
+comprehens understand user item:
+deliber defin precis:
+extens modelbas recommend techniqu:
+one advantag radial basi function extens studi:
+multidimension recommend:
+base contextspecif set rate amount build local model:
+multicriteria rate:
+nonintrus:
+maintain certain level accuraci recommend need address:
+anoth interest research opportun lie develop margin cost model:
+believ appli activ learn method address nonintrus issu:
+flexibl:
+effect recommend:
+extens:
+issu recommend system howev review work discuss:
+
+
+CURRENT FILE: McCallum, Li - 2003 - Early results for named entity recognition with conditional random fields, feature induction and web-enhanced lexi.pdf
+:
+introduct:
+condit random field:
+effici featur induct forcrf:
+webaug lexicon:
+result:
+
+
+CURRENT FILE: Giuliano, Gliozzo, Strapparava - 2009 - Kernel Methods for Minimally Supervised WSD.pdf
+:
+introduct:
+kernel method:
+kernel method wsd:
+proposit matrix posit semidefinit andonlyifab bforsomerealmatrix proof given shawetaylor cristianini:
+evalu:
+conclus:
+
+
+CURRENT FILE: Kern - 2010 - Word Sense Induction and Discrimination - A Survey of Recent Activities.pdf
+:
+introduct:
+background word sens:
+main approach cluster base method:
+conclus:
+
+
+CURRENT FILE: Beeferman, Berger, Lafferty - 1999 - Statistical models for text segmentation(2).pdf
+:
+introduct:
+previou work:
+featurebas approach use exponenti model:
+algorithm featur select exponenti model:
+languag model:
+featur segment:
+exponenti model outperform trigram model:
+featur induct action:
+effici learn:
+algorithm effici featur induct exponenti model:
+probabilist error metric:
+experiment result:
+number featur induc:
+conclus:
+
+
+CURRENT FILE: Flanagin et al. - 1998 - Prevalence of articles with honorary authors and ghost authors in peer-reviewed medical journals.pdf
+:
+method:
+result:
+comment:
+
+
+CURRENT FILE: Bernard-Gallon et al. - 2001 - BRCA1 and BRCA2 protein expressions in an ovotestis of a 46, XX true hermaphrodite.pdf
+:
+introduct:
+materi method:
+result discuss:
+conclus:
+sponsorship:
+
+
+CURRENT FILE: Manandhar et al. - 2010 - SemEval-2010 Task 14 Word Sense Induction & Disambiguation.pdf
+:
+sameer pradhan:
+introduct:
+task descript:
+evalu framework:
+evalu result:
+conclus:
+
+
+CURRENT FILE: Liang et al. - 2007 - Learning Semantic Correspondences with Less Supervision.pdf
+:
+introduct:
+domain dataset:
+gener model:
+learn infer:
+experi:
+conclus:
+
+
+CURRENT FILE: Kern, Klampfl, Zechner - 2012 - Vote Veto Classification , Ensemble Clustering and Sequence Classification for Author Identification.pdf
+:
+introduct:
+voteveto classif supervis authorship attribut:
+ensembl cluster unsupervis authorship identif:
+sequenc classif sexual predat identif:
+conclus:
+
+
+CURRENT FILE: Unknown - Unknown - No Title(2).pdf
+:
+
+
+CURRENT FILE: Amershi et al. - 2015 - ModelTracker Redesigning Performance Analysis Tools for Machine Learning.pdf
+:
+acm classif keyword:
+introduct:
+relat work:
+convey model perform:
+debug perform issu:
+model build review:
+modeltrack:
+convey model perform:
+monitor perform model build:
+debug common error:
+error caus mislabel data:
+error caus featur defici:
+error caus insuffici data:
+usag behavior:
+evalu debug capabl:
+task:
+particip procedur:
+result:
+discuss futur work:
+conclus:
+
+
+CURRENT FILE: Rexha et al. - 2015 - Towards Authorship Attribution for Bibliometrics using Stylometric Features.pdf
+:
+abstract:
+abstract:
+confer topic:
+introduct:
+background:
+experiment setup:
+pdf extract:
+text segment:
+stylometr featur:
+evalu:
+conclus:
+
+
+CURRENT FILE: Schulze, Horn, Kern - 2015 - Map-Matching Cell Phone Trajectories of Low Spatial and Temporal Accuracy.pdf
+:
+set vertic:
+algorithm map match algorithm:
+dataset drew follow conclus:
+
+
+CURRENT FILE: Blanco, Zaragoza - 2010 - Finding support sentences for entities.pdf
+:
+introduct:
+relat work:
+task evalu:
+experi:
+refer:
+
+
+CURRENT FILE: Logasa et al. - 2012 - A Quantitative Evaluation of Techniques for Detection of A.pdf
+:
+introduct:
+problem:
+prior work:
+ground truth build:
+featur select:
+abnorm chang detect:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Architecture et al. - 2000 - Pattern-Oriented Software Architecture, Patterns for Concurrent and Networked Objects, Volume 2 by Douglas.pdf
+:
+book:
+chapter synchron pattern:
+
+
+CURRENT FILE: Ivantsits - 2016 - Quantitative & qualitative Market-Analysis.pdf
+:
+introduct:
+introduct:
+relat work:
+relat work:
+theoret background:
+main topic describ drake:
+implement:
+evalu discuss:
+conclus:
+conclus:
+appendix obtain sourc code:
+
+
+CURRENT FILE: Berger - 1996 - A Maximum Entropy Approach to Natural Language Processing.pdf
+:
+introduct:
+conclus:
+
+
+CURRENT FILE: Cutting et al. - 1992 - Scattergather A cluster-based approach to browsing large document collections.pdf
+:
+
+
+CURRENT FILE: Knoth, Schmidt, Smrž - 2008 - Information Extraction — State-of-the-Art.pdf
+:
+chapter architectur ie system:
+chapter context pattern featur vector:
+chapter machin learn inform extract:
+chapter automat term recognit:
+chapter automat tag similar search:
+
+
+CURRENT FILE: Milenova, Campos - 2002 - O-cluster scalable clustering of large high dimensional data sets.pdf
+:
+introduct:
+oclust algorithm:
+oclust complex:
+empir result:
+conclus:
+
+
+CURRENT FILE: Hogenboom et al. - Unknown - An Overview of Event Extraction from Text.pdf
+:
+introduct:
+event extract:
+discuss:
+conclus:
+
+
+CURRENT FILE: O Shea et al. - 2008 - A Comparative Study of Two Short Text Semantic Similarity Measures.pdf
+introduct:
+measur model semant similar:
+product data set:
+applic data set:
+futur work:
+
+
+CURRENT FILE: He et al. - 2015 - Early classification on multivariate time series.pdf
+:
+introduct:
+background relat work:
+mine core featur mt:
+algorithm featureextract:
+earli classif mt:
+experiment evalu:
+analyz effect propos featur evalu strategi compar gefm fscore method fsm without consid earli featur follow:
+conclus futur work:
+
+
+CURRENT FILE: Niculescu-mizil, Caruana - 2005 - Predicting Good Probabilities With Supervised Learning.pdf
+:
+introduct:
+calibr method:
+data set:
+qualit analysi predict:
+learn curv analysi:
+empir comparison:
+conclus:
+
+
+CURRENT FILE: Kleinberg - 1999 - Authoritative sources in a hyperlinked environment(2).pdf
+:
+introduct:
+multipl set hub author:
+diffus gener:
+evalu:
+
+
+CURRENT FILE: Singh, Haahr - Unknown - A Peer-to-Peer Reference Architecture.pdf
+introduct:
+serviceori architectur:
+document softwar architectur:
+iii coreconcern p2p applic:
+iv p2p refer architectur:
+appli refer architectur:
+gnutella:
+freenet:
+jxta:
+jabber:
+vi futur work conclus:
+
+
+CURRENT FILE: Pevzner, Berkeley - 1997 - A Critique and Improvement of an Evaluation Metric for Text Segmentation.pdf
+:
+introduct:
+analysi error metric:
+solut:
+valid via simul:
+conclus:
+
+
+CURRENT FILE: Armstrong et al. - 2009 - Improvements That Don’t Add Up Ad-Hoc Retrieval Results Since 1998.pdf
+:
+introduct:
+relat work:
+survey public:
+analysi report result:
+run spot:
+addit improv:
+public databas run data:
+conclus:
+
+
+CURRENT FILE: Watts, Strogatz - 1998 - Collective dynamics of ‘small-world’networks.pdf
+:
+received4 februaryaccepted18 march:
+received27november1997 accept 6april1998:
+
+
+CURRENT FILE: Gupta, Lehal - 2010 - A Survey of Text Summarization Extractive Techniques.pdf
+:
+introduct:
+iitext summar earli histori:
+iii featur extract text summar:
+titl word featur:
+sentenc locat featur:
+sentenc length featur:
+proper noun featur:
+uppercas word featur:
+cuephras featur:
+bias word featur:
+pronoun:
+sentencetosent cohes:
+sentencetocentroid cohes:
+occurr nonessenti inform:
+discours analysi:
+iv extract summar method:
+term frequencyinvers document frequenc tfidf method:
+cluster base method:
+graph theoret approach:
+machin learn approach:
+lsa method:
+approach conceptobtain text summar:
+text summar neural network:
+automat text summar base fuzzi logic:
+text summar use regress estim featur weight:
+multidocu extract summar:
+queri base extract text summar:
+multilingu extract text summar:
+onclus:
+
+
+CURRENT FILE: Pang, Lee - 2002 - A Sentimental Education Sentiment Analysis Using Subjectivity Summarization Based on Minimum Cuts.pdf
+:
+introduct:
+method architectur:
+evalu framework:
+experiment result:
+conclus:
+
+
+CURRENT FILE: Terra, Clarke - 2005 - Comparing query formulation and lexical affinity replacements in passage retrieval.pdf
+:
+categori subject descriptor:
+keyword:
+introduct:
+relat work:
+passag retriev:
+lexicalaffinitiesreplac method:
+comput lexic affin:
+queri formul strategi:
+result discuss:
+conclus:
+refer:
+
+
+CURRENT FILE: Briscoe et al. - 2011 - Intelligent Information Access from Scientific Papers.pdf
+:
+introduct:
+function:
+summari technolog:
+evalu:
+conclus work:
+acknowledg:
+
+
+CURRENT FILE: Metzler et al. - 2005 - Similarity Measures for Tracking Information Flow.pdf
+:
+introduct:
+sentencelevel similar:
+word overlap measur:
+tfidf measur:
+relativefrequ measur:
+probabilist model:
+sentencelevel experi:
+documentlevel similar:
+documentlevel experi:
+conclus:
+
+
+CURRENT FILE: Schön, Gustafsson - Unknown - PARTICLE FILTERS FOR SYSTEM IDENTIFICATION OF STATE-SPACEMODELS LINEAR IN EITHER PARAMETERS OR STATES.pdf
+abstract:
+abstract:
+introduct:
+particl filter:
+margin varianc reduct:
+model:
+parametr innov model:
+chaosexampl:
+conclus:
+
+
+CURRENT FILE: Corporation, Way - Unknown - Statistical Models for Topic Segmentation.pdf
+:
+ourapproach:
+previou work:
+new clue topic segment:
+algorithm:
+evalu:
+conclus:
+
+
+CURRENT FILE: Salton et al. - 1996 - Automatic text decomposition using text segments and text themes.pdf
+:
+simpl complex text structur:
+retriev strategi:
+
+
+CURRENT FILE: Rijke et al. - 2014 - Advances in Information Retrieval.pdf
+introduct:
+reproduc experiment setup:
+crowdsourc user studi valid roug metric align user judgement summari qualiti:
+confirm variabl sentenc select behaviour summaris algorithm similar roug score:
+reproduc random lead baselin:
+reproduc standard stateoftheart algorithm:
+conclus:
+
+
+CURRENT FILE: Willners, Holtsberg - 2001 - Statistics for sentential co-occurrence.pdf
+:
+ander holtsberg carolin willner:
+variat sentenc length:
+account variat sentenc length:
+sententi cooccurr antonymi:
+appendix sketch proof:
+
+
+CURRENT FILE: Banko, Etzioni - 2007 - Strategies for Lifelong Knowledge Extraction from the Web.pdf
+:
+introduct:
+lifelong learn:
+experiment result:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Mitchell et al. - 2009 - Populating the Semantic Web by Macro-Reading Internet Text.pdf
+problem:
+readtheweb system:
+conclus:
+
+
+CURRENT FILE: Wang, Wang, Liu - 2015 - An effective multivariate time series classification approach using echo state network and adaptive differentia.pdf
+:
+relat work theclassif mt:
+conclus futur work:
+cknowledg:
+
+
+CURRENT FILE: Grefenstette et al. - 2015 - Learning to Transduce with Unbounded Memory(2).pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+model:
+experi:
+result discuss:
+conclus:
+
+
+CURRENT FILE: Shen, Li - 2008 - Multi-Document Summarization via the Minimum Dominating Set.pdf
+:
+introduct:
+relat work:
+minimum domin set problem:
+summar framework:
+experi:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Liu et al. - 2008 - Spectral geometry for simultaneously clustering and ranking query search results.pdf
+:
+introduct:
+preliminari:
+spectral geometri similar network:
+experiment result:
+relat work:
+conclus futur work:
+refer:
+
+
+CURRENT FILE: Embarek, Ferret - 2006 - Learning patterns for building resources about semantic relations in the medical domain.pdf
+:
+introduct:
+ontolog medic domain:
+medic entiti tag:
+semant relat extract learn extract pattern text:
+result evalu:
+relat work discuss:
+conclus futur work:
+refer:
+
+
+CURRENT FILE: Sebastiani - 2001 - Machine Learning in Automated Text Categorization.pdf
+:
+introduct:
+applic text categor:
+machin learn approach text categor:
+document index dimension reduct:
+induct construct text classifi:
+ifαf:
+ifαt ifαf:
+evalu text classifi:
+conclus:
+
+
+CURRENT FILE: Branco, Torgo, Ribeiro - 2016 - A Survey of Predictive Modeling on Imbalanced Domains.pdf
+:
+tptn tpfntnfp:
+pauc:
+
+
+CURRENT FILE: Heinonen - 1990 - Optimal Multi-Paragraph Text Segmentation by Dynamic Programming.pdf
+:
+introduct:
+fragment dynam program:
+experi:
+conclus:
+
+
+CURRENT FILE: Last, Kandel, Bunke - 2004 - Data mining in time series databases.pdf
+:
+editor bunk univ bern switzerland pwang northeastern univ usa:
+introduct:
+background relat work:
+empir comparison major segment algorithm:
+new approach:
+conclus futur direct:
+problem:
+signatur base similar search:
+approach:
+conclus:
+appendix distanc measur:
+previou work:
+import point:
+similar measur:
+pattern retriev:
+conclud remark:
+background:
+similar measur base lcss origin notion lcss:
+dynam program solut:
+effici algorithm comput similar comput similar function s1:
+index trajectori similar retriev:
+experiment evalu:
+conclus:
+section describ algorithm usag previou estim:
+everi input target variabl exist period calcul ik calcul return xpα:
+experiment evalu design experi:
+realworld case studi dataset descript:
+conclus futur work:
+median graph abnorm chang detect sequenc graph:
+applic comput network monitor problem descript:
+conclus:
+interv base liter:
+natur way describ seri indic increas decreas stay predic deal concept:
+select definit predic base one use visual rule languag dynam system alonso gonzález rodŕıguez diez predic:
+variabl length seri:
+earli classif:
+experiment valid:
+conclus:
+theoret result:
+fast comput set median string:
+comput gener median string:
+experiment evalu:
+discuss conclus:
+
+
+CURRENT FILE: Mendes et al. - 2011 - DBpedia Spotlight Shedding Light on the Web of Documents.pdf
+:
+introduct:
+approach:
+relat work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Dhillon, Guan, Kulis - 2004 - Kernel k-means spectral clustering and normalized cuts.pdf
+:
+introduct:
+spectral connect:
+implic:
+scalabl issu:
+experiment result:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Dhillon, Mallela, Modha - 2003 - Information-theoretic co-clustering(3).pdf
+:
+introduct:
+problem formul:
+relat work:
+coclust algorithm:
+experiment result:
+conclus futur work:
+
+
+CURRENT FILE: Gursch et al. - 2016 - Parameter Forecasting for Vehicle Paint Quality Optimisation.pdf
+:
+introduct:
+method implement:
+result conclus:
+
+
+CURRENT FILE: Veigl - 2017 - Multiplatform Mobile App for Data Acquisition from External Sensors.pdf
+:
+introduct:
+develop environ:
+hardwar setup:
+implement:
+record scenario:
+conclus:
+
+
+CURRENT FILE: Sporleder, Lapata - 2006 - Broad coverage paragraph segmentation across languages and domains.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+model paragraph segment:
+experi:
+argmax pwsp:
+argmin cs argmin logpwsp:
+relev summaris:
+conclus:
+
+
+CURRENT FILE: Stolcke - 2002 - SRILM-an extensible language modeling toolkit.pdf
+:
+introduct:
+design goal histori:
+shortcom futur develop:
+
+
+CURRENT FILE: Kristensen, Nielsen, Pedersen - 2010 - A tree-based method for the rapid screening of chemical fingerprints.pdf
+:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+introduct:
+method:
+experi:
+result:
+conclus:
+compet interest:
+author contribut:
+
+
+CURRENT FILE: Li, Niggemann - Unknown - Improving Clustering Based Anomaly Detection with Concave Hull An Application in Fault Diagnosis of Wind Turb.pdf
+:
+introduct:
+ii ndimension concav hull algorithm:
+iii anomali detect use concav hull:
+step cluster base model:
+step anomali detect:
+iv implement result:
+conclus:
+
+
+CURRENT FILE: Knight, Marcu - 2002 - Summarization beyond sentence extraction A probabilistic approach to sentence compression.pdf
+:
+abstract:
+abstract:
+statist model:
+exampl:
+train corpu:
+learn model paramet:
+decod:
+length select:
+learn paramet decisionbas model:
+class:
+employ decisionbas model:
+
+
+CURRENT FILE: Chen, Chen - 2008 - TSCAN A Novel Method for Topic Summarization and Content Anatomy.pdf
+:
+introduct:
+performanceevalu:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Christodoulopoulos, Steedman - 2010 - Two Decades of Unsupervised POS induction How far have we come.pdf
+:
+introduct:
+po induct system:
+evalu measur:
+system comparison:
+learn induc prototyp:
+conclus:
+
+
+CURRENT FILE: Grishman, Sundheim - 1996 - Message Understanding Conference-6 A Brief History.pdf
+:
+muc evalu:
+earli histori:
+muc initi goal:
+shortterm subtask:
+portabl:
+measur deep understand:
+round resolut semev:
+romm dri rml:
+formal evalu:
+
+
+CURRENT FILE: Martin-Gutierrez et al. - 2016 - Agricultural activity shapes the communication and migration patterns in Senegal.pdf
+:
+introduct:
+ii descript dataset:
+phone call ndvi time seri:
+phone call mobil network:
+flow user:
+phone call ndvi time seri:
+phone call trajectori network:
+flow user:
+conclus:
+
+
+CURRENT FILE: Paltoglou, Thelwall - 2010 - A study of Information Retrieval weighting schemes for sentiment analysis.pdf
+:
+introduct:
+prior work:
+3a studi nonbinari weight:
+experiment setup:
+result:
+conclus:
+
+
+CURRENT FILE: Guan, Zhou, Guo - 2009 - A class-feature-centroid classifier for text categorization.pdf
+:
+introduct:
+centroidbas tc:
+design:
+evalu:
+relat work:
+conclus:
+
+
+CURRENT FILE: Fan, Wang, Lin - 2008 - LIBLINEAR A library for large linear classification.pdf
+:
+abstract:
+abstract:
+introduct:
+larg linear classif binari multiclass:
+softwar packag:
+comparison:
+conclus:
+appendix formul:
+appendix l2regular l2loss svm solv primal:
+appendix multiclass svm crammer singer:
+appendix l1regular l2loss support vector machin:
+appendix l1regular logist regress:
+appendix implement l1regular logist regress liblinear version:
+appendix l2regular support vector regress:
+appendix:
+
+
+CURRENT FILE: Fürnkranz - 1998 - A study using n-gram features for text categorization.pdf
+:
+introduct:
+effici gener gram featur:
+experiment result:
+relat work:
+discuss:
+
+
+CURRENT FILE: Koppel, Schler - 2003 - Exploiting Stylistic Idiosyncrasies for Authorship Attribution.pdf
+:
+corpu:
+experi:
+discuss:
+conclus:
+
+
+CURRENT FILE: Doersch - 2016 - Tutorial on Variational Autoencoders.pdf
+:
+encod sampl decod:
+decod sampl:
+decod sampl:
+
+
+CURRENT FILE: On, Lee - 2007 - Scalable Name Disambiguation using Multi-level Graph Partition.pdf
+:
+introduct:
+overview problem solut:
+two stateoftheart solut mdc sc:
+mgpbase name disambigu:
+ol logn:
+experiment valid:
+relat work:
+conclus:
+
+
+CURRENT FILE: Pimas, Kröll, Kern - 2015 - Know-Center at PAN 2015 author identification.pdf
+:
+introduct:
+approach:
+result:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Kern, Juffinger, Granitzer - 2009 - Application of Axiomatic Approaches to Crosslanguage Retrieval.pdf
+:
+abstract:
+abstract:
+introduct:
+index retriev system:
+result discuss:
+conclus:
+
+
+CURRENT FILE: Fayyad, Piatetsky-Shapiro, Smyth - 1996 - From data mining to knowledge discovery in databases.pdf
+:
+need kdd:
+data mine knowledg discoveri real world:
+data mine kdd:
+kdd process:
+datamin step kdd process:
+datamin method:
+discuss:
+applic issu:
+conclud remark potenti role ai inkdd:
+
+
+CURRENT FILE: Li - 2011 - A Short Introduction to Learning to Rank.pdf
+:
+rank problem:
+formul:
+pointwis approach:
+pairwis approach:
+listwis approach:
+ongo futur work:
+
+
+CURRENT FILE: López-garcía, Schulz, Kern - 2014 - Automatic Summarization for Terminology Recommendation the case of the NCBO Ontology Recommender.pdf
+introduct:
+materi method:
+result:
+discuss:
+conclus futur work:
+
+
+CURRENT FILE: Projects, Excellence - 2012 - G uidance Notes on Project Reporting.pdf
+:
+introduct:
+reportingrequir:
+period report:
+
+
+CURRENT FILE: Sahlgren - 2005 - An introduction to random indexing.pdf
+:
+introduct:
+word space methodolog:
+problem solut:
+random index:
+result:
+
+
+CURRENT FILE: Koren - Unknown - Collaborative Filtering with Temporal Dynamics.pdf
+:
+introduct:
+preliminari:
+timeawar factor model:
+tempor dynam neighborhood model:
+exploratori studi:
+relat work:
+conclus:
+
+
+CURRENT FILE: Zadrozny - 2004 - Learning and evaluating classifiers under sample selection bias.pdf
+:
+introduct:
+definit:
+learn sampl select bia:
+correct sampl select bia:
+xyd lhxi:
+xysd lhx ys:
+xyd lhxi:
+conclus:
+
+
+CURRENT FILE: Pyysalo - 2010 - Anatomical Entity Recognition with Open Biomedical Ontologies.pdf
+:
+introduct:
+resourc:
+task definit:
+method:
+data annot:
+experi experiment setup:
+result:
+conclus:
+
+
+CURRENT FILE: Flanigan et al. - 2015 - Toward Abstractive Summarization Using Semantic Representations.pdf
+:
+introduct:
+background abstract mean represent jamr:
+dataset:
+graph summar:
+gener:
+experi:
+relat futur work:
+conclus:
+
+
+CURRENT FILE: Korsholm, Schoeberl, Ravn - 2008 - Interrupt handlers in Java.pdf
+:
+introduct:
+convent interrupt handl:
+incontext interrupt handl:
+support interrupt handler:
+use interrupt handler:
+
+
+CURRENT FILE: Wan, Yang - 2008 - Multi-Document Summarization Using Cluster-Based Link Analysis.pdf
+:
+introduct:
+relat work:
+basic model:
+propos model:
+experi:
+acknowledg:
+
+
+CURRENT FILE: Steinbauer - 2016 - German Sentiment Analysis on Facebook Posts.pdf
+:
+relat work:
+method:
+result:
+applic scenario:
+applic scenario:
+applic scenario:
+conclus work:
+conclus work:
+
+
+CURRENT FILE: Chen - Unknown - Topic Detection, Anatomy, and Summarization.pdf
+:
+
+
+CURRENT FILE: Schmitz et al. - Unknown - Mining Association Rules in Folksonomies.pdf
+introduct:
+social resourc share folksonomi:
+associ rule mine:
+project folksonomi onto two dimens:
+mine associ rule project folksonomi:
+conclus:
+
+
+CURRENT FILE: Singhal - 2001 - Modern Information Retrieval A Brief Overview.pdf
+:
+abstract:
+abstract:
+brief histori:
+model implement:
+evalu:
+key techniqu:
+techniqu applic:
+sum:
+
+
+CURRENT FILE: Wang, Li, Ding - Unknown - Multi-Document Summarization via Sentence-Level Semantic Analysis and Symmetric Matrix Factorization.pdf
+:
+introduct:
+relat work:
+propos method:
+experi:
+conclus:
+
+
+CURRENT FILE: Chen et al. - 2009 - A fully unsupervised word sense disambiguation method using dependency knowledge.pdf
+:
+david brown:
+introduct:
+context knowledg acquisit represent:
+wsd algorithm:
+experi:
+conclus futur work:
+
+
+CURRENT FILE: Turney - 2001 - Mining the Web for Synonyms PMI-IR versus LSA on TOEFL.pdf
+:
+introduct:
+pmiir:
+relat work:
+latent semant analysi:
+toefl experi:
+esl experi:
+discuss result:
+applic:
+conclus:
+
+
+CURRENT FILE: Kern, Körner, Strohmaier - Unknown - Are Tags Used to Categorize or to Describe Resources.pdf
+introduct:
+develop measur:
+applic measur:
+conclus:
+
+
+CURRENT FILE: Callan - 2000 - Distributed Information Retrieval.pdf
+:
+
+
+CURRENT FILE: Chandola - Unknown - Outlier Detection A Survey.pdf
+:
+introduct:
+differ aspect outlier detect problem:
+applic outlier detect:
+techniqu use outlier detect:
+classif base approach:
+cluster base approach:
+nearest neighbor base approach:
+statist approach:
+inform theori base:
+spectral decomposit base:
+visual base approach:
+handl type ii outlier:
+handl type iii outlier:
+first step short sequenc extract queri sequenc:
+relationship type type ii type iii outlier detect techniqu:
+evalu outlier detect techniqu:
+discuss conclus:
+
+
+CURRENT FILE: Unknown - Unknown - start-orange.txt
+CURRENT FILE: Garlan, Shaw - 1994 - An Introduction to Software Architecture.pdf
+:
+waveform:
+hardwar:
+
+
+CURRENT FILE: Muhr et al. - 2009 - External and Intrinsic Plagiarism Detection Using Vector Space Models.pdf
+:
+introduct:
+relat work:
+extern plagiar detect:
+intrins plagiar detect:
+evalu:
+conclus futur work:
+
+
+CURRENT FILE: Jaderberg et al. - Unknown - Decoupled Neural Interfaces using Synthetic Gradients.pdf
+:
+abstract:
+abstract:
+appli protocol neural network commun result call decoupl neural:
+true error gradient estim bootstrap synthet gradient model later network surprisingli caus error compound learn remain stabl even mani layer:
+section appli dni feedforward network explain sect allow layer:
+dni bridg commun gap layer stochast layer updat mean layer can not updat use synthet gradient rather backpropag gradient:
+experi use anlstm form whose output use task hand addit input synthet gradient model share timestep lstm unrol timestep backpropag time bptt perform also look:
+learn rate initialis at3 decreas bya factor 10at 300k 400k step note number iter learn rate learn rate schedul optimis perform hyperparamet search number hidden layer synthet gradient model:
+cifar cnn hidden layer convolut layer filter resolut preserv pad follow batchnormalis reluand33spati maxpool first layer avgpool remain one synthet gradient model two hidden layer:
+
+
+CURRENT FILE: Mihalcea, Tarau - 2004 - TextRank Bringing Order into Texts.pdf
+:
+introduct:
+textrank model:
+keyword extract:
+sentenc extract:
+textrank work:
+conclus:
+
+
+CURRENT FILE: Robertson, Gatford - 1996 - Okapi at TREC-4.pdf
+:
+
+
+CURRENT FILE: Bordag - 2008 - A comparison of co-occurrence and similarity measures as simulations of context.pdf
+:
+introduct:
+measur:
+evalu:
+conclus:
+
+
+CURRENT FILE: Matsuo, Ishizuka - 2004 - Keyword extraction from a single document using word co-occurrence statistical information.pdf
+:
+introduct:
+term cooccurr import:
+algorithm descript improv:
+evalu:
+discuss relat work:
+conclus:
+
+
+CURRENT FILE: Radev, Hovy, McKeown - 2002 - Introduction to the special issue on summarization.pdf
+:
+introduct definit:
+major approach:
+articl issu:
+
+
+CURRENT FILE: Unknown - 2011 - Encyclopedia of Machine Learning.pdf
+:
+dbn:
+loo error:
+roc curv:
+smt:
+tfidf:
+
+
+CURRENT FILE: Schütze, Pedersen - 1997 - A cooccurrence-based thesaurus and two applications to information retrieval.pdf
+:
+introduct:
+relatedwork:
+cooccurrencethesauru:
+word factor:
+conclus:
+
+
+CURRENT FILE: Sun, Tao, Faloutsos - 2006 - Beyond Streams and Graphs Dynamic Tensor Analysis.pdf
+:
+introduct:
+background:
+problem definit:
+tensor analysi:
+applic:
+datamin case studi:
+conclus:
+
+
+CURRENT FILE: Pasternack - Unknown - Making Better Informed Trust Decisions with Generalized Fact-Finding.pdf
+:
+introduct:
+relat work:
+factfind algorithm:
+gener factfind:
+experi dataset:
+conclus:
+
+
+CURRENT FILE: Process - 2012 - Table of contents.pdf
+:
+
+
+CURRENT FILE: Utiyama, Isahara - 2000 - A Statistical Model for Domain-Independent Text Segmentation.pdf
+:
+introduct:
+statist model text segment:
+algorithm find maximumprob segment:
+experi materi:
+discuss evalu:
+conclus:
+
+
+CURRENT FILE: Agirre, Lopez de Lacalle, Soroa - 2014 - Random walks for knowledge-based word sense disambiguation.pdf
+:
+introduct:
+relat work:
+wordnet:
+pagerank person pagerank:
+cmpcv:
+evalu:
+conclus:
+
+
+CURRENT FILE: Petrov, Das, McDonald - 2011 - A Universal Part-of-Speech Tagset.pdf
+:
+introduct:
+tagset:
+experi:
+conclus:
+
+
+CURRENT FILE: Bayo - 2016 - Reference recommendation for scientific articles.pdf
+:
+tabl content:
+list figur:
+introduct:
+background:
+descript dataset gener:
+implement dataset gener:
+descript ir system:
+implement ir system:
+simul result dataset gener:
+discuss limit dataset gener:
+simul result ir system:
+discuss limit ir system:
+conclus:
+
+
+CURRENT FILE: Middleton, Baeza-Yates - 2008 - A comparison of open source search engines.pdf
+:
+background:
+methodolog:
+test:
+
+
+CURRENT FILE: Angeli, Johnson Premkumar, Manning - 2015 - Leveraging Linguistic Structure For Open Domain Information Extraction.pdf
+:
+introduct:
+relat work:
+interclaus open ie:
+intraclaus open ie:
+map openi known relat schema:
+evalu:
+conclus:
+
+
+CURRENT FILE: Schmid - 1994 - Probabilistic Part-of-Speech Tagging Using Decision Trees.pdf
+:
+
+
+CURRENT FILE: Richmond - 1994 - Detecting Subject Boundaries Within Text A Language Independent Statistical Approach.pdf
+:
+introduct:
+design:
+result:
+summari:
+acknowledg:
+
+
+CURRENT FILE: Ioffe, Szegedy - 2015 - Batch Normalization Accelerating Deep Network Training by Reducing Internal Covariate Shift.pdf
+:
+toward reduc intern covari shift:
+normal via minibatch statist:
+experi activ time:
+conclus:
+
+
+CURRENT FILE: Hoffart et al. - 2011 - Robust disambiguation of named entities in text.pdf
+:
+introduct motiv:
+framework:
+featur measur popular prior:
+graph model algorithm mentionent graph:
+experi:
+conclus futur work:
+
+
+CURRENT FILE: Kern, Muhr, Granitzer - 2010 - KCDC Word Sense Induction by Using Grammatical Dependencies and Sentence Phrase Structure.pdf
+:
+introduct:
+system overview:
+system configur result:
+conclus:
+
+
+CURRENT FILE: Academy, Sztaki - Unknown - SpamRank – Fully Automatic Link Spam Detection ∗ Work in progress.pdf
+:
+abstract:
+abstract:
+introduct:
+preliminari:
+algorithm:
+experi:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Bia, Muir, Ingersoll - Unknown - Apache Lucene 4.pdf
+:
+queri index storag commonli refer:
+later score repres index sequenti document:
+queri queri gener scorer typic:
+
+
+CURRENT FILE: Hinton, Osindero, Teh - 2006 - A fast learning algorithm for deep belief nets.pdf
+:
+introduct:
+complementari prior:
+4a greedi learn algorithm transform represent:
+backfit updown algorithm:
+perform themnistdatabas:
+look intothemind neural network:
+conclus:
+appendix pseudocod updown algorithm:
+
+
+CURRENT FILE: Duan et al. - 2016 - Benchmarking Deep Reinforcement Learning for Continuous Control.pdf
+:
+abstract:
+abstract:
+introduct:
+preliminari:
+task:
+algorithm:
+experi setup:
+result discuss:
+relat work:
+conclus:
+
+
+CURRENT FILE: Goodwin - 2010 - The Holt-Winters Approach to Exponential Smoothing 50 Years Old and Going Strong.pdf
+:
+thelegacyof holtwint:
+unusualsaleslevel outlier:
+multipl season cycl:
+predictioninterv:
+
+
+CURRENT FILE: Fader, Soderland, Etzioni - 2011 - Identifying relations for open information extraction.pdf
+:
+introduct motiv:
+previou work:
+constraint relat phrase:
+reverb:
+
+
+CURRENT FILE: Keogh, Lin - 2005 - Clustering of time-series subsequences is meaningless Implications for previous and future research.pdf
+:
+introduct:
+background materi:
+demonstr meaningless st cluster:
+st cluster meaningless:
+case studi exist work:
+tent solut:
+discuss conclus:
+
+
+CURRENT FILE: Granitzer, Seifert, Zechner - 2009 - Context based Wikipedia Linking.pdf
+abstract:
+abstract:
+introduct:
+preprocess context type:
+link strategi:
+implement evalu detail:
+conclus:
+
+
+CURRENT FILE: Pedersen, Bruce - 1997 - Knowledge lean word-sense disambiguation.pdf
+:
+gibb sampl:
+methodolog:
+discuss result:
+relat work:
+
+
+CURRENT FILE: Yi, Allan - 2008 - Evaluating topic models for information retrieval.pdf
+:
+introduct:
+document model:
+document retriev:
+conclus:
+
+
+CURRENT FILE: Seifert et al. - 2013 - Text Representation for Efficient Document Annotation.pdf
+:
+introduct:
+research hypothesi:
+relat work:
+textsentencerank algorithm:
+approach effici document annot:
+conclus futur work:
+
+
+CURRENT FILE: Costa, Angelov, Guedes - 2014 - A new unsupervised approach to fault detection and identification.pdf
+:
+abstract:
+abstract:
+let measur physic variabl form vector:
+gener three scenario occur:
+ith rule input data:
+close exist data cloud:
+close exist data cloud:
+
+
+CURRENT FILE: Gupta et al. - Unknown - Watch , Listen & Learn Co-training on Captioned Images and Videos.pdf
+:
+introduct:
+relat work:
+approach:
+experiment design:
+result:
+futur work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Gries - 2008 - Dispersions and adjusted frequencies in corpora.pdf
+:
+introduct:
+overview dispers measur adjust frequenc:
+altern measur dispers dp dpnorm:
+applic:
+conclus anda brief outlook:
+
+
+CURRENT FILE: Slonim, Friedman, Tishby - 2002 - Unsupervised document classification using sequential information maximization.pdf
+:
+motiv:
+inform bottleneck method:
+sequenti cluster:
+sequenti ib cluster:
+cluster method:
+experiment design:
+experiment result:
+conclud remark:
+
+
+CURRENT FILE: Wang, Blei - 2011 - Collaborative topic modeling for recommending scientific articles.pdf
+:
+introduct:
+background:
+empir studi:
+conclus futur work:
+refer:
+
+
+CURRENT FILE: Voorhees - 1999 - Natural language processing and information retrieval.pdf
+:
+
+
+CURRENT FILE: Frey, Dueck - 2007 - Clustering by passing messages between data points.pdf
+:
+istifikg:
+istik:
+
+
+CURRENT FILE: Kern, Juffinger, Granitzer - 2009 - Evaluation of Axiomatic Approaches to Crosslanguage Retrieval.pdf
+:
+introduct:
+index retriev system:
+result discuss:
+conclus:
+
+
+CURRENT FILE: Yih, Goodman, Carvalho - 2006 - Finding advertising keywords on web pages.pdf
+:
+introduct:
+system architectur:
+experi:
+relat work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Gaffney - 2010 - # iranElection Quantifying Online Activism.pdf
+:
+illustr new methodolog:
+even:
+
+
+CURRENT FILE: Pimas et al. - 2016 - Generating Tailored Classification Schemas for German Patents.pdf
+:
+abstract:
+abstract:
+introduct:
+key term extract:
+categori infer:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Muhr et al. - 2010 - External and Intrinsic Plagiarism Detection using a Cross-Lingual Retrieval and Segmentation System Lab Report for.pdf
+:
+introduct:
+extern plagiar detect:
+intrins plagiar detect:
+result:
+conclus:
+
+
+CURRENT FILE: Vannella et al. - Unknown - WoSIT A Word Sense Induction Toolkit for Search Result Clustering and Diversification.pdf
+:
+introduct:
+wosit:
+3a full exampl:
+
+
+CURRENT FILE: Mesquita, Schmidek, Barbosa - 2013 - Effectiveness and Efficiency of Open Relation Extraction.pdf
+:
+introduct:
+relat work:
+experiment studi:
+conclus:
+exemplar:
+
+
+CURRENT FILE: Borcard, Gillet, Legendre - 2008 - Exploratory Data Analysis.pdf
+:
+research question whati age distribut vietnames popul:
+research question differ annual household per capita expenditur seven vietnames region:
+
+
+CURRENT FILE: Smucker, Allan, Carterette - 2007 - A comparison of statistical significance tests for information retrieval evaluation(2).pdf
+:
+introduct:
+significancetest:
+method materi:
+result:
+discuss:
+relat work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Kern, Juffinger, Granitzer - Unknown - Application of Axiomatic Approaches to Crosslanguage Retrieval.pdf
+:
+abstract:
+abstract:
+introduct:
+index retriev system:
+result discuss:
+conclus:
+
+
+CURRENT FILE: Zhou et al. - 2012 - A Federated Recommender System for Online Learning Environments.pdf
+:
+introduct:
+relat work:
+propos feder recommend system:
+conclus futur work:
+
+
+CURRENT FILE: Ide, Erjavec, Tufis - 2002 - Sense discrimination with parallel corpora.pdf
+:
+
+
+CURRENT FILE: Guillaumin et al. - 2010 - Multimodal semi-supervised learning for image classification.pdf
+:
+introduct:
+relat work:
+multimod semisupervis learn:
+dataset featur extract:
+experiment result:
+conclus discuss:
+
+
+CURRENT FILE: Boguraev, Neff - 2000 - Discourse segmentation in aid of document summarization.pdf
+:
+introduct:
+background technolog:
+discourseawar summar:
+see topic shift:
+conclus:
+
+
+CURRENT FILE: Nagata, Pedersen - 2005 - Moses Open Source Toolkit for Statistical Machine Translation.pdf
+:
+introduct:
+woz experi:
+integr owlinmimu:
+multimod fusion strategi:
+multimod present mimu:
+mimu talk head:
+conclus futur work:
+conclus:
+introduct:
+linguist formal:
+tag base semant construct:
+xmg formal compil:
+semant construct:
+4a demonstr:
+evalu:
+function:
+futur work:
+methodolog legal taxonomi syllabu:
+italian ontolog german ontolog:
+conclus:
+system present acl:
+conclus:
+maximum entropi tagger:
+boxer:
+usag tool:
+applic:
+conclus:
+histogram present statist fact word grammar:
+text type subcorpora keyword:
+softwar architectur:
+use api:
+applic scenario:
+evalu framework:
+conclus futur work:
+conclus:
+acknowledg:
+introduct:
+svm kernel method:
+approxim polynomi kernel:
+experi:
+conclus:
+experi:
+relat work:
+conclus:
+analysi annot corpu:
+test collect gold standard:
+opinion system copeopi:
+evalu result discuss:
+conclus:
+featur:
+question mark:
+experi result:
+prosod featur:
+error analysi:
+initi multiparti experi:
+conclus:
+conclud remark:
+result:
+conclus futur work:
+approach:
+experi data collect:
+evalu:
+summari futur work:
+relat work:
+data collect:
+corpu:
+probabilist model userag multimod interact:
+discuss futur work:
+experi:
+result analysi:
+conclus futur work:
+acknowledg:
+domain dictionari construct:
+blog categor:
+domain estim unknown word:
+relat work:
+conclus:
+conclus:
+upper ontolog:
+relat work:
+conclud remark:
+discuss:
+experi:
+recal:
+conclus:
+conclus futur work:
+web en:
+conclud remark:
+introduct:
+gold gener ontolog linguist descript:
+anowl ontolog hpsg:
+4a commun practic extens:
+conclus:
+stage two eventev featur:
+evalu result:
+discuss:
+conclus:
+confus network decod:
+effici data structur translat model languag model:
+conclus futur work:
+introduct:
+mose train system lemmat without:
+experi:
+effect linear interpol featur:
+conclus:
+experi:
+conclus:
+conclus:
+result:
+conclus:
+method expand seed dictionari:
+experi:
+conclud remark:
+depend label ilp:
+basic global constraint:
+maximum entropi ilp weight:
+subcategor global constraint:
+empir result:
+relat work:
+conclus futur work:
+minim lexic depend pars:
+conclud remark:
+experi:
+conclus:
+experi experiment set:
+conclus:
+
+
+CURRENT FILE: Mihalcea - 2007 - Using wikipedia for automatic word sense disambiguation.pdf
+:
+introduct:
+wikipedia:
+wikipedia sens tag corpu:
+word sens disambigu:
+experi result:
+discuss:
+relat work:
+conclus:
+
+
+CURRENT FILE: Caillet et al. - 2004 - Unsupervised Learning with Term Clustering for Thematic Segmentation of Texts.pdf
+:
+introduct:
+relat work:
+automat text segment:
+experi:
+conclus:
+
+
+CURRENT FILE: Andrychowicz et al. - 2016 - Learning to learn by gradient descent by gradient descent.pdf
+:
+lstm adam:
+lstm adam sgd:
+
+
+CURRENT FILE: Robertson, Zaragoza - 2007 - SIGIR 2007 TUTORIAL 2D The Probabilistic Relevance Model BM25 and beyond. Stephen Robertson.pdf
+:
+discuss:
+queri expans:
+elit:
+multipl field:
+gradient method trick:
+
+
+CURRENT FILE: Graves et al. - 2009 - A novel connectionist system for unconstrained handwriting recognition(2).pdf
+:
+introduct:
+ii onlin data prepar:
+normalis:
+featur extract:
+iii offlin data prepar:
+normalis:
+featur extract:
+recurr neural network:
+long shortterm memori lstm:
+bidirect recurr neural network:
+connectionist tempor classif ctc:
+ctc forward backward algorithm:
+otherwis:
+ctc object function:
+experi result:
+data set:
+languag model dictionari:
+hmm paramet:
+rnn paramet:
+main result:
+influenc dictionari size:
+use context rnn:
+vi discuss:
+vii conclus:
+
+
+CURRENT FILE: Quinlan - 1986 - Induction of decision trees.pdf
+:
+pn:
+il pn pn:
+
+
+CURRENT FILE: Kleinberg - 1999 - Authoritative sources in a hyperlinked environment.pdf
+:
+introduct:
+multipl set hub author:
+diffus gener:
+evalu:
+
+
+CURRENT FILE: Unknown - Unknown - H01-1067.pdf.part.part
+CURRENT FILE: Chapelle et al. - 2012 - Large-scale validation and analysis of interleaved search evaluation.pdf
+abstract:
+abstract:
+number interleav queri:
+last click otherwis last click otherwis:
+
+
+CURRENT FILE: Dagan, Pereira, Lee - 1994 - Similarity-based estimation of word cooccurrence probabilities.pdf
+:
+paw21wt cwl:
+similar model:
+evalu:
+
+
+CURRENT FILE: Zhang et al. - 2016 - Understanding deep learning requires rethinking generalization.pdf
+:
+introduct:
+effect capac neural network:
+role regular:
+finitesampl express:
+implicit regular appeal linear model:
+conclus:
+experiment setup:
+proof theorem:
+result implicit regular linear model:
+fit random label explicit regular:
+
+
+CURRENT FILE: Seifert, Ulbrich, Granitzer - 2011 - Word Clouds for Efficient Document Labeling.pdf
+:
+introduct:
+relat work:
+methodolog:
+user evalu:
+result:
+discuss:
+conclus futur work:
+
+
+CURRENT FILE: Unknown - Unknown - labeling.kilepr
+CURRENT FILE: Dhillon - 2001 - Co-clustering documents and words using Bipartite Spectral Graph Partitioning.pdf
+:
+spectral graph bipartit:
+eigenvector optim partit vector:
+ratiocut normalizedcut object:
+bipartit algorithm:
+bipartit result:
+
+
+CURRENT FILE: Mendeley - 2009 - Getting Started with Mendeley(2).pdf
+:
+creat librari:
+importexport endnotetm bibtex ri librari:
+multipl level undo document detail:
+share cite refer public collect read list:
+word openoffic plugin:
+cite googl document editor:
+
+
+CURRENT FILE: Sang, De Meulder - 2003 - Introduction to the CoNLL-2003 Shared Task Language-Independent Named Entity Recognition.pdf
+:
+introduct:
+data evalu:
+particip system:
+conclud remark:
+
+
+CURRENT FILE: Rhodes, Ph.D. - 2000 - Just-In-Time Information Retrieval.pdf
+:
+overview implement system:
+theori:
+experi:
+data fusion:
+filter:
+intellig augment:
+high expect effort cost:
+updat knowledg expect benefit cost:
+overview inform retriev:
+method ir:
+prior:
+html html written return emac htmlmode subject titl webpagebeingwritten bodi main text web page written:
+bodi subject:
+locat person:
+index perform raindex follow syntax:
+text retriev similar metric:
+command:
+inspec relev vs use result:
+almost unfair advantag ra start write word brainstorm essay read thing brought:
+phd thesi told meto send list top thing thanksgiv sound dirti arent friend:
+hit werent effect relev use search engin id never use search engin:
+suitor:
+contextawar archeolog assist:
+audio aura:
+machin learn maintain state:
+continuum control:
+communitywar extens:
+util versu relev:
+need integr:
+
+
+CURRENT FILE: Woo et al. - 2004 - FINDIT a fast and intelligent subspace clustering algorithm using dimension voting.pdf
+:
+introduct:
+preliminari:
+experiment:
+discuss:
+conclus:
+
+
+CURRENT FILE: Gupta et al. - Unknown - Survey on Social Tagging Techniques.pdf
+:
+zyin3illinoisedu:
+keyword:
+problem metadata gener fix taxonomi:
+folksonomi solut:
+outlin:
+categor versu describ:
+linguist classif tag:
+game base tag:
+polya urn gener model:
+languag model:
+influenc factor:
+tag distribut:
+identifi tag semant:
+tag versu keyword:
+tag cloud browsingsearch:
+tag select tag cloud:
+tag hierarchi gener:
+tag cloud display format:
+tag evolut visual:
+popular tag cloud demo:
+use tag qualiti:
+use object featur:
+index:
+search:
+taxonomi gener:
+cluster classif:
+social interest discoveri:
+enhanc brows:
+integr folksonomi:
+spam:
+canonic ambigu:
+problem:
+analysi:
+improv system design:
+person tag recommend:
+applic:
+deal problem:
+
+
+CURRENT FILE: Rosenberg, Hirschberg - 2007 - V-measure A conditional entropy-based external cluster evaluation measure.pdf
+:
+introduct:
+vmeasur calcul:
+exist evalu measur:
+compar evalu measur:
+appli vmeasur:
+conclus:
+
+
+CURRENT FILE: Corporation - 1996 - Topic Analysis Using a Finite Mixture Model.pdf
+:
+introduct:
+stochast topic model:
+word cluster:
+topic analysi:
+relat work:
+experiment result:
+conclus:
+
+
+CURRENT FILE: Marcus, Marcinkiewicz, Santorini - 1993 - Building a large annotated corpus of English The Penn Treebank.pdf
+:
+partofspeech tag simplifi po tagset english:
+dt determin vb verb base form:
+sampl tag textbefor correct:
+sampl tag textaft correct:
+two mode annotationwan experi:
+bracket basic methodolog:
+sampl bracket textful structur provid fidditch:
+sampl bracket textaft simplif correct:
+progress date composit size corpu:
+
+
+CURRENT FILE: Crestani - 1997 - Application of spreading activation techniques in information retrieval.pdf
+:
+pure spread activ model:
+spread activ feedback:
+first step preec shoval work:
+success system grant:
+testb ir experiment:
+evalu stage cornel univers experi:
+marker pass model scisor:
+spread activ hypertext:
+eachwavethesystem allow reactiv document document document activ comeshav common parent:
+
+
+CURRENT FILE: Banko et al. - 2009 - Open Information Extraction from the Web.pdf
+:
+introduct motiv:
+open ie textrunn:
+experiment result:
+relat work:
+conclus:
+acknowledeg:
+
+
+CURRENT FILE: Corro, Gemulla - Unknown - ClausIE Clause-Based Open Information Extraction.pdf
+:
+rainer gemulla:
+introduct:
+clausi sourc code resourc avail:
+relat work:
+seven claus:
+clausi:
+experi:
+dataset extract label well clausi:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Rubien, Ziak, Kern - 2015 - Efficient Search Result Diversification via Query Expansion Using Knowledge Bases.pdf
+:
+origquerytermsorexpterm ororexpterm:
+origquerytermsorexpterm ororexpterm:
+
+
+CURRENT FILE: Vechtomova - 2012 - A semi-supervised approach to extracting multiword entity names from user reviews Categories and Subject Descriptors.pdf
+:
+
+
+CURRENT FILE: Erkan, Radev - 2004 - LexRank Graph-based lexical centrality as salience in text summarization.pdf
+:
+introduct:
+sentenc central centroidbas summar:
+centralitybas sentenc salienc:
+experiment setup:
+result discuss:
+relat work:
+conclus:
+
+
+CURRENT FILE: Cha - 2007 - Comprehensive Survey on Distance Similarity Measures between Probability Density Functions.pdf
+:
+iii ierarch luster ondistancesimilar easur:
+iv onclus:
+
+
+CURRENT FILE: Mendeley - 2009 - Getting Started with Mendeley.pdf
+creat mendeley last updat septemb wwwmendeleycom:
+importexport endnotetm bibtex ri librari:
+googl scholar search:
+watch folder automat add pdf:
+document mark readunread:
+favorit:
+search type:
+annot pdf:
+multipl level undo document detail:
+file organ:
+share cite refer public collect read list:
+share collect:
+word openoffic plugin:
+current word plugin avail window mac support come soon:
+click insert citat mendeley tool bar:
+cite googl document editor:
+
+
+CURRENT FILE: Heckner, Heilemann, Wolff - 2009 - Personal information management vs. resource sharing Towards a model of information behaviour in soci.pdf
+:
+delici:
+delici:
+
+
+CURRENT FILE: Atreya, Elkan - Unknown - Latent Semantic Indexing (LSI) Fails for TREC Collections.pdf
+:
+introduct:
+bm25 score method:
+weight scheme lsi:
+lsiscor method:
+combin score method:
+experiment design:
+experiment result:
+dimens oflsi:
+discuss:
+
+
+CURRENT FILE: Han, Zha, Giles - 2005 - Name Disambiguation in Author Citations using a K-way Spectral Clustering Method.pdf
+:
+introduct:
+prior work:
+experi citat dataset:
+conclus discuss:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Khashabi - 2008 - On the Recursive Neural Networks for Relation Extraction and Entity Recognition.pdf
+:
+introduct:
+relat work deep neural languag learn:
+relat work relationent extract:
+model result:
+conclus:
+acknowledg:
+appendix relat entiti ace data:
+
+
+CURRENT FILE: Palomar - Unknown - A Text Summarization Approach under the Influence of Textual Entailment.pdf
+:
+abstract:
+abstract:
+introduct:
+background:
+text summar approach:
+experi dicuss:
+conclus futur work:
+
+
+CURRENT FILE: Bernstein, Zobel - 2004 - A Scalable System for Identifying Co-derivative Documents.pdf
+:
+introduct:
+coderiv discoveri problem:
+strategi coderiv discoveri:
+spex algorithm:
+deco packag:
+experiment methodolog:
+test discuss:
+conclus:
+
+
+CURRENT FILE: Guan, Zhou, Guo - 2009 - A class-feature-centroid classifier for text categorization(2).pdf
+:
+introduct:
+centroidbas tc:
+design:
+evalu:
+relat work:
+conclus:
+refer:
+
+
+CURRENT FILE: On et al. - 2005 - Comparative study of name disambiguation problem using a scalable blocking-based framework.pdf
+:
+introduct:
+relat work:
+problem solut overview:
+step block:
+step measur distanc:
+experiment comparison:
+conclus:
+
+
+CURRENT FILE: Amershi et al. - 2014 - Power to the People The Role of Humans in Interactive Machine Learning.pdf
+:
+studi user interact:
+novel interfac:
+
+
+CURRENT FILE: Chung - Unknown - Client-Server Architecture.pdf
+:
+
+
+CURRENT FILE: Angeli, Manning - Unknown - Philosophers are Mortal Inferring the Truth of Unseen Facts.pdf
+:
+introduct:
+relat work:
+approach:
+result:
+conclus:
+
+
+CURRENT FILE: Feng, Shi, Chua - 2004 - A bootstrapping framework for annotating and retrieving WWW images.pdf
+:
+introduct:
+relat work:
+cotrain framework annot www imag:
+experimentsand result:
+conclus:
+refer:
+
+
+CURRENT FILE: Lillicrap et al. - Unknown - CONTINUOUS CONTROL WITH DEEP REINFORCEMENT LEARNING.pdf
+:
+introduct:
+background:
+algorithm:
+result:
+relat work:
+conclus:
+
+
+CURRENT FILE: Keogh et al. - 2001 - An online algorithm for segmenting time series.pdf
+:
+abstract:
+abstract:
+introduct:
+background relat work:
+new approach:
+conclus direct futur work:
+
+
+CURRENT FILE: Fankhauser, Nejdl - 2010 - Boilerplate Detection using Shallow Text Features.pdf
+:
+text densiti:
+text densiti:
+
+
+CURRENT FILE: Choi - 2000 - Advances in domain independent linear text segmentation.pdf
+:
+introduct:
+background:
+algorithm:
+evalu:
+snormtil:
+
+
+CURRENT FILE: Yang, Pedersen - 1997 - A comparative study on feature selection in text categorization.pdf
+:
+
+
+CURRENT FILE: Rao - 2003 - From unstructured data to actionable intelligence.pdf
+:
+inform extract:
+inform visual:
+
+
+CURRENT FILE: Cutting et al. - 1985 - A Practical Part-of-Speech Tagger.pdf
+:
+
+
+CURRENT FILE: Hinton, Salakhutdinov - 2006 - SOM - Reducing the Dimensionality of Data with Neural Networks.pdf
+:
+support text:
+refer note:
+
+
+CURRENT FILE: Ponte, Croft - 1998 - A language modeling approach to information retrieval.pdf
+:
+introduct:
+previou work:
+model descript:
+empir result:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Goil, Nagesh, Choudhary - 1999 - MAFIA Efficient and scalable subspace clustering for very large data sets.pdf
+:
+
+
+CURRENT FILE: Pedersen - 2008 - Computational Approaches to Measuring the Similarity of Short Contexts A Review of Applications and Methods.pdf
+univers minnesota duluth:
+introduct:
+applic:
+summari applic:
+firstord similar:
+secondord similar:
+conclus:
+
+
+CURRENT FILE: Greff, Srivastava, Steunebrink - 1997 - LSTM A Search Space Odyssey.pdf
+:
+introduct:
+vanilla lstm:
+histori lstm origin formul:
+evalu setup:
+result discuss:
+conclus:
+addit plot:
+
+
+CURRENT FILE: Ratnaparkhi - Unknown - Adwait Ratnaparkhi.pdf
+:
+probabl model:
+conclus:
+
+
+CURRENT FILE: Hampel - 1971 - A General Qualitative Definition of Robustness.pdf
+:
+
+
+CURRENT FILE: Jimeno-yepes et al. - 2010 - Automatic algorithm selection for MeSH Heading indexing based on.pdf
+:
+alannlmnihgov:
+introduct:
+relat work:
+metalearn:
+method:
+result discuss:
+conclus futur work:
+
+
+CURRENT FILE: Lee, Ng - 2002 - An Empirical Evaluation of Knowledge Sources and Learning Algorithms for Word Sense Disambiguation.pdf
+:
+introduct:
+relat work:
+knowledg sourc:
+learn algorithm:
+evalu data set:
+empir result:
+discuss:
+
+
+CURRENT FILE: Wu, Weld - 2008 - Automatically refining the Wikipedia infobox ontology.pdf
+:
+introduct:
+desiderata architectur:
+select cleaningschemata:
+detect subsumpt:
+relat work:
+conclus:
+
+
+CURRENT FILE: Hollingsworth, Lewin, Tidhar - Unknown - Retrieving Hierarchical Text Structure from Typeset Scientific Articles – a Prerequisite for.pdf
+:
+introduct:
+document structur:
+ptx process framework:
+evalu:
+futur work:
+conclus:
+
+
+CURRENT FILE: Amershi - 2012 - Designing for Effective End-User Interaction with Machine Learning.pdf
+:
+introduct:
+web imag search cueflik:
+comput network alarm triag cuet:
+conclus:
+
+
+CURRENT FILE: Dean, Ghemawat - 2008 - MapReduce Simplified data processing on large clusters.pdf
+:
+abstract:
+abstract:
+abstract:
+abstract:
+introduct:
+program model:
+implement:
+refin:
+perform:
+experi:
+relat work:
+conclus:
+
+
+CURRENT FILE: da Costa, Cardoso - Unknown - Classification of Ordinal Data Using Neural Networks.pdf
+:
+introduct:
+2a neural network architectur ordin data:
+experiment result:
+conclus:
+
+
+CURRENT FILE: Seifert, Sabol, Kienreich - 2010 - Stress Maps Analysing Local Phenomena in Dimensionality Reduction Based Visualizations.pdf
+:
+abstract:
+abstract:
+introduct:
+stateoftheart:
+approach:
+experi:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Cao - 2015 - Ranking with Recursive Neural Networks and Its Application to Multi-Document Summarization.pdf
+:
+introduct:
+relat work:
+sentenc select:
+experi:
+conclus futur work:
+
+
+CURRENT FILE: Gey, Kando, Larson - 2010 - An Evaluation of Geographic and Temporal Search.pdf
+:
+introduct:
+data test topic:
+evalu result:
+technic approach geotempor retriev:
+topic difficulti:
+geotim topic:
+judgment approach imprecis tempor express:
+discuss:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Liu, Zhou, Zheng - 2008 - Measuring semantic similarity within sentences.pdf
+keyword sentenc similar semant net corpu natur languag process word similar:
+statist british nation corpu:
+semant similar sentenc:
+overal sentenc similar:
+evalu result:
+research partial support grant nation basic research program project grant:
+
+
+CURRENT FILE: Frey, Kern - 2015 - Efficient Table Annotation for Digital Articles.pdf
+:
+introduct:
+relat work:
+system:
+evalu:
+result:
+conclus:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Agrawal, Road, Jose - 1993 - Mining Association Rules between Sets of Items in Large Databases.pdf
+:
+
+
+CURRENT FILE: Farooq et al. - Unknown - Evaluating Tagging Behavior in Social Bookmarking Systems Metrics and design heuristics.pdf
+:
+introduct:
+basic social bookmark:
+relat work:
+overview citeulik:
+evalu metric:
+design heurist:
+discuss:
+
+
+CURRENT FILE: Csomai, Mihalcea - 2008 - Linking Documents to Encyclopedic Knowledge.pdf
+:
+introduct:
+wikipedia:
+text wikif:
+keyword extract:
+word sens disambigu:
+overal system evalu:
+conclus:
+
+
+CURRENT FILE: Marco, Mercer - 2004 - Hedging in Scientific Articles as a Means of Classifying Citations.pdf
+:
+introduct scientif write need affect:
+hedg scientif write:
+applic classifi citat need citat classif:
+detect hedg surfac cue scienc text catalogu surfac featur:
+summari ongo work:
+
+
+CURRENT FILE: Yarowsky - 1993 - One sense per collocation.pdf
+:
+introduct:
+definit sens:
+definit colloc:
+experi:
+algorithm:
+applic:
+conclus:
+
+
+CURRENT FILE: Riedel et al. - 2013 - Relation Extraction with Matrix Factorization and Universal Schemas.pdf
+:
+introduct:
+model:
+relat work:
+experi:
+conclus:
+
+
+CURRENT FILE: Lecun et al. - 1998 - Gradient-based learning applied to document recognition.pdf
+:
+
+
+CURRENT FILE: Mccallum - 2002 - 1 An Introduction to Conditional Random Fields for Relational Learning.pdf
+:
+introduct:
+linearchain condit random field:
+crf gener:
+skipchain crf:
+conclus:
+
+
+CURRENT FILE: Science, Applications, Tiruchirappalli - 2007 - Sentence Similarity Computation Based on WordNet and Corpus Statistics.pdf
+:
+introduct:
+relat work:
+propos sentenc similar method:
+experiment result:
+conclus:
+
+
+CURRENT FILE: Lee, Cheon, Kim - 2017 - A Convolutional Neural Network for Fault Classification and Diagnosis in Semiconductor Manufacturing Processes.pdf
+:
+abstract:
+abstract:
+introduct:
+ii deep learn model:
+standard convolut neural network:
+stack denois autoencod:
+fdccnn model:
+fault diagnosi:
+data setup:
+train paramet speed:
+conclus:
+
+
+CURRENT FILE: Clough - 2001 - Measuring text reuse in a journalistic domain.pdf
+:
+framework text reus:
+text reus journal:
+relat work:
+find pattern reus text:
+word overlap classif:
+result:
+conclus:
+work:
+
+
+CURRENT FILE: Knight, Koehn - 2003 - What's New in Statistical Machine Translation.pdf
+:
+languag model:
+languag model:
+languag model:
+languag model:
+
+
+CURRENT FILE: Jones, Furnas - 1987 - Pictures of relevance A geometric analysis of similarity measures.pdf
+:
+introduct:
+fundament:
+discuss difser among similar measur:
+conclus geometr approach:
+
+
+CURRENT FILE: Pasternack, Goodwin - Unknown - Generalized Fact-Finding.pdf
+:
+keyword:
+introduct:
+factfind:
+lift factfind:
+experi:
+
+
+CURRENT FILE: Terra, Clarke - 2004 - Scoring missing terms in information retrieval tasks.pdf
+:
+introduct:
+relat work:
+modifi retriev method:
+find term replac:
+empir evalu:
+conclus:
+
+
+CURRENT FILE: Lafferty, Mccallum, Pereira - 2000 - Conditional Random Fields Probabilistic Models for Segmenting and Labeling Sequence Data.pdf
+:
+introduct:
+label bia problem:
+condit random field:
+paramet estim crf:
+experi:
+aspect crf:
+relat work conclus:
+
+
+CURRENT FILE: Liu et al. - 2009 - Improving the Table Boundary Detection in PDFs by Fixing the Sequence Error of the Sparse Lines.pdf
+:
+introduct:
+term definit:
+text sequenc recov algorithm:
+experi result:
+conclus:
+
+
+CURRENT FILE: Gu et al. - Unknown - Continuous Deep Q-Learning with Model-based Acceleration.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+background:
+continu qlearn normal advantag function:
+acceler learn imagin rollout:
+experi:
+discuss:
+
+
+CURRENT FILE: Taylor, Letham - 2017 - Forecasting at Scale.pdf
+:
+introduct:
+model busi time seri:
+expkt:
+ct expk attδt attγ:
+autom evalu forecast:
+conclus:
+
+
+CURRENT FILE: Pedersen, Purandare, Kulkarni - 2005 - Name Discrimination by Clustering Similar Contexts.pdf
+:
+introduct:
+relat work:
+discrimin cluster similar context:
+cluster:
+experiment data:
+experiment methodolog:
+experiment result discuss:
+futur work:
+conclus:
+
+
+CURRENT FILE: Singhal, Buckley, Mitra - 1996 - Pivoted document length normalization.pdf
+:
+
+
+CURRENT FILE: Lehmann, Gerber - 2012 - DeFacto-deep fact validation.pdf
+:
+introduct:
+approach:
+trustworthi analysi webpag:
+featur deep fact valid:
+evalu:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Ratnaparkhi - 1998 - Maximum Entropy Models for Natural Langual Ambiguity Resolution.pdf
+:
+yw:
+ujn:
+
+
+CURRENT FILE: Navigli - 2009 - Word Sense Disambiguation A Survey.pdf
+:
+abstract:
+abstract:
+argmax:
+:
+
+
+CURRENT FILE: Terra, Clarke - 2003 - Frequency estimates for statistical word similarity measures.pdf
+:
+introduct:
+measur word similar:
+cooccurr estim:
+experi:
+result discuss:
+conclus:
+
+
+CURRENT FILE: Hinton - Unknown - A Scalable Hierarchical Distributed Language Model.pdf
+:
+introduct:
+hierarch neural network languag model:
+logbilinear model:
+hierarch logbilinear model:
+hierarch cluster word:
+experiment result:
+discuss futur work:
+
+
+CURRENT FILE: Bassa - 2016 - GerIE Open Information Extraction for German Texts.pdf
+:
+statutori declar:
+eidesstattlich erklärung:
+addit concept:
+applic german:
+perform comparison:
+depend parser:
+evalu:
+relat type:
+pattern creation:
+system architectur:
+dataset:
+evalu:
+result:
+discuss:
+negat word:
+
+
+CURRENT FILE: Hinton, Osindero, Teh - 2006 - A fast learning algorithm for deep belief nets(2).pdf
+:
+introduct:
+complementari prior:
+4a greedi learn algorithm transform represent:
+backfit updown algorithm:
+perform themnistdatabas:
+look intothemind neural network:
+conclus:
+appendix pseudocod updown algorithm:
+
+
+CURRENT FILE: Johnson et al. - 2012 - MESSENGER observations of Mercury's magnetic field structure.pdf
+:
+introduct:
+magnet field observ:
+paraboloid magnetospher model:
+analys estim model paramet orbit observ:
+global magnetospher field result discuss:
+residu signatur result discuss:
+conclus:
+
+
+CURRENT FILE: Hodge, Austin - 2004 - A survey of outlier detection methodologies.pdf
+:
+introduct:
+statist model:
+neural network:
+machin learn:
+hybrid system:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Lux, Granitzer, Kern - 2007 - Aspects of Broad Folksonomies.pdf
+:
+introduct:
+relat work:
+methodolog:
+emerg powerlaw distribut folksonomi:
+retriev specif aspect:
+conclus:
+
+
+CURRENT FILE: Ghemawat, Gobioff, Leung - 2003 - The Google file system.pdf
+:
+keyword:
+introduct:
+design overview:
+system interact:
+master oper:
+fault toler diagnosi:
+measur:
+experi:
+relat work:
+conclus:
+
+
+CURRENT FILE: Kulkarni, Whitney - 2015 - Deep Convolutional Inverse Graphics Network.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+model:
+experi:
+discuss:
+
+
+CURRENT FILE: Deerwester et al. - 1990 - Indexing by latent semantic analysis.pdf
+:
+abstract:
+abstract:
+introduct:
+defici current automat indexingand retriev method:
+rational latent semant index lsi method illustr retriev problem:
+svd twomod factor analysi overview:
+xhihat xhihat ds2d:
+xhihat tsd:
+test svd latent semant index lsi method:
+number uniqu term mean number term per document mean number term per queri:
+conclus discuss:
+
+
+CURRENT FILE: Durme - 2007 - Open Knowledge Extraction through Compositional Language Processing.pdf
+:
+introduct:
+previou work:
+experi:
+comparison:
+extract core sentenc:
+class properti:
+conclus:
+
+
+CURRENT FILE: Stabb et al. - 2002 - Intelligent systems for tourism.pdf
+:
+tourism industri featur:
+sowher doesai come play:
+challengesfor intellig system intour:
+opportun research:
+issu:
+caveat limit:
+broaden scope:
+catch user need decisionstyl:
+speak right languag:
+drive take taxi:
+isnt done commerci:
+
+
+CURRENT FILE: Dubin - 2004 - The most influential paper Gerard Salton never wrote.pdf
+:
+introduct:
+vector space mathemat model:
+earliest exampl:
+retriev model:
+term discrimin model:
+vector space ir model:
+earli reaction vector model:
+vector space model defin last:
+epilogu paper salton never wrote:
+
+
+CURRENT FILE: Brand - 2003 - Fast online svd revisions for lightweight recommender systems.pdf
+:
+abstract:
+abstract:
+problem:
+thesvd data mine:
+background:
+modifi svd:
+imput predict:
+bootstrap problem:
+applic collabor filter:
+basisvectorsus trainset:
+discuss:
+acknowledg:
+
+
+CURRENT FILE: Brin, Page - 1998 - The anatomy of a large-scale hypertextual Web search engine.pdf
+:
+system featur:
+relat work:
+system anatomi:
+conclus:
+acknowledg:
+appendix advertis mix motiv:
+appendix scalabl scalabl googl:
+
+
+CURRENT FILE: Telford et al. - 2003 - Footstrike is the major cause of hemolysis during running.pdf
+:
+method:
+result:
+discuss:
+
+
+CURRENT FILE: Niu, Ji, Tan - 2007 - I2R Three Systems for Word Sense Discrimination, Chinese Word Sense Disambiguation, and English Word Sense Disambi.pdf
+:
+introduct:
+featur set:
+word sens discrimin method task:
+label propag algorithm task 5and task:
+experiment result system task task task:
+conclus:
+
+
+CURRENT FILE: Christoudias et al. - 2006 - Co-Adaptation of audio-visual speech and gesture classifiers.pdf
+:
+introduct:
+relat work:
+audiovisu cotrain:
+coadapt algorithm:
+experi:
+conclus:
+refer:
+
+
+CURRENT FILE: Zheng - 2015 - Trajectory Data Mining An Overview.pdf
+:
+nois filter:
+stay point detect:
+trajectori compress:
+trajectori segment:
+map match:
+trajectori index retriev:
+distancesimilar trajectori:
+reduc uncertainti trajectori data:
+privaci trajectori data:
+move togeth pattern:
+trajectori cluster:
+mine sequenti pattern trajectori:
+mine period pattern trajectori:
+detect outlier trajectori:
+identifi anomal event trajectori:
+trajectori graph:
+trajectori matrix:
+trajectori tensor:
+public trajectori dataset:
+potenti futur direct:
+
+
+CURRENT FILE: Guerini, Gatti, Turchi - Unknown - Sentiment Analysis How to Derive Prior Polarities from SentiWordNet.pdf
+:
+introduct:
+propos approach:
+sentiwordnet:
+prior polar formula:
+fposscor negscor:
+learn algorithm:
+gold standard:
+experi:
+gener discuss:
+po gender experi:
+conclus:
+
+
+CURRENT FILE: Van Gael, Vlachos, Ghahramani - 2009 - The infinite HMM for unsupervised PoS tagging.pdf
+:
+introduct:
+infinit hmm:
+infer:
+evalu:
+experi:
+conclus futur work:
+
+
+CURRENT FILE: Hausknecht, Stone - 2016 - Deep Reinforcement Learning in Parameterized Action Space.pdf
+:
+introduct:
+half field offens domain:
+background deep reinforc learn:
+parameter action space architectur:
+bound paramet space learn:
+result:
+soccer evalu:
+relat work:
+futur work:
+conclus:
+
+
+CURRENT FILE: Ibidunmoye, Francisco, Elmroth - 2015 - Performance Anomaly Detection and Bottleneck Identification.pdf
+:
+introduct:
+background basic concept:
+solut strategi method:
+research trend:
+padbi system cloud specif requir:
+discuss futur direct:
+conclud remark:
+acknowledg:
+
+
+CURRENT FILE: Sun et al. - 2007 - Topic segmentation with shared topic detection and alignment of multiple documents.pdf
+:
+keyword:
+introduct:
+previou work:
+problem formul:
+methodolog:
+experi:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Architecture - 2004 - Pattern-oriented Software Architecture.pdf
+:
+
+
+CURRENT FILE: Pecina, Schlesinger - 2006 - Combining association measures for collocation extraction.pdf
+:
+introduct:
+refer data:
+associ measur:
+combin associ measur:
+model reduct:
+conclus discuss:
+
+
+CURRENT FILE: Wei et al. - 2008 - Query-Sensitive Mutual Reinforcement Chain and Its Application in Query-Oriented Multi-Document Summarization.pdf
+:
+introduct:
+relatedwork:
+mutual reinforc chain:
+querysensit similar:
+qsmrc basedqueryori multidocu summar:
+experiment stedi:
+
+
+CURRENT FILE: Blei, Ng, Jordan - 2003 - Latent dirichlet allocation.pdf
+:
+introduct:
+notat terminolog:
+latent dirichlet alloc:
+relationship latent variabl model:
+infer paramet estim:
+exampl:
+applic empir result:
+discuss:
+appendix infer paramet estim:
+
+
+CURRENT FILE: Unknown - Unknown - Data with Neural Networks - hinton.pdf
+:
+metamateri would highli desir current avail:
+pca fig 2c:
+
+
+CURRENT FILE: Deeks et al. - 1998 - When can odds ratios mislead.pdf
+:
+secondari prevent acut myocardi infarct:
+acut excit state sudden death:
+health need assess requir prioriti set:
+insid view ration:
+differ life expect valu:
+long term pharmacotherapi depress:
+admiss depress increas among men republ ireland:
+doctor feel sober enough drive avoid help medic emerg:
+
+
+CURRENT FILE: Kern, Granitzer - 2010 - German Encyclopedia Alignment Based on Information Retrieval Techniques.pdf
+:
+introduct:
+relat work:
+encycloped corpora:
+algorithm:
+evalu discuss:
+conclus futur work:
+
+
+CURRENT FILE: Li, Lv, Wang - 2016 - Traffic signal timing via deep reinforcement learning.pdf
+:
+introduct:
+qsarγmax qs:
+deep reinforcementlearn traffic control:
+iii simul result:
+iv conclus:
+
+
+CURRENT FILE: Sculley - 2010 - Combined regression and ranking.pdf
+:
+introduct:
+background:
+algorithm crr:
+experi:
+conclus:
+acknowledg:
+refer:
+
+
+CURRENT FILE: Shindler, Wong, Meyerson - Unknown - Fast and Accurate k-means For Large Datasets.pdf
+:
+introduct:
+algorithm theori:
+approxim nearest neighbor:
+empir evalu:
+
+
+CURRENT FILE: Bell - 2003 - The co-information lattice.pdf
+:
+
+
+CURRENT FILE: Brants - Unknown - TnT -- A Statistical Part-of-Speech Tagger.pdf
+:
+introduct:
+architectur underli model:
+evalu:
+conclus:
+
+
+CURRENT FILE: Dellschaft, Staab - 2009 - Understanding the Dynamics in Tagging Systems.pdf
+:
+introduct:
+properti tag stream:
+tag model:
+experiment result:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Patki, Wedge, Veeramachaneni - 2016 - The Synthetic Data Vault.pdf
+:
+specifi structur user must specifi basic inform structur tabl provid metadata databas specif similar schema:
+learn model user invok sdv script learn gener model sdv iter tabl sequenti use model algorithm design account:
+synthes data instanti sdv databas user expos simpl api three main func:
+distribut describ valu column covari describ depend togeth form:
+solut ensur origin column contain valu row also account fact:
+envis major usecas modelbas requir user synthes entir:
+atom:
+data scientist experi analyz data hire experi data scientist assign one four group determin version:
+
+
+CURRENT FILE: Gliozzo, Magnini, Strapparava - 2002 - Unsupervised Domain Relevance Estimation for Word Sense Disambiguation.pdf
+:
+introduct:
+domain wordnet text:
+domain relev estim text:
+domain driven disambigu:
+evalu wsd task:
+conclus futur work:
+
+
+CURRENT FILE: Roelleke, Wang - Unknown - TF-IDF Uncovered A Study of Theories and Probabilities.pdf
+:
+introduct background:
+independ term:
+disjoint term:
+summari conclus:
+
+
+CURRENT FILE: Quasthoff, Wolff - 2002 - The poisson collocation measure and its applications.pdf
+:
+introduct:
+introduct poisson colloc measur:
+applic:
+conclud remark:
+
+
+CURRENT FILE: Shotton - 2010 - CiTO, the Citation Typing Ontology.pdf
+:
+abstract:
+abstract:
+cito scope usag:
+relationship cito metadata schema ontolog:
+exampl cito use:
+conclus:
+
+
+CURRENT FILE: Flanagin et al. - 1998 - Prevalence of articles with honorary authors and ghost authors in peer-reviewed medical journals(2).pdf
+:
+method:
+result:
+comment:
+
+
+CURRENT FILE: Fang, Zhai - 2005 - An exploration of axiomatic approaches to information retrieval.pdf
+:
+introduct:
+anaxiomat framework:
+deriv new retriev formula:
+experi:
+acknowledg:
+
+
+CURRENT FILE: Minnie, Srinivasan - 2011 - Meta Search Engines for Information Retrieval on Multiple Domains.pdf
+:
+introduct:
+fig architectur search engin:
+iii methodolog:
+user interfac:
+queri gener:
+send queri vertic search engin:
+receiv result vertic search engin:
+result gener multipl window:
+vi futur work:
+vii conclus:
+
+
+CURRENT FILE: Lewis - 1998 - Naive (Bayes) at forty The independence assumption in information retrieval.pdf
+:
+
+
+CURRENT FILE: Landauer et al. - 1997 - A Solution to Plato's Problem The Latent Semantic Analysis Theory of Acquisition, Induction, and Representation.pdf
+:
+overview:
+problem induct:
+latent semant analysismodel:
+evalu model:
+gener domain lsa:
+summari:
+
+
+CURRENT FILE: Fang, Tao, Zhai - 2004 - A formal study of information retrieval heuristics.pdf
+:
+introduct:
+analysi three repres retriev formula:
+experi:
+conclus futur work:
+acknowledg:
+
+
+CURRENT FILE: Alves - 2005 - Unsupervised Topic Segmentation Based on Word Co- occurrence and Multi-Word Units for Text Summarization.pdf
+:
+introduct:
+relat work:
+weight score:
+similar sentenc:
+topic boundari detect:
+result:
+conclus futur work:
+
+
+CURRENT FILE: Kriegel, Kröger, Zimek - 2010 - Outlier Detection Techniques.pdf
+:
+gener issu:
+introduct:
+introduct:
+introduct:
+distancebas approach:
+densitybas approach:
+highdimension approach:
+
+
+CURRENT FILE: Etzioni et al. - 2005 - Unsupervised named-entity extraction from the Web An experimental study.pdf
+:
+recal:
+recal:
+recal:
+
+
+CURRENT FILE: Büttcher, Clarke - 2005 - Indexing time vs. query time trade-offs in dynamic information retrieval systems.pdf
+:
+categori subject descriptor:
+introduct:
+subindex merg:
+garbag collect:
+experiment result:
+addit resourc:
+
+
+CURRENT FILE: Han et al. - 2003 - Automatic document metadata extraction using support vector machines.pdf
+:
+abstract:
+abstract:
+introduct relat work:
+problem definit dataset:
+metadata extract algorithm:
+experiment result:
+discuss futur work:
+acknowledg:
+
+
+CURRENT FILE: Sugiyama, Kan - 2014 - A comprehensive evaluation of scholarly paper recommendation using potential citation papers.pdf
+:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+abstract:
+introduct:
+relat work:
+propos method:
+experi:
+conclus:
+
+
+CURRENT FILE: Markines et al. - 2009 - Evaluating similarity measures for emergent semantics of social tagging.pdf
+:
+tau:
+tau:
+
+
+CURRENT FILE: Pinto, Rosso, Jiménez-Salazar - 2007 - UPV-SI Word Sense Induction using Self Term Expansion.pdf
+:
+introduct:
+self term expans method:
+evalu:
+conclus:
+
+
+CURRENT FILE: Subramaniam et al. - 2006 - Online outlier detection in sensor data using non-parametric models.pdf
+:
+introduct:
+sensor network model:
+discoveringabnormalbehavior:
+onlin approxim data distribut slide window:
+comparingdistribut:
+distribut detect distancebas outlier:
+outlier detect use multigranular local metric:
+applic:
+experiment evalu:
+relat work:
+conclus:
+
+
+CURRENT FILE: Malakasiotis - 2009 - Paraphrase Recognition Using Machine Learning to Combine Similarity Measures.pdf
+:
+introduct:
+three method:
+experi:
+relat work:
+conclus work:
+
+
+CURRENT FILE: Unknown - Unknown - Iterative Extended Local Kemenization.pdf
+:
+concept rank:
+rank aggreg:
+kendal tau distanc:
+approach:
+ii local kemen lk:
+algorithm:
+advantag local kemen:
+limit local kemen:
+algorithm:
+exampl:
+proof better result:
+posit kendal tau distanc reduc sure:
+data gener:
+conclus futur work:
+
+
+CURRENT FILE: Cummins, O’Riordan - 2008 - An axiomatic comparison of learned term-weighting schemes in information retrieval clarifications and exte.pdf
+:
+abstract:
+abstract:
+introduct:
+axiom termweight:
+weaker constraint deduc first two constraint describ follow:
+termweight scheme analysi:
+global constant:
+section present experi empir valid newli introduc axiom previou analysi:
+conclus:
+appendix violat satisfact constraint:
+
+
+CURRENT FILE: Chen, Shen, Tang - 2011 - Local path searching based map matching algorithm for floating car data.pdf
+:
+abstract:
+abstract:
+local path search:
+squar confid region construct:
+
+
+CURRENT FILE: Dhillon, Mallela, Modha - 2003 - Information-theoretic co-clustering(2).pdf
+:
+introduct:
+problem formul:
+relat work:
+coclust algorithm:
+experiment result:
+
+
+CURRENT FILE: Klein, Manning - 2003 - Accurate unlexicalized parsing.pdf
+:
+experiment setup:
+vertic horizont markov:
+extern vs intern annot:
+tag split:
+unlexic grammar:
+annot alreadi treebank:
+head annot:
+distanc:
+final result:
+conclus:
+
+
+CURRENT FILE: Yates, Etzioni - Unknown - Unsupervised Resolution of Objects and Relations on the Web.pdf
+:
+introduct:
+previou work:
+probabilist model:
+resolv cluster algorithm:
+extens resolv:
+experi:
+conclus futur work:
+
+
+CURRENT FILE: Graves et al. - 2009 - A novel connectionist system for unconstrained handwriting recognition.pdf
+:
+introduct:
+ii onlin data prepar:
+normalis:
+featur extract:
+iii offlin data prepar:
+normalis:
+featur extract:
+recurr neural network:
+long shortterm memori lstm:
+bidirect recurr neural network:
+connectionist tempor classif ctc:
+ctc forward backward algorithm:
+otherwis:
+ctc object function:
+experi result:
+data set:
+languag model dictionari:
+hmm paramet:
+rnn paramet:
+main result:
+influenc dictionari size:
+use context rnn:
+vi discuss:
+vii conclus:
+
+
+CURRENT FILE: Aral, Walker - 2012 - Identifying Influential and Susceptible Members of Social Networks.pdf
+:
+abstract:
+abstract:
+
+
+CURRENT FILE: Hammerton et al. - 2012 - On generating large-scale ground truth datasets for the deduplication of bibliographic records.pdf
+:
+introduct:
+mendeley dedupl bibliograph record:
+mendeley data analysi arxiv pubm record:
+gener random ground truth data set:
+gener inform ground truth data set:
+relat work:
+conclus:
+
+
+CURRENT FILE: Agirre, Soroa - 2007 - UBC-AS A Graph Based Unsupervised System for Induction and Classification.pdf
+:
+introduct:
+2a graph base system unsupervis classif:
+web peopl search task:
+word sens induct discrimin task:
+result:
+conclus:
+
+
+CURRENT FILE: Forman - 2002 - Choose Your Words Carefully An Empirical Study of Feature Selection Metrics for Text Classification document Choose You.pdf
+:
+introduct:
+featur select method:
+experiment method:
+empir result:
+conclus:
+
+
+CURRENT FILE: Shi et al. - 2016 - Benchmarking State-of-the-Art Deep Learning Software Tools.pdf
+:
+introduct:
+background relat work:
+experiment method:
+result:
+discuss:
+conclus futur work:
+
+
+CURRENT FILE: Boldi, Vigna - 2004 - The webgraph framework I compression techniques.pdf
+:
+1e:
+1e:
+
+
+CURRENT FILE: Zaragoza, Robertson - 2007 - The Probabilistic Relevance Model for Document Retrieval.pdf
+:
+binari independ model:
+poisson model:
+elit model bm25:
+multipl field text:
+nontextu inform:
+binomi posit poisson:
+model progess:
+train sampl progess:
+
+
+CURRENT FILE: Lindstaedt et al. - 2008 - Recommending tags for pictures based on text, visual content and user context.pdf
+introduct:
+ii user applic tagr:
+user interfac:
+system descript:
+imag classif:
+imag similar:
+term associ base wordnet:
+tag associ base statist distribut:
+user similar:
+iv evalu:
+relat work:
+vi conclus:
+
+
+CURRENT FILE: Coenen, Vandijck - Unknown - Turning a Corporate Folksonomy into a Lightweight Corporate Ontology.pdf
+:
+introduct:
+relat work:
+overview techniqu resourc:
+deriv lightweight corpor ontolog:
+first result:
+discuss futur research:
+
+
+CURRENT FILE: Han et al. - 2007 - Frequent pattern mining current status and future directions.pdf
+:
+abstract:
+abstract:
+introduct:
+effici scalabl method mine frequent pattern:
+mine interest frequent pattern:
+impact data analysi mine task:
+applic:
+research direct:
+conclus:
+
+
+CURRENT FILE: Lowe, McDonald - 2000 - The direct route Mediated priming in semantic space.pdf
+:
+mediat prime:
+discuss:
+conclus:
+appendix:
+appendix:
+
+
+CURRENT FILE: Gale - Unknown - Good-Turing Smoothing Without Tears.pdf
+:
+goodtur smooth use linguist:
+goodtur method:
+simpl method smooth:
+accur simpl smooth:
+estim probabl unseen object:
+summari:
+
+
+CURRENT FILE: Iváncsy, Vajk - 2006 - Frequent Pattern Mining in Web Log Data.pdf
+:
+abstract:
+abstract:
+introduct:
+web mine approach:
+web usag mine:
+relat work:
+overview mine algorithm:
+data preprocess:
+data mine pattern analysi:
+
+
+CURRENT FILE: Nigam et al. - 2000 - Text Classification from Labeled and Unlabeled Documents using EM.pdf
+:
+abstract:
+abstract:
+abstract:
+abstract:
+introduct:
+argument valu unlabel data:
+probabilist framework:
+text classif naiv bay:
+incorpor unlabel data em:
+experiment result:
+relat work:
+summari conclus:
+
+
+CURRENT FILE: Pantel et al. - 1992 - Towards Terascale Knowledge Acquisition.pdf
+:
+introduct:
+relev work:
+syntact cooccurr approach:
+scalabl patternbas approach:
+ay xrb call especi:
+experiment result:
+conclus:
+
+
+CURRENT FILE: Smith - 1990 - The Task of the Referee.pdf
+:
+refere task:
+refere report:
+evalu research paper:
+make recommend:
+survey tutori:
+propos:
+issu:
+author:
+
+
+CURRENT FILE: Klein, Murphy - 2002 - Paper has been my ruin conceptual relations of polysemous senses.pdf
+:
+abstract:
+abstract:
+background polysemi:
+relev psycholog result:
+categori polysem sens:
+experi:
+method:
+result discuss:
+experi:
+method:
+result discuss:
+similar analysi:
+experi:
+method:
+result discuss:
+experi:
+method:
+result:
+experi:
+method:
+result:
+discuss:
+experi:
+method:
+result discuss:
+gener discuss:
+structur polysem categori:
+implic process model word mean:
+polysemyhomonymi distinct:
+
+
+CURRENT FILE: The Mendeley Support Team - 2011 - Getting Started with Mendeley.pdf
+:
+search type:
+multipl level undo document detail:
+file organ:
+use word openoffic writer plugin:
+cite googl document editor:
+ad member document:
+use group:
+
+
+CURRENT FILE: Zhai, Lafferty - 2004 - A study of smoothing methods for language models applied to information retrieval.pdf
+:
+
+
+CURRENT FILE: Luberg et al. - 2011 - Context-aware and multilingual information extraction for a tourist recommender system.pdf
+:
+introduct:
+tourism recommend system:
+technic overview:
+data discoveri:
+relat work:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Ramakrishnan et al. - 2001 - Privacy risks in recommender systems.pdf
+:
+graphtheoret approach:
+benefitriskanalysi:
+futurework:
+
+
+CURRENT FILE: Tan, Kan, Lee - 2006 - Search Engine Driven Author Disambiguation.pdf
+:
+introduct:
+algorithm:
+evalu:
+discuss conclus:
+refer:
+
+
+CURRENT FILE: Liu et al. - 2011 - Recognizing Named Entities in Tweets.pdf
+:
+introduct:
+relat work:
+task definit:
+method:
+experi:
+conclus futur work:
+
+
+CURRENT FILE: Tan, Lee - 2014 - A Step towards Understanding Statement Strength in Communication.pdf
+:
+introduct:
+relat work data:
+dataset descript:
+look ahead:
+
+
+CURRENT FILE: Clough et al. - 2002 - METER MEasuring TExt Reuse.pdf
+:
+
+
+CURRENT FILE: Mannens et al. - 2012 - Automated Trust Estimation in Developing Open News Stories Combining Memento &amp Provenance.pdf
+:
+introduct:
+ii relat work:
+iii model develop news item:
+iv modellingtrust:
+publish proven:
+futur work:
+vi conclus:
+
+
+CURRENT FILE: Manning - Unknown - Part-of-Speech Tagging from 97 % to 100 % Is It Time for Some Linguistics.pdf
+:
+isnt partofspeech tag solv task:
+approach asymptot continu push po tag number:
+error analysi:
+correct treebank:
+fix error:
+foundat issu:
+
+
+CURRENT FILE: Kern et al. - 2016 - Know-Center at SemEval-2016 Task 5 Using Word Vectors with Typed Dependencies for Opinion Target Expression Extract.pdf
+:
+introduct:
+extern resourc:
+system slot opinion target extract:
+featur:
+result:
+conclus futur work:
+
+
+CURRENT FILE: Chi, Mytkowicz - 2008 - Understanding the efficiency of social tagging systems using information theory.pdf
+:
+keyword:
+introduct:
+relat work:
+approach:
+analysi tag:
+discuss:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Hofmann - 1999 - Probabilistic latent semantic indexing.pdf
+:
+
+
+CURRENT FILE: Unknown - Unknown - SemI40_Letter of Consent_KNOW_signed(1).pdf.pdf
+
+
+CURRENT FILE: Goodfellow et al. - 2014 - Generative Adversarial Nets.pdf
+:
+introduct:
+relat work:
+adversari net:
+theoret result:
+experi:
+advantag disadvantag:
+
+
+CURRENT FILE: Klieber et al. - 2009 - Using Ontologies For Software Documentation.pdf
+:
+introduct:
+design softwar ontolog:
+usag scenario:
+conclus outlook:
+
+
+CURRENT FILE: Schütze - 1998 - Automatic word sense discrimination.pdf
+:
+cloth:
+cloth:
+
+
+CURRENT FILE: Avgeriou - Unknown - Architectural Patterns Revisited – A Pattern Language.pdf
+:
+motiv:
+put piec togeth pattern languag:
+layer view:
+data flow view:
+datacent view:
+variant share repositori pattern activ repositori pattern:
+adapt view:
+languag extens view:
+user interact view:
+pattern presentationabstractioncontrol:
+compon interact view:
+gener altern clientserv peertop:
+distribut view:
+epilogu:
+
+
+CURRENT FILE: Hynynen et al. - 2006 - Heart rate variability during night sleep and after awakening in overtrained athletes.pdf
+:
+abstract:
+abstract:
+method:
+result:
+discuss:
+
+
+CURRENT FILE: Chang et al. - 2009 - Reading Tea Leaves How Humans Interpret Topic Models.pdf
+:
+probabilist topic model becom popular tool unsupervis analysi larg document:
+spirit much literatur compar differ topic model present exampl topic:
+paper present method measur interpretat topic model devis:
+topic model posit document express mixtur topic topic proport:
+retic look hood model persist even model move:
+model use heldout likelihood wallach et al provid summari evalu:
+griffith et al import except trend use extern task heldout likelihood:
+section propos two task creat formal set human evalu two:
+develop task evalu whether topic humanidentifi semant coher task:
+word intrus:
+evalu latent space present figur word intrus task subject present:
+set word minu intrud make sens togeth subject easili:
+order construct set present subject first select random topic model:
+topic intrus task test whether topic model decomposit document mixtur:
+subject instruct choos topic belong document:
+work studi three topic model probabilist latent semant index plsi latent dirichlet alloc lda correl topic model ctm mix membership model number latent topic free paramet:
+allow richer covari structur topic proport use logist normal prior:
+train model two corpora corpu appli part speech tagger:
+evalu use convent object measur:
+analyz human evalu:
+web interfac special train knowledg typic expect worker amazon:
+word intrus describ section word intrus task measur well infer:
+figur left show exampl topic high low model precis ny time:
+figur bottom row show model precis increas predict likelihood impli improv topic log odd score topic log odd nearli constant across number topic lda plsi ctm topic log odd predict likelihood:
+qualit vein work valid use topic corpu explor inform:
+
+
+CURRENT FILE: Lin, Hovy - 2003 - Automatic evaluation of summaries using n-gram co-occurrence statistics.pdf
+:
+introduct:
+document understand confer:
+bleu ngram cooccurr:
+evalu ngram cooccurr metric:
+conclus:
+
+
+CURRENT FILE: Nothman, Murphy, Curran - 2009 - Analysing Wikipedia and Gold-Standard Corpora for NER Training.pdf
+:
+introduct:
+ner annot corpora:
+corpu error analysi approach:
+compar goldstandard corpora:
+wikipedia neannot text:
+experi:
+result:
+conclus:
+
+
+CURRENT FILE: Leskovec - 2011 - Social Media Analytics Tracking , Modeling and Predicting the Flow of Information through Networks.pdf
+:
+introduct:
+
+
+CURRENT FILE: Unknown - 2010 - CoNLL-2010 Shared Task Fourteenth Conference on Computational Natural Language Learning Proceedings of the Shared Task.pdf
+:
+introduct:
+relat work:
+uncertainti annot guidelin:
+task definit:
+dataset:
+submiss result:
+conclus:
+experi result:
+conclus:
+bayesian logist regress:
+detect sentenc contain specul:
+task1 result error analysi:
+detect scope hedg:
+task2 result error analysi:
+relat work:
+conclus:
+experi:
+conclus:
+task detect uncertain inform:
+task resolut insent scope hedg cue:
+conclus futur research:
+identifi hedg cue:
+resolv cue scope:
+heldout test:
+conclus outlook:
+specul cue:
+specul scope:
+result hedg cue:
+annot scheme:
+relat work:
+conclus:
+relhunt overview:
+hedg detect use relhunt:
+interdepend classif:
+experiment result:
+conclus:
+result discuss:
+conclus:
+introduct:
+detect sentenc level uncertainti:
+detect insent uncertainti:
+discuss:
+acknowledg:
+introduct:
+method:
+featur select:
+evalu result:
+learn hedg cue:
+learn uncertainti:
+experi discuss:
+conclus:
+result:
+discuss:
+conclus:
+specul sentenc classifi tree kernel classif:
+experi result dataset:
+conclud remark:
+system use evalu:
+conclus futur work:
+experi:
+conclus:
+result:
+discuss:
+conclus:
+conclud remark:
+
+
+CURRENT FILE: Lin - 2000 - Association Rule Mining for Collaborative Recommender Systems by.pdf
+:
+abstract:
+abstract:
+chapter:
+chapter:
+chapter adaptivesupport algorithm mine associ rule:
+chapter:
+chapter:
+chapter conclus futur work:
+
+
+CURRENT FILE: Seifert et al. - 2016 - Ubiquitous Access to Digital Cultural Heritage.pdf
+:
+introduct:
+overal architectur:
+ghe abbrevi domain githubcomeexcess httpbowerio:
+compon:
+exampl applic:
+relat work discuss:
+summari:
+
+
+CURRENT FILE: Potthast, Stein, Holfeld - 2010 - Overview of the 1st International Competition on Wikipedia Vandalism Detection.pdf
+:
+introduct:
+survey detect approach:
+conclus:
+
+
+CURRENT FILE: Arjovsky, Bottou - 2017 - Towards Principled Methods for Training Generative Adversarial Networks.pdf
+:
+state lemma two manifold dont perfectli align intersect lmpwill bea finit union manifold dimens strictli lower dimens one:
+wenowst perfect discrimin result case two manifold:
+use norm make proof simpler could done anoth sobolev norm cover univers approxim theorem sens guarante neural network approxim norm hornik:
+substract last equat result jsd obtain desir result:
+first author would like especi thank lui scoccola help proof oflemma1:
+
+
+CURRENT FILE: Hlt - 2009 - Integer Linear Programming for Natural Language Processing.pdf
+:
+introduct:
+extract summar:
+sentenc compress:
+joint compress extract:
+experi dataset evalu environ:
+conclus futur work:
+model:
+infer ilp:
+perform:
+scalabl:
+extens:
+relat work:
+conclus futur work:
+introduct:
+previou work:
+algorithm:
+bound sdp:
+experi scalabl:
+conclus:
+new object function align:
+subword align:
+relat work:
+conclus futur work:
+
+
+CURRENT FILE: Bassa - 2016 - Validation of Information On-the-Fly Data Set Generation for Single Fact Validation.pdf
+:
+abstract:
+abstract:
+abstract:
+abstract:
+overview exist fact find approach:
+dynam approach onthefli data set gener:
+input:
+input:
+input:
+result evalu:
+conclus futur work:
+conclus futur work:
+
+
+CURRENT FILE: Rajpurkar et al. - 2016 - SQuAD 100,000 Questions for Machine Comprehension of Text.pdf
+:
+introduct:
+exist dataset:
+dataset collect:
+dataset analysi:
+method:
+experi model evalu:
+conclus:
+
+
+CURRENT FILE: Ponte, Croft - 1997 - Text segmentation by topic.pdf
+:
+
+
+CURRENT FILE: Velásquez - 2011 - Approaches for Intrinsic and External Plagiarism Detection Notebook for PAN at CLEF 2011.pdf
+:
+introduct:
+relat work:
+propos method extern plagiar detect:
+propos method intrins plagiar detect:
+evalu:
+conclus:
+
+
+CURRENT FILE: Trushkina - Unknown - Morpho-Syntactic Annotatoin and Dependency Parsing of German.pdf
+:
+
+
+CURRENT FILE: Manouselis et al. - 2011 - Recommender Systems in Technology Enhanced Learning.pdf
+:
+introduct:
+background:
+relat work:
+survey tel recommend system:
+evalu tel recommend:
+conclus work:
+
+
+CURRENT FILE: Meyer, Furia, Nordio - 2011 - Software Architecture Lecture 12 Architectural styles ( partly after material by Peter Müller ).pdf
+:
+hierarch:
+hierarch discuss:
+eventbas style properti:
+eventbas style exampl:
+interpret:
+
+
+CURRENT FILE: Chen, Manning - Unknown - A Fast and Accurate Dependency Parser using Neural Networks.pdf
+:
+introduct:
+transitionbas depend pars:
+neural network base parser:
+experi dataset:
+relat work:
+conclus:
+
+
+CURRENT FILE: Adar, Skinner, Weld - 2009 - Information arbitrage across multi-lingual Wikipedia.pdf
+:
+featur:
+gener label trainingtest set:
+calcul pairwis score:
+choos potenti attribut:
+
+
+CURRENT FILE: Holzer - 2015 - Improving query suggestions for rare queries on faceted documents.pdf
+:
+statutori declar:
+eidesstattlich erklärung:
+custom support use case:
+summari:
+guid user fulfil inform need:
+assist user queri suggest:
+infrequ queri make problem harder:
+search fulltext queri facet document:
+summari:
+problem complex:
+step queri suggest comput:
+probabilist map queri term facet:
+term reorder accord predefin facet order:
+select set document comput term suggest:
+comput term queri suggest:
+summari:
+use technolog:
+use lucen comput term queri suggest:
+use custom datastructur comput term queri suggest:
+summari:
+methodolog:
+test data:
+result:
+numer comparison baselin base qualiti function:
+observ:
+summari:
+review:
+outlook:
+summari:
+
+
+CURRENT FILE: Aha, Kibler, Albert - 1991 - Instance-based learning algorithms.pdf
+:
+introduct:
+instancebas learn:
+pl q2e:
+reduc storag requir:
+max:
+discuss summari:
+
+
+CURRENT FILE: Hojas - Unknown - A corpus for measuring text reuse in the Austrian journalistic domain.pdf
+:
+meter corpu text reus journalist domain:
+semev task:
+pan plagiar detect:
+surfac base method:
+semant method:
+document base method:
+automat pars filter:
+brat standoff format:
+restrict repres analysi:
+exampl illustr articl headlin two subheadlin:
+
+
+CURRENT FILE: Pedersen - 2007 - Umnd2 Senseclusters applied to the sense induction task of senseval-4.pdf
+:
+introduct:
+methodolog sens induct task:
+result discuss:
+conclus:
+acknowledg:
+
+
+CURRENT FILE: Unknown - Unknown - No Title(3).pdf
+:
+
+
+CURRENT FILE: Rapp - 2002 - The computation of word associations comparing syntagmatic and paradigmatic approaches.pdf
+:
+introduct:
+paradigmat associ:
+qualit inspect word list gener system show result quit satisfactori paradigmat associ like blue:
+syntagmat associ:
+comparison syntagmat paradigmat associ:
+discuss conclus:
+
+
+CURRENT FILE: Perng et al. - 2000 - Landmark a new model for similarity-based pattern querying in time series databases.pdf
+:
+introduct:
+similar model data represent:
+data represent:
+queri landmark sequenc:
+conclus:
+
+
+CURRENT FILE: Lintean, Rus - 2009 - Paraphrase Identification Using Weighted Dependencies and Word Semantics.pdf
+:
+introduct:
+relat work:
+approach:
+summari result:
+discuss:
+summari conclus:
+
+
+CURRENT FILE: Gamallo - 2014 - An overview of open information extraction.pdf
+:
+
+
+CURRENT FILE: Amati, Van Rijsbergen - 2002 - Probabilistic models of information retrieval based on measuring the divergence from randomness.pdf
+:
+introduct:
+modelsof random:
+first normal n1 resiz inform content byth aftereffect sampl:
+second normal n2 resiz theterm frequenc document length:
+notat:
+deriv unexpandedrankingformula bm25 inqueri formula:
+experi:
+result:
+conclus:
+
+
+CURRENT FILE: Sqft et al. - 2007 - Base Structure Report ( BSR ) FY 2007 Baseline Department of Defense Base Structure Report ( BSR ) FY 2007 Baseline.pdf
+:
+
+
+CURRENT FILE: Draper, Smith - 1998 - Applied regression analysis.pdf
+:
+abstract:
+abstract:
+
+
+CURRENT FILE: Mercer, Marco, Kroon - Unknown - The frequency of hedging cues in citation contexts in scienti c writing 1 Introduction 1 . 1 Why We Are.pdf
+:
+
+
+CURRENT FILE: Zha - 2002 - Generic summarization and keyphrase extraction using mutual reinforcement principle and sentence clustering.pdf
+:
+keyword:
+introduct:
+document gener two set object one:
+term high salienc score appear mani sentenc high salienc score:
+cluster sentenc topic group:
+tradit kmean algorithm iter natur iter follow perform:
+experiment result:
+wwwpbsorgwgbhnovahearttreatinghtml:
+conclus:
+
+
+CURRENT FILE: Wu et al. - 2007 - On the trend, detrending, and variability of nonlinear and nonstationary time series.pdf
+:
+definit trend:
+conclus:
+method:
+
+
+CURRENT FILE: Zha et al. - 2002 - Spectral relaxation for k-means clustering.pdf
+:
+
+
+CURRENT FILE: Klapaftis, Manandhar - 2007 - UOY a hypergraph model for word sense induction & disambiguation.pdf
+:
+introduct:
+sens induct disambigu:
+evalu preliminari experi:
+
+
+CURRENT FILE: Pavlina, Petridis, Kehagias - 1997 - Linear Text Segmentation using a Dynamic Programming Algorithm.pdf
+:
+introduct:
+algorithm:
+conclus:
+
+
+CURRENT FILE: Dhillon, Mallela, Modha - 2003 - Information-theoretic co-clustering.pdf
+:
+nz:
+number ofword clusterslog scale:
+
+
+CURRENT FILE: Hearst - 1994 - Multi-paragraph segmentation of expository text.pdf
+:
+introduct:
+algorithm discov subtop structur:
+evalu:
+summari futur work:
+
+
+CURRENT FILE: Peduzzi et al. - 1996 - A simulation study of the number of events per variable in logistic regression analysis.pdf
+:
+introduct:
+method:
+result:
+event per variabl:
+event per variabl:
+event per variabl:
+event per variabl:
+discuss:
+
+
+CURRENT FILE: Science, Supervisor - 2012 - Trend or No Trend A Novel Nonparametric Method for Classifying Time Series.pdf
+:
+chapter:
+chapter:
+chapter algorithm:
+chapter:
+chapter result discuss:
+chapter:
+
+
+CURRENT FILE: Varadharajalu, Liu, Wong - 2011 - Author Name Disambiguation for Ranking and Clustering PubMed Data Using NetClus.pdf
+:
+abstract:
+abstract:
+introduct:
+relat work:
+3a multievid author disambigu system:
+evalu disambigu techniqu:
+conclus futur work:
+
+
+CURRENT FILE: Arthur, Vassilvitskii - 2007 - k-means The advantages of careful seeding.pdf
+:
+introduct:
+preliminari:
+lemma let set point center:
+previou section obtain desir result special induct:
+gener:
+empir result:
+conclus futur work:
+
+
+CURRENT FILE: Heppin - 2012 - and the Cranfield Paradigm Fall 2012.pdf
+:
+
+
+CURRENT FILE: Ivey, Shulman - 2013 - NIH Public Access.pdf
+:
+introduct:
+result:
+discuss:
+
+
+CURRENT FILE: Briscoe, Carroll, Watson - 2006 - The second release of the RASP system.pdf
+:
+introduct:
+compon system:
+evalu:
+
+
+CURRENT FILE: Aggarwal - 2013 - Outlier analysis.pdf
+:
+introduct:
+data model everyth:
+basic outlier model:
+metaalgorithm outlier analysi:
+basic data type analysi:
+outlier evalu techniqu:
+recisiont:
+recallt:
+conclus summari:
+bibliograph survey:
+introduct:
+proximitybas model knearest neighbor distanc distanc closest cluster centroid local densiti valu outlier score:
+statist method extrem valu analysi:
+px ex:
+px ex:
+extrem valu analysi multivari data:
+cosi xzx:
+probabilist mixtur model outlier analysi:
+limit probabilist model:
+conclus summari:
+bibliograph survey:
+introduct:
+linear regress model:
+princip compon analysi:
+limit regress analysi:
+conclus summari:
+bibliograph survey:
+introduct:
+cluster outlier complementari relationship:
+distancebas outlier analysi:
+definit data point revers knearest neighbor knearest neighbor:
+densitybas outlier:
+xy maxdistx yd:
+mdefx:
+limit proximitybas detect:
+conclus summari:
+bibliograph survey:
+introduct:
+project outlier grid:
+distancebas subspac outlier detect:
+combin outlier multipl subspac:
+gener subspac:
+discuss subspac analysi:
+conclus summari:
+bibliograph survey:
+introduct:
+fulli supervis scenario rare class detect:
+semisupervis scenario posit unlabel data:
+semisupervis scenario novel class detect:
+bioterrorist attack applic may easi collect normal exampl environment variabl explicit exampl anomali may avail attack never occur:
+human supervis:
+conclus summari:
+bibliograph survey:
+introduct:
+extend probabilist model categor data:
+extend linear model categor mix data:
+extend proxim model categor data:
+outlier detect binari transact data:
+outlier detect text data:
+cosinex:
+conclus summari:
+bibliograph survey:
+introduct:
+predictionbas outlier detect stream time seri:
+timeseri unusu shape:
+outlier detect multidimension data stream:
+conclus summari:
+bibliograph survey:
+introduct:
+posit outlier:
+definit unsupervis given long sequenc determin posit test sequenc consid anomali base expect valu:
+combin outlier:
+definit whole seq anomali unsupervis given databas short train sequenc determin anomal sequenc use model:
+complex sequenc scenario:
+supervis outlier sequenc:
+conclus summari:
+bibliograph survey:
+introduct:
+neighborhoodbas algorithm:
+autoregress model:
+visual variogram cloud:
+find abnorm shape spatial data:
+spatiotempor outlier:
+supervis outlier detect:
+conclus summari:
+bibliograph survey:
+introduct:
+outlier detect mani small graph:
+outlier detect singl larg graph:
+problem given matrix size pq determin anomal entri matrix:
+dlg dl:
+size instancess:
+node content outlier analysi:
+changebas outlier tempor graph:
+definit penultim set penultim set sort sampl obtain remov last element sort order sampl:
+conclus summari:
+bibliograph survey:
+introduct:
+qualiti control fault detect applic:
+financi applic:
+applic insur claim fraud case claim made differ entiti basi insur polici signific anomali need discov data basi:
+web log analyt:
+intrus secur applic:
+medic applic:
+text social media applic:
+applic spam email given stream email goal determin subset email correspond spam:
+earth scienc applic:
+miscellan applic:
+applic data clean given data set remov discord correct error data possibl:
+applic traffic movement pattern given set entiti trajectori pattern determin signific outlier pattern:
+guidelin practition:
+resourc practition:
+conclus summari:
+
+
+CURRENT FILE: Paşca et al. - 2006 - Names and similarities on the web Fact extraction in the fast lane.pdf
+:
+introduct:
+similar pattern acquisit:
+similar valid rank:
+evalu:
+conclus:
+
+
+CURRENT FILE: Chang et al. - 2009 - Reading Tea Leaves How Humans Interpret Topic Models(2).pdf
+:
+
+
+CURRENT FILE: He et al. - 2015 - Deep Residual Learning for Image Recognition.pdf
+:
+introduct:
+relat work:
+deep residu learn residu learn:
+experi imagenet classif:
+object detect improv:
+imagenet local:
+
+
+CURRENT FILE: Tenenbaum, de Silva, Langford - 2000 - A global geometric framework for nonlinear dimensionality reduction.pdf
+:
+august accept novemb:
+august accept novemb:
+april accept novemb:
+
+
+CURRENT FILE: Cummins, O'Riordan - 2009 - Measuring constraint violations in information retrieval.pdf
+:
+experi:
+conclus:
+
+
+CURRENT FILE: Thesis - 2014 - Authorship Attribution Techniques Applied to Web Forums.pdf
+:
+
+
+CURRENT FILE: Hulth - 2003 - Improved automatic keyword extraction given more linguistic knowledge.pdf
+:
+introduct:
+point departur:
+corpu:
+build classifi:
+result:
+conclud remark futur work:
+
+
+CURRENT FILE: Santos, Kern - 2016 - A Literature Survey of Early Time Series Classification and Deep Learning.pdf
+:
+introduct:
+conclus:
+
+
+CURRENT FILE: Altman, Deeks, Sackett - 1998 - Odds ratios should be avoided when events are common.pdf
+:
+resolut peanut allergi:
+odd ratio avoid event common:
+aspirin prophylaxi vascular diseas:
+internet access nhsnet:
+visual impair enough assess need treatment:
+provis intens care children:
+knowledg cardiothorac ratio add cardiovascular risk stratif:
+guidelin may help prescrib vigabatrin:
+
+
+CURRENT FILE: Church, Gale - 1995 - Poisson mixtures.pdf
+kenneth church william gale:
+abstract:
+abstract:
+problem word rate highli variabl:
+word deviat binomi other:
+poisson:
+adapt p21:
+empir estim variabl:
+two poisson model:
+poisson mixtur:
+kmixtur:
+variabl length document:
+court evid either way court weak evid court strong evid:
+poisson:
+conclus:
+work benefit consider extens discuss slava katz:
+
+
+CURRENT FILE: Kern, Zechner, Granitzer - 2011 - Model Selection Strategies for Author Disambiguation.pdf
+introduct:
+ii author identif disambigu:
+identif:
+block:
+disambigu:
+iii cluster base disambigu model select:
+data set:
+result:
+model select result:
+
+
+CURRENT FILE: Ramon - 2014 - Big Data Outlier Detection in Real-Time Systems.pdf
+declar authorship:
+chapter:
+chapter:
+appendix:
+
+
+CURRENT FILE: Kralowetz - 2012 - Extraction and Evaluation of Facts from Tweets.pdf
+abstract:
+abstract:
+motiv goal:
+concept:
+result:
+
+CURRENT FILE: Socher et al. - 2011 - Dynamic pooling and unfolding recursive autoencoders for paraphrase detection.pdf
+introduct:
+recurs autoencod:
+architectur variables similar matric:
+experi:
+relat work:
+
