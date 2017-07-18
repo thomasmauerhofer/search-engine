@@ -22,7 +22,7 @@ def remove_stopwords_from_section(section):
 
 def proceed_string(text):
     text = remove_single_digits(text)
-    text = remove_citations(text)
+    text = remove_citations(text) # possible feature -> number of citations
     text = remove_special_chars(text)
     text = remove_single_chars(text)
     text = remove_stopwords(text)

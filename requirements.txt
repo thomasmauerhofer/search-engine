@@ -1,2 +1,5 @@
 Flask
 nltk
+numpy
+tensorflow
+keras

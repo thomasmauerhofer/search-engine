@@ -44,3 +44,9 @@ def remove_citations(text):
 
 def remove_multiple_spaces(text):
     return re.sub(r'\s\s+', ' ', text)
+
+def string_to_list_of_integers(text):
+    for i, char in enumerate(text):
+        text[i] = ord(char)
+
+    return text
