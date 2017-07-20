@@ -1,18 +1,26 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
+import os
+import tensorflow as tf
+import numpy as np
 from backend.datastore.structure.section import IMRaDType
 from backend.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
+from backend.preprocessing.chapter_classifier.classifier_simple import ClassifierSimple
 
 def proceed(paper):
-    classifier = ClassifierNN()
-    # Todo with all chapters at same time!
-    ret = classifier.predict_chapter('method implement')
-    #__print_sections__(paper)
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-    #for section in paper.sections:
-    #    print(section)
+    #classifier = ClassifierNN()
+    classifier = ClassifierSimple()
 
+    chapter_names = [name.heading for name in paper.sections if not(name.heading.isspace() or name.heading is '')]
+    prob = classifier.predict_chapter(chapter_names)
+
+    #tmp = np.round(prob, 3)
+    for i in range(len(prob)):
+        print("{0} with {1}".format(chapter_names[i], prob[i]))
+    print("\n\n")
 
 
 #-------------------------------------------------------------------------------

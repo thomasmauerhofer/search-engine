@@ -5,10 +5,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.preprocessing import sequence
 from keras.callbacks import ModelCheckpoint
-import os
 import numpy as np
 import h5py as h5py
-import tensorflow as tf
 from config import path_to_dataset, path_to_hdf5
 from backend.utils.string_utils import string_to_list_of_integers
 from backend.datastore.structure.section import IMRaDType
@@ -19,7 +17,6 @@ max_chapter_length = 200
 
 class ClassifierNN(ClassifierBase):
     def __init__(self, load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80, val_split=0.2):
-        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
         self.size_input_layer = size_input_layer
         self.size_middle_layer = size_middle_layer
         self.batch_size = batch_size
@@ -102,11 +99,8 @@ class ClassifierNN(ClassifierBase):
         scores = self.model.evaluate(np.array(X_test), np.array(Y_test), verbose=0)
         print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
 
-    def predict_chapter(self, chapter_name):
-        name_nummerical = np.array(string_to_list_of_integers(chapter_name.rstrip()))
-        tmp = []
-        tmp.append(name_nummerical)
-        tmp2 = sequence.pad_sequences(tmp, maxlen=max_chapter_length)
-        print(name_nummerical)
-        yFit = self.model.predict(tmp2, batch_size=10, verbose=1)
-        print(yFit)
+    def predict_chapter(self, chapter_list):
+        names_nummerical = np.array([string_to_list_of_integers(name) for name in chapter_list])
+        X = sequence.pad_sequences(names_nummerical, maxlen=max_chapter_length)
+        Y = self.model.predict(X, batch_size=self.batch_size, verbose=1)
+        return Y
