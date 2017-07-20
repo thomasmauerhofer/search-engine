@@ -6,14 +6,14 @@ from backend.datastore.structure.section import IMRaDType
 def proceed(paper):
     __print_sections__(paper)
 
-    for section in paper.sections:
-        print(section)
+    #for section in paper.sections:
+    #    print(section)
 
 
 
 #-------------------------------------------------------------------------------
 def __print_sections__(paper):
-    print('Sections:\n')
     for section in paper.sections:
-        print(section.heading)
-    print('\n\n')
+        if not section.heading.isspace():
+            print(section.heading + ":" )
+    print('\n')

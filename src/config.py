@@ -13,3 +13,6 @@ path_to_datastore = app_path + "/" + UPLOAD_FOLDER
 #importer
 create_output = False
 path_to_teambeam_executable = '/home/thomas11/program/teambeam/bin/'
+
+#classifier
+path_to_dataset = app_path + "/static/"

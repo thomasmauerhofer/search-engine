@@ -39,6 +39,7 @@ class Paper(object):
 
 	def add_abstract(self, text):
 		self.sections.append(Section(SectionType.ABSTRACT, 'abstract'))
+		self.sections[-1].imrad_type = IMRaDType.ABSTRACT
 		self.add_text_to_current_section(TextType.MAIN, text)
 
 
