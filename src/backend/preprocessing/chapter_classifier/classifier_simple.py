@@ -10,7 +10,7 @@ class ClassifierSimple(ClassifierBase):
 
     def __init__(self):
         self.INTRO_TOKENS = ['introduct']
-        self.BACKGROUND_TOKENS = ['relat work', 'previou work', 'propos method', 'backgorund', 'backgroundand', 'research', \
+        self.BACKGROUND_TOKENS = ['relat work', 'previou work', 'propos method', "background", 'backgorund', 'backgroundand', 'research', \
             'gener model', 'literatur review', 'develop measur', 'methodolog', 'resourc', 'execut summari']
         #METHOD TOKENS not used by now
         self.METHOD_TOKENS = ['method', 'experi', 'algorithm', 'experiment', 'model', 'criteria', 'applic measur', 'architectur']
@@ -36,9 +36,9 @@ class ClassifierSimple(ClassifierBase):
                 predictions[-1][IMRaDType.BACKGROUND.value] = 1
 
         # aditional rules:
-        # if no Indroduction -> First Chapter is the Indroduction
-        if not any(prediction[0] == 1 for prediction in predictions):
-            predictions[0][IMRaDType.INDRODUCTION.value] = 1
+        # if no Indroduction -> First Chapter is the Indroduction -> creates noise
+        #if not any(prediction[0] == 1 for prediction in predictions):
+        #    predictions[0][IMRaDType.INDRODUCTION.value] = 1
 
         # if no Background -> Background is in Indroduction
         if not any(prediction[1] == 1 for prediction in predictions):

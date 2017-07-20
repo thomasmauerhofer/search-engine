@@ -11,15 +11,17 @@ from backend.preprocessing.chapter_classifier.classifier_simple import Classifie
 def proceed(paper):
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+    chapter_names = [name.heading for name in paper.sections if not(name.heading.isspace() or name.heading is '')]
+    if not len(chapter_names):
+        return
+
     #classifier = ClassifierNN()
     classifier = ClassifierSimple()
-
-    chapter_names = [name.heading for name in paper.sections if not(name.heading.isspace() or name.heading is '')]
     prob = classifier.predict_chapter(chapter_names)
 
     #tmp = np.round(prob, 3)
     for i in range(len(prob)):
-        print("{0} with {1}".format(chapter_names[i], prob[i]))
+        print("{0} {1}".format(chapter_names[i], prob[i]))
     print("\n\n")
 
 
