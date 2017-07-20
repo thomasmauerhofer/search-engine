@@ -3,7 +3,9 @@
 import os
 
 #Fileupload params
-UPLOAD_FOLDER = 'static/data/'
+STATIC_FOLDER = 'static/'
+UPLOAD_FOLDER = STATIC_FOLDER + 'data/'
+
 ALLOWED_EXTENSIONS = set(['pdf'])
 
 #paths
@@ -15,4 +17,5 @@ create_output = False
 path_to_teambeam_executable = '/home/thomas11/program/teambeam/bin/'
 
 #classifier
-path_to_dataset = app_path + "/static/"
+path_to_hdf5 = app_path + "/" + STATIC_FOLDER + "classifier/"
+path_to_dataset = app_path + "/" + STATIC_FOLDER + "classifier/dataset/"

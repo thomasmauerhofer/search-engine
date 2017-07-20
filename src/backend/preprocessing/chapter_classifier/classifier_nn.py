@@ -4,24 +4,42 @@
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.preprocessing import sequence
-from sklearn.metrics import classification_report, confusion_matrix
+from keras.callbacks import ModelCheckpoint
+import os
 import numpy as np
-import matplotlib.pyplot as plt
-from backend.datastore.structure.section import IMRaDType
+import h5py as h5py
+import tensorflow as tf
+from config import path_to_dataset, path_to_hdf5
 from backend.utils.string_utils import string_to_list_of_integers
-from config import path_to_dataset
+from backend.datastore.structure.section import IMRaDType
+from backend.preprocessing.chapter_classifier.classifier_base import ClassifierBase
 
 # truncate and pad input sequences
 max_chapter_length = 200
 
-class Classifier(object):
-    def __init__(self, size_input_layer=180, size_middle_layer=180, batch_size=200, num_epochs=30, val_split=0.2):
-        # Training parameters
+class ClassifierNN(ClassifierBase):
+    def __init__(self, load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80, val_split=0.2):
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
         self.size_input_layer = size_input_layer
         self.size_middle_layer = size_middle_layer
         self.batch_size = batch_size
-        self.num_epochs = num_epochs # iterations
+        self.num_epochs = num_epochs
         self.val_split = val_split
+        self.__init_model__(load_weigths)
+
+
+    def __init_model__(self, load_weigths):
+        self.model = Sequential()
+        # Input Layer:
+        self.model.add(Dense(self.size_input_layer, input_dim=max_chapter_length, activation='relu'))
+        # Hidden Layer
+        self.model.add(Dense(self.size_middle_layer, activation='relu'))
+        # Output-Layer holds all members of the IMRaDTypes; softmax = give the actual output class label probabilities
+        self.model.add(Dense(len(IMRaDType) - 1, activation='softmax'))
+
+        if load_weigths:
+            self.model.load_weights(path_to_hdf5 + "weights-improvement-30-1.00.hdf5")
+        self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 
     def __load_dataset__(self, filename):
@@ -64,7 +82,6 @@ class Classifier(object):
 
     def train(self):
         (X, Y) = self.__load_trainset__()
-        #(X_test, Y_test) = self.__load_testset__()
 
         #percent_to_split = 90
         #splitt = int((len(dataset) / 100) * percent_to_split)
@@ -73,14 +90,23 @@ class Classifier(object):
         #X_test = X[splitt:]
         #Y_test = Y[splitt:]
 
-        model = Sequential()
-        # Input-Layer has the length of the train-set
-        model.add(Dense(self.size_input_layer, input_dim=max_chapter_length, activation='relu'))
-        model.add(Dense(self.size_middle_layer, activation='relu'))
+        filepath="weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
+        checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+        callbacks_list = [checkpoint]
 
-        # Output-Layer holds all members of the IMRaDTypes; softmax = give the actual output class label probabilities
-        model.add(Dense(len(IMRaDType) - 1, activation='softmax'))
-
-        model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-        hist = model.fit(np.array(X), np.array(Y), batch_size=self.batch_size, nb_epoch=self.num_epochs, validation_split=self.val_split, verbose=1)
+        hist = self.model.fit(np.array(X), np.array(Y), batch_size=self.batch_size, nb_epoch=self.num_epochs, validation_split=self.val_split, verbose=1, callbacks=callbacks_list)
         return hist.history
+
+    def test(self):
+        (X_test, Y_test) = self.__load_testset__()
+        scores = self.model.evaluate(np.array(X_test), np.array(Y_test), verbose=0)
+        print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+
+    def predict_chapter(self, chapter_name):
+        name_nummerical = np.array(string_to_list_of_integers(chapter_name.rstrip()))
+        tmp = []
+        tmp.append(name_nummerical)
+        tmp2 = sequence.pad_sequences(tmp, maxlen=max_chapter_length)
+        print(name_nummerical)
+        yFit = self.model.predict(tmp2, batch_size=10, verbose=1)
+        print(yFit)

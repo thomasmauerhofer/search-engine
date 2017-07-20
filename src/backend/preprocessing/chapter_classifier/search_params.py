@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 import numpy as np
-from backend.preprocessing.classifier.chapter_classifier import Classifier
+from backend.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
 
 def __create_plots__(self, score):
     # summarize history for accuracy
@@ -30,7 +30,7 @@ def search_params(single):
 
     if single:
         #size_input_layer, size_middle_layer, batch_size, num_epochs, opt:val_split=0.2
-        classifier = Classifier(60, 110, 10, 80, 0.2)
+        classifier = ClassifierNN(False ,60, 110, 10, 80, 0.2)
         score = classifier.train()
     else:
         for size_input_layer in range(10, 210, 50):
@@ -59,5 +59,10 @@ def search_params(single):
         print("batch_size: {0}".format(best_batch_size))
         print("epoch: {0}".format(epoch))
 
+def test_params():
+    classifier = ClassifierNN()
+    classifier.test()
+
 if __name__ == "__main__":
-    search_params(True)
+    #search_params(True)
+    test_params()

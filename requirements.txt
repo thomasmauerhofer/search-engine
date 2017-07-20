@@ -2,5 +2,6 @@ Flask
 nltk
 numpy
 tensorflow
+h5py
 keras
 matplotlib
