@@ -14,3 +14,8 @@ class WrongAuthorError(Error):
     """Raised when attribute is added to wrong author"""
     def __init__(self, message):
         self.message = message
+
+class ClassificationException(Error):
+    """Raised when one of the additional classification rules are not observed"""
+    def __init__(self, message):
+        self.message = message

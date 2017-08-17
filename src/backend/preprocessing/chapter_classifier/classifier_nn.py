@@ -11,9 +11,7 @@ from config import path_to_dataset, path_to_hdf5
 from backend.utils.string_utils import string_to_list_of_integers
 from backend.datastore.structure.section import IMRaDType
 from backend.preprocessing.chapter_classifier.classifier_base import ClassifierBase
-
-# truncate and pad input sequences
-max_chapter_length = 200
+from backend.preprocessing.chapter_classifier.bag_of_words import BagOfWords
 
 class ClassifierNN(ClassifierBase):
     def __init__(self, load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80, val_split=0.2):
@@ -23,12 +21,13 @@ class ClassifierNN(ClassifierBase):
         self.num_epochs = num_epochs
         self.val_split = val_split
         self.__init_model__(load_weigths)
+        self.bag = BagOfWords()
 
 
     def __init_model__(self, load_weigths):
         self.model = Sequential()
         # Input Layer:
-        self.model.add(Dense(self.size_input_layer, input_dim=max_chapter_length, activation='relu'))
+        self.model.add(Dense(self.size_input_layer, input_dim=len(self.bag.get_vocabulary()), activation='relu'))
         # Hidden Layer
         self.model.add(Dense(self.size_middle_layer, activation='relu'))
         # Output-Layer holds all members of the IMRaDTypes; softmax = give the actual output class label probabilities

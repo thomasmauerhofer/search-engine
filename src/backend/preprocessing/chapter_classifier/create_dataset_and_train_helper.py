@@ -2,13 +2,14 @@
 # encoding: utf-8
 import os
 import numpy as np
+import backend.preprocessing.text_processing as text_processing
 from optparse import OptionParser
 from config import path_to_datastore
 from backend.datastore.structure.section import IMRaDType
 from backend.importer.importer_teambeam import ImporterTeambeam
-import backend.preprocessing.text_processing as text_processing
 from backend.preprocessing.chapter_classifier.classifier_simple import ClassifierSimple
 from backend.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
+from backend.utils.exceptions.import_exceptions import ClassificationException
 
 
 def __create_plots__(self, score):
@@ -71,37 +72,42 @@ def test_params():
 
 #-------------------------------------------------------------------------------
 def create_dataset():
+    classifier = ClassifierSimple()
     for filename in os.listdir(path_to_datastore):
         if filename.endswith('.pdf'):
-            print('CURRENT FILE: ' + filename)
+            #print('CURRENT FILE: ' + filename)
             importer = ImporterTeambeam()
             paper = importer.import_paper(filename)
 
             text_processing.proceed(paper)
-            chapter_names = [name.heading for name in paper.sections if not(name.heading.isspace() or name.heading is '' or name.heading.rstrip() == 'abstract')]
+            chapter_names = [name.heading for name in paper.sections if not(name.heading.isspace() or name.heading is '')]
 
             if not len(chapter_names):
                 continue
 
-            classifier = ClassifierSimple()
-            prob = classifier.predict_chapter(chapter_names)
+            try:
+                prob = classifier.predict_chapter(chapter_names)
+            except ClassificationException as e:
+                continue
 
             for i in range(len(prob)):
                 tmp = ""
-                if prob[i][0] == 1:
+                if prob[i][IMRaDType.ABSTRACT.value] == 1:
+                    tmp += IMRaDType.ABSTRACT.name + " "
+                if prob[i][IMRaDType.INDRODUCTION.value] == 1:
                     tmp += IMRaDType.INDRODUCTION.name + " "
-                if prob[i][1] == 1:
+                if prob[i][IMRaDType.BACKGROUND.value] == 1:
                     tmp += IMRaDType.BACKGROUND.name + " "
-                if prob[i][2] == 1:
-                    tmp += IMRaDType.METHODS.name + " "
-                if prob[i][3] == 1:
+                if prob[i][IMRaDType.RESULTS.value] == 1:
                     tmp += IMRaDType.RESULTS.name + " "
-                if prob[i][4] == 1:
+                if prob[i][IMRaDType.DISCUSSION.value] == 1:
                     tmp += IMRaDType.DISCUSSION.name + " "
+                if prob[i][IMRaDType.ACKNOWLEDGE.value] == 1:
+                    tmp += IMRaDType.ACKNOWLEDGE.name + " "
 
-                print("{0}: {1}".format(chapter_names[i], tmp))
-            print("\n\n")
-
+                if tmp is not "":
+                    print("{0}: {1}".format(chapter_names[i], tmp))
+            #print("\n\n")
 
 #-------------------------------------------------------------------------------
 if __name__ == "__main__":
@@ -111,7 +117,7 @@ if __name__ == "__main__":
     parser.add_option("-s", "--search", action="store_true" ,dest="search", default=False,
         help="Search Prarams in for current network")
     parser.add_option("-t", "--test", action="store_true" ,dest="test", default=False,
-        help="Search Prarams in for current network")
+        help="Test Prarams in for current network")
     (options, args) = parser.parse_args()
 
     if options.dataset:
