@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from keras.models import Sequential
-from keras.layers import Dense, Activation
-from keras.preprocessing import sequence
-from keras.callbacks import ModelCheckpoint
 import numpy as np
 import h5py as h5py
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.callbacks import ModelCheckpoint
 from config import path_to_dataset, path_to_hdf5
-from backend.utils.string_utils import string_to_list_of_integers
 from backend.datastore.structure.section import IMRaDType
 from backend.preprocessing.chapter_classifier.classifier_base import ClassifierBase
 from backend.preprocessing.chapter_classifier.bag_of_words import BagOfWords
@@ -20,8 +18,8 @@ class ClassifierNN(ClassifierBase):
         self.batch_size = batch_size
         self.num_epochs = num_epochs
         self.val_split = val_split
-        self.__init_model__(load_weigths)
         self.bag = BagOfWords()
+        self.__init_model__(load_weigths)
 
 
     def __init_model__(self, load_weigths):
@@ -31,10 +29,10 @@ class ClassifierNN(ClassifierBase):
         # Hidden Layer
         self.model.add(Dense(self.size_middle_layer, activation='relu'))
         # Output-Layer holds all members of the IMRaDTypes; softmax = give the actual output class label probabilities
-        self.model.add(Dense(len(IMRaDType) - 1, activation='softmax'))
+        self.model.add(Dense(len(IMRaDType), activation='softmax'))
 
         if load_weigths:
-            self.model.load_weights(path_to_hdf5 + "weights-improvement-30-1.00.hdf5")
+            self.model.load_weights(path_to_hdf5 + "weights.hdf5")
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 
@@ -43,48 +41,41 @@ class ClassifierNN(ClassifierBase):
         with open(path_to_dataset + filename) as f:
             content = f.readlines()
 
-        content = [line for line in content if "ABSTRACT" not in line]
         for line in content:
             tokens = line.split(":")
-            name_nummerical = np.array(string_to_list_of_integers(tokens[0].rstrip()))
-            dataset.append([name_nummerical, [0, 0, 0, 0, 0]])
+            dataset.append([tokens[0].rstrip(), np.zeros(len(IMRaDType))])
             imrad_types = tokens[1].split(" ")
 
             for imrad in imrad_types:
                 imrad = imrad.rstrip()
-                if imrad == 'INDRODUCTION':
+                if imrad == IMRaDType.INDRODUCTION.name:
                     dataset[-1][1][IMRaDType.INDRODUCTION.value] = 1
-                elif imrad == 'BACKGROUND':
+                elif imrad == IMRaDType.BACKGROUND.name:
                     dataset[-1][1][IMRaDType.BACKGROUND.value] = 1
-                elif imrad == 'METHOD':
-                    dataset[-1][1][IMRaDType.METHODS.value] = 1
-                elif imrad == 'RESULT':
+                elif imrad == IMRaDType.RESULTS.name:
                     dataset[-1][1][IMRaDType.RESULTS.value] = 1
-                elif imrad == 'DISCUSSION':
+                elif imrad == IMRaDType.DISCUSSION.name:
                     dataset[-1][1][IMRaDType.DISCUSSION.value] = 1
+                elif imrad == IMRaDType.ABSTRACT.name:
+                    dataset[-1][1][IMRaDType.ABSTRACT.value] = 1
+                elif imrad == IMRaDType.ACKNOWLEDGE.name:
+                    dataset[-1][1][IMRaDType.ACKNOWLEDGE.value] = 1
                 elif imrad:
                     print("ERROR: " + imrad + " not defined!")
 
-        X = sequence.pad_sequences([item[0] for item in dataset], maxlen=max_chapter_length)
+        X = [self.bag.text_to_vector(item[0]) for item in dataset]
         Y = [item[1] for item in dataset]
         return (X, Y)
 
     def __load_trainset__(self):
-        return self.__load_dataset__('dataset_tmp.txt')
+        return self.__load_dataset__('dataset.txt')
 
     def __load_testset__(self):
-        return self.__load_dataset__('dataset_small.txt')
+        return self.__load_dataset__('dataset.txt')
 
 
     def train(self):
         (X, Y) = self.__load_trainset__()
-
-        #percent_to_split = 90
-        #splitt = int((len(dataset) / 100) * percent_to_split)
-        #X_train = X[:splitt]
-        #Y_train = Y[:splitt]
-        #X_test = X[splitt:]
-        #Y_test = Y[splitt:]
 
         filepath="weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
         checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
@@ -96,10 +87,9 @@ class ClassifierNN(ClassifierBase):
     def test(self):
         (X_test, Y_test) = self.__load_testset__()
         scores = self.model.evaluate(np.array(X_test), np.array(Y_test), verbose=0)
-        print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+        print("%s: %.2f%%" % (self.model.metrics_names[1], scores[1]*100))
 
     def predict_chapter(self, chapter_list):
-        names_nummerical = np.array([string_to_list_of_integers(name) for name in chapter_list])
-        X = sequence.pad_sequences(names_nummerical, maxlen=max_chapter_length)
+        X = np.array([self.bag.text_to_vector(name) for name in chapter_list])
         Y = self.model.predict(X, batch_size=self.batch_size, verbose=1)
         return Y
