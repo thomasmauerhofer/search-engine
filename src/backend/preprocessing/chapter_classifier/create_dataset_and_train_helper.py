@@ -2,6 +2,7 @@
 # encoding: utf-8
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 import backend.preprocessing.text_processing as text_processing
 from optparse import OptionParser
 from config import path_to_datastore
@@ -12,24 +13,50 @@ from backend.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
 from backend.utils.exceptions.import_exceptions import ClassificationException
 
 
-def __create_plots__(self, score):
-    # summarize history for accuracy
+def __create_plots__(score):
     plt.plot(score['acc'])
     plt.plot(score['val_acc'])
     plt.title('model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
     plt.legend(['train', 'test'], loc='upper left')
-    plt.show()
-    # summarize history for loss
+    plt.savefig('acc.png')
+    plt.clf()
+
+    plt.plot(score['f1'])
+    plt.plot(score['val_f1'])
+    plt.title('model f1')
+    plt.ylabel('f1')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.savefig('f1.png')
+    plt.clf()
+
+    plt.plot(score['recall'])
+    plt.plot(score['val_recall'])
+    plt.title('model recall')
+    plt.ylabel('recall')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.savefig('recall.png')
+    plt.clf()
+
+    plt.plot(score['precision'])
+    plt.plot(score['val_precision'])
+    plt.title('model precision')
+    plt.ylabel('precision')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.savefig('precision.png')
+    plt.clf()
+
     plt.plot(score['loss'])
     plt.plot(score['val_loss'])
     plt.title('model loss')
     plt.ylabel('loss')
     plt.xlabel('epoch')
     plt.legend(['train', 'test'], loc='upper left')
-    plt.show()
-
+    plt.savefig('loss.png')
 
 #-------------------------------------------------------------------------------
 def search_params(single):
@@ -43,6 +70,7 @@ def search_params(single):
         #size_input_layer, size_middle_layer, batch_size, num_epochs, opt:val_split=0.2
         classifier = ClassifierNN(False ,60, 110, 10, 80, 0.2)
         score = classifier.train()
+        __create_plots__(score)
     else:
         for size_input_layer in range(10, 210, 50):
             for size_middle_layer in range(10, 210, 50):

@@ -10,6 +10,7 @@ from config import path_to_dataset, path_to_hdf5
 from backend.datastore.structure.section import IMRaDType
 from backend.preprocessing.chapter_classifier.classifier_base import ClassifierBase
 from backend.preprocessing.chapter_classifier.bag_of_words import BagOfWords
+from backend.preprocessing.chapter_classifier.metrics import recall, precision, f1
 
 class ClassifierNN(ClassifierBase):
     def __init__(self, load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80, val_split=0.2):
@@ -32,8 +33,8 @@ class ClassifierNN(ClassifierBase):
         self.model.add(Dense(len(IMRaDType), activation='softmax'))
 
         if load_weigths:
-            self.model.load_weights(path_to_hdf5 + "weights.hdf5")
-        self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+            self.model.load_weights(path_to_hdf5 + "weights_13.hdf5")
+        self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', recall, precision, f1])
 
 
     def __load_dataset__(self, filename):
@@ -73,7 +74,6 @@ class ClassifierNN(ClassifierBase):
     def __load_testset__(self):
         return self.__load_dataset__('dataset.txt')
 
-
     def train(self):
         (X, Y) = self.__load_trainset__()
 
@@ -87,7 +87,8 @@ class ClassifierNN(ClassifierBase):
     def test(self):
         (X_test, Y_test) = self.__load_testset__()
         scores = self.model.evaluate(np.array(X_test), np.array(Y_test), verbose=0)
-        print("%s: %.2f%%" % (self.model.metrics_names[1], scores[1]*100))
+        for i in range(len( self.model.metrics_names)):
+            print("%s: %f" % (self.model.metrics_names[i], scores[i]))
 
     def predict_chapter(self, chapter_list):
         X = np.array([self.bag.text_to_vector(name) for name in chapter_list])
