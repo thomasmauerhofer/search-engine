@@ -7,13 +7,22 @@ from config import ALLOWED_EXTENSIONS
 
 def allowed_upload_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def add_paper(filename):
-	if allowed_upload_file(filename):
-		importer = ImporterTeambeam()
-		paper = importer.import_paper(filename)
-		proceed_paper(paper)
+    if not allowed_upload_file(filename):
+        return False
 
+    importer = ImporterTeambeam()
+    paper = importer.import_paper(filename)
+    valid_paper = proceed_paper(paper)
 
-        #print(paper)
+    if not valid_paper:
+        return False
+
+    for section in paper.sections:
+        out = section.heading + " "
+        for imrad in section.imrad_types:
+            out += imrad.name + " "
+        print(out)
+    #ToDo: Import paper into database

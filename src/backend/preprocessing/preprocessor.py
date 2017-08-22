@@ -6,4 +6,4 @@ import backend.preprocessing.text_processing as text_processing
 
 def proceed_paper(paper):
     text_processing.proceed(paper)
-    imrad_detection.proceed(paper)
+    return imrad_detection.proceed(paper)

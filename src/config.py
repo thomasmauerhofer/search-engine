@@ -19,3 +19,4 @@ path_to_teambeam_executable = '/home/thomas11/program/teambeam/bin/'
 #classifier
 path_to_hdf5 = app_path + "/" + STATIC_FOLDER + "classifier/"
 path_to_dataset = app_path + "/" + STATIC_FOLDER + "classifier/dataset/"
+threshold = 0.85

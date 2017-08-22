@@ -5,7 +5,7 @@ from enum import Enum
 
 class Section(object):
 	def __init__(self, section_type, heading):
-		self.imrad_type = []
+		self.imrad_types = []
 		self.section_type = section_type
 		self.heading = heading
 		self.text = []
@@ -34,7 +34,9 @@ class Section(object):
 		self.subsections.append(Section(section_type, heading))
 
 	def add_to_imrad(self, imrad_type):
-		self.imrad_type.append(imrad_type)
+		if not any(imrad_type is x for x in self.imrad_types) and \
+			(not(self.heading.isspace() or self.heading is '')):
+			self.imrad_types.append(imrad_type)
 
 class SectionType(Enum):
 	ABSTRACT = 1

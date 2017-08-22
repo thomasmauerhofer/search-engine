@@ -3,14 +3,14 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+from operator import itemgetter
 import backend.preprocessing.text_processing as text_processing
 from optparse import OptionParser
-from config import path_to_datastore
+from config import path_to_datastore, path_to_dataset
 from backend.datastore.structure.section import IMRaDType
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.chapter_classifier.classifier_simple import ClassifierSimple
 from backend.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
-from backend.utils.exceptions.import_exceptions import ClassificationException
 
 
 def __create_plots__(score):
@@ -19,35 +19,8 @@ def __create_plots__(score):
     plt.title('model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
+    plt.legend(['train', 'test'], loc='lower right')
     plt.savefig('acc.png')
-    plt.clf()
-
-    plt.plot(score['f1'])
-    plt.plot(score['val_f1'])
-    plt.title('model f1')
-    plt.ylabel('f1')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.savefig('f1.png')
-    plt.clf()
-
-    plt.plot(score['recall'])
-    plt.plot(score['val_recall'])
-    plt.title('model recall')
-    plt.ylabel('recall')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.savefig('recall.png')
-    plt.clf()
-
-    plt.plot(score['precision'])
-    plt.plot(score['val_precision'])
-    plt.title('model precision')
-    plt.ylabel('precision')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.savefig('precision.png')
     plt.clf()
 
     plt.plot(score['loss'])
@@ -55,7 +28,7 @@ def __create_plots__(score):
     plt.title('model loss')
     plt.ylabel('loss')
     plt.xlabel('epoch')
-    plt.legend(['train', 'test'], loc='upper left')
+    plt.legend(['train', 'test'], loc='upper right')
     plt.savefig('loss.png')
 
 #-------------------------------------------------------------------------------
@@ -95,7 +68,9 @@ def search_params(single):
 #-------------------------------------------------------------------------------
 def test_params():
     classifier = ClassifierNN()
-    classifier.test()
+    (names, scores) = classifier.test()
+    for i in range(len(names)):
+        print("%s: %f" % (names[i], scores[i]))
 
 
 #-------------------------------------------------------------------------------
@@ -103,7 +78,6 @@ def create_dataset():
     classifier = ClassifierSimple()
     for filename in os.listdir(path_to_datastore):
         if filename.endswith('.pdf'):
-            #print('CURRENT FILE: ' + filename)
             importer = ImporterTeambeam()
             paper = importer.import_paper(filename)
 
@@ -113,10 +87,7 @@ def create_dataset():
             if not len(chapter_names):
                 continue
 
-            try:
-                prob = classifier.predict_chapter(chapter_names)
-            except ClassificationException as e:
-                continue
+            prob = classifier.predict_chapter(chapter_names)
 
             for i in range(len(prob)):
                 tmp = ""
@@ -135,13 +106,32 @@ def create_dataset():
 
                 if tmp is not "":
                     print("{0}: {1}".format(chapter_names[i], tmp))
-            #print("\n\n")
+
+#-------------------------------------------------------------------------------
+def plot_words():
+    dic = {}
+    with open(path_to_dataset + 'dataset.txt') as f:
+        content = f.readlines()
+
+    for line in content:
+        words = line.split(":")[0]
+        for token in words.split(" "):
+            if token in dic:
+                dic[token] += 1
+            else:
+                dic[token] = 1
+
+    for pair in sorted(dic.items(), key=itemgetter(1), reverse=True):
+        print("{0}: {1}".format(pair[0], pair[1]))
+
 
 #-------------------------------------------------------------------------------
 if __name__ == "__main__":
     parser = OptionParser()
     parser.add_option("-d", "--dataset", action="store_true" ,dest="dataset", default=False,
         help="Creates Dataset to train the network")
+    parser.add_option("-b", "--bag", action="store_true" ,dest="bag", default=False,
+        help="Plot words for bag")
     parser.add_option("-s", "--search", action="store_true" ,dest="search", default=False,
         help="Search Prarams in for current network")
     parser.add_option("-t", "--test", action="store_true" ,dest="test", default=False,
@@ -154,3 +144,5 @@ if __name__ == "__main__":
         search_params(True)
     elif options.test:
         test_params()
+    elif options.bag:
+        plot_words()

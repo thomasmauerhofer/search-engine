@@ -12,6 +12,7 @@ from backend.preprocessing.chapter_classifier.classifier_base import ClassifierB
 from backend.preprocessing.chapter_classifier.bag_of_words import BagOfWords
 from backend.preprocessing.chapter_classifier.metrics import recall, precision, f1
 
+
 class ClassifierNN(ClassifierBase):
     def __init__(self, load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80, val_split=0.2):
         self.size_input_layer = size_input_layer
@@ -33,7 +34,7 @@ class ClassifierNN(ClassifierBase):
         self.model.add(Dense(len(IMRaDType), activation='softmax'))
 
         if load_weigths:
-            self.model.load_weights(path_to_hdf5 + "weights_13.hdf5")
+            self.model.load_weights(path_to_hdf5 + "weights_04.hdf5")
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', recall, precision, f1])
 
 
@@ -87,10 +88,10 @@ class ClassifierNN(ClassifierBase):
     def test(self):
         (X_test, Y_test) = self.__load_testset__()
         scores = self.model.evaluate(np.array(X_test), np.array(Y_test), verbose=0)
-        for i in range(len( self.model.metrics_names)):
-            print("%s: %f" % (self.model.metrics_names[i], scores[i]))
+        return (self.model.metrics_names, scores)
 
     def predict_chapter(self, chapter_list):
+        result_discussion = []
         X = np.array([self.bag.text_to_vector(name) for name in chapter_list])
-        Y = self.model.predict(X, batch_size=self.batch_size, verbose=1)
+        Y = list(self.model.predict(X, batch_size=self.batch_size, verbose=1))
         return Y
