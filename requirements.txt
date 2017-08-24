@@ -5,3 +5,4 @@ tensorflow
 h5py
 keras
 matplotlib
+pymongo

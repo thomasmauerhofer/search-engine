@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
+import json
+from backend.datastore.structure.paper_structure import PaperStructure
 from backend.datastore.structure.reference import Reference
 from backend.datastore.structure.section import Section, SectionType, TextType, IMRaDType
 from backend.datastore.structure.author import Authors
 
-class Paper(object):
+class Paper(PaperStructure):
 	def __init__(self, filename):
 		self.filename = filename
 		self.title = ''
@@ -32,6 +34,23 @@ class Paper(object):
 
 		str_paper +="--------------------------------------------------------------------------------\n\n"
 		return str_paper
+
+	def to_dict(self):
+		data = {}
+		data['filename'] = self.filename
+		data['title'] = self.title
+		data['authors'] = []
+		data['sections'] = []
+		data['references'] = []
+
+		for author in self.authors:
+			data['authors'].append(author.to_dict())
+		for section in self.sections:
+			data['sections'].append(section.to_dict())
+		for reference in self.references:
+			data['references'].append(reference.to_dict())
+
+		return data
 
 	def set_title(self, title):
 		if title == '':

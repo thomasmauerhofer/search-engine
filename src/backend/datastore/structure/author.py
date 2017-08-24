@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
+import json
+from backend.datastore.structure.paper_structure import PaperStructure
 from backend.utils.exceptions.import_exceptions import WrongAuthorError
 from backend.utils.string_utils import is_valid_email, remove_special_chars, longest_subsequence
 
-class Authors(object):
+class Authors(PaperStructure):
     def __init__(self, all_authors_text):
         self.all_authors_text = all_authors_text
         self.emails_text = ''
@@ -17,6 +19,16 @@ class Authors(object):
             str_authors += str(author)
 
         return str_authors
+
+    def to_dict(self):
+        data = {}
+        data['all_authors_text'] = self.all_authors_text
+        data['emails_text'] = self.emails_text
+        data['authors'] = []
+        for author in self.authors:
+            data['authors'].append(author.to_dict())
+
+        return data
 
     def add_author(self, prename, surname, middle_name = None):
         #if surname not in self.all_authors_text:
@@ -68,8 +80,8 @@ class Authors(object):
         if higest[0] >= len(higest[1].surname):
             higest[1].affiliation = affiliation
 
-class Author(object):
-    def __init__(self, prename, surname, middle_name = None):
+class Author(PaperStructure):
+    def __init__(self, prename, surname, middle_name = ''):
         self.surname = surname
         self.prename = prename
         self.middle_name = middle_name
@@ -90,3 +102,12 @@ class Author(object):
         str_author += self.affiliation + '\n'
         str_author += '\n'
         return str_author
+
+    def to_dict(self):
+        data = {}
+        data['surname'] = self.surname
+        data['prename'] = self.prename
+        data['middle_name'] = self.middle_name
+        data['email'] = self.email
+        data['affiliation'] = self.affiliation
+        return data

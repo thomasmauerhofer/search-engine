@@ -2,8 +2,9 @@
 # encoding: utf-8
 
 from enum import Enum
+from backend.datastore.structure.paper_structure import PaperStructure
 
-class Section(object):
+class Section(PaperStructure):
 	def __init__(self, section_type, heading):
 		self.imrad_types = []
 		self.section_type = section_type
@@ -23,6 +24,28 @@ class Section(object):
 		    str_section += str(subsection)
 
 		return str_section
+
+	def to_dict(self):
+		data = {}
+		data['section_type'] = self.section_type.name
+		data['heading'] = self.heading
+		data['text'] = []
+		data['subsections'] = []
+		data['imrad_types'] = []
+
+		for text in self.text:
+			dic = {}
+			dic['text_type'] = text[0].name
+			dic['text'] = text[1]
+			data['text'].append(dic)
+
+		for subsection in self.subsections:
+			data['subsections'].append(subsection.to_dict())
+
+		for imrad_type in self.imrad_types:
+			data['imrad_types'].append(imrad_type.name)
+
+		return data
 
 	def add_text_object(self, text_type, text):
 		if len(self.subsections):

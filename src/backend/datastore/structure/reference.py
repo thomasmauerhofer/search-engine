@@ -2,10 +2,11 @@
 # encoding: utf-8
 
 from enum import Enum
+from backend.datastore.structure.paper_structure import PaperStructure
 from backend.datastore.structure.author import Author
 from backend.utils.exceptions.import_exceptions import WrongReferenceError
 
-class Reference(object):
+class Reference(PaperStructure):
 	def __init__(self, complete_reference):
 		self.complete_reference = complete_reference
 		self.authors = []
@@ -24,6 +25,28 @@ class Reference(object):
 
 		ref_str += '\n'
 		return ref_str
+
+	def to_dict(self):
+		data = {}
+		data['complete_reference'] = self.complete_reference
+		data['title'] = self.title
+		data['reference_info'] = []
+		data['authors'] = []
+
+		for reference in self.reference_info:
+			dic = {}
+			dic['reference_type'] = reference[0].name
+			dic['reference_text'] = reference[1]
+			data['reference_info'].append(dic)
+
+		for author in self.authors:
+			dic = {}
+			dic['author_type'] = author[0].name
+			dic['author'] = author[1].to_dict()
+			data['authors'].append(dic)
+
+		return data
+
 
 	def add_author(self, author_type, prename, surname):
 		if surname not in self.complete_reference:
