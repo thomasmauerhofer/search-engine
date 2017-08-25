@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-import os
+import os, contextlib
 from xml.dom import minidom
 from config import path_to_teambeam_executable, path_to_datastore, create_output
 from backend.importer.importer_base import ImporterBase
@@ -17,10 +17,18 @@ OUTPUT = open(OUTPUT_FILENAME, "w") if create_output else None
 IGNORE_CASES = ["heading", "<table border=\"1\" summary=\"\""]
 
 class ImporterTeambeam(ImporterBase):
+	def __delete_files__(self, filename):
+		path_to_file = path_to_datastore + filename
+		with contextlib.suppress(FileNotFoundError):
+			os.remove(path_to_file)
+			os.remove(path_to_file + EXTENTION_TEXT)
+			os.remove(path_to_file + EXTENTION_STRUCTURE)
+
+
 	def import_paper(self, filename):
 		paper = Paper(filename)
 		path_to_file = path_to_datastore + filename
-		#os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
+		os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
 
 		with open (path_to_file + EXTENTION_TEXT, "r") as textfile:
 			data = textfile.read()
@@ -81,6 +89,7 @@ class ImporterTeambeam(ImporterBase):
 
 		self.__add_values_to_references__(paper, reference_values)
 		self.__add_values_to_authors__(paper, author_values)
+		self.__delete_files__(filename)
 		return paper
 
 

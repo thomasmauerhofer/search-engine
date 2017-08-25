@@ -28,5 +28,16 @@ class API(object):
         if not valid_paper:
             return None
 
-        #return self.client.add_paper(paper)
-        self.client.get_all_paper()
+        return self.client.add_paper(paper)
+
+
+    def get_paper(self, paper_id):
+        return self.client.add_paper(paper_id)
+
+
+    def get_all_paper(self):
+        return self.client.get_all_paper()
+
+
+    def delete_paper(self, paper_id):
+        self.client.delete_paper(paper_id)

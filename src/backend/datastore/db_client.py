@@ -38,5 +38,5 @@ class DBClient(object):
         self.collection.remove({ "_id": ObjectId(paper_id) })
 
 
-    def delete_all(self):
+    def delete_all_paper(self):
         self.collection.remove({ })

@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from typing import Dict
+from config import path_to_datastore
 from backend.datastore.structure.paper_structure import PaperStructure
 from backend.datastore.structure.reference import Reference
 from backend.datastore.structure.section import Section, SectionType, TextType, IMRaDType
@@ -22,12 +23,15 @@ class Paper(PaperStructure):
 		self.authors = []
 		self.sections = []
 		self.references = []
+		self.file = open(path_to_datastore + filename, "rb").read()
+
 
 
 	def __create_object_with_dict__(self, data):
 		self.filename = data.get('filename')
 		self.title = data.get('title')
 		self.id = data.get('_id')
+		self.file = data.get('file')
 		self.authors = []
 		self.sections = []
 		self.references = []
@@ -67,6 +71,7 @@ class Paper(PaperStructure):
 		data = {}
 		data['filename'] = self.filename
 		data['title'] = self.title
+		data['file'] = self.file
 		data['authors'] = []
 		data['sections'] = []
 		data['references'] = []
@@ -146,3 +151,6 @@ class Paper(PaperStructure):
 
 	def get_discussion(self):
 		return self.get_capter_with_imrad_type(IMRaDType.DISCUSSION)
+
+	def save_file_to_path(self, path):
+		open(path + self.filename, 'wb').write(self.file)

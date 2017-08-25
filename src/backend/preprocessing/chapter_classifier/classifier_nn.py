@@ -10,7 +10,7 @@ from config import path_to_dataset, path_to_hdf5
 from backend.datastore.structure.section import IMRaDType
 from backend.preprocessing.chapter_classifier.classifier_base import ClassifierBase
 from backend.preprocessing.chapter_classifier.bag_of_words import BagOfWords
-from backend.preprocessing.chapter_classifier.metrics import recall, precision, f1
+from backend.preprocessing.chapter_classifier.classifier_utils.metrics import recall, precision, f1
 
 
 class ClassifierNN(ClassifierBase):

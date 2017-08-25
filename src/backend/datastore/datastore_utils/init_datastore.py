@@ -20,19 +20,25 @@ def __add_files__(folder):
 			print(paper_id)
 
 
-def __get_foldername__():
-	parser = OptionParser()
-	parser.add_option("-f", "--folder", dest="folder",
-                  help="import all data from folder to database", metavar="FOLDER")
-	(options, args) = parser.parse_args()
-	return options.folder
+def __check_database__():
+	api = API()
+	papers = api.get_all_paper()
+	print(len(papers))
 
 
 if __name__ == "__main__":
 	os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-	folder = __get_foldername__()
-	if(folder):
-		__add_files__(folder)
+	parser = OptionParser()
+	parser.add_option("-f", "--folder", dest="folder",
+		help="import all data from folder to database", metavar="FOLDER")
+	parser.add_option("-c", "--check", action="store_true" ,dest="check", default=False,
+		help="Check if there are values in the database")
+	(options, args) = parser.parse_args()
+
+	if(options.folder):
+		__add_files__(options.folder)
+	elif(options.check):
+		__check_database__()
 	else:
 		print("Usage: No Parameter! Use -f FOLDERPATH to upload all files of a folder, or -h for help")
