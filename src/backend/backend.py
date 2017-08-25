@@ -2,9 +2,10 @@
 
 from flask import Blueprint, render_template, request, redirect, current_app
 import os
-from backend.datastore.api import allowed__upload_file, add_paper
+from backend.datastore.api import API
 
-backend = Blueprint('profile', __name__)
+backend = Blueprint('backend', __name__)
+api = API()
 
 @backend.route('/', methods=["GET", 'POST'])
 def index():
@@ -24,8 +25,8 @@ def upload():
 
 		if file.filename == '':
 			return redirect(request.url)
-		elif allowed__upload_file(file.filename):
+		elif api.allowed__upload_file(file.filename):
 			file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
-			add_paper(file.filename)
+			api.add_paper(file.filename)
 
 	return render_template('upload.html')

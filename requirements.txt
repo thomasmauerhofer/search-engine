@@ -1,4 +1,5 @@
 Flask
+flask_session
 nltk
 numpy
 tensorflow
@@ -6,3 +7,4 @@ h5py
 keras
 matplotlib
 pymongo
+pycrypto
