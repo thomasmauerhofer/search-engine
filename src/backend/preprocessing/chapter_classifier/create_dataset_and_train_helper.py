@@ -127,6 +127,7 @@ def plot_words():
 
 #-------------------------------------------------------------------------------
 if __name__ == "__main__":
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     parser = OptionParser()
     parser.add_option("-d", "--dataset", action="store_true" ,dest="dataset", default=False,
         help="Creates Dataset to train the network")
