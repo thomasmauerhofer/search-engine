@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
+import os, contextlib
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.preprocessor import Preprocessor
 from backend.datastore.db_client import DBClient
 from backend.datastore.datastore_utils.crypto import Crypto
-from config import ALLOWED_EXTENSIONS
+from config import ALLOWED_EXTENSIONS, path_to_datastore
 
 class API(object):
     def __init__(self):
@@ -45,6 +46,18 @@ class API(object):
         self.client.delete_paper(paper_id)
 
 
+    def save_paper_as_pdf(self, paper_id):
+        paper = self.client.get_paper(paper_id)
+        return paper.save_file_to_path(path_to_datastore)
+
+
+    def delete_pdf(self, filepath):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(filepath)
+
+#-------------------------------------------------------------------------------
+#                           User DB
+#-------------------------------------------------------------------------------
     def check_user_login(self, username, password):
         user = self.client.get_user(username)
         if not user:
@@ -59,3 +72,7 @@ class API(object):
         user['username'] = username
         user['password'] = self.crypto.encrypt(password)
         return self.client.add_user(user)
+
+
+    def get_all_user(self):
+        return self.client.get_all_user()

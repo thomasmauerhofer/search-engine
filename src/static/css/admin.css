@@ -10,3 +10,16 @@ div.control-group input {
 blockquote p {
   font-size: 14.0px !important;
 }
+
+li.list-group-item {
+  height: 43px;
+}
+
+li.list-group-item a {
+  float: left;
+}
+
+li.list-group-item form input.btn.btn-primary.btn-xs {
+  width: 39px;
+  float: right;
+}

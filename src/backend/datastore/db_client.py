@@ -54,5 +54,13 @@ class DBClient(object):
             return user
 
 
+    def get_all_user(self):
+        ret = []
+        cursor = self.users.find({})
+        for user in cursor:
+            ret.append(user)
+        return ret
+
+
     def delete_all_users(self):
         self.users.remove({ })

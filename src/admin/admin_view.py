@@ -3,6 +3,7 @@
 
 from flask import Blueprint, flash, redirect, render_template, request, session
 from backend.datastore.api import API
+from config import path_to_datastore
 
 admin = Blueprint('admin', __name__)
 
@@ -29,8 +30,25 @@ def admin_login():
 	else:
 		return redirect('admin/')
 
+
+@admin.route('/admin/logout', methods=['GET', 'POST'])
+def admin_logout():
+	session['logged_in'] = False
+	return redirect('admin/')
+
+
 @admin.route('/admin/paper_info/<paper_id>', methods=['GET', 'POST'])
 def paper_info(paper_id):
 	api = API()
 	paper = api.get_paper(paper_id)
 	return render_template('admin/paper_info.html', paper=paper)
+
+
+@admin.route('/admin/user_info', methods=['GET', 'POST'])
+def user_info():
+	if not ('logged_in' in session.keys() and session['logged_in']):
+		return redirect('admin/')
+
+	api = API()
+	users = api.get_all_user()
+	return render_template('admin/users.html', users=users)

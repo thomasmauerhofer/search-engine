@@ -1,0 +1,27 @@
+{% extends "admin/layout.html" %}
+
+{% block body %}
+<h2> Users </h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Password</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.get('username') }}</td>
+        <td>{{ user.get('password') }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<script type=text/javascript>
+    $("#navbar3").addClass('active').siblings().removeClass('active');
+</script>
+{% endblock %}

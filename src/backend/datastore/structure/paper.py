@@ -154,3 +154,4 @@ class Paper(PaperStructure):
 
 	def save_file_to_path(self, path):
 		open(path + self.filename, 'wb').write(self.file)
+		return path + self.filename

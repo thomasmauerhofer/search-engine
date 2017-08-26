@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from flask import Blueprint, render_template, request, redirect, current_app
+from flask import Blueprint, render_template, request, redirect, current_app, send_file
 import os
 from backend.datastore.api import API
 
@@ -18,6 +18,7 @@ def index():
     else:
         return render_template('index.html')
 
+
 @backend.route('/upload', methods=["GET", 'POST'])
 def upload():
 	if request.method == 'POST':
@@ -30,3 +31,12 @@ def upload():
 			api.add_paper(file.filename)
 
 	return render_template('upload.html')
+
+
+@backend.route('/view_pdf/<paper_id>', methods=['GET', 'POST'])
+def view_pdf(paper_id):
+	api = API()
+	filepath = api.save_paper_as_pdf(paper_id)
+	resp = send_file(filepath)
+	api.delete_pdf(filepath)
+	return resp
