@@ -5,11 +5,11 @@
 
 <table class="table table-bordered">
   <tr>
-    <td style="width: 106px;"><b> ID </b></td>
+    <td style="width: 132px;"><b> ID </b></td>
     <td>{{ paper.id }}</td>
   </tr>
   <tr>
-    <td style="width: 106px;"><b> Title </b></td>
+    <td style="width: 132px;"><b> Title </b></td>
     <td>{{ paper.title }}</td>
   </tr>
 </table>
@@ -58,15 +58,15 @@
 {% for section in paper.sections %}
 <table class="table table-bordered">
   <tr>
-    <td style="width: 106px;"><b> Section Type </b></td>
+    <td style="width: 132px;"><b> Section Type </b></td>
     <td>{{ section.section_type.name }}</td>
   </tr>
   <tr>
-    <td style="width: 106px;"><b> Heading </b></td>
+    <td style="width: 132px;"><b> Heading </b></td>
     <td>{{ section.heading }}</td>
   </tr>
   <tr>
-    <td style="width: 106px;"><b> IMRaD Types </b></td>
+    <td style="width: 132px;"><b> IMRaD Types </b></td>
     <td>
       {% for imrad in section.imrad_types %}
         {{ imrad.name }}
@@ -75,7 +75,7 @@
   </tr>
   {% for val in section.text %}
     <tr>
-      <td style="width: 106px;"> {{ val[0].name }} </td>
+      <td style="width: 132px;"> {{ val[0].name }} </td>
       <td> {{ val[1] }} </td>
     </tr>
   {% endfor %}
@@ -85,16 +85,16 @@
   {% for subsec in section.subsections %}
     <table class="table table-bordered">
     <tr>
-      <td style="width: 106px;"><b> Section Type </b></td>
+      <td style="width: 132px;"><b> Section Type </b></td>
       <td>{{ subsec.section_type.name }}</td>
     </tr>
     <tr>
-      <td style="width: 106px;"><b> Heading </b></td>
+      <td style="width: 132px;"><b> Heading </b></td>
       <td>{{ subsec.heading }}</td>
     </tr>
     {% for val in subsec.text %}
       <tr>
-        <td style="width: 106px;"> {{ val[0].name }} </td>
+        <td style="width: 132px;"> {{ val[0].name }} </td>
         <td> {{ val[1] }} </td>
       </tr>
     {% endfor %}
@@ -104,16 +104,16 @@
       {% for subsubsec in subsec.subsections %}
         <table class="table table-bordered">
           <tr>
-            <td style="width: 106px;"><b> Section Type </b></td>
+            <td style="width: 132px;"><b> Section Type </b></td>
             <td>{{ subsubsec.section_type.name }}</td>
           </tr>
           <tr>
-            <td style="width: 106px;"><b> Heading </b></td>
+            <td style="width: 132px;"><b> Heading </b></td>
             <td>{{ subsubsec.heading }}</td>
           </tr>
           {% for val in subsubsec.text %}
             <tr>
-              <td style="width: 106px;"> {{ val[0].name }} </td>
+              <td style="width: 132px;"> {{ val[0].name }} </td>
               <td> {{ val[1] }} </td>
             </tr>
           {% endfor %}
@@ -131,22 +131,22 @@
 {% for ref in paper.references %}
   <table class="table table-bordered">
     <tr>
-      <td style="width: 106px;"><b> Complete </b></td>
+      <td style="width: 132px;"><b> Complete </b></td>
       <td>{{ ref.complete_reference }}</td>
     </tr>
     <tr>
-      <td style="width: 106px;"><b> Title </b></td>
+      <td style="width: 132px;"><b> Title </b></td>
       <td>{{ ref.title }}</td>
     </tr>
     {% for author in ref.authors %}
     <tr>
-      <td style="width: 106px;">{{ author[0].name }}</td>
+      <td style="width: 132px;">{{ author[0].name }}</td>
       <td>{{ author[1].prename + " " + author[1].surname }}</td>
     </tr>
     {% endfor %}
     {% for info in ref.reference_info %}
     <tr>
-      <td style="width: 106px;">{{ info[0].name }}</td>
+      <td style="width: 132px;">{{ info[0].name }}</td>
       <td>{{ info[1] }}</td>
     </tr>
     {% endfor %}

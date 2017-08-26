@@ -26,7 +26,6 @@ class Paper(PaperStructure):
 		self.file = open(path_to_datastore + filename, "rb").read()
 
 
-
 	def __create_object_with_dict__(self, data):
 		self.filename = data.get('filename')
 		self.title = data.get('title')
@@ -87,7 +86,7 @@ class Paper(PaperStructure):
 
 
 	def set_title(self, title):
-		if title == '':
+		if title is not '':
 			self.title = title
 
 

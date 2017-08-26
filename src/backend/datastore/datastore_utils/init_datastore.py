@@ -9,6 +9,7 @@ from backend.datastore.api import API
 
 def __add_files__(folder):
 	api = API()
+	api.delete_all_paper()
 	for filename in os.listdir(os.path.abspath(folder)):
 		print('CURRENT FILE: ' + filename)
 
@@ -24,9 +25,6 @@ def __check_database__():
 	api = API()
 	papers = api.get_all_paper()
 	print(len(papers))
-
-	paper = api.get_paper(papers[0].id)
-	print(paper.filename)
 
 
 def __add_user__():

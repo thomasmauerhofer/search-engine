@@ -52,6 +52,10 @@ class API(object):
         self.client.delete_paper(paper_id)
 
 
+    def delete_all_paper(self):
+        self.client.delete_all_paper()
+
+
     def save_paper_as_pdf(self, paper_id):
         paper = self.client.get_paper(paper_id)
         return paper.save_file_to_path(path_to_datastore)
