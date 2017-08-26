@@ -10,6 +10,8 @@
 </div> <!-- /.container -->
 
 <script type="text/javascript">
+	$("#navbar2").addClass('active').siblings().removeClass('active');
+
 	$('#file').on('click touchstart' , function(){
 		$(this).val('');
 	});
@@ -18,5 +20,4 @@
 		$("#form-upload").submit();
 	});
 </script>
-
 {% endblock %}

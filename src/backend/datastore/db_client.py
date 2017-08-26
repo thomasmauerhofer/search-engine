@@ -21,10 +21,17 @@ class DBClient(object):
 
 
     def get_paper(self, paper_id):
-        #cursor = self.collection.find({'filename': 'ijdl-2013.pdf'})
         cursor = self.papers.find({ "_id": ObjectId(paper_id) })
         for paper in cursor:
             return Paper(paper)
+
+
+    def get_papers_with_filename(self, filename):
+        papers = []
+        cursor = self.collection.find({'filename': filename})
+        for paper in cursor:
+            papers.append(Paper(paper))
+        return papers
 
 
     def get_all_paper(self):

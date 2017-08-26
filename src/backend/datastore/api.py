@@ -31,6 +31,12 @@ class API(object):
         if not valid_paper:
             return None
 
+        existing_papers = self.client.get_all_paper()
+        paper_str = str(paper)
+        for existing_paper in existing_papers:
+            if str(existing_paper) == paper_str:
+                return None
+
         return self.client.add_paper(paper)
 
 

@@ -28,7 +28,10 @@ def upload():
 			return redirect(request.url)
 		elif api.allowed__upload_file(file.filename):
 			file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
-			api.add_paper(file.filename)
+			ret = api.add_paper(file.filename)
+
+            #if not ret:
+            #    print("Error!")
 
 	return render_template('upload.html')
 
