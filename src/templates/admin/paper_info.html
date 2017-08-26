@@ -1,0 +1,163 @@
+{% extends "admin/layout.html" %}
+
+{% block body %}
+<h2> {{ paper.filename }}</h2>
+
+<table class="table table-bordered">
+  <tr>
+    <td style="width: 106px;"><b> ID </b></td>
+    <td>{{ paper.id }}</td>
+  </tr>
+  <tr>
+    <td style="width: 106px;"><b> Title </b></td>
+    <td>{{ paper.title }}</td>
+  </tr>
+</table>
+
+<h3> Authors </h3>
+{% for val in paper.authors %}
+  {% if val.all_authors_text %}
+    <blockquote><p>{{ val.all_authors_text }}</p></blockquote>
+  {% endif %}
+  {% if val.emails_text %}
+    <blockquote><p>{{ val.emails_text }}</p></blockquote>
+  {% endif %}
+  {% if not val.authors %}
+    <em>Sorry, no authors table available</em>
+  {% else %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th style="width: 150px;">Firstname</th>
+          <th style="width: 150px;">Middlename</th>
+          <th style="width: 150px;">Lastname</th>
+          <th style="width: 230px;">Email</th>
+          <th>Affiliation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for author in val.authors %}
+        <tr>
+          <td>{{ author.prename }}</td>
+          {% if not author.middle_name %}
+            <td></td>
+          {% else %}
+            <td>{{ author.middle_name }}</td>
+          {% endif %}
+          <td>{{ author.surname }}</td>
+          <td>{{ author.email }}</td>
+          <td>{{ author.affiliation }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endfor %}
+
+<h3> Sections </h3>
+{% for section in paper.sections %}
+<table class="table table-bordered">
+  <tr>
+    <td style="width: 106px;"><b> Section Type </b></td>
+    <td>{{ section.section_type.name }}</td>
+  </tr>
+  <tr>
+    <td style="width: 106px;"><b> Heading </b></td>
+    <td>{{ section.heading }}</td>
+  </tr>
+  <tr>
+    <td style="width: 106px;"><b> IMRaD Types </b></td>
+    <td>
+      {% for imrad in section.imrad_types %}
+        {{ imrad.name }}
+      {% endfor %}
+    </td>
+  </tr>
+  {% for val in section.text %}
+    <tr>
+      <td style="width: 106px;"> {{ val[0].name }} </td>
+      <td> {{ val[1] }} </td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% if section.subsections %}
+  {% for subsec in section.subsections %}
+    <table class="table table-bordered">
+    <tr>
+      <td style="width: 106px;"><b> Section Type </b></td>
+      <td>{{ subsec.section_type.name }}</td>
+    </tr>
+    <tr>
+      <td style="width: 106px;"><b> Heading </b></td>
+      <td>{{ subsec.heading }}</td>
+    </tr>
+    {% for val in subsec.text %}
+      <tr>
+        <td style="width: 106px;"> {{ val[0].name }} </td>
+        <td> {{ val[1] }} </td>
+      </tr>
+    {% endfor %}
+    </table>
+
+    {% if subsec.subsections %}
+      {% for subsubsec in subsec.subsections %}
+        <table class="table table-bordered">
+          <tr>
+            <td style="width: 106px;"><b> Section Type </b></td>
+            <td>{{ subsubsec.section_type.name }}</td>
+          </tr>
+          <tr>
+            <td style="width: 106px;"><b> Heading </b></td>
+            <td>{{ subsubsec.heading }}</td>
+          </tr>
+          {% for val in subsubsec.text %}
+            <tr>
+              <td style="width: 106px;"> {{ val[0].name }} </td>
+              <td> {{ val[1] }} </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% endfor %}
+
+<h3> References </h3>
+{% if not paper.references %}
+  <em>Sorry, no reference table available</em>
+{% else %}
+{% for ref in paper.references %}
+  <table class="table table-bordered">
+    <tr>
+      <td style="width: 106px;"><b> Complete </b></td>
+      <td>{{ ref.complete_reference }}</td>
+    </tr>
+    <tr>
+      <td style="width: 106px;"><b> Title </b></td>
+      <td>{{ ref.title }}</td>
+    </tr>
+    {% for author in ref.authors %}
+    <tr>
+      <td style="width: 106px;">{{ author[0].name }}</td>
+      <td>{{ author[1].prename + " " + author[1].surname }}</td>
+    </tr>
+    {% endfor %}
+    {% for info in ref.reference_info %}
+    <tr>
+      <td style="width: 106px;">{{ info[0].name }}</td>
+      <td>{{ info[1] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endfor %}
+{% endif %}
+
+
+
+
+<script type=text/javascript>
+    $("#navbar2").addClass('active').siblings().removeClass('active');
+</script>
+{% endblock %}

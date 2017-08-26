@@ -32,7 +32,7 @@ class API(object):
 
 
     def get_paper(self, paper_id):
-        return self.client.add_paper(paper_id)
+        return self.client.get_paper(paper_id)
 
 
     def get_all_paper(self):

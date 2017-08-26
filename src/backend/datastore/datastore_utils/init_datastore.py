@@ -25,6 +25,10 @@ def __check_database__():
 	papers = api.get_all_paper()
 	print(len(papers))
 
+	paper = api.get_paper(papers[0].id)
+	print(paper.filename)
+
+
 
 if __name__ == "__main__":
 	os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'

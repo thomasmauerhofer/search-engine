@@ -1,7 +1,13 @@
 {% extends "admin/layout.html" %}
 
 {% block body %}
-<p> Papers comming soon! </p>
+<ul class="list-group">
+  {% for paper in papers | sort(attribute='filename')%}
+      <li class="list-group-item"><a href="/admin/paper_info/{{ paper.id }}">{{ paper.filename }}</a></li>
+  {% else %}
+      <em>Sorry, no papers available</em>
+  {% endfor %}
+</ul>
 
 <script type=text/javascript>
     $("#navbar2").addClass('active').siblings().removeClass('active');
