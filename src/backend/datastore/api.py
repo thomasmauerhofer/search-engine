@@ -4,6 +4,7 @@
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.preprocessor import Preprocessor
 from backend.datastore.db_client import DBClient
+from backend.datastore.datastore_utils.crypto import Crypto
 from config import ALLOWED_EXTENSIONS
 
 class API(object):
@@ -11,6 +12,7 @@ class API(object):
         self.importer = ImporterTeambeam()
         self.client = DBClient()
         self.preprocessor = Preprocessor()
+        self.crypto = Crypto()
 
 
     def allowed_upload_file(self, filename):
@@ -41,3 +43,19 @@ class API(object):
 
     def delete_paper(self, paper_id):
         self.client.delete_paper(paper_id)
+
+
+    def check_user_login(self, username, password):
+        user = self.client.get_user(username)
+        if not user:
+            return False
+
+        return username == user.get('username') and \
+            self.crypto.encrypt(password) == user.get('password')
+
+
+    def add_user(self, username, password):
+        user = {}
+        user['username'] = username
+        user['password'] = self.crypto.encrypt(password)
+        return self.client.add_user(user)
