@@ -2,7 +2,6 @@
 # encoding: utf-8
 
 import numpy as np
-import h5py as h5py
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.callbacks import ModelCheckpoint
@@ -14,7 +13,8 @@ from backend.preprocessing.chapter_classifier.classifier_utils.metrics import re
 
 
 class ClassifierNN(ClassifierBase):
-    def __init__(self, load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80, val_split=0.2):
+    def __init__(self, load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80,
+                 val_split=0.2):
         self.size_input_layer = size_input_layer
         self.size_middle_layer = size_middle_layer
         self.batch_size = batch_size
@@ -22,7 +22,6 @@ class ClassifierNN(ClassifierBase):
         self.val_split = val_split
         self.bag = BagOfWords()
         self.__init_model__(load_weigths)
-
 
     def __init_model__(self, load_weigths):
         self.model = Sequential()
@@ -35,8 +34,8 @@ class ClassifierNN(ClassifierBase):
 
         if load_weigths:
             self.model.load_weights(path_to_hdf5 + "weights_04.hdf5")
-        self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', recall, precision, f1])
-
+        self.model.compile(loss='categorical_crossentropy', optimizer='adam',
+                           metrics=['accuracy', recall, precision, f1])
 
     def __load_dataset__(self, filename):
         dataset = []
@@ -65,9 +64,9 @@ class ClassifierNN(ClassifierBase):
                 elif imrad:
                     print("ERROR: " + imrad + " not defined!")
 
-        X = [self.bag.text_to_vector(item[0]) for item in dataset]
-        Y = [item[1] for item in dataset]
-        return (X, Y)
+        x = [self.bag.text_to_vector(item[0]) for item in dataset]
+        y = [item[1] for item in dataset]
+        return x, y
 
     def __load_trainset__(self):
         return self.__load_dataset__('dataset.txt')
@@ -76,22 +75,22 @@ class ClassifierNN(ClassifierBase):
         return self.__load_dataset__('dataset.txt')
 
     def train(self):
-        (X, Y) = self.__load_trainset__()
+        (x, y) = self.__load_trainset__()
 
-        filepath="weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
+        filepath = "weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
         checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
         callbacks_list = [checkpoint]
 
-        hist = self.model.fit(np.array(X), np.array(Y), batch_size=self.batch_size, nb_epoch=self.num_epochs, validation_split=self.val_split, verbose=1, callbacks=callbacks_list)
+        hist = self.model.fit(np.array(x), np.array(y), batch_size=self.batch_size, nb_epoch=self.num_epochs,
+                              validation_split=self.val_split, verbose=1, callbacks=callbacks_list)
         return hist.history
 
     def test(self):
-        (X_test, Y_test) = self.__load_testset__()
-        scores = self.model.evaluate(np.array(X_test), np.array(Y_test), verbose=0)
-        return (self.model.metrics_names, scores)
+        (x_test, y_test) = self.__load_testset__()
+        scores = self.model.evaluate(np.array(x_test), np.array(y_test), verbose=0)
+        return self.model.metrics_names, scores
 
     def predict_chapter(self, chapter_list):
-        result_discussion = []
-        X = np.array([self.bag.text_to_vector(name) for name in chapter_list])
-        Y = list(self.model.predict(X, batch_size=self.batch_size, verbose=1))
-        return Y
+        x = np.array([self.bag.text_to_vector(name) for name in chapter_list])
+        y = list(self.model.predict(x, batch_size=self.batch_size, verbose=1))
+        return y

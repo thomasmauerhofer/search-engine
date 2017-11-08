@@ -1,29 +1,26 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-import tensorflow as tf
 import numpy as np
 from config import threshold
 from backend.datastore.structure.section import IMRaDType
 from backend.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
 from backend.preprocessing.chapter_classifier.classifier_simple import ClassifierSimple
 
+
 class IMRaDDetection(object):
     def __init__(self):
         self.classifierNN = ClassifierNN()
         self.classifierSimple = ClassifierSimple()
 
-
     def __print_chapters_and_values__(self, chapter_names, Y):
         for i in range(len(chapter_names)):
             tmp = np.round(Y[i], 3)
-            print("{:30}: {}".format(chapter_names[i],  tmp))
-
+            print("{:30}: {}".format(chapter_names[i], tmp))
 
     def __set_section_in_paper__(self, paper, positions, imrad_type):
         for pos in positions:
             paper.sections[pos].add_to_imrad(imrad_type)
-
 
     def proceed(self, paper):
         chapter_names = [name.heading for name in paper.sections]
@@ -33,9 +30,9 @@ class IMRaDDetection(object):
         Y = self.classifierNN.predict_chapter(chapter_names)
         Y_simple = self.classifierSimple.predict_chapter(chapter_names)
 
-        #self.__print_chapters_and_values__(chapter_names, Y)
+        # self.__print_chapters_and_values__(chapter_names, Y)
 
-        # aditional rules:
+        # additional rules:
         # INTRO have to be in the set:
         intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in Y])
         intro_pos = np.where(intro >= threshold)[0]
@@ -57,12 +54,12 @@ class IMRaDDetection(object):
 
         self.__set_section_in_paper__(paper, background_pos, IMRaDType.BACKGROUND)
 
-        #ABSTRACT
+        # ABSTRACT
         abstract = np.array([x[IMRaDType.ABSTRACT.value] for x in Y])
         abstract_pos = np.where(abstract >= threshold)[0]
         self.__set_section_in_paper__(paper, abstract_pos, IMRaDType.ABSTRACT)
 
-        #ACKNOWLEDGE
+        # ACKNOWLEDGE
         acknowledge = np.array([x[IMRaDType.ACKNOWLEDGE.value] for x in Y])
         acknowledge_pos = np.where(acknowledge >= threshold)[0]
         self.__set_section_in_paper__(paper, acknowledge_pos, IMRaDType.ACKNOWLEDGE)
@@ -78,11 +75,9 @@ class IMRaDDetection(object):
 
         # DISCUSSION and RESULT not set - Try simple classification
         if not len(list(discussion_pos) + list(result_pos)):
-            discussion = np.array([x[IMRaDType.DISCUSSION.value] for x in Y_simple])
             discussion_pos = np.where(intro >= threshold)[0]
             self.__set_section_in_paper__(paper, discussion_pos, IMRaDType.DISCUSSION)
 
-            result = np.array([x[IMRaDType.RESULTS.value] for x in Y_simple])
             result_pos = np.where(intro >= threshold)[0]
             self.__set_section_in_paper__(paper, result_pos, IMRaDType.RESULTS)
 

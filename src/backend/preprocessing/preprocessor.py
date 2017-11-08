@@ -4,6 +4,7 @@
 from backend.preprocessing.imrad_detection import IMRaDDetection
 import backend.preprocessing.text_processing as text_processing
 
+
 class Preprocessor(object):
     def __init__(self):
         self.imrad_detector = IMRaDDetection()

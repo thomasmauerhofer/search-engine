@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-import os, contextlib
+import contextlib
+import os
+
+from backend.datastore.datastore_utils.crypto import Crypto
+from backend.datastore.db_client import DBClient
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.preprocessor import Preprocessor
-from backend.datastore.db_client import DBClient
-from backend.datastore.datastore_utils.crypto import Crypto
 from config import ALLOWED_EXTENSIONS, path_to_datastore
+
 
 class API(object):
     def __init__(self):
@@ -15,11 +18,9 @@ class API(object):
         self.preprocessor = Preprocessor()
         self.crypto = Crypto()
 
-
     def allowed_upload_file(self, filename):
         return '.' in filename and \
-            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
+               filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
     def add_paper(self, filename):
         if not self.allowed_upload_file(filename):
@@ -39,50 +40,43 @@ class API(object):
 
         return self.client.add_paper(paper)
 
-
     def get_paper(self, paper_id):
         return self.client.get_paper(paper_id)
-
 
     def get_all_paper(self):
         return self.client.get_all_paper()
 
-
     def delete_paper(self, paper_id):
         self.client.delete_paper(paper_id)
 
-
     def delete_all_paper(self):
         self.client.delete_all_paper()
-
 
     def save_paper_as_pdf(self, paper_id):
         paper = self.client.get_paper(paper_id)
         return paper.save_file_to_path(path_to_datastore)
 
-
     def delete_pdf(self, filepath):
         with contextlib.suppress(FileNotFoundError):
             os.remove(filepath)
 
-#-------------------------------------------------------------------------------
-#                           User DB
-#-------------------------------------------------------------------------------
+        # -------------------------------------------------------------------------------
+        #                           User DB
+        # -------------------------------------------------------------------------------
+
     def check_user_login(self, username, password):
         user = self.client.get_user(username)
         if not user:
             return False
 
         return username == user.get('username') and \
-            self.crypto.encrypt(password) == user.get('password')
-
+               self.crypto.encrypt(password) == user.get('password')
 
     def add_user(self, username, password):
         user = {}
         user['username'] = username
         user['password'] = self.crypto.encrypt(password)
         return self.client.add_user(user)
-
 
     def get_all_user(self):
         return self.client.get_all_user()

@@ -2,6 +2,7 @@
 
 from abc import ABCMeta, abstractmethod
 
+
 class ClassifierBase(metaclass=ABCMeta):
     @abstractmethod
     def predict_chapter(self, chapter_list):

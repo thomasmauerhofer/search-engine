@@ -31,7 +31,8 @@ def __create_plots__(score):
     plt.legend(['train', 'test'], loc='upper right')
     plt.savefig('loss.png')
 
-#-------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------
 def search_params(single):
     best_classification = 0
     best_size_input_layer = 0
@@ -40,8 +41,8 @@ def search_params(single):
     epoch = 0
 
     if single:
-        #size_input_layer, size_middle_layer, batch_size, num_epochs, opt:val_split=0.2
-        classifier = ClassifierNN(False ,60, 110, 10, 80, 0.2)
+        # size_input_layer, size_middle_layer, batch_size, num_epochs, opt:val_split=0.2
+        classifier = ClassifierNN(False, 60, 110, 10, 80, 0.2)
         score = classifier.train()
         __create_plots__(score)
     else:
@@ -65,7 +66,7 @@ def search_params(single):
         print("epoch: {0}".format(epoch))
 
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 def test_params():
     classifier = ClassifierNN()
     (names, scores) = classifier.test()
@@ -73,7 +74,7 @@ def test_params():
         print("%s: %f" % (names[i], scores[i]))
 
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 def create_dataset():
     classifier = ClassifierSimple()
     for filename in os.listdir(path_to_datastore):
@@ -82,7 +83,8 @@ def create_dataset():
             paper = importer.import_paper(filename)
 
             text_processing.proceed(paper)
-            chapter_names = [name.heading for name in paper.sections if not(name.heading.isspace() or name.heading is '')]
+            chapter_names = [name.heading for name in paper.sections if
+                             not (name.heading.isspace() or name.heading is '')]
 
             if not len(chapter_names):
                 continue
@@ -107,7 +109,8 @@ def create_dataset():
                 if tmp is not "":
                     print("{0}: {1}".format(chapter_names[i], tmp))
 
-#-------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------
 def plot_words():
     dic = {}
     with open(path_to_dataset + 'dataset.txt') as f:
@@ -125,18 +128,18 @@ def plot_words():
         print("{0}: {1}".format(pair[0], pair[1]))
 
 
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 if __name__ == "__main__":
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     parser = OptionParser()
-    parser.add_option("-d", "--dataset", action="store_true" ,dest="dataset", default=False,
-        help="Creates Dataset to train the network")
-    parser.add_option("-b", "--bag", action="store_true" ,dest="bag", default=False,
-        help="Plot words for bag")
-    parser.add_option("-s", "--search", action="store_true" ,dest="search", default=False,
-        help="Search Prarams in for current network")
-    parser.add_option("-t", "--test", action="store_true" ,dest="test", default=False,
-        help="Test Prarams in for current network")
+    parser.add_option("-d", "--dataset", action="store_true", dest="dataset", default=False,
+                      help="Creates Dataset to train the network")
+    parser.add_option("-b", "--bag", action="store_true", dest="bag", default=False,
+                      help="Plot words for bag")
+    parser.add_option("-s", "--search", action="store_true", dest="search", default=False,
+                      help="Search Prarams in for current network")
+    parser.add_option("-t", "--test", action="store_true", dest="test", default=False,
+                      help="Test Prarams in for current network")
     (options, args) = parser.parse_args()
 
     if options.dataset:
