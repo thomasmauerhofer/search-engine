@@ -2,5 +2,5 @@
 # encoding: utf-8
 
 class Error(Exception):
-   """Base class of exceptions"""
-   pass
+    """Base class of exceptions"""
+    pass

@@ -31,8 +31,8 @@ def upload():
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
             ret = api.add_paper(file.filename)
 
-			# if not ret:
-            #    print("Error!")
+        # if not ret:
+        #    print("Error!")
 
     return render_template('upload.html')
 

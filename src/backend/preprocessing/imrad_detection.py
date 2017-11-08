@@ -13,9 +13,9 @@ class IMRaDDetection(object):
         self.classifierNN = ClassifierNN()
         self.classifierSimple = ClassifierSimple()
 
-    def __print_chapters_and_values__(self, chapter_names, Y):
+    def __print_chapters_and_values__(self, chapter_names, y):
         for i in range(len(chapter_names)):
-            tmp = np.round(Y[i], 3)
+            tmp = np.round(y[i], 3)
             print("{:30}: {}".format(chapter_names[i], tmp))
 
     def __set_section_in_paper__(self, paper, positions, imrad_type):
@@ -27,18 +27,18 @@ class IMRaDDetection(object):
         if not len(chapter_names):
             return False
 
-        Y = self.classifierNN.predict_chapter(chapter_names)
-        Y_simple = self.classifierSimple.predict_chapter(chapter_names)
+        y = self.classifierNN.predict_chapter(chapter_names)
+        y_simple = self.classifierSimple.predict_chapter(chapter_names)
 
-        # self.__print_chapters_and_values__(chapter_names, Y)
+        # self.__print_chapters_and_values__(chapter_names, y)
 
         # additional rules:
         # INTRO have to be in the set:
-        intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in Y])
+        intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y])
         intro_pos = np.where(intro >= threshold)[0]
 
         if not len(intro_pos):
-            intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in Y_simple])
+            intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y_simple])
             intro_pos = np.where(intro >= threshold)[0]
 
         if not len(intro_pos):
@@ -47,7 +47,7 @@ class IMRaDDetection(object):
             self.__set_section_in_paper__(paper, intro_pos, IMRaDType.INDRODUCTION)
 
         # if no Background -> Background is in Indroduction
-        background = np.array([x[IMRaDType.BACKGROUND.value] for x in Y])
+        background = np.array([x[IMRaDType.BACKGROUND.value] for x in y])
         background_pos = np.where(background >= threshold)[0]
         if not len(background_pos):
             background_pos = intro_pos
@@ -55,21 +55,21 @@ class IMRaDDetection(object):
         self.__set_section_in_paper__(paper, background_pos, IMRaDType.BACKGROUND)
 
         # ABSTRACT
-        abstract = np.array([x[IMRaDType.ABSTRACT.value] for x in Y])
+        abstract = np.array([x[IMRaDType.ABSTRACT.value] for x in y])
         abstract_pos = np.where(abstract >= threshold)[0]
         self.__set_section_in_paper__(paper, abstract_pos, IMRaDType.ABSTRACT)
 
         # ACKNOWLEDGE
-        acknowledge = np.array([x[IMRaDType.ACKNOWLEDGE.value] for x in Y])
+        acknowledge = np.array([x[IMRaDType.ACKNOWLEDGE.value] for x in y])
         acknowledge_pos = np.where(acknowledge >= threshold)[0]
         self.__set_section_in_paper__(paper, acknowledge_pos, IMRaDType.ACKNOWLEDGE)
 
         # DISCUSSION or RESULT have to be in the set
-        discussion = np.array([x[IMRaDType.DISCUSSION.value] for x in Y])
+        discussion = np.array([x[IMRaDType.DISCUSSION.value] for x in y])
         discussion_pos = np.where(discussion >= threshold)[0]
         self.__set_section_in_paper__(paper, discussion_pos, IMRaDType.DISCUSSION)
 
-        result = np.array([x[IMRaDType.RESULTS.value] for x in Y])
+        result = np.array([x[IMRaDType.RESULTS.value] for x in y])
         result_pos = np.where(result >= threshold)[0]
         self.__set_section_in_paper__(paper, result_pos, IMRaDType.RESULTS)
 

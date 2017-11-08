@@ -2,17 +2,17 @@
 # encoding: utf-8
 
 from typing import Dict
+
 from backend.datastore.structure.paper_structure import PaperStructure
-from backend.utils.exceptions.import_exceptions import WrongAuthorError
 from backend.utils.string_utils import is_valid_email, remove_special_chars, longest_subsequence
+
 
 class Authors(PaperStructure):
     def __init__(self, data):
         if isinstance(data, str):
-        	self.__create_object__(data)
+            self.__create_object__(data)
         elif isinstance(data, Dict):
-        	self.__create_object_with_dict__(data)
-
+            self.__create_object_with_dict__(data)
 
     def __create_object__(self, all_authors_text):
         self.all_authors_text = all_authors_text
@@ -35,19 +35,15 @@ class Authors(PaperStructure):
 
         return str_authors
 
-
     def to_dict(self):
-        data = {}
-        data['all_authors_text'] = self.all_authors_text
-        data['emails_text'] = self.emails_text
-        data['authors'] = []
+        data = {'all_authors_text': self.all_authors_text, 'emails_text': self.emails_text, 'authors': []}
         for author in self.authors:
             data['authors'].append(author.to_dict())
 
         return data
 
-    def add_author(self, prename, surname, middle_name = None):
-        #if surname not in self.all_authors_text:
+    def add_author(self, prename, surname, middle_name=None):
+        # if surname not in self.all_authors_text:
         #    raise WrongAuthorError('Error: Authors does not contain surname')
 
         if not (prename, surname) in [(obj.prename, obj.surname) for obj in self.authors]:
@@ -72,9 +68,9 @@ class Authors(PaperStructure):
         if not len(longest_sequence_list):
             return
 
-        higest = max(longest_sequence_list, key=lambda item:item[0])
-        if higest[0] >= len(higest[1].surname):
-            higest[1].email = email
+        highest = max(longest_sequence_list, key=lambda item: item[0])
+        if highest[0] >= len(highest[1].surname):
+            highest[1].email = email
 
     def add_affiliation(self, affiliation):
         tmp_affiliation = remove_special_chars(affiliation).lower()
@@ -92,17 +88,17 @@ class Authors(PaperStructure):
         if not len(longest_sequence_list):
             return
 
-        higest = max(longest_sequence_list, key=lambda item:item[0])
+        higest = max(longest_sequence_list, key=lambda item: item[0])
         if higest[0] >= len(higest[1].surname):
             higest[1].affiliation = affiliation
 
+
 class Author(PaperStructure):
-    def __init__(self, data_or_prename, surname = '', middle_name = ''):
+    def __init__(self, data_or_prename, surname='', middle_name=''):
         if isinstance(data_or_prename, str):
             self.__create_object__(data_or_prename, surname, middle_name)
         elif isinstance(data_or_prename, Dict):
             self.__create_object_with_dict__(data_or_prename)
-
 
     def __create_object__(self, prename, surname, middle_name):
         self.surname = surname
@@ -117,7 +113,6 @@ class Author(PaperStructure):
         self.middle_name = data.get('middle_name')
         self.email = data.get('email')
         self.affiliation = data.get('affiliation')
-
 
     def __eq__(self, other):
         return (self.surname == other.surname) and (self.prename == other.prename)
@@ -135,10 +130,6 @@ class Author(PaperStructure):
         return str_author
 
     def to_dict(self):
-        data = {}
-        data['surname'] = self.surname
-        data['prename'] = self.prename
-        data['middle_name'] = self.middle_name
-        data['email'] = self.email
-        data['affiliation'] = self.affiliation
+        data = {'surname': self.surname, 'prename': self.prename, 'middle_name': self.middle_name, 'email': self.email,
+                'affiliation': self.affiliation}
         return data

@@ -60,10 +60,9 @@ class API(object):
         with contextlib.suppress(FileNotFoundError):
             os.remove(filepath)
 
-        # -------------------------------------------------------------------------------
-        #                           User DB
-        # -------------------------------------------------------------------------------
-
+    # -------------------------------------------------------------------------------
+    #                           User DB
+    # -------------------------------------------------------------------------------
     def check_user_login(self, username, password):
         user = self.client.get_user(username)
         if not user:
@@ -73,9 +72,7 @@ class API(object):
                self.crypto.encrypt(password) == user.get('password')
 
     def add_user(self, username, password):
-        user = {}
-        user['username'] = username
-        user['password'] = self.crypto.encrypt(password)
+        user = {'username': username, 'password': self.crypto.encrypt(password)}
         return self.client.add_user(user)
 
     def get_all_user(self):

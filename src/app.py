@@ -25,4 +25,4 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
 if __name__ == "__main__":
-	app.run()
+    app.run()

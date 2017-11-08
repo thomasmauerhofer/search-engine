@@ -6,10 +6,14 @@
       <w>filepath</w>
       <w>imrad</w>
       <w>indro</w>
+      <w>indroduction</w>
       <w>mcor</w>
       <w>pred</w>
+      <w>prename</w>
       <w>relu</w>
       <w>softmax</w>
+      <w>subsequence</w>
+      <w>subsubsection</w>
       <w>testset</w>
       <w>trainset</w>
       <w>vectorizer</w>

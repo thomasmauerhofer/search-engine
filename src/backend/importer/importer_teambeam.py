@@ -1,13 +1,15 @@
 # encoding: utf-8
 
-import os, contextlib
+import contextlib
+import os
 from xml.dom import minidom
-from config import path_to_teambeam_executable, path_to_datastore, create_output
-from backend.importer.importer_base import ImporterBase
+
 from backend.datastore.structure.paper import Paper
-from backend.datastore.structure.section import TextType
 from backend.datastore.structure.reference import ReferenceType
+from backend.datastore.structure.section import TextType
+from backend.importer.importer_base import ImporterBase
 from backend.utils.exceptions.import_exceptions import WrongReferenceError
+from config import path_to_teambeam_executable, path_to_datastore, create_output
 
 EXTENSION_TEXT = ".txt"
 EXTENSION_STRUCTURE = ".xml"
@@ -156,7 +158,7 @@ class ImporterTeambeam(ImporterBase):
                     full_round = True
                     i = 0
 
-                # -------------------------------------------------------------------------------
+                    # -------------------------------------------------------------------------------
 
     def __add_values_to_authors__(self, paper, author_values):
         i = 0
