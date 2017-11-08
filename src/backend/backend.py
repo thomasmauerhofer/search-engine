@@ -11,11 +11,28 @@ api = API()
 @backend.route('/', methods=["GET", 'POST'])
 def index():
     if request.method == "POST":
-        query = request.form['search_text']
-        print("Current query: ", query)
+        indro_query = request.form['intro_text']
+        background_query = request.form['background_text']
+        methods_query = request.form['methods_text']
+        results_query = request.form['results_text']
+        discussion_query = request.form['discussion_text']
+
+        indro_proceed = api.preprocessor.proceed_query(indro_query)
+        background_proceed = api.preprocessor.proceed_query(background_query)
+        methods_proceed = api.preprocessor.proceed_query(methods_query)
+        results_proceed = api.preprocessor.proceed_query(results_query)
+        discussion_proceed = api.preprocessor.proceed_query(discussion_query)
+
+        print("Intro query: ", indro_proceed)
+        print("Background query: ", background_proceed)
+        print("Methods query: ", methods_proceed)
+        print("Results query: ", results_proceed)
+        print("Discussion query: ", discussion_proceed)
 
         result = "result coming soon..."
-        return render_template('result.html', input_text=query, result=result)
+        return render_template('result.html', indro_query=indro_query, background_query=background_query,
+                               methods_query=methods_query, results_query=results_query,
+                               discussion_query=discussion_query, result=result,)
     else:
         return render_template('index.html')
 

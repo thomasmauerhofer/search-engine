@@ -4,7 +4,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from operator import itemgetter
-import backend.preprocessing.text_processing as text_processing
+import backend.preprocessing.text_processor as text_processing
 from optparse import OptionParser
 from config import path_to_datastore, path_to_dataset
 from backend.datastore.structure.section import IMRaDType
