@@ -18,7 +18,8 @@ class API(object):
         self.preprocessor = Preprocessor()
         self.crypto = Crypto()
 
-    def allowed_upload_file(self, filename):
+    @staticmethod
+    def allowed_upload_file(filename):
         return '.' in filename and \
                filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 

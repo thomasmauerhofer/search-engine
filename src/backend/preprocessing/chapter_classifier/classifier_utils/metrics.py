@@ -33,8 +33,8 @@ def precision(y_true, y_pred):
     """
     true_positives = k.sum(k.round(k.clip(y_true * y_pred, 0, 1)))
     predicted_positives = k.sum(k.round(k.clip(y_pred, 0, 1)))
-    precision = true_positives / (predicted_positives + k.epsilon())
-    return precision
+    precis = true_positives / (predicted_positives + k.epsilon())
+    return precis
 
 
 def recall(y_true, y_pred):
@@ -47,11 +47,11 @@ def recall(y_true, y_pred):
     """
     true_positives = k.sum(k.round(k.clip(y_true * y_pred, 0, 1)))
     possible_positives = k.sum(k.round(k.clip(y_true, 0, 1)))
-    recall = true_positives / (possible_positives + k.epsilon())
-    return recall
+    rec = true_positives / (possible_positives + k.epsilon())
+    return rec
 
 
-def f1(y_true, y_pred):
+def f1(y_true_f1, y_pred_f1):
     def recall_f1(y_true, y_pred):
         """Recall metric.
 
@@ -62,8 +62,8 @@ def f1(y_true, y_pred):
         """
         true_positives = k.sum(k.round(k.clip(y_true * y_pred, 0, 1)))
         possible_positives = k.sum(k.round(k.clip(y_true, 0, 1)))
-        recall = true_positives / (possible_positives + k.epsilon())
-        return recall
+        rec_f1 = true_positives / (possible_positives + k.epsilon())
+        return rec_f1
 
     def precision_f1(y_true, y_pred):
         """Precision metric.
@@ -75,9 +75,9 @@ def f1(y_true, y_pred):
         """
         true_positives = k.sum(k.round(k.clip(y_true * y_pred, 0, 1)))
         predicted_positives = k.sum(k.round(k.clip(y_pred, 0, 1)))
-        precision = true_positives / (predicted_positives + k.epsilon())
-        return precision
+        precis_f1 = true_positives / (predicted_positives + k.epsilon())
+        return precis_f1
 
-    precision = precision_f1(y_true, y_pred)
-    recall = recall_f1(y_true, y_pred)
-    return 2 * ((precision * recall) / (precision + recall))
+    precis = precision_f1(y_true_f1, y_pred_f1)
+    rec = recall_f1(y_true_f1, y_pred_f1)
+    return 2 * ((precis * rec) / (precis + rec))
