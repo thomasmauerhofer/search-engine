@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-import contextlib
-import os
-
 from backend.datastore.datastore_utils.crypto import Crypto
 from backend.datastore.db_client import DBClient
 from backend.importer.importer_teambeam import ImporterTeambeam
@@ -56,10 +53,6 @@ class API(object):
     def save_paper_as_pdf(self, paper_id):
         paper = self.client.get_paper(paper_id)
         return paper.save_file_to_path(path_to_datastore)
-
-    def delete_pdf(self, filepath):
-        with contextlib.suppress(FileNotFoundError):
-            os.remove(filepath)
 
     # -------------------------------------------------------------------------------
     #                           User DB
