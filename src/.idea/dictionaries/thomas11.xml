@@ -3,7 +3,9 @@
     <words>
       <w>crossentropy</w>
       <w>dataset</w>
+      <w>datastore</w>
       <w>filepath</w>
+      <w>fileupload</w>
       <w>imrad</w>
       <w>indro</w>
       <w>indroduction</w>
@@ -14,6 +16,7 @@
       <w>softmax</w>
       <w>subsequence</w>
       <w>subsubsection</w>
+      <w>teambeam</w>
       <w>testset</w>
       <w>trainset</w>
       <w>vectorizer</w>

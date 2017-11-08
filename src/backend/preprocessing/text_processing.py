@@ -21,7 +21,7 @@ def remove_stopwords_from_section(section):
     for subsection in section.subsections:
         remove_stopwords_from_section(subsection)
 
-    section = [text for text in section.text if len(text[1])]
+    # section = [text for text in section.text if len(text[1])]
 
 
 def proceed_string(text):

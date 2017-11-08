@@ -41,7 +41,7 @@ def search_params(single):
     epoch = 0
 
     if single:
-        # size_input_layer, size_middle_layer, batch_size, num_epochs, opt:val_split=0.2
+        # load_weigths=True, size_input_layer=60, size_middle_layer=110, batch_size=10, num_epochs=80, val_split=0.2
         classifier = ClassifierNN(False, 60, 110, 10, 80, 0.2)
         score = classifier.train()
         __create_plots__(score)
@@ -49,7 +49,7 @@ def search_params(single):
         for size_input_layer in range(10, 210, 50):
             for size_middle_layer in range(10, 210, 50):
                 for batch_size in range(10, 210, 50):
-                    classifier = Classifier(size_input_layer, size_middle_layer, batch_size, 70)
+                    classifier = ClassifierNN(False, size_input_layer, size_middle_layer, batch_size, 70, 0.2)
                     score = classifier.train()
                     mean = np.mean(score['val_acc'])
                     if mean > best_classification:

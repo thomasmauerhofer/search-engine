@@ -14,7 +14,7 @@ def index():
         query = request.form['search_text']
         print("Current query: ", query)
 
-        result = "hier kommt result hin"
+        result = "result coming soon..."
         return render_template('result.html', input_text=query, result=result)
     else:
         return render_template('index.html')
@@ -27,19 +27,18 @@ def upload():
 
         if file.filename == '':
             return redirect(request.url)
-        elif api.allowed__upload_file(file.filename):
+        elif api.allowed_upload_file(file.filename):
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
             ret = api.add_paper(file.filename)
 
-        # if not ret:
-        #    print("Error!")
+            if not ret:
+                print("Error: Can't use this PDF")
 
     return render_template('upload.html')
 
 
 @backend.route('/view_pdf/<paper_id>', methods=['GET', 'POST'])
 def view_pdf(paper_id):
-    api = API()
     filepath = api.save_paper_as_pdf(paper_id)
     resp = send_file(filepath)
     api.delete_pdf(filepath)

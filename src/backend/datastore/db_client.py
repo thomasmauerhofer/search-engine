@@ -25,7 +25,7 @@ class DBClient(object):
 
     def get_papers_with_filename(self, filename):
         papers = []
-        cursor = self.collection.find({'filename': filename})
+        cursor = self.papers.find({'filename': filename})
         for paper in cursor:
             papers.append(Paper(paper))
         return papers

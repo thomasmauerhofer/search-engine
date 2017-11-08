@@ -84,7 +84,7 @@ class ImporterTeambeam(ImporterBase):
                             value == 'affiliation':
                 author_values.append([value, text])
             else:
-                if (create_output) and (len(value.split()) == 1) and (not any(s in value for s in IGNORE_CASES)):
+                if create_output and (len(value.split()) == 1) and (not any(s in value for s in IGNORE_CASES)):
                     OUTPUT.write("VALUE NOT IN LIST!\n")
                     OUTPUT.write("Filename: " + filename + " value: " + value + "\ntext: " + text + "\n")
                     OUTPUT.write("\n")
@@ -107,10 +107,10 @@ class ImporterTeambeam(ImporterBase):
                     last_value, last_data = reference_values[j - 1]
                     surname = last_data if last_value == 'ref-authorSurname' else ''
 
-                    paper.references[i].add_author(ReferenceType.AUTHOR, data, last_data)
+                    paper.references[i].add_author(ReferenceType.AUTHOR, data, surname)
                 elif value == 'ref-authorOther':
                     name = data.split(',')
-                    if (len(name) < 2):
+                    if len(name) < 2:
                         name.append('')
 
                     paper.references[i].add_author(ReferenceType.AUTHOR_OTHER, name[1], name[0])
@@ -138,9 +138,9 @@ class ImporterTeambeam(ImporterBase):
                     paper.references[i].add_reference_info(ReferenceType.PAGES, data)
                 elif value == 'ref-conference':
                     paper.references[i].add_reference_info(ReferenceType.CONFERENCE, data)
-                elif (create_output) and (len(value.split()) == 1) and (value != 'ref-authorSurname'):
+                elif create_output and (len(value.split()) == 1) and (value != 'ref-authorSurname'):
                     OUTPUT.write("REFERENCE NOT IN LIST!\n")
-                    OUTPUT.write("Filename: " + filename + " value: " + value + "\ntext: " + data + "\n")
+                    OUTPUT.write("Filename: " + paper.filename + " value: " + value + "\ntext: " + data + "\n")
                     OUTPUT.write("\n")
 
                 full_round = False
@@ -201,7 +201,3 @@ class ImporterTeambeam(ImporterBase):
                     paper.authors[-1].add_affiliation(data)
 
             i += 1
-
-
-# -------------------------------------------------------------------------------
-ImporterBase.register(ImporterTeambeam)

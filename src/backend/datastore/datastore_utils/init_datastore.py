@@ -50,11 +50,11 @@ if __name__ == "__main__":
                       help="Add a new Adminuser to the database")
     (options, args) = parser.parse_args()
 
-    if (options.folder):
+    if options.folder:
         __add_files__(options.folder)
-    elif (options.check):
+    elif options.check:
         __check_database__()
-    elif (options.user):
+    elif options.user:
         __add_user__()
     else:
         print("Usage: No Parameter! Use -f FOLDERPATH to upload all files of a folder, or -h for help")
