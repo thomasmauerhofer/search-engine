@@ -1,7 +1,9 @@
 # encoding: utf-8
 
-from flask import Blueprint, render_template, request, redirect, current_app, send_file
 import os
+
+from flask import Blueprint, render_template, request, redirect, current_app, send_file
+
 from backend.datastore.api import API
 from backend.datastore.structure.section import IMRaDType
 
