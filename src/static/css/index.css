@@ -5,3 +5,28 @@
 .div-submit {
     padding-top: 15px;
 }
+
+.result {
+    padding-top: 35px;
+    width: 97%;
+}
+
+.result .result-line {
+}
+
+.result .result-line div#link {
+    font-size: 16px;
+}
+
+.result .result-line div#info {
+    padding-left: 15px;
+}
+
+.result .result-line div#info div#raking {
+    font-size: 14px;
+}
+
+.error_msg {
+    font-size: 21px;
+    text-align: center;
+}

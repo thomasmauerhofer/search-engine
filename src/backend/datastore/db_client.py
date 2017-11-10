@@ -7,18 +7,14 @@ from backend.datastore.structure.paper import Paper
 from backend.datastore.structure.section import IMRaDType
 
 
-def __create_query_for_imrad_type__(imrad, words, query=None):
-    if not query:
-        query = {"$or": []}
-
+def __add_search_queries_for_imrad_type__(imrad, words, query):
     for word in words:
-        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "heading": {'$regex': word}}}})
-        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "text.text": {'$regex': word}}}})
-        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.heading": {'$regex': word}}}})
-        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.text.text": {'$regex': word}}}})
-        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.subsections.heading": {'$regex': word}}}})
-        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.subsections.text.text": {'$regex': word}}}})
-    return query
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "heading": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "text.text": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.heading": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.text.text": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.heading": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.text.text": {'$regex': word}}}})
 
 
 def __cursor_to_papers__(cursor):
@@ -61,38 +57,42 @@ class DBClient(object):
     def delete_all_paper(self):
         self.papers.remove({})
 
-    def get_paper_which_contains_queries(self, introduction_words, background_words, methods_words, results_words, discussion_words):
-        query = __create_query_for_imrad_type__(IMRaDType.INDRODUCTION, introduction_words)
-        query = __create_query_for_imrad_type__(IMRaDType.BACKGROUND, background_words, query)
-        query = __create_query_for_imrad_type__(IMRaDType.METHODS, methods_words, query)
-        query = __create_query_for_imrad_type__(IMRaDType.RESULTS, results_words, query)
-        query = __create_query_for_imrad_type__(IMRaDType.DISCUSSION, discussion_words, query)
-        cursor = self.papers.find(query)
+    def get_paper_which_contains_queries(self, queries):
+        search_query = {"$or": []}
+        for imrad_type, query in queries.items():
+            __add_search_queries_for_imrad_type__(imrad_type, query.split(), search_query)
+
+        cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_introduction(self, introduction_words):
-        query = __create_query_for_imrad_type__(IMRaDType.INDRODUCTION, introduction_words)
-        cursor = self.papers.find(query)
+        search_query = {"$or": []}
+        __add_search_queries_for_imrad_type__(IMRaDType.INDRODUCTION, introduction_words, search_query)
+        cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_background(self, background_words):
-        query = __create_query_for_imrad_type__(IMRaDType.BACKGROUND, background_words)
-        cursor = self.papers.find(query)
+        search_query = {"$or": []}
+        __add_search_queries_for_imrad_type__(IMRaDType.BACKGROUND, background_words, search_query)
+        cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_methods(self, methods_words):
-        query = __create_query_for_imrad_type__(IMRaDType.METHODS, methods_words)
-        cursor = self.papers.find(query)
+        search_query = {"$or": []}
+        __add_search_queries_for_imrad_type__(IMRaDType.METHODS, methods_words, search_query)
+        cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_results(self, results_words):
-        query = __create_query_for_imrad_type__(IMRaDType.RESULTS, results_words)
-        cursor = self.papers.find(query)
+        search_query = {"$or": []}
+        __add_search_queries_for_imrad_type__(IMRaDType.RESULTS, results_words, search_query)
+        cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_discussion(self, discussion_words):
-        query = __create_query_for_imrad_type__(IMRaDType.DISCUSSION, discussion_words)
-        cursor = self.papers.find(query)
+        search_query = {"$or": []}
+        __add_search_queries_for_imrad_type__(IMRaDType.DISCUSSION, discussion_words, search_query)
+        cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def add_user(self, user):

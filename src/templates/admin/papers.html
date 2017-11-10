@@ -3,10 +3,11 @@
 {% block body %}
 <ul class="list-group">
   {% for paper in papers | sort(attribute='filename')%}
-      <li class="list-group-item"><a href="/admin/paper_info/{{ paper.id }}">{{ paper.filename }}</a>
-        <form action = "/view_pdf/{{ paper.id }}" method = "post" target="_blank">
-          <input type="submit" value="View" class="btn btn-primary btn-xs" >
-        </form>
+      <li class="list-group-item">
+          <a href="/admin/paper_info/{{ paper.id }}">{{ paper.filename }}</a>
+          <form action = "/view_pdf/{{ paper.id }}" method = "post" target="_blank">
+              <input type="submit" value="View" class="btn btn-primary btn-xs" >
+          </form>
       </li>
   {% else %}
       <em>Sorry, no papers available</em>

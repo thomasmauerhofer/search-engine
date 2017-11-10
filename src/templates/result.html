@@ -7,19 +7,19 @@
     <div id="search-div" class="collapse">
 	    <form role="form" method='POST' action='/'>
             <h4>Introduction (Problem)</h4>
-            <textarea class="form-control simple_input" type="text" name="intro_text" placeholder="Enter a query">{{ indro_query }}</textarea>
+            <textarea class="form-control simple_input" type="text" name="intro_text" placeholder="Enter a query">{{ queries["INDRODUCTION"] }}</textarea>
 
             <h4>Background</h4>
-            <textarea class="form-control simple_input" type="text" name="background_text" placeholder="Enter a query">{{ background_query }}</textarea>
+            <textarea class="form-control simple_input" type="text" name="background_text" placeholder="Enter a query">{{ queries["BACKGROUND"] }}</textarea>
 
             <h4>Methods (Algorithm)</h4>
-            <textarea class="form-control simple_input" type="text" name="methods_text" placeholder="Enter a query">{{ methods_query }}</textarea>
+            <textarea class="form-control simple_input" type="text" name="methods_text" placeholder="Enter a query">{{ queries["METHODS"] }}</textarea>
 
             <h4>Results (Evaluation)</h4>
-            <textarea class="form-control simple_input" type="text" name="results_text" placeholder="Enter a query">{{ results_query }}</textarea>
+            <textarea class="form-control simple_input" type="text" name="results_text" placeholder="Enter a query">{{ queries["RESULTS"] }}</textarea>
 
             <h4>Discussion</h4>
-            <textarea class="form-control simple_input" type="text" name="discussion_text" placeholder="Enter a query">{{ discussion_query }}</textarea>
+            <textarea class="form-control simple_input" type="text" name="discussion_text" placeholder="Enter a query">{{ queries["DISCUSSION"] }}</textarea>
 
             <div class="div-submit text-center">
                 <button class="btn btn-primary btn-lg" type="submit">Submit</button>
@@ -27,7 +27,27 @@
 	    </form>
     </div> <!-- /.search-div -->
 
-	<p>{{ result }}</p>
+    <div class="result">
+        <ul class="list-group">
+            {% for value in result %}
+                <li class="list-group-item">
+                    <div class="result-line">
+                        <div id="link">
+                            <a href="/view_pdf/{{ value.paper.id }}" target="_blank">{{ value.paper.filename }}</a>
+                        </div>
+                        <div id="info">
+                            <div id="raking">{{ value.ranking | round(4, 'floor') }}</div>
+                        </div>
+                    </div>
+                </li>
+            {% else %}
+                <div class="error_msg">
+                    <em>No matching paper could be found...</em>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+
 
 </div> <!-- /.container -->
 

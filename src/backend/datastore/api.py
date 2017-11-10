@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+import contextlib
+import random
+
+import os
 
 from backend.datastore.datastore_utils.crypto import Crypto
 from backend.datastore.db_client import DBClient
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.preprocessor import Preprocessor
+from backend.utils.list_utils import insert_dict_into_list
 from config import ALLOWED_EXTENSIONS, path_to_datastore
 
 
@@ -54,12 +59,22 @@ class API(object):
         paper = self.client.get_paper(paper_id)
         return paper.save_file_to_path(path_to_datastore)
 
-    def get_ranked_papers_explicit(self, indro_query, background_query, methods_query, results_query, discussion_query):
-        papers = self.client.get_paper_which_contains_queries(indro_query.split(), background_query.split(),
-                                                              methods_query.split(), results_query.split(), discussion_query.split())
+    @staticmethod
+    def delete_pdf(filepath):
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(filepath)
 
+    def get_ranked_papers_explicit(self, queries):
+        papers = self.client.get_paper_which_contains_queries(queries)
+        ret = []
         for paper in papers:
-            print(paper.filename)
+            # TODO: implement ranking
+            raking = random.random()
+
+            element = {"paper": paper, "ranking": raking}
+            insert_dict_into_list(ret, element, "ranking")
+
+        return ret
 
     # -------------------------------------------------------------------------------
     #                           User DB

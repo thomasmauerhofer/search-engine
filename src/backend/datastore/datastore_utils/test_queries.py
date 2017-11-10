@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 from backend.datastore.api import API
+from backend.datastore.structure.section import IMRaDType
 
 
-def get_papers_with_query(indro_query, background_query, methods_query, results_query, discussion_query):
+def get_papers_with_query():
     api = API()
-    api.get_ranked_papers_explicit(indro_query, background_query, methods_query, results_query, discussion_query)
+    ret = api.get_ranked_papers_explicit(queries)
+    print(ret)
 
 
 if __name__ == "__main__":
-    intro = "paper"
-    background = ""
-    methods = "inhom scenario allow user control home devic voic andor click architectur mimu first describ pérez et al 2006c work updat descript includ life demo mimu follow inform state updat approach dialogu manag develop eufund talk project talk project architectur consist setofoaaagentschey martin link central facilit shown figur"
-    result = ""
-    discussion = ""
-    get_papers_with_query(intro, background, methods, result, discussion)
+    queries = {IMRaDType.INDRODUCTION.name: "paper",
+               IMRaDType.BACKGROUND: "",
+               IMRaDType.METHODS.name: "inhom scenario allow user control home",
+               IMRaDType.RESULTS.name: "",
+               IMRaDType.DISCUSSION.name: ""}
+
+    get_papers_with_query()
