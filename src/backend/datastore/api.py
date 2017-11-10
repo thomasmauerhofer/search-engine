@@ -65,8 +65,16 @@ class API(object):
             os.remove(filepath)
 
     def get_ranked_papers_explicit(self, queries):
-        papers = self.client.get_paper_which_contains_queries(queries)
+        queries_proceed = {}
         ret = []
+
+        for imrad_type, query in queries.items():
+            queries_proceed[imrad_type] = self.preprocessor.proceed_query(query)
+
+        if all(not query for query in queries_proceed.values()):
+            return ret
+
+        papers = self.client.get_paper_which_contains_queries(queries_proceed)
         for paper in papers:
             # TODO: implement ranking
             raking = random.random()

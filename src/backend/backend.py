@@ -25,14 +25,7 @@ def index():
     if all(not query for query in queries.values()):
         return render_template('index.html')
 
-    queries_proceed = {}
-    for imrad_type, query in queries.items():
-        queries_proceed[imrad_type] = api.preprocessor.proceed_query(query)
-
-    if all(not query for query in queries_proceed.values()):
-        return render_template('result.html', queries=queries, result=[])
-
-    result = api.get_ranked_papers_explicit(queries_proceed)
+    result = api.get_ranked_papers_explicit(queries)
     return render_template('result.html', queries=queries, result=result)
 
 
