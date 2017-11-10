@@ -4,6 +4,31 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from backend.datastore.structure.paper import Paper
+from backend.datastore.structure.section import IMRaDType
+
+
+def __create_query_for_imrad_type__(imrad, words, query=None):
+    if not query:
+        query = {"$or": []}
+
+    for word in words:
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "heading": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "text.text": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.heading": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.text.text": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.subsections.heading": {'$regex': word}}}})
+        query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad.name, "subsections.subsections.text.text": {'$regex': word}}}})
+    return query
+
+
+def __cursor_to_papers__(cursor):
+    if cursor.count() == 1:
+        return Paper(cursor[0])
+    else:
+        papers = []
+        for paper in cursor:
+            papers.append(Paper(paper))
+        return papers
 
 
 class DBClient(object):
@@ -20,22 +45,15 @@ class DBClient(object):
 
     def get_paper(self, paper_id):
         cursor = self.papers.find({"_id": ObjectId(paper_id)})
-        for paper in cursor:
-            return Paper(paper)
+        return __cursor_to_papers__(cursor)
 
     def get_papers_with_filename(self, filename):
-        papers = []
         cursor = self.papers.find({'filename': filename})
-        for paper in cursor:
-            papers.append(Paper(paper))
-        return papers
+        return __cursor_to_papers__(cursor)
 
     def get_all_paper(self):
-        papers = []
         cursor = self.papers.find({})
-        for paper in cursor:
-            papers.append(Paper(paper))
-        return papers
+        return __cursor_to_papers__(cursor)
 
     def delete_paper(self, paper_id):
         self.papers.remove({"_id": ObjectId(paper_id)})
@@ -43,14 +61,47 @@ class DBClient(object):
     def delete_all_paper(self):
         self.papers.remove({})
 
+    def get_paper_which_contains_queries(self, introduction_words, background_words, methods_words, results_words, discussion_words):
+        query = __create_query_for_imrad_type__(IMRaDType.INDRODUCTION, introduction_words)
+        query = __create_query_for_imrad_type__(IMRaDType.BACKGROUND, background_words, query)
+        query = __create_query_for_imrad_type__(IMRaDType.METHODS, methods_words, query)
+        query = __create_query_for_imrad_type__(IMRaDType.RESULTS, results_words, query)
+        query = __create_query_for_imrad_type__(IMRaDType.DISCUSSION, discussion_words, query)
+        cursor = self.papers.find(query)
+        return __cursor_to_papers__(cursor)
+
+    def get_paper_which_contains_query_in_introduction(self, introduction_words):
+        query = __create_query_for_imrad_type__(IMRaDType.INDRODUCTION, introduction_words)
+        cursor = self.papers.find(query)
+        return __cursor_to_papers__(cursor)
+
+    def get_paper_which_contains_query_in_background(self, background_words):
+        query = __create_query_for_imrad_type__(IMRaDType.BACKGROUND, background_words)
+        cursor = self.papers.find(query)
+        return __cursor_to_papers__(cursor)
+
+    def get_paper_which_contains_query_in_methods(self, methods_words):
+        query = __create_query_for_imrad_type__(IMRaDType.METHODS, methods_words)
+        cursor = self.papers.find(query)
+        return __cursor_to_papers__(cursor)
+
+    def get_paper_which_contains_query_in_results(self, results_words):
+        query = __create_query_for_imrad_type__(IMRaDType.RESULTS, results_words)
+        cursor = self.papers.find(query)
+        return __cursor_to_papers__(cursor)
+
+    def get_paper_which_contains_query_in_discussion(self, discussion_words):
+        query = __create_query_for_imrad_type__(IMRaDType.DISCUSSION, discussion_words)
+        cursor = self.papers.find(query)
+        return __cursor_to_papers__(cursor)
+
     def add_user(self, user):
         user_id = self.users.insert_one(user).inserted_id
         return user_id
 
     def get_user(self, user_name):
         cursor = self.users.find({'username': user_name})
-        for user in cursor:
-            return user
+        return cursor[0]
 
     def get_all_user(self):
         ret = []

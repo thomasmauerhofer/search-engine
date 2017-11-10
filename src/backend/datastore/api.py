@@ -54,6 +54,13 @@ class API(object):
         paper = self.client.get_paper(paper_id)
         return paper.save_file_to_path(path_to_datastore)
 
+    def get_ranked_papers_explicit(self, indro_query, background_query, methods_query, results_query, discussion_query):
+        papers = self.client.get_paper_which_contains_queries(indro_query.split(), background_query.split(),
+                                                              methods_query.split(), results_query.split(), discussion_query.split())
+
+        for paper in papers:
+            print(paper.filename)
+
     # -------------------------------------------------------------------------------
     #                           User DB
     # -------------------------------------------------------------------------------
