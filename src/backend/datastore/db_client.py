@@ -67,31 +67,31 @@ class DBClient(object):
 
     def get_paper_which_contains_query_in_introduction(self, introduction_words):
         search_query = {"$or": []}
-        __add_search_queries_for_imrad_type__(IMRaDType.INDRODUCTION, introduction_words, search_query)
+        __add_search_queries_for_imrad_type__(IMRaDType.INDRODUCTION.name, introduction_words, search_query)
         cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_background(self, background_words):
         search_query = {"$or": []}
-        __add_search_queries_for_imrad_type__(IMRaDType.BACKGROUND, background_words, search_query)
+        __add_search_queries_for_imrad_type__(IMRaDType.BACKGROUND.name, background_words, search_query)
         cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_methods(self, methods_words):
         search_query = {"$or": []}
-        __add_search_queries_for_imrad_type__(IMRaDType.METHODS, methods_words, search_query)
+        __add_search_queries_for_imrad_type__(IMRaDType.METHODS.name, methods_words, search_query)
         cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_results(self, results_words):
         search_query = {"$or": []}
-        __add_search_queries_for_imrad_type__(IMRaDType.RESULTS, results_words, search_query)
+        __add_search_queries_for_imrad_type__(IMRaDType.RESULTS.name, results_words, search_query)
         cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
     def get_paper_which_contains_query_in_discussion(self, discussion_words):
         search_query = {"$or": []}
-        __add_search_queries_for_imrad_type__(IMRaDType.DISCUSSION, discussion_words, search_query)
+        __add_search_queries_for_imrad_type__(IMRaDType.DISCUSSION.name, discussion_words, search_query)
         cursor = self.papers.find(search_query)
         return __cursor_to_papers__(cursor)
 
