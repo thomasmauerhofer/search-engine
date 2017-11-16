@@ -30,8 +30,10 @@ class API(object):
             return None
 
         paper = self.importer.import_paper(filename)
-        valid_paper = self.preprocessor.proceed_paper(paper)
+        if not paper:
+            return None
 
+        valid_paper = self.preprocessor.proceed_paper(paper)
         if not valid_paper:
             return None
 
@@ -61,7 +63,7 @@ class API(object):
 
     @staticmethod
     def delete_pdf(filepath):
-        with contextlib.suppress(FileNotFoundError):
+        with contextlib.suppress(FileNotFoundError, PermissionError):
             os.remove(filepath)
 
     def get_ranked_papers_explicit(self, queries):

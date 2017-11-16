@@ -14,7 +14,7 @@ class TextProcessor(object):
 
     def remove_stopwords_from_section(self, section):
         section.heading = self.proceed_string(section.heading.lower())
-        section = [text for text in section.text if len(text[1])]
+        #  section = [section for text in section.text if len(text[1])]
 
         for section_text in section.text:
             section_text[1] = self.proceed_string(section_text[1].lower())

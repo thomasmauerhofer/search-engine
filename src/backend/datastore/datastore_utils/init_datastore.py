@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+
 import os
 import shutil
 from getpass import getpass
 from optparse import OptionParser
-
 from backend.datastore.api import API
 from config import path_to_datastore
 
@@ -12,8 +12,13 @@ from config import path_to_datastore
 def __add_files__(folder):
     api = API()
     api.delete_all_paper()
+
     for filename in os.listdir(os.path.abspath(folder)):
-        print('CURRENT FILE: ' + filename)
+        try:
+            print('CURRENT FILE: ' + str(filename))
+        except UnicodeError:
+            print("ERROR: Can't decode filename - Remove Special Characters!")
+            continue
 
         if filename.endswith('.pdf'):
             src = folder + "/" + filename
