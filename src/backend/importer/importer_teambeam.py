@@ -2,14 +2,16 @@
 
 import contextlib
 import os
+import subprocess
 from xml.dom import minidom
+from shutil import copy, move
 
 from backend.datastore.structure.paper import Paper
 from backend.datastore.structure.reference import ReferenceType
 from backend.datastore.structure.section import TextType
 from backend.importer.importer_base import ImporterBase
 from backend.utils.exceptions.import_exceptions import WrongReferenceError
-from config import path_to_teambeam_executable, path_to_datastore, create_output
+from config import path_to_teambeam_executable, path_to_datastore, create_output, path_to_teambeam_executable_windows
 
 EXTENSION_TEXT = ".txt"
 EXTENSION_STRUCTURE = ".xml"
@@ -141,9 +143,28 @@ class ImporterTeambeam(ImporterBase):
     def import_paper(self, filename):
         paper = Paper(filename)
         path_to_file = path_to_datastore + filename
-        os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
 
-        with open(path_to_file + EXTENSION_TEXT, "r") as textfile:
+        if os.name == 'nt':  # Windows
+            os.chdir(path_to_teambeam_executable_windows)
+            copy(path_to_file, path_to_teambeam_executable_windows)
+            try:
+                subprocess.call('bash pdf-to-xml -a \"' + filename + '\"')
+            except OSError:
+                print('ERROR: os.subprocess ends with an error.')
+            try:
+                os.remove(filename)
+                move(path_to_teambeam_executable_windows + filename + EXTENSION_TEXT, path_to_datastore)
+                move(path_to_teambeam_executable_windows + filename + EXTENSION_STRUCTURE, path_to_datastore)
+            except FileNotFoundError:
+                print("ERROR: Can't move output files:" + filename)
+                return None
+        else:
+            try:
+                subprocess.call('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
+            except OSError:
+                print('ERROR: os.subprocess ends with an error.')
+
+        with open(path_to_file + EXTENSION_TEXT, "r", encoding="utf8") as textfile:
             data = textfile.read()
 
         tree = minidom.parse(path_to_file + EXTENSION_STRUCTURE)

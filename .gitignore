@@ -2,6 +2,4 @@ bower_components/
 data/
 __pycache__/
 flask_session/
-
-*/.idea/workspace.xml 
-*/.idea/tasks.xml
+.idea/

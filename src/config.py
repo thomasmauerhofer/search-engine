@@ -15,6 +15,8 @@ path_to_datastore = app_path + "/" + UPLOAD_FOLDER
 # importer
 create_output = False
 path_to_teambeam_executable = '/home/thomas11/program/teambeam/bin/'
+path_to_teambeam_executable_windows = 'D:/MongoDB/teambeam/bin/'
+
 
 # classifier
 path_to_hdf5 = app_path + "/" + STATIC_FOLDER + "classifier/"
