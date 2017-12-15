@@ -1,31 +1,15 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from typing import Dict
-
 from backend.datastore.structure.paper_structure import PaperStructure
 from backend.utils.string_utils import is_valid_email, remove_special_chars, longest_subsequence
 
 
 class Authors(PaperStructure):
     def __init__(self, data):
-        if isinstance(data, str):
-            self.__create_object__(data)
-        elif isinstance(data, Dict):
-            self.__create_object_with_dict__(data)
-
-    def __create_object__(self, all_authors_text):
-        self.all_authors_text = all_authors_text
-        self.emails_text = ''
-        self.authors = []
-
-    def __create_object_with_dict__(self, data):
         self.all_authors_text = data.get('all_authors_text')
-        self.emails_text = data.get('emails_text')
-        self.authors = []
-
-        for author in data.get('authors'):
-            self.authors.append(Author(author))
+        self.emails_text = data.get('emails_text') if 'emails_text' in data else ''
+        self.authors = [Author(author) for author in data.get('authors')] if 'authors' in data else []
 
     def __str__(self):
         str_authors = self.all_authors_text + "\n\n"
@@ -47,7 +31,7 @@ class Authors(PaperStructure):
         #    raise WrongAuthorError('Error: Authors does not contain surname')
 
         if not (prename, surname) in [(obj.prename, obj.surname) for obj in self.authors]:
-            self.authors.append(Author(prename, surname, middle_name))
+            self.authors.append(Author({'prename': prename, 'surname': surname, 'middle_name': middle_name}))
 
     def add_email(self, email):
         if not is_valid_email(email):
@@ -94,25 +78,13 @@ class Authors(PaperStructure):
 
 
 class Author(PaperStructure):
-    def __init__(self, data_or_prename, surname='', middle_name=''):
-        if isinstance(data_or_prename, str):
-            self.__create_object__(data_or_prename, surname, middle_name)
-        elif isinstance(data_or_prename, Dict):
-            self.__create_object_with_dict__(data_or_prename)
-
-    def __create_object__(self, prename, surname, middle_name):
-        self.surname = surname
-        self.prename = prename
-        self.middle_name = middle_name
-        self.email = ''
-        self.affiliation = ''
-
-    def __create_object_with_dict__(self, data):
+    def __init__(self, data):
         self.surname = data.get('surname')
         self.prename = data.get('prename')
-        self.middle_name = data.get('middle_name')
-        self.email = data.get('email')
-        self.affiliation = data.get('affiliation')
+
+        self.middle_name = data.get('middle_name') if 'middle_name' in data else ''
+        self.email = data.get('email') if 'email' in data else ''
+        self.affiliation = data.get('affiliation') if 'affiliation' in data else ''
 
     def __eq__(self, other):
         return (self.surname == other.surname) and (self.prename == other.prename)

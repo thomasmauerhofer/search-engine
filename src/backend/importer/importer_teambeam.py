@@ -141,7 +141,7 @@ def __add_values_to_authors__(paper, author_values):
 # ---------------------------------------------------------------------------
 class ImporterTeambeam(ImporterBase):
     def import_paper(self, filename):
-        paper = Paper(filename)
+        paper = Paper({'filename': filename})
         path_to_file = path_to_datastore + filename
 
         if os.name == 'nt':  # Windows

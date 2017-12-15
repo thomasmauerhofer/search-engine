@@ -1,40 +1,18 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from typing import Dict
 from enum import Enum
 from backend.datastore.structure.paper_structure import PaperStructure
 
 
 class Section(PaperStructure):
-    def __init__(self, data_or_section_type, heading=''):
-        if isinstance(data_or_section_type, SectionType):
-            self.__create_object__(data_or_section_type, heading)
-        elif isinstance(data_or_section_type, Dict):
-            self.__create_object_with_dict__(data_or_section_type)
-
-    def __create_object__(self, section_type, heading):
-        self.imrad_types = []
-        self.section_type = section_type
-        self.heading = heading
-        self.text = []
-        self.subsections = []
-
-    def __create_object_with_dict__(self, data):
-        self.section_type = SectionType[data.get('section_type')]
+    def __init__(self, data):
         self.heading = data.get('heading')
-        self.imrad_types = []
-        self.text = []
-        self.subsections = []
+        self.section_type = SectionType[data.get('section_type')]
 
-        for imrad_type in data.get('imrad_types'):
-            self.imrad_types.append(IMRaDType[imrad_type])
-
-        for obj in data.get('text'):
-            self.text.append([TextType[obj.get('text_type')], obj.get('text')])
-
-        for subsection in data.get('subsections'):
-            self.subsections.append(Section(subsection))
+        self.imrad_types = [IMRaDType[imrad_type] for imrad_type in data.get('imrad_types')] if 'imrad_types' in data else []
+        self.text = [[TextType[obj.get('text_type')], obj.get('text')] for obj in data.get('text')] if 'text' in data else []
+        self.subsections = [Section(subsection) for subsection in data.get('subsections')] if 'subsections' in data else []
 
     def __str__(self):
         str_section = self.section_type.name + "\n"
@@ -76,7 +54,7 @@ class Section(PaperStructure):
             self.text.append([text_type, text])
 
     def add_subsection(self, section_type, heading):
-        self.subsections.append(Section(section_type, heading))
+        self.subsections.append(Section({'section_type': section_type, 'heading': heading}))
 
     def add_to_imrad(self, imrad_type):
         if not any(imrad_type is x for x in self.imrad_types) and \

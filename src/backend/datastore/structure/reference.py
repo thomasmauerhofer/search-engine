@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from typing import Dict
 from enum import Enum
 from backend.datastore.structure.paper_structure import PaperStructure
 from backend.datastore.structure.author import Author
@@ -10,28 +9,13 @@ from backend.utils.exceptions.import_exceptions import WrongReferenceError
 
 class Reference(PaperStructure):
     def __init__(self, data):
-        if isinstance(data, str):
-            self.__create_object__(data)
-        elif isinstance(data, Dict):
-            self.__create_object_with_dict__(data)
-
-    def __create_object__(self, complete_reference):
-        self.complete_reference = complete_reference
-        self.title = ''
-        self.authors = []
-        self.reference_info = []
-
-    def __create_object_with_dict__(self, data):
         self.complete_reference = data.get('complete_reference')
-        self.title = data.get('title')
-        self.authors = []
-        self.reference_info = []
+        self.title = data.get('title') if 'title' in data else ''
 
-        for author in data.get('authors'):
-            self.authors.append([ReferenceType[author.get('author_type')], Author(author.get('author'))])
-
-        for info in data.get('reference_info'):
-            self.reference_info.append([ReferenceType[info.get('reference_type')], info.get('reference_text')])
+        self.authors = [[ReferenceType[author.get('author_type')], Author(author.get('author'))]
+                        for author in data.get('authors')] if 'authors' in data else []
+        self.reference_info = [[ReferenceType[info.get('reference_type')], info.get('reference_text')]
+                               for info in data.get('reference_info')] if 'reference_info' in data else []
 
     def __str__(self):
         ref_str = self.complete_reference + '\n\n'
@@ -62,9 +46,9 @@ class Reference(PaperStructure):
     def add_author(self, author_type, prename, surname):
         if surname not in self.complete_reference:
             raise WrongReferenceError('Error: Reference does not contain author', 'author',
-                                      str(Author(prename, surname)))
+                                      str(Author({'prename': prename, 'surname': surname})))
 
-        self.authors.append([author_type, Author(prename, surname)])
+        self.authors.append([author_type, Author({'prename': prename, 'surname': surname})])
 
     def add_title(self, title):
         if title not in self.complete_reference:

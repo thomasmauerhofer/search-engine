@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-from typing import Dict
 from config import path_to_datastore
 from backend.datastore.structure.paper_structure import PaperStructure
 from backend.datastore.structure.reference import Reference
@@ -11,37 +10,14 @@ from backend.datastore.structure.author import Authors
 
 class Paper(PaperStructure):
     def __init__(self, data):
-        if isinstance(data, str):
-            self.__create_object__(data)
-        elif isinstance(data, Dict):
-            self.__create_object_with_dict__(data)
-
-    def __create_object__(self, filename):
-        self.filename = filename
-        self.title = ''
-        self.id = ''
-        self.authors = []
-        self.sections = []
-        self.references = []
-        self.file = open(path_to_datastore + filename, "rb").read()
-
-    def __create_object_with_dict__(self, data):
         self.filename = data.get('filename')
-        self.title = data.get('title')
-        self.id = data.get('_id')
-        self.file = data.get('file')
-        self.authors = []
-        self.sections = []
-        self.references = []
+        self.title = data.get('title') if 'title' in data else ''
+        self.id = data.get('_id') if '_id' in data else ''
+        self.file = data.get('file') if 'file' in data else open(path_to_datastore + self.filename, "rb").read()
 
-        for author in data.get('authors'):
-            self.authors.append(Authors(author))
-
-        for section in data.get('sections'):
-            self.sections.append(Section(section))
-
-        for reference in data.get('references'):
-            self.references.append(Reference(reference))
+        self.authors = [Authors(author) for author in data.get('authors')] if 'authors' in data else []
+        self.sections = [Section(section) for section in data.get('sections')] if 'sections' in data else []
+        self.references = [Reference(reference) for reference in data.get('references')] if 'references' in data else []
 
     def __str__(self):
         str_paper = "--------------------------------------------------------------------------------\n"
@@ -76,18 +52,17 @@ class Paper(PaperStructure):
 
         return data
 
-    # noinspection PyAttributeOutsideInit
     def set_title(self, title):
         if title is not '':
             self.title = title
 
     def add_abstract(self, text):
-        self.sections.append(Section(SectionType.ABSTRACT, 'abstract'))
+        self.sections.append(Section({'section_type': SectionType.ABSTRACT, 'heading': 'abstract'}))
         self.sections[-1].imrad_type = IMRaDType.ABSTRACT
         self.add_text_to_current_section(TextType.MAIN, text)
 
     def add_section(self, section_name):
-        self.sections.append(Section(SectionType.SECTION, section_name))
+        self.sections.append(Section({'section_type': SectionType.SECTION, 'heading': section_name}))
 
     def add_subsection(self, section_name):
         if not len(self.sections):

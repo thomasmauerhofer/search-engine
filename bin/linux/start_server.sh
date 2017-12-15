@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd ../src/
+cd ../../src/
 python3 -m app
