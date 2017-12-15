@@ -14,8 +14,8 @@ from config import ALLOWED_EXTENSIONS, path_to_datastore
 
 
 class API(object):
-    def __init__(self):
-        self.importer = ImporterTeambeam()
+    def __init__(self, run_importer_exe=True):
+        self.importer = ImporterTeambeam(run_importer_exe)
         self.client = DBClient()
         self.preprocessor = Preprocessor()
         self.crypto = Crypto()
@@ -36,6 +36,8 @@ class API(object):
         valid_paper = self.preprocessor.proceed_paper(paper)
         if not valid_paper:
             return None
+        else:
+            paper.get_combined_word_hist()
 
         existing_papers = self.client.get_all_paper()
         paper_str = str(paper)

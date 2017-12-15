@@ -11,6 +11,7 @@ class Authors(PaperStructure):
         self.emails_text = data.get('emails_text') if 'emails_text' in data else ''
         self.authors = [Author(author) for author in data.get('authors')] if 'authors' in data else []
 
+
     def __str__(self):
         str_authors = self.all_authors_text + "\n\n"
 
@@ -19,6 +20,7 @@ class Authors(PaperStructure):
 
         return str_authors
 
+
     def to_dict(self):
         data = {'all_authors_text': self.all_authors_text, 'emails_text': self.emails_text, 'authors': []}
         for author in self.authors:
@@ -26,12 +28,14 @@ class Authors(PaperStructure):
 
         return data
 
+
     def add_author(self, prename, surname, middle_name=None):
         # if surname not in self.all_authors_text:
         #    raise WrongAuthorError('Error: Authors does not contain surname')
 
         if not (prename, surname) in [(obj.prename, obj.surname) for obj in self.authors]:
             self.authors.append(Author({'prename': prename, 'surname': surname, 'middle_name': middle_name}))
+
 
     def add_email(self, email):
         if not is_valid_email(email):
@@ -55,6 +59,7 @@ class Authors(PaperStructure):
         highest = max(longest_sequence_list, key=lambda item: item[0])
         if highest[0] >= len(highest[1].surname):
             highest[1].email = email
+
 
     def add_affiliation(self, affiliation):
         tmp_affiliation = remove_special_chars(affiliation).lower()
@@ -86,8 +91,10 @@ class Author(PaperStructure):
         self.email = data.get('email') if 'email' in data else ''
         self.affiliation = data.get('affiliation') if 'affiliation' in data else ''
 
+
     def __eq__(self, other):
         return (self.surname == other.surname) and (self.prename == other.prename)
+
 
     def __str__(self):
         str_author = self.surname + '\n'
@@ -100,6 +107,7 @@ class Author(PaperStructure):
         str_author += self.affiliation + '\n'
         str_author += '\n'
         return str_author
+
 
     def to_dict(self):
         data = {'surname': self.surname, 'prename': self.prename, 'middle_name': self.middle_name, 'email': self.email,

@@ -140,29 +140,33 @@ def __add_values_to_authors__(paper, author_values):
 
 # ---------------------------------------------------------------------------
 class ImporterTeambeam(ImporterBase):
+    def __init__(self, run_exe=True):
+        self.run_exe = run_exe
+
     def import_paper(self, filename):
         paper = Paper({'filename': filename})
         path_to_file = path_to_datastore + filename
 
-        if os.name == 'nt':  # Windows
-            os.chdir(path_to_teambeam_executable_windows)
-            copy(path_to_file, path_to_teambeam_executable_windows)
-            try:
-                subprocess.call('bash pdf-to-xml -a \"' + filename + '\"')
-            except OSError:
-                print('ERROR: os.subprocess ends with an error.')
-            try:
-                os.remove(filename)
-                move(path_to_teambeam_executable_windows + filename + EXTENSION_TEXT, path_to_datastore)
-                move(path_to_teambeam_executable_windows + filename + EXTENSION_STRUCTURE, path_to_datastore)
-            except FileNotFoundError:
-                print("ERROR: Can't move output files:" + filename)
-                return None
-        else:
-            try:
-                subprocess.call('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
-            except OSError:
-                print('ERROR: os.subprocess ends with an error.')
+        if self.run_exe:
+            if os.name == 'nt':  # Windows
+                os.chdir(path_to_teambeam_executable_windows)
+                copy(path_to_file, path_to_teambeam_executable_windows)
+                try:
+                    subprocess.call('bash pdf-to-xml -a \"' + filename + '\"')
+                except OSError:
+                    print('ERROR: os.subprocess ends with an error.')
+                try:
+                    os.remove(filename)
+                    move(path_to_teambeam_executable_windows + filename + EXTENSION_TEXT, path_to_datastore)
+                    move(path_to_teambeam_executable_windows + filename + EXTENSION_STRUCTURE, path_to_datastore)
+                except FileNotFoundError:
+                    print("ERROR: Can't move output files:" + filename)
+                    return None
+            else:
+                try:
+                    os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
+                except OSError:
+                    print('ERROR: os.subprocess ends with an error.')
 
         with open(path_to_file + EXTENSION_TEXT, "r", encoding="utf8") as textfile:
             data = textfile.read()

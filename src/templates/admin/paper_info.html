@@ -55,7 +55,26 @@
 {% endfor %}
 
 <h3> Sections </h3>
+{% set s1 = [0] %}
 {% for section in paper.sections %}
+    {% if s1.append(s1.pop() + 1) %}{% endif %}
+
+    <button class="btn btn-primary btn-md hist" data-toggle="collapse" data-target="#word_hist_{{ s1[0] }}">Show Histogram</button>
+
+    <div id="word_hist_{{ s1[0] }}" class="collapse">
+        <table class="table table-striped">
+            <tbody>
+                {% for keyrow in section.__word_hist__.keys() | sort | batch(8) %}
+                    <tr>
+                    {% for key in keyrow %}
+                        <td>{{ key }} {{ section.__word_hist__[key] }}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 <table class="table table-bordered">
   <tr>
     <td style="width: 132px;"><b> Section Type </b></td>
@@ -82,7 +101,25 @@
 </table>
 
 {% if section.subsections %}
+  {% set s2 = [0] %}
   {% for subsec in section.subsections %}
+      {% if s2.append(s2.pop() + 1) %}{% endif %}
+
+      <button class="btn btn-primary btn-md hist" data-toggle="collapse" data-target="#word_hist_{{ s1[0] }}_{{ s2[0] }}">Show Histogram</button>
+        <div id="word_hist_{{ s1[0] }}_{{ s2[0] }}" class="collapse">
+            <table class="table table-striped">
+                <tbody>
+                    {% for keyrow in subsec.__word_hist__.keys() | sort | batch(8) %}
+                        <tr>
+                        {% for key in keyrow %}
+                            <td>{{ key }} {{ subsec.__word_hist__[key] }}</td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
     <table class="table table-bordered">
     <tr>
       <td style="width: 132px;"><b> Section Type </b></td>
@@ -101,7 +138,25 @@
     </table>
 
     {% if subsec.subsections %}
+      {% set s3 = [0] %}
       {% for subsubsec in subsec.subsections %}
+          {% if s3.append(s3.pop() + 1) %}{% endif %}
+
+          <button class="btn btn-primary btn-md hist" data-toggle="collapse" data-target="#word_hist_{{ s1[0] }}_{{ s2[0] }}_{{ s3[0] }}">Show Histogram</button>
+            <div id="word_hist_{{ s1[0] }}_{{ s2[0] }}_{{ s3[0] }}" class="collapse">
+                <table class="table table-striped">
+                    <tbody>
+                        {% for keyrow in subsubsec.__word_hist__.keys() | sort | batch(8) %}
+                            <tr>
+                            {% for key in keyrow %}
+                                <td>{{ key }} {{ subsubsec.__word_hist__[key] }}</td>
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
         <table class="table table-bordered">
           <tr>
             <td style="width: 132px;"><b> Section Type </b></td>

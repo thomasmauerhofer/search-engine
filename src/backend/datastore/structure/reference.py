@@ -17,6 +17,7 @@ class Reference(PaperStructure):
         self.reference_info = [[ReferenceType[info.get('reference_type')], info.get('reference_text')]
                                for info in data.get('reference_info')] if 'reference_info' in data else []
 
+
     def __str__(self):
         ref_str = self.complete_reference + '\n\n'
         ref_str += self.title + '\n'
@@ -29,6 +30,7 @@ class Reference(PaperStructure):
 
         ref_str += '\n'
         return ref_str
+
 
     def to_dict(self):
         data = {'complete_reference': self.complete_reference, 'title': self.title, 'reference_info': [], 'authors': []}
@@ -43,6 +45,7 @@ class Reference(PaperStructure):
 
         return data
 
+
     def add_author(self, author_type, prename, surname):
         if surname not in self.complete_reference:
             raise WrongReferenceError('Error: Reference does not contain author', 'author',
@@ -50,11 +53,13 @@ class Reference(PaperStructure):
 
         self.authors.append([author_type, Author({'prename': prename, 'surname': surname})])
 
+
     def add_title(self, title):
         if title not in self.complete_reference:
             raise WrongReferenceError('Error: Reference does not contain title', 'title', title)
 
         self.title += title
+
 
     def add_reference_info(self, reference_type, text):
         if text not in self.complete_reference:

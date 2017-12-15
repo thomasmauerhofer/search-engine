@@ -6,7 +6,4 @@ class WordHist(dict):
 
     def append(self, d1):
         for key, value in d1.items():
-            if key in self:
-                self[key] += value
-            else:
-                self[key] = value
+            self[key] = self[key] + value if key in self else value

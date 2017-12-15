@@ -3,6 +3,7 @@
 
 from enum import Enum
 from backend.datastore.structure.paper_structure import PaperStructure
+from backend.utils.objects.word_hist import WordHist
 
 
 class Section(PaperStructure):
@@ -13,6 +14,9 @@ class Section(PaperStructure):
         self.imrad_types = [IMRaDType[imrad_type] for imrad_type in data.get('imrad_types')] if 'imrad_types' in data else []
         self.text = [[TextType[obj.get('text_type')], obj.get('text')] for obj in data.get('text')] if 'text' in data else []
         self.subsections = [Section(subsection) for subsection in data.get('subsections')] if 'subsections' in data else []
+
+        self.__word_hist__ = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
+
 
     def __str__(self):
         str_section = self.section_type.name + "\n"
@@ -31,9 +35,10 @@ class Section(PaperStructure):
 
         return str_section
 
+
     def to_dict(self):
         data = {'section_type': self.section_type.name, 'heading': self.heading, 'text': [], 'subsections': [],
-                'imrad_types': []}
+                'imrad_types': [], 'word_hist': self.__word_hist__}
 
         for text in self.text:
             dic = {'text_type': text[0].name, 'text': text[1]}
@@ -47,14 +52,34 @@ class Section(PaperStructure):
 
         return data
 
+
+    def get_combined_word_hist(self):
+        if not self.__word_hist__:
+            for word in self.heading.split():
+                word = word.replace('.', " ")
+                self.__word_hist__[word] = self.__word_hist__[word] + 1 if word in self.__word_hist__ else 1
+
+            for text in self.text:
+                for word in text[1].split():
+                    word = word.replace('.', " ")
+                    self.__word_hist__[word] = self.__word_hist__[word] + 1 if word in self.__word_hist__ else 1
+
+        ret = WordHist(self.__word_hist__.copy())
+        for subsection in self.subsections:
+            ret.append(subsection.get_combined_word_hist())
+        return ret
+
+
     def add_text_object(self, text_type, text):
         if len(self.subsections):
             self.subsections[-1].add_text_object(text_type, text)
         else:
             self.text.append([text_type, text])
 
+
     def add_subsection(self, section_type, heading):
-        self.subsections.append(Section({'section_type': section_type, 'heading': heading}))
+        self.subsections.append(Section({'section_type': section_type.name, 'heading': heading}))
+
 
     def add_to_imrad(self, imrad_type):
         if not any(imrad_type is x for x in self.imrad_types) and \

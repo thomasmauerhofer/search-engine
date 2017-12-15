@@ -10,7 +10,7 @@ from config import path_to_datastore
 
 
 def __add_files__(folder):
-    api = API()
+    api = API(False)
     api.delete_all_paper()
 
     for filename in os.listdir(os.path.abspath(folder)):

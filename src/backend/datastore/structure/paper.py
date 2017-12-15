@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-
-from config import path_to_datastore
+from backend.utils.objects.word_hist import WordHist
 from backend.datastore.structure.paper_structure import PaperStructure
 from backend.datastore.structure.reference import Reference
 from backend.datastore.structure.section import Section, SectionType, TextType, IMRaDType
 from backend.datastore.structure.author import Authors
+from config import path_to_datastore
 
 
 class Paper(PaperStructure):
@@ -18,6 +18,9 @@ class Paper(PaperStructure):
         self.authors = [Authors(author) for author in data.get('authors')] if 'authors' in data else []
         self.sections = [Section(section) for section in data.get('sections')] if 'sections' in data else []
         self.references = [Reference(reference) for reference in data.get('references')] if 'references' in data else []
+
+        self.__word_hist__ = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
+
 
     def __str__(self):
         str_paper = "--------------------------------------------------------------------------------\n"
@@ -39,9 +42,10 @@ class Paper(PaperStructure):
         str_paper += "--------------------------------------------------------------------------------\n\n"
         return str_paper
 
+
     def to_dict(self):
         data = {'filename': self.filename, 'title': self.title, 'file': self.file, 'authors': [], 'sections': [],
-                'references': []}
+                'references': [], 'word_hist': self.__word_hist__}
 
         for author in self.authors:
             data['authors'].append(author.to_dict())
@@ -52,23 +56,41 @@ class Paper(PaperStructure):
 
         return data
 
+
+    def get_combined_word_hist(self):
+        if not self.__word_hist__:
+            for word in self.title.split():
+                word = word.replace('.', " ")
+                self.__word_hist__[word] = self.__word_hist__[word] + 1 if word in self.__word_hist__ else 1
+
+        ret = WordHist(self.__word_hist__.copy())
+        for section in self.sections:
+            ret.append(section.get_combined_word_hist())
+
+        return ret
+
+
     def set_title(self, title):
         if title is not '':
             self.title = title
 
+
     def add_abstract(self, text):
-        self.sections.append(Section({'section_type': SectionType.ABSTRACT, 'heading': 'abstract'}))
-        self.sections[-1].imrad_type = IMRaDType.ABSTRACT
+        self.sections.append(Section({'section_type': SectionType.ABSTRACT.name, 'heading': 'abstract'}))
+        self.sections[-1].imrad_types.append(IMRaDType.ABSTRACT)
         self.add_text_to_current_section(TextType.MAIN, text)
 
+
     def add_section(self, section_name):
-        self.sections.append(Section({'section_type': SectionType.SECTION, 'heading': section_name}))
+        self.sections.append(Section({'section_type': SectionType.SECTION.name, 'heading': section_name}))
+
 
     def add_subsection(self, section_name):
         if not len(self.sections):
             self.add_section('')
 
         self.sections[-1].add_subsection(SectionType.SUBSECTION, section_name)
+
 
     def add_subsubsection(self, section_name):
         if not len(self.sections):
@@ -79,32 +101,41 @@ class Paper(PaperStructure):
 
         self.sections[-1].subsections[-1].add_subsection(SectionType.SUBSUBSECTION, section_name)
 
+
     def add_text_to_current_section(self, text_type, text):
         if not len(self.sections):
             self.add_section('')
 
         self.sections[-1].add_text_object(text_type, text)
 
+
     def add_reference(self, full_reference):
-        self.references.append(Reference(full_reference))
+        self.references.append(Reference({'complete_reference': full_reference}))
+
 
     def add_authors_text(self, full_authors):
-        self.authors.append(Authors(full_authors))
+        self.authors.append(Authors({'all_authors_text': full_authors}))
 
-    def get_capter_with_imrad_type(self, imrad_type):
-        return next((indro for indro in self.sections if imrad_type in indro.imrad_type), None)
+
+    def get_chapter_with_imrad_type(self, imrad_type):
+        return next((indro for indro in self.sections if imrad_type in indro.imrad_types), None)
+
 
     def get_indroduction(self):
-        return self.get_capter_with_imrad_type(IMRaDType.INDRODUCTION)
+        return self.get_chapter_with_imrad_type(IMRaDType.INDRODUCTION)
+
 
     def get_methods(self):
-        return self.get_capter_with_imrad_type(IMRaDType.METHODS)
+        return self.get_chapter_with_imrad_type(IMRaDType.METHODS)
+
 
     def get_results(self):
-        return self.get_capter_with_imrad_type(IMRaDType.RESULTS)
+        return self.get_chapter_with_imrad_type(IMRaDType.RESULTS)
+
 
     def get_discussion(self):
-        return self.get_capter_with_imrad_type(IMRaDType.DISCUSSION)
+        return self.get_chapter_with_imrad_type(IMRaDType.DISCUSSION)
+
 
     def save_file_to_path(self, path):
         open(path + self.filename, 'wb').write(self.file)
