@@ -10,7 +10,7 @@ ALLOWED_EXTENSIONS = {'pdf'}
 
 # paths
 app_path = os.path.abspath(os.path.dirname(__file__))
-path_to_datastore = app_path + "/" + UPLOAD_FOLDER
+path_to_datastore = os.path.join(app_path, UPLOAD_FOLDER)
 
 # importer
 create_output = False

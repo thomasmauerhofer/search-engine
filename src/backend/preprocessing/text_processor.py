@@ -17,7 +17,12 @@ class TextProcessor(object):
         section.text = [text for text in section.text if len(text[1])]
 
         for section_text in section.text:
-            section_text[1] = self.proceed_string(section_text[1].lower())
+            proceed_text = self.proceed_string(section_text[1].lower())
+
+            if proceed_text:
+                section_text[1] = proceed_text
+            else:
+                section.text.remove(section_text)
 
         for subsection in section.subsections:
             self.remove_stopwords_from_section(subsection)

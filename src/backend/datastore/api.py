@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 import contextlib
-import random
 
 import os
 
@@ -36,15 +35,8 @@ class API(object):
         valid_paper = self.preprocessor.proceed_paper(paper)
         if not valid_paper:
             return None
-        else:
-            paper.get_combined_word_hist()
 
-        existing_papers = self.client.get_all_paper()
-        paper_str = str(paper)
-        for existing_paper in existing_papers:
-            if str(existing_paper) == paper_str:
-                return None
-
+        paper.get_combined_word_hist()
         return self.client.add_paper(paper)
 
     def get_paper(self, paper_id):
@@ -79,13 +71,12 @@ class API(object):
             return ret
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
-        for paper in papers:
-            # TODO: implement ranking
-            raking = random.random()
+        for paper_and_rank in papers:
+            paper = paper_and_rank[0]
+            raking = paper_and_rank[1]
 
             element = {"paper": paper, "ranking": raking}
             insert_dict_into_list(ret, element, "ranking")
-
         return ret
 
     # -------------------------------------------------------------------------------

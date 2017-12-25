@@ -10,10 +10,12 @@ class Preprocessor(object):
         self.imrad_detector = IMRaDDetection()
         self.text_processor = TextProcessor()
 
+
     def proceed_paper(self, paper):
         self.text_processor.proceed(paper)
         success = self.imrad_detector.proceed(paper)
         return success
+
 
     def proceed_query(self, query):
         return self.text_processor.proceed_string(query)

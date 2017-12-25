@@ -118,7 +118,8 @@ class Paper(PaperStructure):
 
 
     def get_chapter_with_imrad_type(self, imrad_type):
-        return next((indro for indro in self.sections if imrad_type in indro.imrad_types), None)
+        imrad_type = IMRaDType[imrad_type] if isinstance(imrad_type, str) else imrad_type
+        return [chapter for chapter in self.sections if imrad_type in chapter.imrad_types]
 
 
     def get_indroduction(self):
@@ -135,6 +136,15 @@ class Paper(PaperStructure):
 
     def get_discussion(self):
         return self.get_chapter_with_imrad_type(IMRaDType.DISCUSSION)
+
+
+    def get_ranking_of_section(self, imrad_type, query):
+        sections = self.get_chapter_with_imrad_type(imrad_type)
+        rank = 0.0
+
+        for section in sections:
+            rank += section.get_combined_word_hist().get_normalized_query_value(query)
+        return rank
 
 
     def save_file_to_path(self, path):

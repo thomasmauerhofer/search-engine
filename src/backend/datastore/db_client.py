@@ -60,7 +60,16 @@ class DBClient(object):
             __add_search_queries_for_imrad_type__(imrad_type, query.split(), search_query)
 
         cursor = self.papers.find(search_query)
-        return __cursor_to_list__(cursor)
+        papers = []
+
+        for paper in __cursor_to_list__(cursor):
+            rank = 0.0
+            for imrad_type, query in queries.items():
+                if query:
+                    rank += paper.get_ranking_of_section(imrad_type, query)
+            papers.append([paper, rank])
+
+        return papers
 
     def get_paper_which_contains_query_in_introduction(self, introduction_words):
         search_query = {"$or": []}
