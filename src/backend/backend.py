@@ -11,7 +11,7 @@ backend = Blueprint('backend', __name__)
 api = API()
 
 
-@backend.route('/', methods=["GET", 'POST'])
+@backend.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "GET":
         return render_template('index.html')
@@ -29,7 +29,7 @@ def index():
     return render_template('result.html', queries=queries, result=result)
 
 
-@backend.route('/upload', methods=["GET", 'POST'])
+@backend.route('/upload', methods=['POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['file']
@@ -46,9 +46,9 @@ def upload():
     return render_template('upload.html')
 
 
-@backend.route('/view_pdf/<paper_id>', methods=['GET', 'POST'])
+@backend.route('/view_pdf/<paper_id>', methods=['GET'])
 def view_pdf(paper_id):
-    filepath = api.save_paper_as_pdf(paper_id)
-    resp = send_file(filepath)
-    api.delete_pdf(filepath)
+    path = api.save_paper_as_pdf(paper_id)
+    resp = send_file(path)
+    api.delete_pdf(path)
     return resp

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-
-from backend.utils.string_utils import remove_stopwords, remove_single_digits, remove_single_chars, \
-    remove_special_chars, remove_citations, remove_multiple_spaces, stem_words
+from backend.utils.string_utils import remove_single_digits, remove_citations, remove_special_chars, \
+    remove_single_chars, remove_stopwords, stem_words, remove_multiple_spaces
 
 
 class TextProcessor(object):
@@ -12,20 +11,18 @@ class TextProcessor(object):
 
         paper.sections = [section for section in paper.sections if len(section.subsections) or len(section.text)]
 
+
     def remove_stopwords_from_section(self, section):
         section.heading = self.proceed_string(section.heading.lower())
-        section.text = [text for text in section.text if len(text[1])]
 
         for section_text in section.text:
-            proceed_text = self.proceed_string(section_text[1].lower())
+            section_text[1] = self.proceed_string(section_text[1].lower())
 
-            if proceed_text:
-                section_text[1] = proceed_text
-            else:
-                section.text.remove(section_text)
+        section.text = [text for text in section.text if len(text[1])]
 
         for subsection in section.subsections:
             self.remove_stopwords_from_section(subsection)
+
 
     @staticmethod
     def proceed_string(text):

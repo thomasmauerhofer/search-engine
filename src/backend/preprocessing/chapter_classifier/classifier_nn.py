@@ -21,9 +21,10 @@ class ClassifierNN(ClassifierBase):
         self.num_epochs = num_epochs
         self.val_split = val_split
         self.bag = BagOfWords()
-        self.__init_model__(load_weigths)
+        self.__init_model(load_weigths)
 
-    def __init_model__(self, load_weigths):
+
+    def __init_model(self, load_weights):
         self.model = Sequential()
         # Input Layer:
         self.model.add(Dense(self.size_input_layer, input_dim=len(self.bag.get_vocabulary()), activation='relu'))
@@ -32,12 +33,13 @@ class ClassifierNN(ClassifierBase):
         # Output-Layer holds all members of the IMRaDTypes; softmax = give the actual output class label probabilities
         self.model.add(Dense(len(IMRaDType), activation='softmax'))
 
-        if load_weigths:
+        if load_weights:
             self.model.load_weights(path_to_hdf5 + "weights_04.hdf5")
         self.model.compile(loss='categorical_crossentropy', optimizer='adam',
                            metrics=['accuracy', recall, precision, f1])
 
-    def __load_dataset__(self, filename):
+
+    def __load_dataset(self, filename):
         dataset = []
         with open(path_to_dataset + filename) as f:
             content = f.readlines()
@@ -68,14 +70,17 @@ class ClassifierNN(ClassifierBase):
         y = [item[1] for item in dataset]
         return x, y
 
-    def __load_trainset__(self):
-        return self.__load_dataset__('dataset.txt')
 
-    def __load_testset__(self):
-        return self.__load_dataset__('dataset.txt')
+    def __load_train_set(self):
+        return self.__load_dataset('dataset.txt')
+
+
+    def __load_test_set(self):
+        return self.__load_dataset('dataset.txt')
+
 
     def train(self):
-        (x, y) = self.__load_trainset__()
+        (x, y) = self.__load_train_set()
 
         filepath = "weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
         checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
@@ -85,10 +90,12 @@ class ClassifierNN(ClassifierBase):
                               validation_split=self.val_split, verbose=1, callbacks=callbacks_list)
         return hist.history
 
+
     def test(self):
-        (x_test, y_test) = self.__load_testset__()
+        (x_test, y_test) = self.__load_test_set()
         scores = self.model.evaluate(np.array(x_test), np.array(y_test), verbose=0)
         return self.model.metrics_names, scores
+
 
     def predict_chapter(self, chapter_list):
         x = np.array([self.bag.text_to_vector(name) for name in chapter_list])

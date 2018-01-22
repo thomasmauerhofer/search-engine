@@ -9,13 +9,14 @@ from backend.datastore.api import API
 from config import path_to_datastore
 
 
-def __add_files__(folder):
+def __add_files(folder):
     api = API(False)
     api.delete_all_paper()
 
     for filename in os.listdir(os.path.abspath(folder)):
         try:
-            print('CURRENT FILE: ' + str(filename))
+            if filename.endswith('.pdf'):
+                print('CURRENT FILE: ' + str(filename))
         except UnicodeError:
             print("ERROR: Can't decode filename - Remove Special Characters!")
             continue
@@ -28,13 +29,13 @@ def __add_files__(folder):
             print(paper_id)
 
 
-def __check_database__():
+def __check_database():
     api = API()
     papers = api.get_all_paper()
     print(len(papers))
 
 
-def __add_user__():
+def __add_user():
     print("Add new admin to the database")
     name = input("username: ")
     password = getpass()
@@ -56,10 +57,10 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
 
     if options.folder:
-        __add_files__(options.folder)
+        __add_files(options.folder)
     elif options.check:
-        __check_database__()
+        __check_database()
     elif options.user:
-        __add_user__()
+        __add_user()
     else:
         print("Usage: No Parameter! Use -f FOLDERPATH to upload all files of a folder, or -h for help")

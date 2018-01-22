@@ -7,7 +7,7 @@ from backend.datastore.api import API
 admin = Blueprint('admin', __name__)
 
 
-@admin.route('/admin/', methods=['GET', 'POST'])
+@admin.route('/admin/', methods=['GET'])
 def admin_index():
     if 'logged_in' in session.keys() and session['logged_in']:
         api = API()
@@ -30,20 +30,20 @@ def admin_login():
         return redirect('admin/')
 
 
-@admin.route('/admin/logout', methods=['GET', 'POST'])
+@admin.route('/admin/logout', methods=['GET'])
 def admin_logout():
     session['logged_in'] = False
     return redirect('admin/')
 
 
-@admin.route('/admin/paper_info/<paper_id>', methods=['GET', 'POST'])
+@admin.route('/admin/paper_info/<paper_id>', methods=['GET'])
 def paper_info(paper_id):
     api = API()
     paper = api.get_paper(paper_id)
     return render_template('admin/paper_info.html', paper=paper)
 
 
-@admin.route('/admin/user_info', methods=['GET', 'POST'])
+@admin.route('/admin/user_info', methods=['GET'])
 def user_info():
     if not ('logged_in' in session.keys() and session['logged_in']):
         return redirect('admin/')

@@ -21,127 +21,128 @@ OUTPUT = open(OUTPUT_FILENAME, "w") if create_output else None
 IGNORE_CASES = ["heading", "<table border=\"1\" summary=\"\""]
 
 
-def __delete_files__(filename):
-    path_to_file = path_to_datastore + filename
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(path_to_file)
-        os.remove(path_to_file + EXTENSION_TEXT)
-        os.remove(path_to_file + EXTENSION_STRUCTURE)
-
-
-# -----------------------------------------------------------------------------
-def __add_values_to_references__(paper, reference_values):
-    full_round = False
-    i = j = 0
-
-    while j < len(reference_values):
-        value, data = reference_values[j]
-
-        try:
-            if value == 'ref-authorGivenName':
-                last_value, last_data = reference_values[j - 1]
-                surname = last_data if last_value == 'ref-authorSurname' else ''
-
-                paper.references[i].add_author(ReferenceType.AUTHOR, data, surname)
-            elif value == 'ref-authorOther':
-                name = data.split(',')
-                if len(name) < 2:
-                    name.append('')
-
-                paper.references[i].add_author(ReferenceType.AUTHOR_OTHER, name[1], name[0])
-            elif value == 'ref-title':
-                paper.references[i].add_title(data)
-            elif value == 'ref-other':
-                paper.references[i].add_reference_info(ReferenceType.OTHER, data)
-            elif value == 'ref-source':
-                paper.references[i].add_reference_info(ReferenceType.SOURCE, data)
-            elif value == 'ref-date':
-                paper.references[i].add_reference_info(ReferenceType.DATE, data)
-            elif value == 'ref-note':
-                paper.references[i].add_reference_info(ReferenceType.NOTE, data)
-            elif value == 'ref-location':
-                paper.references[i].add_reference_info(ReferenceType.LOCATION, data)
-            elif value == 'ref-publisher':
-                paper.references[i].add_reference_info(ReferenceType.PUBLISHER, data)
-            elif value == 'ref-volume':
-                paper.references[i].add_reference_info(ReferenceType.VOLUME, data)
-            elif value == 'ref-editor':
-                paper.references[i].add_reference_info(ReferenceType.EDITOR, data)
-            elif value == 'ref-issue':
-                paper.references[i].add_reference_info(ReferenceType.ISSUE, data)
-            elif value == 'ref-pages':
-                paper.references[i].add_reference_info(ReferenceType.PAGES, data)
-            elif value == 'ref-conference':
-                paper.references[i].add_reference_info(ReferenceType.CONFERENCE, data)
-            elif create_output and (len(value.split()) == 1) and (value != 'ref-authorSurname'):
-                OUTPUT.write("REFERENCE NOT IN LIST!\n")
-                OUTPUT.write("Filename: " + paper.filename + " value: " + value + "\ntext: " + data + "\n")
-                OUTPUT.write("\n")
-
-            full_round = False
-            j += 1
-        except WrongReferenceError:
-            i += 1
-
-            if full_round:
-                OUTPUT.write("CAN'T FIND CORRECT REFERENCE FOR:\n")
-                OUTPUT.write(WrongReferenceError.value + ":\n")
-                OUTPUT.write(WrongReferenceError.data + "\n\n")
-                j += 1
-                full_round = False
-            elif i == len(paper.references):
-                full_round = True
-                i = 0
-
-
-# -------------------------------------------------------------------------------
-def __add_values_to_authors__(paper, author_values):
-    i = 0
-
-    while i < len(author_values):
-        value, data = author_values[i]
-
-        if value == 'authors':
-            paper.add_authors_text(data)
-        elif value == 'surname':
-            prename = ""
-            middle_name = None
-
-            last_value, last_data = author_values[i - 1]
-            sec_last_value, sec_last_data = author_values[i - 2]
-
-            if last_value == 'given-name':
-                prename = last_data
-            elif last_value == 'middle-name':
-                middle_name = last_data
-
-            if sec_last_value == 'given-name':
-                prename = last_data
-            elif sec_last_value == 'middle-name':
-                middle_name = last_data
-
-            if not len(paper.authors):
-                paper.add_authors_text('')
-
-            paper.authors[-1].add_author(prename, data, middle_name)
-        elif value == 'emails':
-            if len(paper.authors):
-                paper.authors[-1].emails_text = data
-        elif value == 'email':
-            if len(paper.authors):
-                paper.authors[-1].add_email(data)
-        elif value == 'affiliations' or \
-                        value == 'affiliation':
-            if len(paper.authors):
-                paper.authors[-1].add_affiliation(data)
-
-        i += 1
-
-
-# ---------------------------------------------------------------------------
 class ImporterTeambeam(ImporterBase):
     def __init__(self, run_exe=True):
         self.run_exe = run_exe
+
+
+    @staticmethod
+    def __add_values_to_references(paper, reference_values):
+        full_round = False
+        i = j = 0
+
+        while j < len(reference_values):
+            value, data = reference_values[j]
+
+            try:
+                if value == 'ref-authorGivenName':
+                    last_value, last_data = reference_values[j - 1]
+                    surname = last_data if last_value == 'ref-authorSurname' else ''
+
+                    paper.references[i].add_author(ReferenceType.AUTHOR, data, surname)
+                elif value == 'ref-authorOther':
+                    name = data.split(',')
+                    if len(name) < 2:
+                        name.append('')
+
+                    paper.references[i].add_author(ReferenceType.AUTHOR_OTHER, name[1], name[0])
+                elif value == 'ref-title':
+                    paper.references[i].add_title(data)
+                elif value == 'ref-other':
+                    paper.references[i].add_reference_info(ReferenceType.OTHER, data)
+                elif value == 'ref-source':
+                    paper.references[i].add_reference_info(ReferenceType.SOURCE, data)
+                elif value == 'ref-date':
+                    paper.references[i].add_reference_info(ReferenceType.DATE, data)
+                elif value == 'ref-note':
+                    paper.references[i].add_reference_info(ReferenceType.NOTE, data)
+                elif value == 'ref-location':
+                    paper.references[i].add_reference_info(ReferenceType.LOCATION, data)
+                elif value == 'ref-publisher':
+                    paper.references[i].add_reference_info(ReferenceType.PUBLISHER, data)
+                elif value == 'ref-volume':
+                    paper.references[i].add_reference_info(ReferenceType.VOLUME, data)
+                elif value == 'ref-editor':
+                    paper.references[i].add_reference_info(ReferenceType.EDITOR, data)
+                elif value == 'ref-issue':
+                    paper.references[i].add_reference_info(ReferenceType.ISSUE, data)
+                elif value == 'ref-pages':
+                    paper.references[i].add_reference_info(ReferenceType.PAGES, data)
+                elif value == 'ref-conference':
+                    paper.references[i].add_reference_info(ReferenceType.CONFERENCE, data)
+                elif create_output and (len(value.split()) == 1) and (value != 'ref-authorSurname'):
+                    OUTPUT.write("REFERENCE NOT IN LIST!\n")
+                    OUTPUT.write("Filename: " + paper.filename + " value: " + value + "\ntext: " + data + "\n")
+                    OUTPUT.write("\n")
+
+                full_round = False
+                j += 1
+            except WrongReferenceError as error:
+                i += 1
+
+                if full_round:
+                    OUTPUT.write("CAN'T FIND CORRECT REFERENCE FOR:\n")
+                    OUTPUT.write(error.value + ":\n")
+                    OUTPUT.write(error.data + "\n\n")
+                    j += 1
+                    full_round = False
+                elif i == len(paper.references):
+                    full_round = True
+                    i = 0
+
+
+    @staticmethod
+    def __delete_files(filename):
+        path_to_file = path_to_datastore + filename
+        with contextlib.suppress(FileNotFoundError):
+            os.remove(path_to_file)
+            os.remove(path_to_file + EXTENSION_TEXT)
+            os.remove(path_to_file + EXTENSION_STRUCTURE)
+
+
+    @staticmethod
+    def __add_values_to_authors(paper, author_values):
+        i = 0
+
+        while i < len(author_values):
+            value, data = author_values[i]
+
+            if value == 'authors':
+                paper.add_authors_text(data)
+            elif value == 'surname':
+                prename = ""
+                middle_name = None
+
+                last_value, last_data = author_values[i - 1]
+                sec_last_value, sec_last_data = author_values[i - 2]
+
+                if last_value == 'given-name':
+                    prename = last_data
+                elif last_value == 'middle-name':
+                    middle_name = last_data
+
+                if sec_last_value == 'given-name':
+                    prename = last_data
+                elif sec_last_value == 'middle-name':
+                    middle_name = last_data
+
+                if not len(paper.authors):
+                    paper.add_authors_text('')
+
+                paper.authors[-1].add_author(prename, data, middle_name)
+            elif value == 'emails':
+                if len(paper.authors):
+                    paper.authors[-1].emails_text = data
+            elif value == 'email':
+                if len(paper.authors):
+                    paper.authors[-1].add_email(data)
+            elif value == 'affiliations' or \
+                    value == 'affiliation':
+                if len(paper.authors):
+                    paper.authors[-1].add_affiliation(data)
+
+            i += 1
+
 
     def import_paper(self, filename):
         paper = Paper({'filename': filename})
@@ -211,13 +212,13 @@ class ImporterTeambeam(ImporterBase):
             elif 'ref-' in value:
                 reference_values.append([value, text])
             elif value == 'authors' or \
-                            value == 'given-name' or \
-                            value == 'middle-name' or \
-                            value == 'surname' or \
-                            value == 'email' or \
-                            value == 'emails' or \
-                            value == 'affiliations' or \
-                            value == 'affiliation':
+                    value == 'given-name' or \
+                    value == 'middle-name' or \
+                    value == 'surname' or \
+                    value == 'email' or \
+                    value == 'emails' or \
+                    value == 'affiliations' or \
+                    value == 'affiliation':
                 author_values.append([value, text])
             else:
                 if create_output and (len(value.split()) == 1) and (not any(s in value for s in IGNORE_CASES)):
@@ -225,7 +226,7 @@ class ImporterTeambeam(ImporterBase):
                     OUTPUT.write("Filename: " + filename + " value: " + value + "\ntext: " + text + "\n")
                     OUTPUT.write("\n")
 
-        __add_values_to_references__(paper, reference_values)
-        __add_values_to_authors__(paper, author_values)
-        __delete_files__(filename)
+        self.__add_values_to_references(paper, reference_values)
+        self.__add_values_to_authors(paper, author_values)
+        self.__delete_files(filename)
         return paper

@@ -18,6 +18,7 @@ class ClassifierSimple(ClassifierBase):
         self.DISCUSSION_TOKENS = ['conclus', 'futur work', 'outlook', 'discuss']
         self.ACKNOWLEG_TOKENS = ['acknowledg']
 
+
     def predict_chapter(self, chapter_list):
         y = []
 

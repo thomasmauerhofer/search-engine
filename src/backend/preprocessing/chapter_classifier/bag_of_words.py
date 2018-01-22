@@ -12,8 +12,10 @@ class BagOfWords(object):
 
         self.vectorizer = CountVectorizer(vocabulary=lines)
 
+
     def text_to_vector(self, text):
         return self.vectorizer.fit_transform([text]).toarray()[0]
+
 
     def get_vocabulary(self):
         return self.vectorizer.vocabulary

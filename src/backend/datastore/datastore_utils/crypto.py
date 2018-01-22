@@ -10,8 +10,10 @@ class Crypto(object):
     def __init__(self):
         self.cipher = AES.new(SHA3_KEY, AES.MODE_ECB)
 
+
     def encrypt(self, decoded):
         return base64.b64encode(self.cipher.encrypt(decoded.rjust(128))).decode('ascii')
+
 
     def decrypt(self, encoded):
         encoded = encoded.encode('ascii')

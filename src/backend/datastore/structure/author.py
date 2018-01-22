@@ -77,9 +77,9 @@ class Authors(PaperStructure):
         if not len(longest_sequence_list):
             return
 
-        higest = max(longest_sequence_list, key=lambda item: item[0])
-        if higest[0] >= len(higest[1].surname):
-            higest[1].affiliation = affiliation
+        highest = max(longest_sequence_list, key=lambda item: item[0])
+        if highest[0] >= len(highest[1].surname):
+            highest[1].affiliation = affiliation
 
 
 class Author(PaperStructure):

@@ -19,10 +19,12 @@ class API(object):
         self.preprocessor = Preprocessor()
         self.crypto = Crypto()
 
+
     @staticmethod
     def allowed_upload_file(filename):
         return '.' in filename and \
                filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
     def add_paper(self, filename):
         if not self.allowed_upload_file(filename):
@@ -31,7 +33,6 @@ class API(object):
         paper = self.importer.import_paper(filename)
         if not paper:
             return None
-
         valid_paper = self.preprocessor.proceed_paper(paper)
         if not valid_paper:
             return None
@@ -39,26 +40,33 @@ class API(object):
         paper.get_combined_word_hist()
         return self.client.add_paper(paper)
 
+
     def get_paper(self, paper_id):
         return self.client.get_paper(paper_id)
+
 
     def get_all_paper(self):
         return self.client.get_all_paper()
 
+
     def delete_paper(self, paper_id):
         self.client.delete_paper(paper_id)
 
+
     def delete_all_paper(self):
         self.client.delete_all_paper()
+
 
     def save_paper_as_pdf(self, paper_id):
         paper = self.client.get_paper(paper_id)
         return paper.save_file_to_path(path_to_datastore)
 
+
     @staticmethod
-    def delete_pdf(filepath):
+    def delete_pdf(file_path):
         with contextlib.suppress(FileNotFoundError, PermissionError):
-            os.remove(filepath)
+            os.remove(file_path)
+
 
     def get_ranked_papers_explicit(self, queries):
         queries_proceed = {}
@@ -79,6 +87,7 @@ class API(object):
             insert_dict_into_list(ret, element, "ranking")
         return ret
 
+
     # -------------------------------------------------------------------------------
     #                           User DB
     # -------------------------------------------------------------------------------
@@ -87,12 +96,13 @@ class API(object):
         if not user:
             return False
 
-        return username == user.get('username') and \
-               self.crypto.encrypt(password) == user.get('password')
+        return username == user.get('username') and self.crypto.encrypt(password) == user.get('password')
+
 
     def add_user(self, username, password):
         user = {'username': username, 'password': self.crypto.encrypt(password)}
         return self.client.add_user(user)
+
 
     def get_all_user(self):
         return self.client.get_all_user()

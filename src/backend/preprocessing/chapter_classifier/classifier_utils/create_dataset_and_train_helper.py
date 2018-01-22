@@ -3,8 +3,8 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+from backend.preprocessing.text_processor import TextProcessor
 from operator import itemgetter
-import backend.preprocessing.text_processor as text_processing
 from optparse import OptionParser
 from config import path_to_datastore, path_to_dataset
 from backend.datastore.structure.section import IMRaDType
@@ -81,6 +81,7 @@ def create_dataset():
         if filename.endswith('.pdf'):
             importer = ImporterTeambeam()
             paper = importer.import_paper(filename)
+            text_processing = TextProcessor()
 
             text_processing.proceed(paper)
             chapter_names = [name.heading for name in paper.sections if
