@@ -15,7 +15,7 @@ class Section(PaperStructure):
         self.text = [[TextType[obj.get('text_type')], obj.get('text')] for obj in data.get('text')] if 'text' in data else []
         self.subsections = [Section(subsection) for subsection in data.get('subsections')] if 'subsections' in data else []
 
-        self.__word_hist__ = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
+        self.word_hist = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
 
 
     def __str__(self):
@@ -38,7 +38,7 @@ class Section(PaperStructure):
 
     def to_dict(self):
         data = {'section_type': self.section_type.name, 'heading': self.heading, 'text': [], 'subsections': [],
-                'imrad_types': [], 'word_hist': self.__word_hist__}
+                'imrad_types': [], 'word_hist': self.word_hist}
 
         for text in self.text:
             dic = {'text_type': text[0].name, 'text': text[1]}
@@ -54,17 +54,17 @@ class Section(PaperStructure):
 
 
     def get_combined_word_hist(self):
-        if not self.__word_hist__:
+        if not self.word_hist:
             for word in self.heading.split():
                 word = word.replace('.', " ")
-                self.__word_hist__[word] = self.__word_hist__[word] + 1 if word in self.__word_hist__ else 1
+                self.word_hist[word] = self.word_hist[word] + 1 if word in self.word_hist else 1
 
             for text in self.text:
                 for word in text[1].split():
                     word = word.replace('.', " ")
-                    self.__word_hist__[word] = self.__word_hist__[word] + 1 if word in self.__word_hist__ else 1
+                    self.word_hist[word] = self.word_hist[word] + 1 if word in self.word_hist else 1
 
-        ret = WordHist(self.__word_hist__.copy())
+        ret = WordHist(self.word_hist.copy())
         for subsection in self.subsections:
             ret.append(subsection.get_combined_word_hist())
         return ret
@@ -85,6 +85,10 @@ class Section(PaperStructure):
         if not any(imrad_type is x for x in self.imrad_types) and \
                 (not (self.heading.isspace() or self.heading is '')):
             self.imrad_types.append(imrad_type)
+
+
+    def get_ranking(self, query, a):
+        return self.get_combined_word_hist().get_normalized_query_value(query, a)
 
 
 class SectionType(Enum):

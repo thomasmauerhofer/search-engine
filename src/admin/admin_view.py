@@ -40,7 +40,7 @@ def admin_logout():
 def paper_info(paper_id):
     api = API()
     paper = api.get_paper(paper_id)
-    return render_template('admin/paper_info.html', paper=paper)
+    return render_template('admin/paper_info.html', paper=paper, combined_hist=paper.get_combined_word_hist())
 
 
 @admin.route('/admin/user_info', methods=['GET'])

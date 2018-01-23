@@ -27,3 +27,8 @@ li.list-group-item form input.btn.btn-primary.btn-xs {
 button.btn.btn-primary.btn-md.hist {
     margin-bottom: 10px;
 }
+
+.word-hist-title {
+    text-align: center;
+    font-weight: bold;
+}

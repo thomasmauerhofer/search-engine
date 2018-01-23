@@ -1,215 +1,255 @@
 {% extends "admin/layout.html" %}
 
 {% block body %}
-<h2> {{ paper.filename }}</h2>
+    <h2> {{ paper.filename }}</h2>
 
-<table class="table table-bordered">
-  <tr>
-    <td style="width: 132px;"><b> ID </b></td>
-    <td>{{ paper.id }}</td>
-  </tr>
-  <tr>
-    <td style="width: 132px;"><b> Title </b></td>
-    <td>{{ paper.title }}</td>
-  </tr>
-</table>
-
-<h3> Authors </h3>
-{% for val in paper.authors %}
-  {% if val.all_authors_text %}
-    <blockquote><p>{{ val.all_authors_text }}</p></blockquote>
-  {% endif %}
-  {% if val.emails_text %}
-    <blockquote><p>{{ val.emails_text }}</p></blockquote>
-  {% endif %}
-  {% if not val.authors %}
-    <em>Sorry, no authors table available</em>
-  {% else %}
     <table class="table table-bordered">
-      <thead>
         <tr>
-          <th style="width: 150px;">Firstname</th>
-          <th style="width: 150px;">Middlename</th>
-          <th style="width: 150px;">Lastname</th>
-          <th style="width: 230px;">Email</th>
-          <th>Affiliation</th>
+            <td style="width: 132px;"><b> ID </b></td>
+            <td>{{ paper.id }}</td>
         </tr>
-      </thead>
-      <tbody>
-        {% for author in val.authors %}
         <tr>
-          <td>{{ author.prename }}</td>
-          {% if not author.middle_name %}
-            <td></td>
-          {% else %}
-            <td>{{ author.middle_name }}</td>
-          {% endif %}
-          <td>{{ author.surname }}</td>
-          <td>{{ author.email }}</td>
-          <td>{{ author.affiliation }}</td>
+            <td style="width: 132px;"><b> Title </b></td>
+            <td>{{ paper.title }}</td>
         </tr>
-        {% endfor %}
-      </tbody>
     </table>
-  {% endif %}
-{% endfor %}
 
-<h3> Sections </h3>
-{% set s1 = [0] %}
-{% for section in paper.sections %}
-    {% if s1.append(s1.pop() + 1) %}{% endif %}
-
-    <button class="btn btn-primary btn-md hist" data-toggle="collapse" data-target="#word_hist_{{ s1[0] }}">Show Histogram</button>
-
-    <div id="word_hist_{{ s1[0] }}" class="collapse">
-        <table class="table table-striped">
-            <tbody>
-                {% for keyrow in section.__word_hist__.keys() | sort | batch(8) %}
+    <h3> Authors </h3>
+    {% for val in paper.authors %}
+        {% if val.all_authors_text %}
+            <blockquote><p>{{ val.all_authors_text }}</p></blockquote>
+        {% endif %}
+        {% if val.emails_text %}
+            <blockquote><p>{{ val.emails_text }}</p></blockquote>
+        {% endif %}
+        {% if not val.authors %}
+            <em>Sorry, no authors table available</em>
+        {% else %}
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th style="width: 150px;">Firstname</th>
+                    <th style="width: 150px;">Middlename</th>
+                    <th style="width: 150px;">Lastname</th>
+                    <th style="width: 230px;">Email</th>
+                    <th>Affiliation</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for author in val.authors %}
                     <tr>
-                    {% for key in keyrow %}
-                        <td>{{ key }} {{ section.__word_hist__[key] }}</td>
-                    {% endfor %}
+                        <td>{{ author.prename }}</td>
+                        {% if not author.middle_name %}
+                            <td></td>
+                        {% else %}
+                            <td>{{ author.middle_name }}</td>
+                        {% endif %}
+                        <td>{{ author.surname }}</td>
+                        <td>{{ author.email }}</td>
+                        <td>{{ author.affiliation }}</td>
                     </tr>
                 {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    {% endfor %}
+
+    <h3> Complete Histogram </h3>
+    <button class="btn btn-primary btn-md hist" data-toggle="collapse"
+            data-target="#word_hist_complete">Show Histogram
+    </button>
+    <div id="word_hist_complete" class="collapse">
+        <p class="word-hist-title">
+            #Elements: {{ combined_hist | length }},
+            Sum of Elements: {{ combined_hist.items() | sum(attribute="1") }}
+        </p>
+        <table class="table table-striped">
+            <tbody>
+            {% for keyrow in combined_hist.keys() | sort | batch(8) %}
+                <tr>
+                    {% for key in keyrow %}
+                        <td>{{ key }}: {{ combined_hist[key] }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
 
-<table class="table table-bordered">
-  <tr>
-    <td style="width: 132px;"><b> Section Type </b></td>
-    <td>{{ section.section_type.name }}</td>
-  </tr>
-  <tr>
-    <td style="width: 132px;"><b> Heading </b></td>
-    <td>{{ section.heading }}</td>
-  </tr>
-  <tr>
-    <td style="width: 132px;"><b> IMRaD Types </b></td>
-    <td>
-      {% for imrad in section.imrad_types %}
-        {{ imrad.name }}
-      {% endfor %}
-    </td>
-  </tr>
-  {% for val in section.text %}
-    <tr>
-      <td style="width: 132px;"> {{ val[0].name }} </td>
-      <td> {{ val[1] }} </td>
-    </tr>
-  {% endfor %}
-</table>
+    <h3> Sections </h3>
+    {% set s1 = [0] %}
+    {% for section in paper.sections %}
+        {% if s1.append(s1.pop() + 1) %}{% endif %}
 
-{% if section.subsections %}
-  {% set s2 = [0] %}
-  {% for subsec in section.subsections %}
-      {% if s2.append(s2.pop() + 1) %}{% endif %}
+        <button class="btn btn-primary btn-md hist" data-toggle="collapse" data-target="#word_hist_{{ s1[0] }}">Show
+            Histogram
+        </button>
 
-      <button class="btn btn-primary btn-md hist" data-toggle="collapse" data-target="#word_hist_{{ s1[0] }}_{{ s2[0] }}">Show Histogram</button>
-        <div id="word_hist_{{ s1[0] }}_{{ s2[0] }}" class="collapse">
+        <div id="word_hist_{{ s1[0] }}" class="collapse">
+            <p class="word-hist-title">
+                #Elements: {{ section.word_hist | length }},
+                Sum of Elements: {{ section.word_hist.items() | sum(attribute="1") }}
+            </p>
             <table class="table table-striped">
                 <tbody>
-                    {% for keyrow in subsec.__word_hist__.keys() | sort | batch(8) %}
-                        <tr>
+                {% for keyrow in section.word_hist.keys() | sort | batch(8) %}
+                    <tr>
                         {% for key in keyrow %}
-                            <td>{{ key }} {{ subsec.__word_hist__[key] }}</td>
+                            <td>{{ key }}: {{ section.word_hist[key] }}</td>
                         {% endfor %}
-                        </tr>
-                    {% endfor %}
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
 
-    <table class="table table-bordered">
-    <tr>
-      <td style="width: 132px;"><b> Section Type </b></td>
-      <td>{{ subsec.section_type.name }}</td>
-    </tr>
-    <tr>
-      <td style="width: 132px;"><b> Heading </b></td>
-      <td>{{ subsec.heading }}</td>
-    </tr>
-    {% for val in subsec.text %}
-      <tr>
-        <td style="width: 132px;"> {{ val[0].name }} </td>
-        <td> {{ val[1] }} </td>
-      </tr>
-    {% endfor %}
-    </table>
+        <table class="table table-bordered">
+            <tr>
+                <td style="width: 132px;"><b> Section Type </b></td>
+                <td>{{ section.section_type.name }}</td>
+            </tr>
+            <tr>
+                <td style="width: 132px;"><b> Heading </b></td>
+                <td>{{ section.heading }}</td>
+            </tr>
+            <tr>
+                <td style="width: 132px;"><b> IMRaD Types </b></td>
+                <td>
+                    {% for imrad in section.imrad_types %}
+                        {{ imrad.name }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% for val in section.text %}
+                <tr>
+                    <td style="width: 132px;"> {{ val[0].name }} </td>
+                    <td> {{ val[1] }} </td>
+                </tr>
+            {% endfor %}
+        </table>
 
-    {% if subsec.subsections %}
-      {% set s3 = [0] %}
-      {% for subsubsec in subsec.subsections %}
-          {% if s3.append(s3.pop() + 1) %}{% endif %}
+        {% if section.subsections %}
+            {% set s2 = [0] %}
+            {% for subsec in section.subsections %}
+                {% if s2.append(s2.pop() + 1) %}{% endif %}
 
-          <button class="btn btn-primary btn-md hist" data-toggle="collapse" data-target="#word_hist_{{ s1[0] }}_{{ s2[0] }}_{{ s3[0] }}">Show Histogram</button>
-            <div id="word_hist_{{ s1[0] }}_{{ s2[0] }}_{{ s3[0] }}" class="collapse">
-                <table class="table table-striped">
-                    <tbody>
-                        {% for keyrow in subsubsec.__word_hist__.keys() | sort | batch(8) %}
+                <button class="btn btn-primary btn-md hist" data-toggle="collapse"
+                        data-target="#word_hist_{{ s1[0] }}_{{ s2[0] }}">Show Histogram
+                </button>
+                <div id="word_hist_{{ s1[0] }}_{{ s2[0] }}" class="collapse">
+                    <p class="word-hist-title">
+                        #Elements: {{ subsec.word_hist | length }},
+                        Sum of Elements: {{ subsec.word_hist.items() | sum(attribute="1") }}
+                    </p>
+                    <table class="table table-striped">
+                        <tbody>
+                        {% for keyrow in subsec.word_hist.keys() | sort | batch(8) %}
                             <tr>
-                            {% for key in keyrow %}
-                                <td>{{ key }} {{ subsubsec.__word_hist__[key] }}</td>
-                            {% endfor %}
+                                {% for key in keyrow %}
+                                    <td>{{ key }}: {{ subsec.word_hist[key] }}</td>
+                                {% endfor %}
                             </tr>
                         {% endfor %}
-                    </tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td style="width: 132px;"><b> Section Type </b></td>
+                        <td>{{ subsec.section_type.name }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 132px;"><b> Heading </b></td>
+                        <td>{{ subsec.heading }}</td>
+                    </tr>
+                    {% for val in subsec.text %}
+                        <tr>
+                            <td style="width: 132px;"> {{ val[0].name }} </td>
+                            <td> {{ val[1] }} </td>
+                        </tr>
+                    {% endfor %}
                 </table>
-            </div>
 
-        <table class="table table-bordered">
-          <tr>
-            <td style="width: 132px;"><b> Section Type </b></td>
-            <td>{{ subsubsec.section_type.name }}</td>
-          </tr>
-          <tr>
-            <td style="width: 132px;"><b> Heading </b></td>
-            <td>{{ subsubsec.heading }}</td>
-          </tr>
-          {% for val in subsubsec.text %}
-            <tr>
-              <td style="width: 132px;"> {{ val[0].name }} </td>
-              <td> {{ val[1] }} </td>
-            </tr>
-          {% endfor %}
-        </table>
-      {% endfor %}
+                {% if subsec.subsections %}
+                    {% set s3 = [0] %}
+                    {% for subsubsec in subsec.subsections %}
+                        {% if s3.append(s3.pop() + 1) %}{% endif %}
+
+                        <button class="btn btn-primary btn-md hist" data-toggle="collapse"
+                                data-target="#word_hist_{{ s1[0] }}_{{ s2[0] }}_{{ s3[0] }}">Show Histogram
+                        </button>
+                        <div id="word_hist_{{ s1[0] }}_{{ s2[0] }}_{{ s3[0] }}" class="collapse">
+                            <p class="word-hist-title">
+                                #Elements: {{ subsubsec.word_hist | length }},
+                                Sum of Elements: {{ subsubsec.word_hist.items() | sum(attribute="1") }}
+                            </p>
+                            <table class="table table-striped">
+                                <tbody>
+                                {% for keyrow in subsubsec.word_hist.keys() | sort | batch(8) %}
+                                    <tr>
+                                        {% for key in keyrow %}
+                                            <td>{{ key }}: {{ subsubsec.word_hist[key] }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <td style="width: 132px;"><b> Section Type </b></td>
+                                <td>{{ subsubsec.section_type.name }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 132px;"><b> Heading </b></td>
+                                <td>{{ subsubsec.heading }}</td>
+                            </tr>
+                            {% for val in subsubsec.text %}
+                                <tr>
+                                    <td style="width: 132px;"> {{ val[0].name }} </td>
+                                    <td> {{ val[1] }} </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    <h3> References </h3>
+    {% if not paper.references %}
+        <em>Sorry, no reference table available</em>
+    {% else %}
+        {% for ref in paper.references %}
+            <table class="table table-bordered">
+                <tr>
+                    <td style="width: 132px;"><b> Complete </b></td>
+                    <td>{{ ref.complete_reference }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 132px;"><b> Title </b></td>
+                    <td>{{ ref.title }}</td>
+                </tr>
+                {% for author in ref.authors %}
+                    <tr>
+                        <td style="width: 132px;">{{ author[0].name }}</td>
+                        <td>{{ author[1].prename + " " + author[1].surname }}</td>
+                    </tr>
+                {% endfor %}
+                {% for info in ref.reference_info %}
+                    <tr>
+                        <td style="width: 132px;">{{ info[0].name }}</td>
+                        <td>{{ info[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
     {% endif %}
-  {% endfor %}
-{% endif %}
-{% endfor %}
 
-<h3> References </h3>
-{% if not paper.references %}
-  <em>Sorry, no reference table available</em>
-{% else %}
-{% for ref in paper.references %}
-  <table class="table table-bordered">
-    <tr>
-      <td style="width: 132px;"><b> Complete </b></td>
-      <td>{{ ref.complete_reference }}</td>
-    </tr>
-    <tr>
-      <td style="width: 132px;"><b> Title </b></td>
-      <td>{{ ref.title }}</td>
-    </tr>
-    {% for author in ref.authors %}
-    <tr>
-      <td style="width: 132px;">{{ author[0].name }}</td>
-      <td>{{ author[1].prename + " " + author[1].surname }}</td>
-    </tr>
-    {% endfor %}
-    {% for info in ref.reference_info %}
-    <tr>
-      <td style="width: 132px;">{{ info[0].name }}</td>
-      <td>{{ info[1] }}</td>
-    </tr>
-    {% endfor %}
-  </table>
-{% endfor %}
-{% endif %}
-
-<script type=text/javascript>
-    $("#navbar2").addClass('active').siblings().removeClass('active');
-</script>
+    <script type=text/javascript>
+        $("#navbar2").addClass('active').siblings().removeClass('active');
+    </script>
 {% endblock %}

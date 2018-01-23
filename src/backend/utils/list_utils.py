@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 
-def insert_dict_into_list(mlist, mdict, key):
+def insert_dict_into_sorted_list(mlist, mdict, key):
     lo = 0
     hi = len(mlist)
 

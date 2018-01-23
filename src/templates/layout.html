@@ -2,47 +2,51 @@
 <html>
 
 <head>
-	<title>search-engine</title>
+    <title>search-engine</title>
 
-	<script type=text/javascript>
-  	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-	</script>
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
 
-	<!-- jquery -->
-	<script type=text/javascript src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- jquery -->
+    <script type=text/javascript
+            src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
 
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-	<script type=text/javascript src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <script type=text/javascript
+            src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
     <!-- css -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
 
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Search Engine</a>
-		</div>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Search Engine</a>
+            </div>
 
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li id="navbar1" class="active"><a href="/">Search <span class="sr-only">(current)</span></a></li>
-				<li id="navbar2"><a href="/upload">Upload</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-	    </ul>
- 		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li id="navbar1" class="active"><a href="/">Search <span class="sr-only">(current)</span></a></li>
+                    <li id="navbar2"><a href="/upload">Upload</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
     </nav>
     {% block body %}{% endblock %}
 </div>

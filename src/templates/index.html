@@ -1,28 +1,33 @@
 {% extends "layout.html" %} {% block body %}
-<div class="container">
-	<form role="form" method='POST' action='/'>
-        <h4>Introduction (Problem)</h4>
-        <textarea class="form-control simple_input" type="text" name="intro_text" placeholder="Enter a query"></textarea>
+    <div class="container">
+        <form role="form" method='POST' action='/'>
+            <h4>Introduction (Problem)</h4>
+            <textarea class="form-control simple_input" type="text" name="intro_text"
+                      placeholder="Enter a query"></textarea>
 
-        <h4>Background</h4>
-        <textarea class="form-control simple_input" type="text" name="background_text" placeholder="Enter a query"></textarea>
+            <h4>Background</h4>
+            <textarea class="form-control simple_input" type="text" name="background_text"
+                      placeholder="Enter a query"></textarea>
 
-        <h4>Methods (Algorithm)</h4>
-        <textarea class="form-control simple_input" type="text" name="methods_text" placeholder="Enter a query"></textarea>
+            <h4>Methods (Algorithm)</h4>
+            <textarea class="form-control simple_input" type="text" name="methods_text"
+                      placeholder="Enter a query"></textarea>
 
-        <h4>Results (Evaluation)</h4>
-        <textarea class="form-control simple_input" type="text" name="results_text" placeholder="Enter a query"></textarea>
+            <h4>Results (Evaluation)</h4>
+            <textarea class="form-control simple_input" type="text" name="results_text"
+                      placeholder="Enter a query"></textarea>
 
-        <h4>Discussion</h4>
-        <textarea class="form-control simple_input" type="text" name="discussion_text" placeholder="Enter a query"></textarea>
+            <h4>Discussion</h4>
+            <textarea class="form-control simple_input" type="text" name="discussion_text"
+                      placeholder="Enter a query"></textarea>
 
-        <div class="div-submit text-center">
-            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
-        </div>
-	</form>
-</div> <!-- /.container -->
+            <div class="div-submit text-center">
+                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+            </div>
+        </form>
+    </div> <!-- /.container -->
 
-<script type=text/javascript>
-    $("#navbar1").addClass('active').siblings().removeClass('active');
-</script>
+    <script type=text/javascript>
+        $("#navbar1").addClass('active').siblings().removeClass('active');
+    </script>
 {% endblock %}

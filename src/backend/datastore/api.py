@@ -8,7 +8,7 @@ from backend.datastore.datastore_utils.crypto import Crypto
 from backend.datastore.db_client import DBClient
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.preprocessor import Preprocessor
-from backend.utils.list_utils import insert_dict_into_list
+from backend.utils.list_utils import insert_dict_into_sorted_list
 from config import ALLOWED_EXTENSIONS, path_to_datastore
 
 
@@ -84,7 +84,7 @@ class API(object):
             raking = paper_and_rank[1]
 
             element = {"paper": paper, "ranking": raking}
-            insert_dict_into_list(ret, element, "ranking")
+            insert_dict_into_sorted_list(ret, element, "ranking")
         return ret
 
 

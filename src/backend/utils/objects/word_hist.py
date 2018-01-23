@@ -3,7 +3,6 @@
 
 
 class WordHist(dict):
-
     def append(self, d1):
         for key, value in d1.items():
             self[key] = self[key] + value if key in self else value
@@ -11,7 +10,7 @@ class WordHist(dict):
 
     def get_normalized_key_value(self, key):
         ret = float(self[key]) if key in self else 0.0
-        return ret / sum(self.values())
+        return float(ret / sum(self.values()))
 
 
     def get_normalized_query_value(self, query):
@@ -19,4 +18,4 @@ class WordHist(dict):
         ret = 0.0
         for word in query:
             ret += self.get_normalized_key_value(word)
-        return ret
+        return float(ret)

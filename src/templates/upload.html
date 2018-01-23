@@ -1,23 +1,23 @@
 {% extends "layout.html" %} {% block body %}
-<div class="container">
-	<title>Upload new File</title>
-	<h1>Upload new File</h1>
+    <div class="container">
+        <title>Upload new File</title>
+        <h1>Upload new File</h1>
 
-	<form id="form-upload" role='form' method='POST' action='/upload' enctype='multipart/form-data'>
-      		<input type="file" id="file" name="file" accept=".pdf"/>
-	</form>
+        <form id="form-upload" role='form' method='POST' action='/upload' enctype='multipart/form-data'>
+            <input type="file" id="file" name="file" accept=".pdf"/>
+        </form>
 
-</div> <!-- /.container -->
+    </div> <!-- /.container -->
 
-<script type="text/javascript">
-	$("#navbar2").addClass('active').siblings().removeClass('active');
+    <script type="text/javascript">
+        $("#navbar2").addClass('active').siblings().removeClass('active');
 
-	$('#file').on('click touchstart' , function(){
-		$(this).val('');
-	});
+        $('#file').on('click touchstart', function () {
+            $(this).val('');
+        });
 
-	$("#file").change(function(e) {
-		$("#form-upload").submit();
-	});
-</script>
+        $("#file").change(function (e) {
+            $("#form-upload").submit();
+        });
+    </script>
 {% endblock %}

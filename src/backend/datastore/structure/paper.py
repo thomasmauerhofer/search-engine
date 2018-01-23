@@ -19,7 +19,7 @@ class Paper(PaperStructure):
         self.sections = [Section(section) for section in data.get('sections')] if 'sections' in data else []
         self.references = [Reference(reference) for reference in data.get('references')] if 'references' in data else []
 
-        self.__word_hist__ = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
+        self.word_hist = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
 
 
     def __str__(self):
@@ -45,7 +45,7 @@ class Paper(PaperStructure):
 
     def to_dict(self):
         data = {'filename': self.filename, 'title': self.title, 'file': self.file, 'authors': [], 'sections': [],
-                'references': [], 'word_hist': self.__word_hist__}
+                'references': [], 'word_hist': self.word_hist}
 
         for author in self.authors:
             data['authors'].append(author.to_dict())
@@ -58,12 +58,12 @@ class Paper(PaperStructure):
 
 
     def get_combined_word_hist(self):
-        if not self.__word_hist__:
+        if not self.word_hist:
             for word in self.title.split():
                 word = word.replace('.', " ")
-                self.__word_hist__[word] = self.__word_hist__[word] + 1 if word in self.__word_hist__ else 1
+                self.word_hist[word] = self.word_hist[word] + 1 if word in self.word_hist else 1
 
-        ret = WordHist(self.__word_hist__.copy())
+        ret = WordHist(self.word_hist.copy())
         for section in self.sections:
             ret.append(section.get_combined_word_hist())
 
@@ -117,34 +117,39 @@ class Paper(PaperStructure):
         self.authors.append(Authors({'all_authors_text': full_authors}))
 
 
-    def get_chapter_with_imrad_type(self, imrad_type):
+    def get_sections_with_imrad_type(self, imrad_type):
         imrad_type = IMRaDType[imrad_type] if isinstance(imrad_type, str) else imrad_type
         return [chapter for chapter in self.sections if imrad_type in chapter.imrad_types]
 
 
     def get_indroduction(self):
-        return self.get_chapter_with_imrad_type(IMRaDType.INDRODUCTION)
+        return self.get_sections_with_imrad_type(IMRaDType.INDRODUCTION)
 
 
     def get_methods(self):
-        return self.get_chapter_with_imrad_type(IMRaDType.METHODS)
+        return self.get_sections_with_imrad_type(IMRaDType.METHODS)
 
 
     def get_results(self):
-        return self.get_chapter_with_imrad_type(IMRaDType.RESULTS)
+        return self.get_sections_with_imrad_type(IMRaDType.RESULTS)
 
 
     def get_discussion(self):
-        return self.get_chapter_with_imrad_type(IMRaDType.DISCUSSION)
+        return self.get_sections_with_imrad_type(IMRaDType.DISCUSSION)
 
 
-    def get_ranking_of_section(self, imrad_type, query):
-        sections = self.get_chapter_with_imrad_type(imrad_type)
-        rank = 0.0
+    def get_ranking(self, queries):
+        raking_hist = WordHist()
 
-        for section in sections:
-            rank += section.get_combined_word_hist().get_normalized_query_value(query)
-        return rank
+        for imrad_type, query in queries.items():
+            if not query:
+                continue
+
+            sections = self.get_sections_with_imrad_type(imrad_type)
+            for section in sections:
+                raking_hist.append(section.get_combined_word_hist())
+
+        return raking_hist.get_normalized_query_value(query)
 
 
     def save_file_to_path(self, path):
