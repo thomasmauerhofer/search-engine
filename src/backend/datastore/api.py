@@ -77,11 +77,8 @@ class API(object):
             return ret
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed, remove_double_terms_in_section_query)
-        for paper_and_rank in papers:
-            paper = paper_and_rank[0]
-            raking = paper_and_rank[1]
-
-            element = {"paper": paper, "ranking": raking}
+        for val in papers:
+            element = {"paper": val[0], "ranking": val[1], "info": val[2]}
             insert_dict_into_sorted_list(ret, element, "ranking")
         return ret
 

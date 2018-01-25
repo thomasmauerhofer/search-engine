@@ -100,8 +100,8 @@ class DBClient(object):
         papers = []
 
         for paper in self.__cursor_to_list(cursor):
-            rank = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
-            papers.append([paper, rank])
+            rank, info = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
+            papers.append([paper, rank, info])
         return papers
 
 
@@ -118,8 +118,8 @@ class DBClient(object):
         papers = []
 
         for paper in self.__cursor_to_list(cursor):
-            rank = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
-            papers.append([paper, rank])
+            rank, info = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
+            papers.append([paper, rank, info])
         return papers
 
 

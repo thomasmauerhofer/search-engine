@@ -24,6 +24,8 @@
 
 .result .result-line div#info div#raking {
     font-size: 14px;
+    float: left;
+    width: 60px;
 }
 
 .error_msg {

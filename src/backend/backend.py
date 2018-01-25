@@ -1,9 +1,7 @@
 # encoding: utf-8
 
-import os
-
+import os, json
 from flask import Blueprint, render_template, request, redirect, current_app, send_file
-
 from backend.datastore.api import API
 from backend.datastore.structure.section import IMRaDType
 
@@ -33,7 +31,7 @@ def index():
     return render_template('result.html', queries=queries, result=result)
 
 
-@backend.route('/upload', methods=['POST'])
+@backend.route('/upload', methods=["GET", "POST"])
 def upload():
     if request.method == 'POST':
         file = request.files['file']
@@ -50,7 +48,18 @@ def upload():
     return render_template('upload.html')
 
 
-@backend.route('/view_pdf/<paper_id>', methods=['GET'])
+@backend.route('/get_ranking_info/<paper_id>', methods=["GET", "POST"])
+def get_ranking_info(paper_id):
+    json_form = request.form['ranking'].replace("'", "\"").replace("{", "{\"").replace(":", "\":").replace(",", ",\"")
+    queries = json.loads(json_form)
+
+    remove_double_terms_in_section_query = True
+    paper = api.get_paper(paper_id)
+    rank, info = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
+    return render_template('result_info.html', queries=queries, result={"paper": paper, "ranking": rank, "info": info})
+
+
+@backend.route('/view_pdf/<paper_id>', methods=["GET", "POST"])
 def view_pdf(paper_id):
     path = api.save_paper_as_pdf(paper_id)
     resp = send_file(path)

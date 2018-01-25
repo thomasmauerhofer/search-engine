@@ -21,14 +21,18 @@ class WordHist(dict):
         query = query.split() if isinstance(query, str) else query
         ranking = 0.0
         key_value = []
+        ignored = []
 
         keys = self.query_to_keys(query)
         for key in keys:
-            if key not in ignored_keys:
+            if key in ignored_keys:
+                ignored.append(key)
+            else:
                 rank = self.get_normalized_key_value(key)
                 key_value.append([key, rank])
                 ranking += rank
-        return ranking, key_value
+
+        return ranking, key_value, ignored
 
 
     def query_to_keys(self, query):

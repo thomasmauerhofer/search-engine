@@ -1,4 +1,5 @@
 {% extends "layout.html" %} {% block body %}
+    <script type=text/javascript src="{{ url_for('static', filename='js/upload.js') }}"></script>
     <div class="container">
         <title>Upload new File</title>
         <h1>Upload new File</h1>
@@ -8,16 +9,4 @@
         </form>
 
     </div> <!-- /.container -->
-
-    <script type="text/javascript">
-        $("#navbar2").addClass('active').siblings().removeClass('active');
-
-        $('#file').on('click touchstart', function () {
-            $(this).val('');
-        });
-
-        $("#file").change(function (e) {
-            $("#form-upload").submit();
-        });
-    </script>
 {% endblock %}
