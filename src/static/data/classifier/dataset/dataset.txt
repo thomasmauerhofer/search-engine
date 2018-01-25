@@ -1,0 +1,2013 @@
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment result: RESULTS 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+analysi tag: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment studi: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+svd twomod factor analysi overview: RESULTS 
+conclus discuss: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi citat dataset: RESULTS 
+conclus discuss: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi result: RESULTS 
+conclus andfurth work: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experiment: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus work: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+simul result dataset gener: RESULTS 
+discuss limit dataset gener: DISCUSSION 
+simul result ir system: RESULTS 
+discuss limit ir system: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+simpl experi: RESULTS 
+predatorpreyexperi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+ii prior relat work: BACKGROUND 
+iii background: BACKGROUND 
+result: RESULTS 
+analysi classif accuraci: RESULTS 
+scalabl analysi: RESULTS 
+vi conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+propos method extern plagiar detect: BACKGROUND 
+propos method intrins plagiar detect: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+evalu cluster qualiti: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+resourc: BACKGROUND 
+experi experiment setup: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+experiment setup: RESULTS 
+result discuss: RESULTS DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+dataset analysi: RESULTS 
+experi model evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+foundat research psycholog neurosci: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+experi: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experiment result: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+result: RESULTS 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+analysi portabl: RESULTS 
+experi: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+propos method: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus futur direct: DISCUSSION 
+introduct: INDRODUCTION
+comparison: RESULTS 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+discuss conclus: DISCUSSION 
+introduct: INDRODUCTION
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+methodolog: BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+evalu: RESULTS 
+discuss conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+experi: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background relat work: BACKGROUND 
+experiment method: RESULTS 
+result: RESULTS 
+discuss: DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+muc evalu: RESULTS 
+exactmatch evalu: RESULTS 
+ace evalu: RESULTS 
+introduct: INDRODUCTION
+discours analysi: RESULTS 
+introduct: INDRODUCTION 
+resourc bound web usag: BACKGROUND 
+experiment result dataset infrastructur: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi result: RESULTS 
+main result: RESULTS 
+vi discuss: DISCUSSION 
+vii conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+outlook read: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+relat work: BACKGROUND 
+theoret background: BACKGROUND 
+evalu: RESULTS 
+discuss: DISCUSSION 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+iv experiment data: RESULTS 
+vii conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+result discuss: RESULTS DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+experiment methodolog: BACKGROUND RESULTS 
+test discuss: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+conclud remark futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi dataset: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+analysi: RESULTS 
+comparison: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi discuss: RESULTS DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi comput go: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu measur: RESULTS 
+system comparison: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment design: RESULTS 
+result: RESULTS 
+futur work: DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu discuss: RESULTS DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+sentencelevel experi: RESULTS 
+documentlevel experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+converg analysi: RESULTS 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+methodolog setup: BACKGROUND 
+contribut conclus: DISCUSSION 
+introduct: INDRODUCTION 
+combin methodolog experiment result: BACKGROUND RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+extern resourc: BACKGROUND 
+result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+evalu measur: RESULTS 
+evalu latent semant analysi: RESULTS 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+dataset analysi: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+methodolog: BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+iii methodolog: BACKGROUND 
+receiv result vertic search engin: RESULTS 
+result gener multipl window: RESULTS 
+vi futur work: DISCUSSION 
+vii conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat research: BACKGROUND 
+methodolog setup: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experi: RESULTS 
+comparison: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus discuss: DISCUSSION 
+introduct: INDRODUCTION
+performanceevalu: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu criteria: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+descript experi carri: RESULTS 
+introduct: INDRODUCTION 
+gener model: BACKGROUND 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+overview techniqu resourc: BACKGROUND 
+first result: RESULTS 
+discuss futur research: BACKGROUND DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+relat work: BACKGROUND 
+experiment section: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION 
+relat work discuss: BACKGROUND DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+experi data collect: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+dataset evalu: RESULTS 
+result discuss: RESULTS DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+result evalu: RESULTS 
+relat work discuss: BACKGROUND DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi materi: RESULTS 
+discuss evalu: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+evalu: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+evalu: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+latent semant analysi: RESULTS 
+toefl experi: RESULTS 
+esl experi: RESULTS 
+discuss result: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+literatur review: BACKGROUND 
+methodolog: BACKGROUND 
+discuss: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+qualit inspect word list gener system show result quit satisfactori paradigmat associ like blue: RESULTS 
+comparison syntagmat paradigmat associ: RESULTS 
+discuss conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+introductionand motiv: INDRODUCTION BACKGROUND 
+futur work: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+empir result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+futur work: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work related disambigu: BACKGROUND 
+experiment data: RESULTS 
+experiment methodolog: BACKGROUND RESULTS 
+experiment result: RESULTS 
+futur work: DISCUSSION 
+conclus: DISCUSSION 
+resourc: BACKGROUND 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+resourc use: BACKGROUND 
+experiment set: RESULTS 
+incorpu experi colloc weak: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION
+experiment stedi: RESULTS 
+introduct: INDRODUCTION
+evalu framework: RESULTS 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+futur work: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+resourcebound inform gather: BACKGROUND 
+experiment result dataset descript infrastructur: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+propos method: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+corpu error analysi approach: RESULTS 
+experi: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+comparison: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+research object methodolog: BACKGROUND 
+result: RESULTS 
+summari outlook: DISCUSSION 
+introduct: INDRODUCTION
+evalu ngram cooccurr metric: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+experi result: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+background: BACKGROUND 
+experi: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus discuss: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+ii relat work: BACKGROUND 
+futur work: DISCUSSION 
+vi conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+develop measur: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu result: RESULTS 
+discuss: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+qualit analysi predict: RESULTS 
+learn curv analysi: RESULTS 
+empir comparison: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu setup: RESULTS 
+experi: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi bm25f: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi result: RESULTS 
+main result: RESULTS 
+vi discuss: DISCUSSION 
+vii conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+methodolog: BACKGROUND 
+experiment setup: RESULTS 
+taskmodel evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+background: BACKGROUND 
+experi: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION
+limit futur work: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+data mine pattern analysi: RESULTS 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experiment data: RESULTS 
+evalu techniqu: RESULTS 
+experiment result: RESULTS 
+analysi discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+result: RESULTS 
+model select result: RESULTS 
+introduct: INDRODUCTION 
+background abstract mean represent jamr: ABSTRACT BACKGROUND 
+experi: RESULTS 
+relat futur work: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+propos method: BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+discuss conclus: DISCUSSION 
+introduct: INDRODUCTION
+experiment: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+backgroundand problem: BACKGROUND 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+relat work: BACKGROUND 
+theoret background: BACKGROUND 
+evalu discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+ii neural network background: BACKGROUND 
+use gener model featur extractor: BACKGROUND 
+use gener model pretrain weight neural network: BACKGROUND 
+introduct: INDRODUCTION 
+hnn experiment result: RESULTS 
+dnn evalud: RESULTS 
+result comparison: RESULTS 
+evalu base perform score: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+iii simul result: RESULTS 
+iv conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+empir comparison: RESULTS 
+discuss: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+experiment valid: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment result dataset: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+discuss summari: DISCUSSION 
+introduct: INDRODUCTION
+evalu preliminari experi: RESULTS 
+introduct: INDRODUCTION
+evalu: RESULTS 
+discuss: DISCUSSION 
+summari futur work: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experiment method: RESULTS 
+empir result: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+methodolog: BACKGROUND 
+user evalu: RESULTS 
+result: RESULTS 
+discuss: DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work conclus: BACKGROUND DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+preferencebas evalu methodolog: BACKGROUND RESULTS 
+empir analysi valid: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+result: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+empir evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus anda brief outlook: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+summari futur work: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+result: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+analysi three repres retriev formula: RESULTS 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+analysi report result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+methodolog: BACKGROUND 
+dataset evalu metric: RESULTS 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+evalu wsid system: RESULTS 
+result: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+torc evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+discuss: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+experi: RESULTS 
+summari futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+result: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+experi dicuss: RESULTS 
+conclus futur work: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+experiment setup: RESULTS 
+experi word pair discrimin: RESULTS 
+experi model adult semant data: RESULTS 
+experi model ageofacquisit: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+background: BACKGROUND 
+experiment environ: RESULTS 
+evalu: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+conclus andfuturework: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+global magnetospher field result discuss: RESULTS DISCUSSION 
+residu signatur result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+woz experi: RESULTS 
+conclus futur work: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+evalu: RESULTS 
+futur work: DISCUSSION 
+methodolog legal taxonomi syllabu: BACKGROUND 
+conclus: DISCUSSION 
+conclus: DISCUSSION 
+conclus: DISCUSSION 
+evalu framework: RESULTS 
+conclus futur work: DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+experi: RESULTS 
+conclus: DISCUSSION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+analysi annot corpu: RESULTS 
+evalu result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+experi result: RESULTS 
+error analysi: RESULTS 
+initi multiparti experi: RESULTS 
+conclus: DISCUSSION 
+result: RESULTS 
+conclus futur work: DISCUSSION 
+experi data collect: RESULTS 
+evalu: RESULTS 
+summari futur work: DISCUSSION 
+relat work: BACKGROUND 
+discuss futur work: DISCUSSION 
+experi: RESULTS 
+result analysi: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+conclus: DISCUSSION 
+relat work: BACKGROUND 
+discuss: DISCUSSION 
+experi: RESULTS 
+conclus: DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+conclus: DISCUSSION 
+evalu result: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+conclus: DISCUSSION 
+experi: RESULTS 
+conclus: DISCUSSION 
+conclus: DISCUSSION 
+result: RESULTS 
+conclus: DISCUSSION 
+experi: RESULTS 
+empir result: RESULTS 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+experi: RESULTS 
+conclus: DISCUSSION 
+experi experiment set: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+result: RESULTS 
+discuss: DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+futur work: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+empir result: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+experi result: RESULTS 
+conclus: DISCUSSION 
+esker onak acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+state art resourc system evalu: BACKGROUND RESULTS 
+ii introduct: INDRODUCTION 
+ii evalu: RESULTS 
+iii introduct: INDRODUCTION 
+iii relat work: BACKGROUND 
+iii relat work: BACKGROUND 
+iii experiment set: RESULTS 
+iii experi: RESULTS 
+iii conclus: DISCUSSION 
+iv introduct: INDRODUCTION 
+iv introduct: INDRODUCTION 
+iv relat work: BACKGROUND 
+iv evalu select prefer: RESULTS 
+iv conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+relat work: BACKGROUND 
+experiment set: RESULTS 
+evalu sensev: RESULTS 
+evalu sensev: RESULTS 
+2nd best result date sensev winner: RESULTS 
+tabl offici result english basqu lexic task recal: RESULTS 
+conclus: DISCUSSION 
+conclus: DISCUSSION 
+vi introduct: INDRODUCTION 
+vi relat work: BACKGROUND 
+vi relat work: BACKGROUND 
+vi experiment set: RESULTS 
+vi evalu: RESULTS 
+vi conclus: DISCUSSION 
+vii introduct: INDRODUCTION 
+vii relat work: BACKGROUND 
+vii experiment set: RESULTS 
+vii incorpu experi: RESULTS 
+vii crosscorpora experi: RESULTS 
+vii discuss: DISCUSSION 
+vii conclus: DISCUSSION 
+conclus: DISCUSSION 
+viii detail conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+termweight scheme analysi: RESULTS 
+section present experi empir valid newli introduc axiom previou analysi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+ongo experiment: RESULTS 
+introduct: INDRODUCTION 
+social resourc share folksonomi: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus work: DISCUSSION 
+introduct: INDRODUCTION 
+dataset evalu: RESULTS 
+result discuss: RESULTS DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+evalu: RESULTS 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experiment set: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+discuss difser among similar measur: DISCUSSION 
+conclus geometr approach: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION 
+background deep reinforc learn: BACKGROUND 
+result: RESULTS 
+soccer evalu: RESULTS 
+relat work: BACKGROUND 
+futur work: DISCUSSION 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+summari conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+evalu: RESULTS 
+discuss relat work: BACKGROUND DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+discuss conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result conclus: RESULTS DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work sion: BACKGROUND 
+experiment protocol: RESULTS 
+result discuss: RESULTS DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+experi dataset: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+conclus futur work: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct relat work: INDRODUCTION BACKGROUND 
+experiment result: RESULTS 
+discuss futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+vi futur work conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+tensor analysi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+previou section obtain desir result special induct: RESULTS 
+empir result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experi result: RESULTS 
+discuss: DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relatedwork background: BACKGROUND 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+problem statement relat work: BACKGROUND 
+result discuss: RESULTS DISCUSSION 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+gener model: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+result: RESULTS 
+discuss: DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+evalu result: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+background relat work: BACKGROUND 
+conclus direct futur work: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi evalu: RESULTS 
+conclus outlook: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+panel discuss: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+data evalu: RESULTS 
+introduct: INDRODUCTION
+autom evalu forecast: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu wsd task: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu data set: RESULTS 
+empir result: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+acknowledg: ACKNOWLEDGE 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+impact data analysi mine task: RESULTS 
+research direct: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experiment design: RESULTS 
+experiment result: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+analysi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+propos method: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+understand svd result: RESULTS 
+conclus discuss: DISCUSSION 
+introduct: INDRODUCTION
+conclus outlook: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+evalu: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+background technolog: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+exist evalu measur: RESULTS 
+compar evalu measur: RESULTS 
+conclus: DISCUSSION 
+introduct motiv: INDRODUCTION BACKGROUND 
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+submiss result: RESULTS 
+conclus: DISCUSSION 
+experi result: RESULTS 
+conclus: DISCUSSION 
+task1 result error analysi: RESULTS 
+task2 result error analysi: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+experi: RESULTS 
+conclus: DISCUSSION 
+conclus futur research: BACKGROUND DISCUSSION 
+conclus outlook: DISCUSSION 
+result hedg cue: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+discuss: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+evalu result: RESULTS 
+experi discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+result: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+experi result dataset: RESULTS 
+system use evalu: RESULTS 
+conclus futur work: DISCUSSION 
+experi: RESULTS 
+conclus: DISCUSSION 
+result: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+background materi: BACKGROUND 
+discuss conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experiment evalu: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+gener model: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+discuss: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+relat work: BACKGROUND 
+experiment section: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi result: RESULTS 
+main result: RESULTS 
+vi discuss: DISCUSSION 
+vii conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+task evalu: RESULTS 
+experi: RESULTS 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+experi setup: RESULTS 
+result discuss: RESULTS DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+fix hyperparamet experi method: RESULTS 
+infer hyperparamet experi vari corpu size: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu debug capabl: RESULTS 
+result: RESULTS 
+discuss futur work: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+empir evalu: RESULTS 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+experi result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+gener discuss: DISCUSSION 
+po gender experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work deep neural languag learn: BACKGROUND 
+relat work relationent extract: BACKGROUND 
+model result: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+comparison revis mt filterclean hampel filter: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+discuss futur work: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION 
+past research: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+summari result: RESULTS 
+discuss: DISCUSSION 
+summari conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct relat work: INDRODUCTION BACKGROUND 
+document analysi: RESULTS 
+evalu: RESULTS 
+conclus potenti impact: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+initi result withkernel: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+experiment setup: RESULTS 
+result: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+methodolog: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background word sens: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu text classifi: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+implement evalu detail: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+experi: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+experiment evalu methodolog: BACKGROUND RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+evalu: RESULTS 
+discuss: DISCUSSION 
+experiment setup: RESULTS 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+result: RESULTS 
+conclus: DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+data methodolog: BACKGROUND 
+conclus: DISCUSSION 
+experiment design: RESULTS 
+result valid unsupervis method: RESULTS 
+conclus: DISCUSSION 
+result: RESULTS 
+conclus: DISCUSSION 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+experi: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+experi methodolog: BACKGROUND RESULTS 
+discuss futur work: DISCUSSION 
+evalu: RESULTS 
+conclus: DISCUSSION 
+evalu select sampl: RESULTS 
+conclus futur work: DISCUSSION 
+conclus: DISCUSSION 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experi result: RESULTS 
+conclus futur work: DISCUSSION 
+learn evalu: RESULTS 
+conclus: DISCUSSION 
+experi: RESULTS 
+conclus: DISCUSSION 
+experiment set result: RESULTS 
+conclus: DISCUSSION 
+result: RESULTS 
+conclus: DISCUSSION 
+conclus: DISCUSSION 
+result: RESULTS 
+conclus: DISCUSSION 
+experiment result: RESULTS 
+acknowledg: ACKNOWLEDGE 
+evalu: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+result discuss: RESULTS DISCUSSION 
+conclus relat work: BACKGROUND DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+experi dataset evalu environ: RESULTS 
+conclus futur work: DISCUSSION 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experi scalabl: RESULTS 
+conclus: DISCUSSION 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+research hypothesi: BACKGROUND 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+system configur result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu outlier detect techniqu: RESULTS 
+discuss conclus: DISCUSSION 
+introduct: INDRODUCTION 
+word space methodolog: BACKGROUND 
+result: RESULTS 
+introduct: INDRODUCTION 
+background relat work: BACKGROUND 
+empir comparison major segment algorithm: RESULTS 
+conclus futur direct: DISCUSSION 
+conclus: DISCUSSION 
+previou work: BACKGROUND 
+background: BACKGROUND 
+experiment evalu: RESULTS 
+conclus: DISCUSSION 
+experiment evalu design experi: RESULTS 
+conclus futur work: DISCUSSION 
+conclus: DISCUSSION 
+experiment valid: RESULTS 
+conclus: DISCUSSION 
+theoret result: RESULTS 
+experiment evalu: RESULTS 
+discuss conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu segment evalu: RESULTS 
+futur work: DISCUSSION 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+discuss: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+theoret result: RESULTS 
+experi: RESULTS 
+introduct: INDRODUCTION 
+topic analysi: RESULTS 
+relat work: BACKGROUND 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+analysi error metric: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experi: RESULTS 
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experi imagenet classif: RESULTS 
+introduct: INDRODUCTION
+iv implement result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background relat work: BACKGROUND 
+experiment evalu: RESULTS 
+analyz effect propos featur evalu strategi compar gefm fscore method fsm without consid earli featur follow: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment setup: RESULTS 
+discuss: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background basic concept: BACKGROUND 
+research trend: BACKGROUND 
+discuss futur direct: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+iii evalu: RESULTS 
+iv applic futur work: DISCUSSION 
+conclus: DISCUSSION 
+introduct motiv: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+experiment setup: RESULTS 
+result implicit regular linear model: RESULTS 
+introduct: INDRODUCTION
+overal system evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+experi: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+methodolog sens induct task: BACKGROUND 
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+experi result: RESULTS 
+comparison work mdc dataset: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+experiment setup: RESULTS 
+evalu: RESULTS 
+conclus: DISCUSSION 
+introduct background: INDRODUCTION BACKGROUND 
+summari conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment data: RESULTS 
+experiment methodolog: BACKGROUND RESULTS 
+experiment result discuss: RESULTS DISCUSSION 
+futur work: DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment result: RESULTS 
+conclus discuss: DISCUSSION 
+introduct: INDRODUCTION 
+propos method: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment result: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+aframeworkfor physiolog analysi: RESULTS 
+analysi evalu: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu roug: RESULTS 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+experi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+applic empir result: RESULTS 
+discuss: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+evalu framework: RESULTS 
+evalu result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+develop measur: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+qualit comparison extractor: RESULTS 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+discuss futur work: DISCUSSION 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment studi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+reproduc experiment setup: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+relat work: BACKGROUND 
+evalu tel recommend: RESULTS 
+conclus work: DISCUSSION 
+introduct: INDRODUCTION
+semant evalu: RESULTS 
+pragmat evalu: RESULTS 
+experiment setup: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+iv evalu: RESULTS 
+relat work: BACKGROUND 
+vi conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+acknowledg: ACKNOWLEDGE 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+experi: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION
+result: RESULTS 
+discuss: DISCUSSION 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu: RESULTS 
+evalu methodolog: BACKGROUND RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+unbound depend evalu: RESULTS 
+methodolog: BACKGROUND 
+result: RESULTS 
+error analysi: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+addit resourc: BACKGROUND 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment setup: RESULTS 
+qualit evalu: RESULTS 
+quantit evalu: RESULTS 
+conclus outlook: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experimentsand result: RESULTS 
+conclus: DISCUSSION 
+introduct motiv: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu method: RESULTS 
+conclus futur work: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+experi: RESULTS 
+reanalysi previou work: BACKGROUND RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+mendeley data analysi arxiv pubm record: RESULTS 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experiment result system task task task: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+background: BACKGROUND 
+discuss: DISCUSSION 
+conclus futurework: DISCUSSION 
+introduct: INDRODUCTION
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+metaalgorithm outlier analysi: RESULTS 
+basic data type analysi: RESULTS 
+outlier evalu techniqu: RESULTS 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+statist method extrem valu analysi: RESULTS 
+extrem valu analysi multivari data: RESULTS 
+probabilist mixtur model outlier analysi: RESULTS 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+princip compon analysi: RESULTS 
+limit regress analysi: RESULTS 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+distancebas outlier analysi: RESULTS 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+discuss subspac analysi: RESULTS DISCUSSION 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+node content outlier analysi: RESULTS 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+resourc practition: BACKGROUND 
+conclus summari: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment comparison: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experiment setup: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+clausi sourc code resourc avail: BACKGROUND 
+relat work: BACKGROUND 
+experi: RESULTS 
+conclus: DISCUSSION 
+acknowledg: ACKNOWLEDGE 
+introduct: INDRODUCTION 
+trustworthi analysi webpag: RESULTS 
+evalu: RESULTS 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+evalu: RESULTS 
+summari futur work: DISCUSSION 
+execut summari: BACKGROUND 
+chapter introduct: INDRODUCTION 
+chapter experi: RESULTS 
+chapter conclus futur work: DISCUSSION 
+introduct: INDRODUCTION
+experiment result: RESULTS 
+discuss futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu metric: RESULTS 
+discuss: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+experi descript: RESULTS 
+result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+experiment result: RESULTS 
+conclus: DISCUSSION 
+introduct: INDRODUCTION
+experiment evalu: RESULTS 
+introduct: INDRODUCTION
+evalu setup: RESULTS 
+result discuss: RESULTS DISCUSSION 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+previou work: BACKGROUND 
+mnist dataset experi: RESULTS 
+usp dataset experi: RESULTS 
+conclus: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION
+evalu: RESULTS 
+appendix experiment result synthet data: RESULTS 
+introduct: INDRODUCTION 
+experi: RESULTS 
+result: RESULTS 
+discuss: DISCUSSION 
+relat work: BACKGROUND 
+conclus: DISCUSSION 
+introduct: INDRODUCTION 
+experiment result: RESULTS 
+relat work: BACKGROUND 
+conclus futur work: DISCUSSION 
+abstract: ABSTRACT 
+abstract: ABSTRACT 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+evalu disambigu techniqu: RESULTS 
+conclus futur work: DISCUSSION 
+introduct: INDRODUCTION 
+relat work: BACKGROUND 
+experiment evalu: RESULTS 
+conclus futur work: DISCUSSION 
