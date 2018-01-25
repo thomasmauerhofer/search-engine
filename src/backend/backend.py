@@ -24,10 +24,12 @@ def index():
         IMRaDType.RESULTS.name: request.form['results_text'],
         IMRaDType.DISCUSSION.name: request.form['discussion_text']}
 
+
     if all(not query for query in queries.values()):
         return render_template('index.html')
 
-    result = api.get_ranked_papers_explicit(queries)
+    remove_double_terms_in_section_query = True
+    result = api.get_ranked_papers_explicit(queries, remove_double_terms_in_section_query)
     return render_template('result.html', queries=queries, result=result)
 
 

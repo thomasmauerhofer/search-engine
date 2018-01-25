@@ -88,7 +88,7 @@ class DBClient(object):
         self.papers.remove({})
 
 
-    def get_paper_which_contains_queries_in_hist(self, queries):
+    def get_paper_which_contains_queries_in_hist(self, queries, remove_double_terms_in_section_query=True):
         search_query = {"$or": []}
         for imrad_type, query in queries.items():
             if imrad_type == "whole-document":
@@ -100,13 +100,13 @@ class DBClient(object):
         papers = []
 
         for paper in self.__cursor_to_list(cursor):
-            rank = paper.get_ranking(queries)
+            rank = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
             papers.append([paper, rank])
         return papers
 
 
 
-    def get_paper_which_contains_queries(self, queries):
+    def get_paper_which_contains_queries(self, queries, remove_double_terms_in_section_query=True):
         search_query = {"$or": []}
         for imrad_type, query in queries.items():
             if imrad_type == "whole-document":
@@ -118,7 +118,7 @@ class DBClient(object):
         papers = []
 
         for paper in self.__cursor_to_list(cursor):
-            rank = paper.get_ranking(queries)
+            rank = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
             papers.append([paper, rank])
         return papers
 

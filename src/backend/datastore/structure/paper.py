@@ -122,20 +122,28 @@ class Paper(PaperStructure):
         return self.get_sections_with_imrad_type(IMRaDType.DISCUSSION)
 
 
-    def get_ranking(self, queries):
+    def get_ranking_simple(self, queries, remove_double_terms_in_section_query=True):
         paper_rank = 0.0
+        whole_rank, whole_values = self.word_hist.get_normalized_query_value(queries["whole-document"])
+
         for imrad_type, query in queries.items():
-            if "whole-document":
-                ranking, key_value = self.word_hist.get_normalized_query_value(query)
-                paper_rank += ranking
+            if query == "":
+                continue
+
+            if imrad_type == "whole-document":
+                paper_rank += whole_rank
             else:
                 # Only sections of the imrad_type influence the ranking
                 raking_hist = WordHist()
                 sections = self.get_sections_with_imrad_type(imrad_type)
                 for section in sections:
                     raking_hist.append(section.get_combined_word_hist())
+                if remove_double_terms_in_section_query:
+                    whole_values = [key[0] for key in whole_values]
+                else:
+                    whole_values = []
 
-                ranking, key_value = raking_hist.get_normalized_query_value(query)
+                ranking, key_value = raking_hist.get_normalized_query_value(query, whole_values)
                 paper_rank += ranking
 
         return paper_rank

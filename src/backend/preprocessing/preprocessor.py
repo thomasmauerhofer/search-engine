@@ -17,5 +17,8 @@ class Preprocessor(object):
         return success
 
 
-    def proceed_query(self, query):
-        return self.text_processor.proceed_string(query)
+    def proceed_queries(self, queries):
+        queries_proceed = {}
+        for imrad_type, query in queries.items():
+            queries_proceed[imrad_type] = self.text_processor.proceed_string(query)
+        return queries_proceed

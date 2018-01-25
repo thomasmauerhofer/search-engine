@@ -5,6 +5,7 @@
 class WordHist(dict):
     def append(self, d1):
         for key, value in d1.items():
+            key = key.lower()
             self[key] = self[key] + value if key in self else value
 
 
@@ -13,16 +14,20 @@ class WordHist(dict):
         return ret / sum(self.values())
 
 
-    def get_normalized_query_value(self, query):
+    def get_normalized_query_value(self, query, ignored_keys=None):
+        if ignored_keys is None:
+            ignored_keys = []
+
         query = query.split() if isinstance(query, str) else query
         ranking = 0.0
         key_value = []
 
         keys = self.query_to_keys(query)
         for key in keys:
-            rank = self.get_normalized_key_value(key)
-            key_value.append([key, rank])
-            ranking += rank
+            if key not in ignored_keys:
+                rank = self.get_normalized_key_value(key)
+                key_value.append([key, rank])
+                ranking += rank
         return ranking, key_value
 
 
@@ -31,6 +36,5 @@ class WordHist(dict):
         ret = []
 
         for word in query:
-            ret += [key for key, value in self.items() if word in key.lower()]
-
+            ret += [key for key, value in self.items() if (word in key.lower()) and (key.lower() not in ret)]
         return ret

@@ -68,17 +68,15 @@ class API(object):
             os.remove(file_path)
 
 
-    def get_ranked_papers_explicit(self, queries):
-        queries_proceed = {}
+    def get_ranked_papers_explicit(self, queries, remove_double_terms_in_section_query=True):
         ret = []
 
-        for imrad_type, query in queries.items():
-            queries_proceed[imrad_type] = self.preprocessor.proceed_query(query)
+        queries_proceed = self.preprocessor.proceed_queries(queries)
 
         if all(not query for query in queries_proceed.values()):
             return ret
 
-        papers = self.client.get_paper_which_contains_queries(queries_proceed)
+        papers = self.client.get_paper_which_contains_queries(queries_proceed, remove_double_terms_in_section_query)
         for paper_and_rank in papers:
             paper = paper_and_rank[0]
             raking = paper_and_rank[1]

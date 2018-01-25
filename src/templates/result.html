@@ -1,4 +1,6 @@
 {% extends "layout.html" %} {% block body %}
+    <script type=text/javascript src="{{ url_for('static', filename='js/result.js') }}"></script>
+
     <div class="container">
         <div class="div-submit text-center">
             <button class="btn btn-primary btn-md" data-toggle="collapse" data-target="#search-div">New Search</button>
@@ -7,28 +9,46 @@
         <div id="search-div" class="collapse">
             <form role="form" method='POST' action='/'>
                 <h4>Whole Document</h4>
-                <textarea class="form-control simple_input" type="text" name="whole_text"
+                <div class="query">
+                <textarea id="whole-doc" class="form-control simple_input doc-query" type="text" name="whole_text"
                           placeholder="Enter a query">{{ queries["whole-document"] }}</textarea>
+                    <label class="control-label" for="whole-doc"></label>
+                </div>
 
                 <h4>Introduction (Problem)</h4>
-                <textarea class="form-control simple_input" type="text" name="intro_text"
+                <div class="query">
+                <textarea id="sec-intro" class="form-control simple_input section-query" type="text" name="intro_text"
                           placeholder="Enter a query">{{ queries["INDRODUCTION"] }}</textarea>
+                    <label class="control-label" for="sec-intro"></label>
+                </div>
 
                 <h4>Background</h4>
-                <textarea class="form-control simple_input" type="text" name="background_text"
-                          placeholder="Enter a query">{{ queries["BACKGROUND"] }}</textarea>
+                <div class="query">
+                <textarea id="sec-back" class="form-control simple_input section-query" type="text"
+                          name="background_text" placeholder="Enter a query">{{ queries["BACKGROUND"] }}</textarea>
+                    <label class="control-label" for="sec-back"></label>
+                </div>
 
                 <h4>Methods (Algorithm)</h4>
-                <textarea class="form-control simple_input" type="text" name="methods_text"
-                          placeholder="Enter a query">{{ queries["METHODS"] }}</textarea>
+                <div class="query">
+                <textarea id="sec-method" class="form-control simple_input section-query" type="text"
+                          name="methods_text" placeholder="Enter a query">{{ queries["METHODS"] }}</textarea>
+                    <label class="control-label" for="sec-method"></label>
+                </div>
 
                 <h4>Results (Evaluation)</h4>
-                <textarea class="form-control simple_input" type="text" name="results_text"
+                <div class="query">
+                <textarea id="sec-res" class="form-control simple_input section-query" type="text" name="results_text"
                           placeholder="Enter a query">{{ queries["RESULTS"] }}</textarea>
+                    <label class="control-label" for="sec-res"></label>
+                </div>
 
                 <h4>Discussion</h4>
-                <textarea class="form-control simple_input" type="text" name="discussion_text"
-                          placeholder="Enter a query">{{ queries["DISCUSSION"] }}</textarea>
+                <div class="query">
+                <textarea id="sec-discuss" class="form-control simple_input section-query" type="text"
+                          name="discussion_text" placeholder="Enter a query">{{ queries["DISCUSSION"] }}</textarea>
+                    <label class="control-label" for="sec-discuss"></label>
+                </div>
 
                 <div class="div-submit text-center">
                     <button class="btn btn-primary btn-lg" type="submit">Submit</button>
@@ -56,11 +76,5 @@
                 {% endfor %}
             </ul>
         </div>
-
-
     </div> <!-- /.container -->
-
-    <script type=text/javascript>
-        $("#navbar1").addClass('active').siblings().removeClass('active');
-    </script>
 {% endblock %}
