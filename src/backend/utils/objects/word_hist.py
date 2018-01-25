@@ -10,12 +10,27 @@ class WordHist(dict):
 
     def get_normalized_key_value(self, key):
         ret = float(self[key]) if key in self else 0.0
-        return float(ret / sum(self.values()))
+        return ret / sum(self.values())
 
 
     def get_normalized_query_value(self, query):
-        query = [query] if isinstance(query, str) else query
-        ret = 0.0
+        query = query.split() if isinstance(query, str) else query
+        ranking = 0.0
+        key_value = []
+
+        keys = self.query_to_keys(query)
+        for key in keys:
+            rank = self.get_normalized_key_value(key)
+            key_value.append([key, rank])
+            ranking += rank
+        return ranking, key_value
+
+
+    def query_to_keys(self, query):
+        query = query.split() if isinstance(query, str) else query
+        ret = []
+
         for word in query:
-            ret += self.get_normalized_key_value(word)
-        return float(ret)
+            ret += [key for key, value in self.items() if word in key.lower()]
+
+        return ret

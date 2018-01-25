@@ -19,8 +19,8 @@ path_to_teambeam_executable_windows = 'D:/MongoDB/teambeam/bin/'
 
 
 # classifier
-path_to_hdf5 = app_path + "/" + STATIC_FOLDER + "classifier/"
-path_to_dataset = app_path + "/" + STATIC_FOLDER + "classifier/dataset/"
+path_to_hdf5 = app_path + "/" + UPLOAD_FOLDER + "classifier/"
+path_to_dataset = app_path + "/" + UPLOAD_FOLDER + "classifier/dataset/"
 threshold = 0.85
 
 # keys - WARNING: They should be on a save place, if you want to use this application online!

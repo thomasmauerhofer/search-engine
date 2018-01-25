@@ -87,8 +87,10 @@ class Section(PaperStructure):
             self.imrad_types.append(imrad_type)
 
 
-    def get_ranking(self, query, a):
-        return self.get_combined_word_hist().get_normalized_query_value(query, a)
+    def get_ranking(self, query):
+        return self.get_combined_word_hist().get_normalized_query_value(query)
+
+
 
 
 class SectionType(Enum):

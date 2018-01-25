@@ -30,3 +30,7 @@
     font-size: 21px;
     text-align: center;
 }
+
+div.query {
+    height: 90px;
+}

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+import pprint
 from backend.utils.objects.word_hist import WordHist
 from backend.datastore.structure.paper_structure import PaperStructure
 from backend.datastore.structure.reference import Reference
@@ -23,24 +24,8 @@ class Paper(PaperStructure):
 
 
     def __str__(self):
-        str_paper = "--------------------------------------------------------------------------------\n"
-
-        str_paper += "Authors:\n"
-        for author in self.authors:
-            str_paper += str(author) + "\n"
-        str_paper += "\n"
-
-        str_paper += "Sections:\n"
-        for section in self.sections:
-            str_paper += str(section) + "\n"
-        str_paper += "\n"
-
-        str_paper += "References:\n"
-        for reference in self.references:
-            str_paper += str(reference) + "\n"
-
-        str_paper += "--------------------------------------------------------------------------------\n\n"
-        return str_paper
+        pp = pprint.PrettyPrinter(indent=4)
+        return pp.pformat(self.to_dict())
 
 
     def to_dict(self):
@@ -63,11 +48,10 @@ class Paper(PaperStructure):
                 word = word.replace('.', " ")
                 self.word_hist[word] = self.word_hist[word] + 1 if word in self.word_hist else 1
 
-        ret = WordHist(self.word_hist.copy())
-        for section in self.sections:
-            ret.append(section.get_combined_word_hist())
+            for section in self.sections:
+                self.word_hist.append(section.get_combined_word_hist())
 
-        return ret
+        return WordHist(self.word_hist.copy())
 
 
     def set_title(self, title):
@@ -139,19 +123,25 @@ class Paper(PaperStructure):
 
 
     def get_ranking(self, queries):
-        raking_hist = WordHist()
-
+        paper_rank = 0.0
         for imrad_type, query in queries.items():
-            if not query:
-                continue
+            if "whole-document":
+                ranking, key_value = self.word_hist.get_normalized_query_value(query)
+                paper_rank += ranking
+            else:
+                # Only sections of the imrad_type influence the ranking
+                raking_hist = WordHist()
+                sections = self.get_sections_with_imrad_type(imrad_type)
+                for section in sections:
+                    raking_hist.append(section.get_combined_word_hist())
 
-            sections = self.get_sections_with_imrad_type(imrad_type)
-            for section in sections:
-                raking_hist.append(section.get_combined_word_hist())
+                ranking, key_value = raking_hist.get_normalized_query_value(query)
+                paper_rank += ranking
 
-        return raking_hist.get_normalized_query_value(query)
+        return paper_rank
 
 
     def save_file_to_path(self, path):
         open(path + self.filename, 'wb').write(self.file)
         return path + self.filename
+

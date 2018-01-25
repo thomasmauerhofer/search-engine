@@ -25,12 +25,30 @@ class DBClient(object):
             query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.heading": {'$regex': word}}}})
             query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.text.text": {'$regex': word}}}})
 
+
     @staticmethod
     def __add_query_for_imrad_type_hist(imrad, words, query):
         for word in words:
             query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "word_hist": {'$regex': word}}}})
             query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.word_hist": {'$regex': word}}}})
             query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.word_hist": {'$regex': word}}}})
+
+
+    @staticmethod
+    def __add_query_for_whole_doc(words, query):
+        for word in words:
+            query["$or"].append({"title": {'$regex': word}})
+            query["$or"].append({"sections": {"$elemMatch": {"heading": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"text.text": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.heading": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.text.text": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.subsections.heading": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.subsections.text.text": {'$regex': word}}}})
+
+    @staticmethod
+    def __add_query_for_whole_doc_hist(words, query):
+        for word in words:
+            query["$or"].append({"word_hist": {'$regex': word}})
 
 
     @staticmethod
@@ -73,7 +91,10 @@ class DBClient(object):
     def get_paper_which_contains_queries_in_hist(self, queries):
         search_query = {"$or": []}
         for imrad_type, query in queries.items():
-            self.__add_query_for_imrad_type_hist(imrad_type, query.split(), search_query)
+            if imrad_type == "whole-document":
+                self.__add_query_for_whole_doc_hist(query.split(), search_query)
+            else:
+                self.__add_query_for_imrad_type_hist(imrad_type, query.split(), search_query)
 
         cursor = self.papers.find(search_query)
         papers = []
@@ -88,7 +109,10 @@ class DBClient(object):
     def get_paper_which_contains_queries(self, queries):
         search_query = {"$or": []}
         for imrad_type, query in queries.items():
-            self.__add_query_for_imrad_type(imrad_type, query.split(), search_query)
+            if imrad_type == "whole-document":
+                self.__add_query_for_whole_doc(query.split(), search_query)
+            else:
+                self.__add_query_for_imrad_type(imrad_type, query.split(), search_query)
 
         cursor = self.papers.find(search_query)
         papers = []

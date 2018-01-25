@@ -30,7 +30,7 @@ def admin_login():
         return redirect('admin/')
 
 
-@admin.route('/admin/logout', methods=['GET'])
+@admin.route('/admin/logout', methods=['POST'])
 def admin_logout():
     session['logged_in'] = False
     return redirect('admin/')

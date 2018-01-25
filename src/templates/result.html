@@ -6,6 +6,10 @@
 
         <div id="search-div" class="collapse">
             <form role="form" method='POST' action='/'>
+                <h4>Whole Document</h4>
+                <textarea class="form-control simple_input" type="text" name="whole_text"
+                          placeholder="Enter a query">{{ queries["whole-document"] }}</textarea>
+
                 <h4>Introduction (Problem)</h4>
                 <textarea class="form-control simple_input" type="text" name="intro_text"
                           placeholder="Enter a query">{{ queries["INDRODUCTION"] }}</textarea>

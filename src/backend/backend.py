@@ -16,11 +16,13 @@ def index():
     if request.method == "GET":
         return render_template('index.html')
 
-    queries = {IMRaDType.INDRODUCTION.name: request.form['intro_text'],
-               IMRaDType.BACKGROUND.name: request.form['background_text'],
-               IMRaDType.METHODS.name: request.form['methods_text'],
-               IMRaDType.RESULTS.name: request.form['results_text'],
-               IMRaDType.DISCUSSION.name: request.form['discussion_text']}
+    queries = {
+        "whole-document": request.form['whole_text'],
+        IMRaDType.INDRODUCTION.name: request.form['intro_text'],
+        IMRaDType.BACKGROUND.name: request.form['background_text'],
+        IMRaDType.METHODS.name: request.form['methods_text'],
+        IMRaDType.RESULTS.name: request.form['results_text'],
+        IMRaDType.DISCUSSION.name: request.form['discussion_text']}
 
     if all(not query for query in queries.values()):
         return render_template('index.html')
