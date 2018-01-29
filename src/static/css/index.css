@@ -36,3 +36,16 @@
 div.query {
     height: 90px;
 }
+
+.result-info-text {
+    text-align: center;
+}
+
+.info {
+    padding-top: 10px;
+}
+
+#complete-query {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}

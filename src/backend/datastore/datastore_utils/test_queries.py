@@ -6,7 +6,7 @@ from backend.datastore.structure.section import IMRaDType
 
 def get_papers_with_query():
     api = API()
-    ret = api.get_ranked_papers_explicit(queries)
+    ret = api.get_papers_simple_ranking(queries)
     print(ret)
 
 

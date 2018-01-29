@@ -65,7 +65,7 @@
                                 <a href="/view_pdf/{{ value.paper.id }}" target="_blank">{{ value.paper.filename }}</a>
                             </div>
                             <div id="info">
-                                <div id="raking">{{ value.ranking | round(4, 'floor') }}</div>
+                                <div id="raking">{{ value.rank | round(4, 'floor') }}</div>
                                 <form action="get_ranking_info/{{ value.paper.id }}" method="POST">
                                     <button class="btn btn-primary btn-xs" type="submit" name="ranking"
                                             value="{whole-document:'{{ queries["whole-document"] }}',DISCUSSION:'{{ queries["DISCUSSION"] }}',INDRODUCTION:'{{ queries["INDRODUCTION"] }}',BACKGROUND:'{{ queries["BACKGROUND"] }}',METHODS:'{{ queries["METHODS"] }}',RESULTS:'{{ queries["RESULTS"] }}'}">

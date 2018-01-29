@@ -88,7 +88,7 @@ class DBClient(object):
         self.papers.remove({})
 
 
-    def get_paper_which_contains_queries_in_hist(self, queries, remove_double_terms_in_section_query=True):
+    def get_paper_which_contains_queries_in_hist(self, queries):
         search_query = {"$or": []}
         for imrad_type, query in queries.items():
             if imrad_type == "whole-document":
@@ -97,16 +97,10 @@ class DBClient(object):
                 self.__add_query_for_imrad_type_hist(imrad_type, query.split(), search_query)
 
         cursor = self.papers.find(search_query)
-        papers = []
-
-        for paper in self.__cursor_to_list(cursor):
-            rank, info = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
-            papers.append([paper, rank, info])
-        return papers
+        return self.__cursor_to_list(cursor)
 
 
-
-    def get_paper_which_contains_queries(self, queries, remove_double_terms_in_section_query=True):
+    def get_paper_which_contains_queries(self, queries):
         search_query = {"$or": []}
         for imrad_type, query in queries.items():
             if imrad_type == "whole-document":
@@ -115,12 +109,7 @@ class DBClient(object):
                 self.__add_query_for_imrad_type(imrad_type, query.split(), search_query)
 
         cursor = self.papers.find(search_query)
-        papers = []
-
-        for paper in self.__cursor_to_list(cursor):
-            rank, info = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
-            papers.append([paper, rank, info])
-        return papers
+        return self.__cursor_to_list(cursor)
 
 
     def get_paper_which_contains_query_in_introduction(self, introduction_words):

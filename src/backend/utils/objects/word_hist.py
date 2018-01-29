@@ -29,7 +29,7 @@ class WordHist(dict):
                 ignored.append(key)
             else:
                 rank = self.get_normalized_key_value(key)
-                key_value.append([key, rank])
+                key_value.append([key, rank, self[key]])
                 ranking += rank
 
         return ranking, key_value, ignored

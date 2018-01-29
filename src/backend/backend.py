@@ -3,6 +3,7 @@
 import os, json
 from flask import Blueprint, render_template, request, redirect, current_app, send_file
 from backend.datastore.api import API
+from backend.datastore.ranking.ranking_simple import RankingSimple
 from backend.datastore.structure.section import IMRaDType
 
 backend = Blueprint('backend', __name__)
@@ -26,8 +27,7 @@ def index():
     if all(not query for query in queries.values()):
         return render_template('index.html')
 
-    remove_double_terms_in_section_query = True
-    result = api.get_ranked_papers_explicit(queries, remove_double_terms_in_section_query)
+    result = api.get_papers_simple_ranking(queries)
     return render_template('result.html', queries=queries, result=result)
 
 
@@ -53,10 +53,11 @@ def get_ranking_info(paper_id):
     json_form = request.form['ranking'].replace("'", "\"").replace("{", "{\"").replace(":", "\":").replace(",", ",\"")
     queries = json.loads(json_form)
 
-    remove_double_terms_in_section_query = True
     paper = api.get_paper(paper_id)
-    rank, info = paper.get_ranking_simple(queries, remove_double_terms_in_section_query)
-    return render_template('result_info.html', queries=queries, result={"paper": paper, "ranking": rank, "info": info})
+    queries_proceed = api.preprocessor.proceed_queries(queries)
+
+    rank, info = RankingSimple.get_ranking(paper, queries_proceed)
+    return render_template('result_info.html', queries=queries, result={"paper": paper, "rank": rank, "info": info})
 
 
 @backend.route('/view_pdf/<paper_id>', methods=["GET", "POST"])

@@ -60,15 +60,15 @@
     </button>
     <div id="word_hist_complete" class="collapse">
         <p class="word-hist-title">
-            #Elements: {{ combined_hist | length }},
-            Sum of Elements: {{ combined_hist.items() | sum(attribute="1") }}
+            #Elements: {{ paper.word_hist | length }},
+            Sum of Elements: {{ paper.word_hist.items() | sum(attribute="1") }}
         </p>
         <table class="table table-striped">
             <tbody>
-            {% for keyrow in combined_hist.keys() | sort | batch(8) %}
+            {% for keyrow in paper.word_hist.keys() | sort | batch(8) %}
                 <tr>
                     {% for key in keyrow %}
-                        <td>{{ key }}: {{ combined_hist[key] }}</td>
+                        <td>{{ key }}: {{ paper.word_hist[key] }}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}

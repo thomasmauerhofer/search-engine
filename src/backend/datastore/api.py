@@ -6,6 +6,7 @@ import os
 
 from backend.datastore.datastore_utils.crypto import Crypto
 from backend.datastore.db_client import DBClient
+from backend.datastore.ranking.ranking_simple import RankingSimple
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.preprocessor import Preprocessor
 from backend.utils.list_utils import insert_dict_into_sorted_list
@@ -68,18 +69,19 @@ class API(object):
             os.remove(file_path)
 
 
-    def get_ranked_papers_explicit(self, queries, remove_double_terms_in_section_query=True):
+    def get_papers_simple_ranking(self, queries):
         ret = []
-
         queries_proceed = self.preprocessor.proceed_queries(queries)
 
         if all(not query for query in queries_proceed.values()):
             return ret
 
-        papers = self.client.get_paper_which_contains_queries(queries_proceed, remove_double_terms_in_section_query)
-        for val in papers:
-            element = {"paper": val[0], "ranking": val[1], "info": val[2]}
-            insert_dict_into_sorted_list(ret, element, "ranking")
+        papers = self.client.get_paper_which_contains_queries(queries_proceed)
+        for paper in papers:
+            rank, info = RankingSimple.get_ranking(paper, queries_proceed)
+            element = {"paper": paper, "rank": rank, "info": info}
+            insert_dict_into_sorted_list(ret, element, "rank")
+
         return ret
 
 
