@@ -80,3 +80,7 @@ div#settings {
 #use-pdf {
     display: none;
 }
+
+#search-div {
+    display: none;
+}

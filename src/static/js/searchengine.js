@@ -12,13 +12,33 @@ $(document).ready(function () {
     });
 
     $("#button-use-pdf").click(function () {
-        $("#use-query").hide();
-        $("#use-pdf").show();
+        $("#use-query").css('opacity', 0)
+            .slideUp('slow')
+            .animate(
+                {opacity: 1},
+                {queue: false, duration: 'slow'}
+            );
+        $("#use-pdf").css('opacity', 0)
+            .slideDown('slow')
+            .animate(
+                {opacity: 1},
+                {queue: false, duration: 'slow'}
+            );
     });
 
     $("#button-use-queries").click(function () {
-        $("#use-query").show();
-        $("#use-pdf").hide();
+        $("#use-pdf").css('opacity', 0)
+            .slideUp('slow')
+            .animate(
+                {opacity: 1},
+                {queue: false, duration: 'slow'}
+            );
+        $("#use-query").css('opacity', 0)
+            .slideDown('slow')
+            .animate(
+                {opacity: 1},
+                {queue: false, duration: 'slow'}
+            );
     });
 });
 
