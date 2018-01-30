@@ -10,6 +10,16 @@ $(document).ready(function () {
     $(".section-query").keyup(function (e) {
         setSectionQueryError(this);
     });
+
+    $("#button-use-pdf").click(function () {
+        $("#use-query").hide();
+        $("#use-pdf").show();
+    });
+
+    $("#button-use-queries").click(function () {
+        $("#use-query").show();
+        $("#use-pdf").hide();
+    });
 });
 
 

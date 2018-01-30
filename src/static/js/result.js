@@ -1,5 +1,23 @@
 $(document).ready(function () {
     setErrors();
+
+    $("#button-show-search").click(function () {
+        if ($("#search-div").is(':visible')) {
+            $("#search-div").css('opacity', 0)
+                .slideUp('slow')
+                .animate(
+                {opacity: 1},
+                {queue: false, duration: 'slow'}
+            );
+        } else {
+            $("#search-div").css('opacity', 0)
+                .slideDown('slow')
+                .animate(
+                    {opacity: 1},
+                    {queue: false, duration: 'slow'}
+                );
+        }
+    });
 });
 
 function setErrors() {

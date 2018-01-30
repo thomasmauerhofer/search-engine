@@ -3,69 +3,79 @@
 
     <div class="container">
         <div class="div-submit text-center">
-            <button class="btn btn-primary btn-md" data-toggle="collapse" data-target="#search-div">New Search</button>
+            <button id="button-show-search" class="btn btn-primary btn-md">New Search</button>
         </div>
 
-        <div id="search-div" class="collapse">
-            <form role="form" method='POST' action='/'>
-                <h4>Whole Document</h4>
-                <div class="query">
+        <div id="search-div">
+            <div id="use-query">
+                <form role="form" method='POST' action='/'>
+                    <h4>Whole Document</h4>
+                    <div class="query">
                 <textarea id="whole-doc" class="form-control simple_input doc-query" type="text" name="whole_text"
                           placeholder="Enter a query">{{ queries["whole-document"] }}</textarea>
-                    <label class="control-label" for="whole-doc"></label>
-                </div>
+                        <label class="control-label" for="whole-doc"></label>
+                    </div>
 
-                <h4>Introduction (Problem)</h4>
-                <div class="query">
+                    <h4>Introduction (Problem)</h4>
+                    <div class="query">
                 <textarea id="sec-intro" class="form-control simple_input section-query" type="text" name="intro_text"
                           placeholder="Enter a query">{{ queries["INDRODUCTION"] }}</textarea>
-                    <label class="control-label" for="sec-intro"></label>
-                </div>
+                        <label class="control-label" for="sec-intro"></label>
+                    </div>
 
-                <h4>Background</h4>
-                <div class="query">
+                    <h4>Background</h4>
+                    <div class="query">
                 <textarea id="sec-back" class="form-control simple_input section-query" type="text"
                           name="background_text" placeholder="Enter a query">{{ queries["BACKGROUND"] }}</textarea>
-                    <label class="control-label" for="sec-back"></label>
-                </div>
+                        <label class="control-label" for="sec-back"></label>
+                    </div>
 
-                <h4>Methods (Algorithm)</h4>
-                <div class="query">
+                    <h4>Methods (Algorithm)</h4>
+                    <div class="query">
                 <textarea id="sec-method" class="form-control simple_input section-query" type="text"
                           name="methods_text" placeholder="Enter a query">{{ queries["METHODS"] }}</textarea>
-                    <label class="control-label" for="sec-method"></label>
-                </div>
+                        <label class="control-label" for="sec-method"></label>
+                    </div>
 
-                <h4>Results (Evaluation)</h4>
-                <div class="query">
+                    <h4>Results (Evaluation)</h4>
+                    <div class="query">
                 <textarea id="sec-res" class="form-control simple_input section-query" type="text" name="results_text"
                           placeholder="Enter a query">{{ queries["RESULTS"] }}</textarea>
-                    <label class="control-label" for="sec-res"></label>
-                </div>
+                        <label class="control-label" for="sec-res"></label>
+                    </div>
 
-                <h4>Discussion</h4>
-                <div class="query">
+                    <h4>Discussion</h4>
+                    <div class="query">
                 <textarea id="sec-discuss" class="form-control simple_input section-query" type="text"
                           name="discussion_text" placeholder="Enter a query">{{ queries["DISCUSSION"] }}</textarea>
-                    <label class="control-label" for="sec-discuss"></label>
-                </div>
+                        <label class="control-label" for="sec-discuss"></label>
+                    </div>
 
-                <div id="settings">
-                <h4>Settings</h4>
-                    <select name="importance" class="form-control settings-select">
-                        <option value="">Higher importance to Words in whole Document</option>
-                        {% if settings["importance_sections"] %}
-                            <option value="True" selected>Higher importance to Words in Sections</option>
-                        {% else %}
-                            <option value="True">Higher importance to Words in Sections</option>
-                        {% endif %}
-                    </select>
-                </div>
+                    <div id="settings">
+                        <h4>Settings</h4>
+                        <select name="importance" class="form-control settings-select">
+                            <option value="">Higher importance to Words in whole Document</option>
+                            {% if settings["importance_sections"] %}
+                                <option value="True" selected>Higher importance to Words in Sections</option>
+                            {% else %}
+                                <option value="True">Higher importance to Words in Sections</option>
+                            {% endif %}
+                        </select>
+                    </div>
 
+                    <div class="div-submit text-center">
+                        <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
+                        <button id="button-use-pdf" class="btn btn-primary btn-lg b-nml">Use PDF</button>
+                    </div>
+                </form>
+            </div>
+            <div id="use-pdf">
+                <p>Hello</p>
                 <div class="div-submit text-center">
-                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                    <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
+                    <button id="button-use-queries" class="btn btn-primary btn-lg b-nml">Use Queries</button>
                 </div>
-            </form>
+            </div>
         </div> <!-- /.search-div -->
 
         <div class="result">

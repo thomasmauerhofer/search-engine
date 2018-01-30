@@ -72,3 +72,11 @@ div#settings {
     width: 97%;
     padding-top: 35px;
 }
+
+.b-nml {
+    width: 135px;
+}
+
+#use-pdf {
+    display: none;
+}
