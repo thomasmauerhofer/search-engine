@@ -34,7 +34,7 @@
 }
 
 div.query {
-    height: 90px;
+    height: 57px;
 }
 
 .result-info-text {
@@ -48,4 +48,27 @@ div.query {
 #complete-query {
     padding-top: 10px;
     padding-bottom: 20px;
+}
+
+#whole-doc {
+    height: 55px !important;
+}
+
+.section-query {
+    height: 55px !important;
+}
+
+div.query label {
+    width: 97%;
+    text-align: center;
+}
+
+.settings-select {
+    display: inline-block;
+    width: 350px;
+}
+
+div#settings {
+    width: 97%;
+    padding-top: 35px;
 }

@@ -23,12 +23,13 @@ def index():
         IMRaDType.RESULTS.name: request.form['results_text'],
         IMRaDType.DISCUSSION.name: request.form['discussion_text']}
 
+    settings = {"importance_sections": bool(request.form['importance'])}
 
     if all(not query for query in queries.values()):
-        return render_template('index.html')
+        return '', 204
 
-    result = api.get_papers_simple_ranking(queries)
-    return render_template('result.html', queries=queries, result=result)
+    result = api.get_papers_simple_ranking(queries, settings)
+    return render_template('result.html', queries=queries, settings=settings, result=result)
 
 
 @backend.route('/upload', methods=["GET", "POST"])
@@ -50,13 +51,15 @@ def upload():
 
 @backend.route('/get_ranking_info/<paper_id>', methods=["GET", "POST"])
 def get_ranking_info(paper_id):
-    json_form = request.form['ranking'].replace("'", "\"").replace("{", "{\"").replace(":", "\":").replace(",", ",\"")
-    queries = json.loads(json_form)
+    form_str = request.form['ranking'].replace("'", "\"").replace("{", "{\"").replace(":", "\":").replace(",", ",\"")
+    form_data = json.loads(form_str)
+    settings = form_data["settings"]
+    queries = form_data["queries"]
 
     paper = api.get_paper(paper_id)
     queries_proceed = api.preprocessor.proceed_queries(queries)
 
-    rank, info = RankingSimple.get_ranking(paper, queries_proceed)
+    rank, info = RankingSimple.get_ranking(paper, queries_proceed, settings)
     return render_template('result_info.html', queries=queries, result={"paper": paper, "rank": rank, "info": info})
 
 

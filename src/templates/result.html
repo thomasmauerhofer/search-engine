@@ -50,6 +50,18 @@
                     <label class="control-label" for="sec-discuss"></label>
                 </div>
 
+                <div id="settings">
+                <h4>Settings</h4>
+                    <select name="importance" class="form-control settings-select">
+                        <option value="">Higher importance to Words in whole Document</option>
+                        {% if settings["importance_sections"] %}
+                            <option value="True" selected>Higher importance to Words in Sections</option>
+                        {% else %}
+                            <option value="True">Higher importance to Words in Sections</option>
+                        {% endif %}
+                    </select>
+                </div>
+
                 <div class="div-submit text-center">
                     <button class="btn btn-primary btn-lg" type="submit">Submit</button>
                 </div>
@@ -68,7 +80,7 @@
                                 <div id="raking">{{ value.rank | round(4, 'floor') }}</div>
                                 <form action="get_ranking_info/{{ value.paper.id }}" method="POST">
                                     <button class="btn btn-primary btn-xs" type="submit" name="ranking"
-                                            value="{whole-document:'{{ queries["whole-document"] }}',DISCUSSION:'{{ queries["DISCUSSION"] }}',INDRODUCTION:'{{ queries["INDRODUCTION"] }}',BACKGROUND:'{{ queries["BACKGROUND"] }}',METHODS:'{{ queries["METHODS"] }}',RESULTS:'{{ queries["RESULTS"] }}'}">
+                                            value="{settings:{importance_sections:{{ settings["importance_sections"] | lower }}},queries:{whole-document:'{{ queries["whole-document"] }}',DISCUSSION:'{{ queries["DISCUSSION"] }}',INDRODUCTION:'{{ queries["INDRODUCTION"] }}',BACKGROUND:'{{ queries["BACKGROUND"] }}',METHODS:'{{ queries["METHODS"] }}',RESULTS:'{{ queries["RESULTS"] }}'}}">
                                         Additional Info
                                     </button>
                                 </form>

@@ -34,8 +34,7 @@ function setDocQueryError() {
                 $(".doc-query").parents('.query').addClass('has-error has-feedback');
                 $(".doc-query").parents('.query').children('.control-label').text(words[j] + " is also present in the chapter-search.");
                 $(textarea).parents('.query').addClass('has-error has-feedback');
-                $(textarea).parents('.query').children('.control-label').text(words[j] + " is also present in the document-search. " +
-                    "Double terms are ignored in the section queries.");
+                $(textarea).parents('.query').children('.control-label').text(words[j] + " is also present in the document-search.");
                 break;
             } else {
                 $(".doc-query").parents('.query').removeClass('has-feedback has-error');
@@ -64,8 +63,7 @@ function setSectionQueryError(query_field) {
             $(".doc-query").parents('.query').addClass('has-error has-feedback');
             $(".doc-query").parents('.query').children('.control-label').text(words[j] + " is also present in the document-search.");
             $(query_field).parents('.query').addClass('has-error has-feedback');
-            $(query_field).parents('.query').children('.control-label').text(words[j] + " is also present in the chapter-search. " +
-                "Double terms are ignored in the section queries.");
+            $(query_field).parents('.query').children('.control-label').text(words[j] + " is also present in the chapter-search.");
             break;
         } else {
 

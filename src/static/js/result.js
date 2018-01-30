@@ -18,8 +18,7 @@ function setErrors() {
                 $(".doc-query").parents('.query').addClass('has-error has-feedback');
                 $(".doc-query").parents('.query').children('.control-label').text(words[j] + " is also present in the chapter-search.");
                 $(textarea).parents('.query').addClass('has-error has-feedback');
-                $(textarea).parents('.query').children('.control-label').text(words[j] + " is also present in the document-search. " +
-                    "Double terms are ignored in the section queries.");
+                $(textarea).parents('.query').children('.control-label').text(words[j] + " is also present in the document-search.");
                 break;
             }
         }

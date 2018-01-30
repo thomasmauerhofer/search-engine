@@ -69,7 +69,7 @@ class API(object):
             os.remove(file_path)
 
 
-    def get_papers_simple_ranking(self, queries):
+    def get_papers_simple_ranking(self, queries, settings):
         ret = []
         queries_proceed = self.preprocessor.proceed_queries(queries)
 
@@ -78,7 +78,7 @@ class API(object):
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
         for paper in papers:
-            rank, info = RankingSimple.get_ranking(paper, queries_proceed)
+            rank, info = RankingSimple.get_ranking(paper, queries_proceed, settings)
             element = {"paper": paper, "rank": rank, "info": info}
             insert_dict_into_sorted_list(ret, element, "rank")
 
