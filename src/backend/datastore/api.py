@@ -86,12 +86,15 @@ class API(object):
 
     def get_papers_simple_ranking_with_paper(self, filename, settings):
         ret = []
-        settings["importance_sections"] = True  # only important for sections-uncategorized
+        settings["importance_sections"] = False  # only important for sections-uncategorized
         paper = self.get_imported_paper(filename)
         queries_proceed = paper_to_queries(paper, settings["mode"])
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
         for paper in papers:
+            if paper.filename == filename:
+                continue
+
             rank, info = RankingSimple.get_ranking(paper, queries_proceed, settings)
             element = {"paper": paper, "rank": rank, "info": info}
             insert_dict_into_sorted_list(ret, element, "rank")

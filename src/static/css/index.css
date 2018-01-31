@@ -2,6 +2,10 @@ textarea {
     resize: none;
 }
 
+.inner-container {
+    padding-bottom: 30px;
+}
+
 .div-submit {
     padding-top: 15px;
 }

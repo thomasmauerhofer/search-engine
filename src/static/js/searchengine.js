@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $("#navbar1").addClass('active').siblings().removeClass('active');
 
-    // We can attach the `fileselect` event to all file inputs on the page
     $(document).on('change', ':file', function () {
         var input = $(this),
             numFiles = input.get(0).files ? input.get(0).files.length : 1,
@@ -9,7 +8,6 @@ $(document).ready(function () {
         input.trigger('fileselect', [numFiles, label]);
     });
 
-    // We can watch for our custom `fileselect` event like this
     $(document).ready(function () {
         $(':file').on('fileselect', function (event, numFiles, label) {
 
