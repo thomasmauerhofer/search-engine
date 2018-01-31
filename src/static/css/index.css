@@ -1,5 +1,5 @@
-.simple_input {
-    width: 97%;
+textarea {
+    resize: none;
 }
 
 .div-submit {
@@ -8,7 +8,6 @@
 
 .result {
     padding-top: 35px;
-    width: 97%;
 }
 
 .result .result-line {
@@ -59,7 +58,6 @@ div.query {
 }
 
 div.query label {
-    width: 97%;
     text-align: center;
 }
 
@@ -68,8 +66,7 @@ div.query label {
     width: 350px;
 }
 
-div#settings {
-    width: 97%;
+div#query-settings {
     padding-top: 35px;
 }
 
@@ -77,10 +74,12 @@ div#settings {
     width: 135px;
 }
 
-#use-pdf {
+#search-div {
     display: none;
 }
 
-#search-div {
-    display: none;
+#settings-pdf {
+    width: 542px;
+    padding-top: 35px;
+    padding-bottom: 65px;
 }

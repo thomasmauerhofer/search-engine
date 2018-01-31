@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 import contextlib
-
 import os
-
 from backend.datastore.datastore_utils.crypto import Crypto
 from backend.datastore.db_client import DBClient
 from backend.datastore.ranking.ranking_simple import RankingSimple
 from backend.importer.importer_teambeam import ImporterTeambeam
 from backend.preprocessing.preprocessor import Preprocessor
 from backend.utils.list_utils import insert_dict_into_sorted_list
+from backend.utils.paper_utils import paper_to_queries
 from config import ALLOWED_EXTENSIONS, path_to_datastore
 
 
@@ -28,18 +27,18 @@ class API(object):
 
 
     def add_paper(self, filename):
+        paper = self.get_imported_paper(filename)
+        return self.client.add_paper(paper)
+
+
+    def get_imported_paper(self, filename):
         if not self.allowed_upload_file(filename):
-            return None
+            raise IOError('Wrong extension. Only files in pdf-Format can be used.')
 
         paper = self.importer.import_paper(filename)
-        if not paper:
-            return None
-        valid_paper = self.preprocessor.proceed_paper(paper)
-        if not valid_paper:
-            return None
-
+        self.preprocessor.proceed_paper(paper)
         paper.get_combined_word_hist()
-        return self.client.add_paper(paper)
+        return paper
 
 
     def get_paper(self, paper_id):
@@ -83,6 +82,22 @@ class API(object):
             insert_dict_into_sorted_list(ret, element, "rank")
 
         return ret
+
+
+    def get_papers_simple_ranking_with_paper(self, filename, settings):
+        ret = []
+        settings["importance_sections"] = True  # only important for sections-uncategorized
+        paper = self.get_imported_paper(filename)
+        queries_proceed = paper_to_queries(paper, settings["mode"])
+
+        papers = self.client.get_paper_which_contains_queries(queries_proceed)
+        for paper in papers:
+            rank, info = RankingSimple.get_ranking(paper, queries_proceed, settings)
+            element = {"paper": paper, "rank": rank, "info": info}
+            insert_dict_into_sorted_list(ret, element, "rank")
+
+        return ret, queries_proceed
+
 
 
     # -------------------------------------------------------------------------------

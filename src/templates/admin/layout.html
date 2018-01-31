@@ -8,6 +8,8 @@
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
 
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
     <!-- jquery -->
     <script type=text/javascript
             src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>

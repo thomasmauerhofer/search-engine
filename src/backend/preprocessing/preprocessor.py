@@ -13,8 +13,7 @@ class Preprocessor(object):
 
     def proceed_paper(self, paper):
         self.text_processor.proceed(paper)
-        success = self.imrad_detector.proceed(paper)
-        return success
+        self.imrad_detector.proceed(paper)
 
 
     def proceed_queries(self, queries):

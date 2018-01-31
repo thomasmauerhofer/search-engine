@@ -28,6 +28,22 @@ class Paper(PaperStructure):
         return pp.pformat(self.to_dict())
 
 
+    def get_sections_with_imrad_type(self, imrad_type):
+        imrad_type = IMRaDType[imrad_type] if isinstance(imrad_type, str) else imrad_type
+        return [chapter for chapter in self.sections if imrad_type in chapter.imrad_types]
+
+
+    def get_sections_with_an_imrad_type(self):
+        return [chapter for chapter in self.sections if (IMRaDType.INDRODUCTION in chapter.imrad_types or
+                IMRaDType.BACKGROUND in chapter.imrad_types or IMRaDType.METHODS in chapter.imrad_types or
+                IMRaDType.RESULTS in chapter.imrad_types or IMRaDType.DISCUSSION in chapter.imrad_types)]
+
+
+    def get_sections_without_an_imrad_type(self):
+        return [chapter for chapter in self.sections if (not len(chapter.imrad_types) or
+                IMRaDType.ABSTRACT in chapter.imrad_types or IMRaDType.ACKNOWLEDGE in chapter.imrad_types)]
+
+
     def to_dict(self):
         data = {'filename': self.filename, 'title': self.title, 'file': self.file, 'authors': [], 'sections': [],
                 'references': [], 'word_hist': self.word_hist}
@@ -72,7 +88,6 @@ class Paper(PaperStructure):
     def add_subsection(self, section_name):
         if not len(self.sections):
             self.add_section('')
-
         self.sections[-1].add_subsection(SectionType.SUBSECTION, section_name)
 
 
@@ -89,7 +104,6 @@ class Paper(PaperStructure):
     def add_text_to_current_section(self, text_type, text):
         if not len(self.sections):
             self.add_section('')
-
         self.sections[-1].add_text_object(text_type, text)
 
 
@@ -101,13 +115,12 @@ class Paper(PaperStructure):
         self.authors.append(Authors({'all_authors_text': full_authors}))
 
 
-    def get_sections_with_imrad_type(self, imrad_type):
-        imrad_type = IMRaDType[imrad_type] if isinstance(imrad_type, str) else imrad_type
-        return [chapter for chapter in self.sections if imrad_type in chapter.imrad_types]
-
-
-    def get_indroduction(self):
+    def get_introduction(self):
         return self.get_sections_with_imrad_type(IMRaDType.INDRODUCTION)
+
+
+    def get_background(self):
+        return self.get_sections_with_imrad_type(IMRaDType.BACKGROUND)
 
 
     def get_methods(self):
@@ -125,4 +138,3 @@ class Paper(PaperStructure):
     def save_file_to_path(self, path):
         open(path + self.filename, 'wb').write(self.file)
         return path + self.filename
-

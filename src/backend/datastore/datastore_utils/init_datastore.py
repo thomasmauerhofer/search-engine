@@ -6,6 +6,7 @@ import shutil
 from getpass import getpass
 from optparse import OptionParser
 from backend.datastore.api import API
+from backend.utils.exceptions.import_exceptions import ClassificationError
 from config import path_to_datastore
 
 
@@ -25,8 +26,15 @@ def __add_files(folder):
             src = folder + "/" + filename
             dst = path_to_datastore + filename
             shutil.copy(src, dst)
-            paper_id = api.add_paper(filename)
-            print(paper_id)
+            try:
+                paper_id = api.add_paper(filename)
+                print(paper_id)
+            except IOError as e:
+                print(e)
+            except OSError as e:
+                print(e)
+            except ClassificationError as e:
+                print(e)
 
 
 def __check_database():

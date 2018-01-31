@@ -42,3 +42,9 @@ class WordHist(dict):
         for word in query:
             ret += [key for key, value in self.items() if (word in key.lower()) and (key.lower() not in ret)]
         return ret
+
+    def keys_to_query(self):
+        query = ""
+        for key, value in self.items():
+            query += key.lower() + " "
+        return query

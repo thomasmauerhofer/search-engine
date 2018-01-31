@@ -1,6 +1,6 @@
 # encoding: utf-8
 from backend.datastore.ranking.ranking_base import RankingBase
-from backend.utils.objects.word_hist import WordHist
+from backend.utils.paper_utils import sections_to_word_hist
 
 
 class RankingSimple(RankingBase):
@@ -20,10 +20,8 @@ class RankingSimple(RankingBase):
             if query == "" or imrad_type == "whole-document":
                 continue
 
-            raking_hist = WordHist()
             sections = paper.get_sections_with_imrad_type(imrad_type)
-            for section in sections:
-                raking_hist.append(section.get_combined_word_hist())
+            raking_hist = sections_to_word_hist(sections)
 
             ranking, key_value, ignored = raking_hist.get_normalized_query_value(query, section_ignored_keys)
             info[imrad_type] = {"rank": ranking, "sumwords": sum(raking_hist.values()), "keyvalues": key_value, "ignored": ignored}

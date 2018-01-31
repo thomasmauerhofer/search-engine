@@ -1,53 +1,77 @@
 {% extends "layout.html" %} {% block body %}
     <script type=text/javascript src="{{ url_for('static', filename='js/result.js') }}"></script>
 
-    <div class="container">
+    <div class="inner-container">
         <div class="div-submit text-center">
             <button id="button-show-search" class="btn btn-primary btn-md">New Search</button>
         </div>
 
         <div id="search-div">
-            <div id="use-query">
+            <div id="use-query" style="{% if "mode" in settings %}opacity: 1; display: none;{% endif %}">
                 <form role="form" method='POST' action='/'>
                     <h4>Whole Document</h4>
                     <div class="query">
                 <textarea id="whole-doc" class="form-control simple_input doc-query" type="text" name="whole_text"
-                          placeholder="Enter a query">{{ queries["whole-document"] }}</textarea>
+                          placeholder="Enter a query">
+                    {% if queries %}
+                        {{ queries["whole-document"] }}
+                    {% endif %}
+                </textarea>
                         <label class="control-label" for="whole-doc"></label>
                     </div>
 
                     <h4>Introduction (Problem)</h4>
                     <div class="query">
                 <textarea id="sec-intro" class="form-control simple_input section-query" type="text" name="intro_text"
-                          placeholder="Enter a query">{{ queries["INDRODUCTION"] }}</textarea>
+                          placeholder="Enter a query">
+                    {% if queries %}
+                        {{ queries["INDRODUCTION"] }}
+                    {% endif %}
+                </textarea>
                         <label class="control-label" for="sec-intro"></label>
                     </div>
 
                     <h4>Background</h4>
                     <div class="query">
                 <textarea id="sec-back" class="form-control simple_input section-query" type="text"
-                          name="background_text" placeholder="Enter a query">{{ queries["BACKGROUND"] }}</textarea>
+                          name="background_text" placeholder="Enter a query">
+                    {% if queries %}
+                        {{ queries["BACKGROUND"] }}
+                    {% endif %}
+                </textarea>
                         <label class="control-label" for="sec-back"></label>
                     </div>
 
                     <h4>Methods (Algorithm)</h4>
                     <div class="query">
                 <textarea id="sec-method" class="form-control simple_input section-query" type="text"
-                          name="methods_text" placeholder="Enter a query">{{ queries["METHODS"] }}</textarea>
+                          name="methods_text" placeholder="Enter a query">
+                    {% if queries %}
+                        {{ queries["METHODS"] }}
+                    {% endif %}
+                </textarea>
                         <label class="control-label" for="sec-method"></label>
                     </div>
 
                     <h4>Results (Evaluation)</h4>
                     <div class="query">
                 <textarea id="sec-res" class="form-control simple_input section-query" type="text" name="results_text"
-                          placeholder="Enter a query">{{ queries["RESULTS"] }}</textarea>
+                          placeholder="Enter a query">
+                    {% if queries %}
+                        {{ queries["RESULTS"] }}
+                    {% endif %}
+                </textarea>
                         <label class="control-label" for="sec-res"></label>
                     </div>
 
                     <h4>Discussion</h4>
                     <div class="query">
                 <textarea id="sec-discuss" class="form-control simple_input section-query" type="text"
-                          name="discussion_text" placeholder="Enter a query">{{ queries["DISCUSSION"] }}</textarea>
+                          name="discussion_text" placeholder="Enter a query">
+                    {% if queries %}
+                        {{ queries["DISCUSSION"] }}
+                    {% endif %}
+                </textarea>
                         <label class="control-label" for="sec-discuss"></label>
                     </div>
 
@@ -69,11 +93,36 @@
                     </div>
                 </form>
             </div>
-            <div id="use-pdf">
-                <p>Hello</p>
-                <div class="div-submit text-center">
-                    <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
-                    <button id="button-use-queries" class="btn btn-primary btn-lg b-nml">Use Queries</button>
+            <div id="use-pdf" style="{% if "mode" not in settings %}opacity: 1; display: none;{% endif %}">
+                <div id="pdf-settings">
+                    <h4>Scientific Work</h4>
+                    <form method=post action='/search_with_pdf' enctype=multipart/form-data>
+                        <div class="input-group">
+                            <label class="input-group-btn">
+                                <span class="btn btn-primary">
+                                    Browse&hellip; <input type="file" name="file" style="display: none;" accept=".pdf">
+                                </span>
+                            </label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                        <div id="settings-pdf">
+                            <h4>Settings</h4>
+                            <select name="importance" class="form-control">
+                                <option value="sections">Importance into Sections (use Words from Section only in that
+                                    specific Section)
+                                </option>
+                                <option value="doc">Without importance into Sections (use all Words in whole Scientific
+                                    Work)
+                                </option>
+                                <option value="background">Use Background Section only</option>
+                            </select>
+                        </div>
+                        <div class="div-submit text-center">
+                            <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
+                            <button id="button-use-queries" class="btn btn-primary btn-lg b-nml" type=button>Use Queries
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div> <!-- /.search-div -->

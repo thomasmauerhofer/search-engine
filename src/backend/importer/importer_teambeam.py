@@ -152,10 +152,8 @@ class ImporterTeambeam(ImporterBase):
             if os.name == 'nt':  # Windows
                 os.chdir(path_to_teambeam_executable_windows)
                 copy(path_to_file, path_to_teambeam_executable_windows)
-                try:
-                    subprocess.call('bash pdf-to-xml -a \"' + filename + '\"')
-                except OSError:
-                    print('ERROR: os.subprocess ends with an error.')
+                subprocess.call('bash pdf-to-xml -a \"' + filename + '\"')
+
                 try:
                     os.remove(filename)
                     move(path_to_teambeam_executable_windows + filename + EXTENSION_TEXT, path_to_datastore)
@@ -164,10 +162,7 @@ class ImporterTeambeam(ImporterBase):
                     print("ERROR: Can't move output files:" + filename)
                     return None
             else:
-                try:
-                    os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
-                except OSError:
-                    print('ERROR: os.subprocess ends with an error.')
+                os.system('cd ' + path_to_teambeam_executable + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
 
         with open(path_to_file + EXTENSION_TEXT, "r", encoding="utf8") as textfile:
             data = textfile.read()

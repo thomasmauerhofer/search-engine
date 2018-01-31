@@ -2,6 +2,8 @@
 # encoding: utf-8
 
 import numpy as np
+
+from backend.utils.exceptions.import_exceptions import ClassificationError
 from config import threshold
 from backend.datastore.structure.section import IMRaDType
 from backend.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
@@ -30,7 +32,7 @@ class IMRaDDetection(object):
     def proceed(self, paper):
         chapter_names = [name.heading for name in paper.sections]
         if not len(chapter_names):
-            return False
+            raise ClassificationError("Chapters can't be extracted from pdf-file.")
 
         y = self.classifierNN.predict_chapter(chapter_names)
         y_simple = self.classifierSimple.predict_chapter(chapter_names)
@@ -47,9 +49,9 @@ class IMRaDDetection(object):
             intro_pos = np.where(intro >= threshold)[0]
 
         if not len(intro_pos):
-            return False
-        else:
-            self.__set_section_in_paper(paper, intro_pos, IMRaDType.INDRODUCTION)
+            raise ClassificationError("Introduction can't be extracted from pdf-file.")
+
+        self.__set_section_in_paper(paper, intro_pos, IMRaDType.INDRODUCTION)
 
         # if no Background -> Background is in Indroduction
         background = np.array([x[IMRaDType.BACKGROUND.value] for x in y])
@@ -87,18 +89,16 @@ class IMRaDDetection(object):
             self.__set_section_in_paper(paper, result_pos, IMRaDType.RESULTS)
 
         if not len(list(discussion_pos) + list(result_pos)):
-            return False
+            raise ClassificationError("Discussion and Results can't be extracted from pdf-file.")
 
         disc_res_max = max(list(discussion_pos) + list(result_pos))
         indro_min = min(list(intro_pos))
 
         # Intro have to be before result/discussion...
         if disc_res_max <= indro_min:
-            return False
+            raise ClassificationError("Introduction is on the wrong position.")
 
         # Unset chapters between INTRO and DISCUSSION/RESULT are methods
         for pos in np.arange(indro_min + 1, disc_res_max):
             if not len(paper.sections[pos].imrad_types):
                 paper.sections[pos].add_to_imrad(IMRaDType.METHODS)
-
-        return True

@@ -2,7 +2,7 @@
 "name": "search-engine",
 "version": "0.0.1",
 "dependencies": {
-	"jquery": "3.2.1",
+	"jquery": "3.3.1",
 	"bootstrap":"3.3.7"
 },
 "private": true

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+from backend.utils.objects.word_hist import WordHist
 
 
 def insert_dict_into_sorted_list(mlist, mdict, key):
