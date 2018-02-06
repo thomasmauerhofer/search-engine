@@ -86,7 +86,9 @@ class API(object):
 
     def get_papers_simple_ranking_with_paper(self, filename, settings):
         ret = []
-        settings["importance_sections"] = False  # only important for sections-uncategorized
+        settings["importance_sections"] = True if settings["mode"] == "sections-uncategorized-sec" else False
+
+
         paper = self.get_imported_paper(filename)
         queries_proceed = paper_to_queries(paper, settings["mode"])
 

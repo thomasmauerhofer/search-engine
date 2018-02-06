@@ -96,10 +96,15 @@
                                         {% if "mode" in settings and settings["mode"] == "sections-categorized" %}
                                         selected {% endif %}>Importance into Sections AND use only categorized Sections
                                 </option>
-                                <option value="sections-uncategorized"
-                                        {% if "mode" in settings and settings["mode"] == "sections-uncategorized" %}
+                                <option value="sections-uncategorized-sec"
+                                        {% if "mode" in settings and settings["mode"] == "sections-uncategorized-sec" %}
                                         selected {% endif %}>Importance into Sections AND use uncategorized Sections for
-                                    whole Document
+                                    whole Document (prefer Section-keys)
+                                </option>
+                                <option value="sections-uncategorized-doc"
+                                        {% if "mode" in settings and settings["mode"] == "sections-uncategorized-doc" %}
+                                        selected {% endif %}>Importance into Sections AND use uncategorized Sections for
+                                    whole Document (prefer Document-keys)
                                 </option>
                                 <option value="doc-categorized"
                                         {% if "mode" in settings and settings["mode"] == "doc-categorized" %}

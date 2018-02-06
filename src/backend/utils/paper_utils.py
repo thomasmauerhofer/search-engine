@@ -28,16 +28,16 @@ def paper_to_queries(paper, mode):
     if mode == "doc-categorized":
         queries["whole-document"] = sections_to_word_hist(paper.get_sections_with_an_imrad_type()).keys_to_query()
 
-    if mode == "background" or mode == "sections-categorized" or mode == "sections-uncategorized":
+    if mode == "background" or mode == "sections-categorized" or mode == "sections-uncategorized-sec" or mode == "sections-uncategorized-doc":
         queries[IMRaDType.BACKGROUND.name] = sections_to_word_hist(paper.get_background()).keys_to_query()
 
-    if mode == "sections-categorized" or mode == "sections-uncategorized":
+    if mode == "sections-categorized" or mode == "sections-uncategorized-sec" or mode == "sections-uncategorized-doc":
         queries[IMRaDType.INDRODUCTION.name] = sections_to_word_hist(paper.get_introduction()).keys_to_query()
         queries[IMRaDType.METHODS.name] = sections_to_word_hist(paper.get_methods()).keys_to_query()
         queries[IMRaDType.RESULTS.name] = sections_to_word_hist(paper.get_results()).keys_to_query()
         queries[IMRaDType.DISCUSSION.name] = sections_to_word_hist(paper.get_discussion()).keys_to_query()
 
-    if mode == "sections-uncategorized":
+    if mode == "sections-uncategorized-sec" or mode == "sections-uncategorized-doc":
         queries["whole-document"] = sections_to_word_hist(paper.get_sections_without_an_imrad_type()).keys_to_query()
 
     return queries
