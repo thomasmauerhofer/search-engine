@@ -7,5 +7,5 @@ h5py
 keras
 matplotlib
 pymongo
-pycrypto
+argon2_cffi
 sklearn

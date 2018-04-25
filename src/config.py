@@ -21,7 +21,5 @@ HDF5 = CLASSIFIER_DATA
 DATASET = CLASSIFIER_DATA + "dataset/"
 THRESHOLD = 0.85
 
-# keys - WARNING: They should be on a save place, if you want to use this application online!
-SESSION_KEY = '04ccc6a312869b83ad9d010789675539690ac658ff6b5ab0ee8ecbc4668e16ee' \
-              'b2fa65e4d2f80e8710160b23593ab71265afbd4efba766f4fbbd0d8b443b89f5'
-SHA3_KEY = 'bfb3f1338918940a009f6c84171eb85a'
+
+KEYS = REQ_DATA_PATH + "keys/"

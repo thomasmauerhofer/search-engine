@@ -2,9 +2,9 @@
 # encoding: utf-8
 import contextlib
 import os
+import engine.datastore.datastore_utils.crypto as crypto
 
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
-from engine.datastore.datastore_utils.crypto import Crypto
 from engine.datastore.db_client import DBClient
 from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.importer.importer_teambeam import ImporterTeambeam
@@ -18,7 +18,6 @@ class API(object):
         self.importer = ImporterTeambeam(run_importer_exe)
         self.client = DBClient()
         self.preprocessor = Preprocessor()
-        self.crypto = Crypto()
 
 
     @staticmethod
@@ -114,11 +113,11 @@ class API(object):
         if not user:
             return False
 
-        return username == user.get('username') and self.crypto.encrypt(password) == user.get('password')
+        return username == user.get('username') and crypto.verify(user.get('password'), password)
 
 
     def add_user(self, username, password):
-        user = {'username': username, 'password': self.crypto.encrypt(password)}
+        user = {'username': username, 'password': crypto.encrypt(password)}
         return self.client.add_user(user)
 
 

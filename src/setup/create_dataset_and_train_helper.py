@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from operator import itemgetter
 from optparse import OptionParser
-from config import path_to_datastore, DATASET
+from config import DATASET, UPLOAD_FOLDER
 from engine.datastore.structure.section import IMRaDType
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
@@ -77,7 +77,7 @@ def test_params():
 # -------------------------------------------------------------------------------
 def create_dataset():
     classifier = ClassifierSimple()
-    for filename in os.listdir(path_to_datastore):
+    for filename in os.listdir(UPLOAD_FOLDER):
         if filename.endswith('.pdf'):
             importer = ImporterTeambeam()
             paper = importer.import_paper(filename)

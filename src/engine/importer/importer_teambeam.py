@@ -161,7 +161,7 @@ class ImporterTeambeam(ImporterBase):
                 except FileNotFoundError:
                     print("ERROR: Can't move output files:" + filename)
                     return None
-            else:
+            else:  # Linux
                 os.system('cd ' + TEAMBEAM_EXE + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
 
         with open(path_to_file + EXTENSION_TEXT, "r", encoding="utf8") as textfile:

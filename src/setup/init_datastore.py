@@ -5,7 +5,8 @@ import os
 import shutil
 from getpass import getpass
 from optparse import OptionParser
-from config import path_to_datastore
+
+from config import UPLOAD_FOLDER
 from engine.api import API
 from engine.utils.exceptions.import_exceptions import ClassificationError
 
@@ -24,7 +25,7 @@ def __add_files(folder):
 
         if filename.endswith('.pdf'):
             src = folder + "/" + filename
-            dst = path_to_datastore + filename
+            dst = UPLOAD_FOLDER + filename
             shutil.copy(src, dst)
             try:
                 paper_id = api.add_paper(filename)
