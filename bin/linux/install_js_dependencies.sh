@@ -1,3 +1,3 @@
 python3  install_stopwords.py
-cd ../../src/
+cd ../../src/webapp/
 bower install

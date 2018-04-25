@@ -2,26 +2,24 @@
 # encoding: utf-8
 import os
 
-# Fileupload params
-STATIC_FOLDER = 'static/'
-UPLOAD_FOLDER = STATIC_FOLDER + 'data/'
+APP_PATH = os.path.abspath(os.path.dirname(__file__))
+REQ_DATA_PATH = os.path.abspath(os.path.join(APP_PATH, os.pardir)) + "/data/"
+CLASSIFIER_DATA = REQ_DATA_PATH + "classifier/"
 
+# Fileupload params
+UPLOAD_FOLDER = os.path.join(APP_PATH, "datastore/")
 ALLOWED_EXTENSIONS = {'pdf'}
 
-# paths
-app_path = os.path.abspath(os.path.dirname(__file__))
-path_to_datastore = os.path.join(app_path, UPLOAD_FOLDER)
-
 # importer
-create_output = False
-path_to_teambeam_executable = '/home/thomas11/program/teambeam/bin/'
-path_to_teambeam_executable_windows = 'D:/MongoDB/teambeam/bin/'
+CREATE_OUTPUT = False
+TEAMBEAM_EXE = '/home/thomas11/program/teambeam/bin/'
+TEAMBEAM_EXE_WIN = 'D:/MongoDB/teambeam/bin/'
 
 
 # classifier
-path_to_hdf5 = app_path + "/" + UPLOAD_FOLDER + "classifier/"
-path_to_dataset = app_path + "/" + UPLOAD_FOLDER + "classifier/dataset/"
-threshold = 0.85
+HDF5 = CLASSIFIER_DATA
+DATASET = CLASSIFIER_DATA + "dataset/"
+THRESHOLD = 0.85
 
 # keys - WARNING: They should be on a save place, if you want to use this application online!
 SESSION_KEY = '04ccc6a312869b83ad9d010789675539690ac658ff6b5ab0ee8ecbc4668e16ee' \
