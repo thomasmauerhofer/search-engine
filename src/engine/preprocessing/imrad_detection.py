@@ -34,13 +34,26 @@ class IMRaDDetection(object):
         if not len(chapter_names):
             raise ClassificationError("Chapters can't be extracted from pdf-file.")
 
-        y = self.classifierNN.predict_chapter(chapter_names)
-        y_simple = self.classifierSimple.predict_chapter(chapter_names)
+        imrad, all_pos = self.proceed_chapters(chapter_names)
 
-        # self.__print_chapters_and_values__(chapter_names, y)
-
-        # additional rules:
         # INTRO have to be in the set:
+        if not len(imrad[IMRaDType.INDRODUCTION]):
+            raise ClassificationError("Introduction can't be extracted from pdf-file.")
+
+        if not len(imrad[IMRaDType.DISCUSSION]) and not len(imrad[IMRaDType.RESULTS]):
+            raise ClassificationError("Discussion and Results can't be extracted from pdf-file.")
+
+        for imrad_type, chapters in imrad.items():
+            self.__set_section_in_paper(paper, chapters, imrad_type)
+
+
+    def proceed_chapters(self, chapters):
+        imrad = {IMRaDType.METHODS: []}
+        all_pos = []
+
+        y = self.classifierNN.predict_chapter(chapters)
+        y_simple = self.classifierSimple.predict_chapter(chapters)
+
         intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y])
         intro_pos = np.where(intro >= THRESHOLD)[0]
 
@@ -48,10 +61,9 @@ class IMRaDDetection(object):
             intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y_simple])
             intro_pos = np.where(intro >= THRESHOLD)[0]
 
-        if not len(intro_pos):
-            raise ClassificationError("Introduction can't be extracted from pdf-file.")
+        imrad[IMRaDType.INDRODUCTION] = intro_pos
+        all_pos.extend(intro_pos)
 
-        self.__set_section_in_paper(paper, intro_pos, IMRaDType.INDRODUCTION)
 
         # if no Background -> Background is in Indroduction
         background = np.array([x[IMRaDType.BACKGROUND.value] for x in y])
@@ -59,46 +71,48 @@ class IMRaDDetection(object):
         if not len(background_pos):
             background_pos = intro_pos
 
-        self.__set_section_in_paper(paper, background_pos, IMRaDType.BACKGROUND)
+        imrad[IMRaDType.BACKGROUND] = background_pos
+        all_pos.extend(background_pos)
 
-        # ABSTRACT
+
         abstract = np.array([x[IMRaDType.ABSTRACT.value] for x in y])
         abstract_pos = np.where(abstract >= THRESHOLD)[0]
-        self.__set_section_in_paper(paper, abstract_pos, IMRaDType.ABSTRACT)
+        imrad[IMRaDType.ABSTRACT] = abstract_pos
+        all_pos.extend(abstract_pos)
 
-        # ACKNOWLEDGE
+
         acknowledge = np.array([x[IMRaDType.ACKNOWLEDGE.value] for x in y])
         acknowledge_pos = np.where(acknowledge >= THRESHOLD)[0]
-        self.__set_section_in_paper(paper, acknowledge_pos, IMRaDType.ACKNOWLEDGE)
+        imrad[IMRaDType.ACKNOWLEDGE] = acknowledge_pos
+        all_pos.extend(acknowledge_pos)
 
-        # DISCUSSION or RESULT have to be in the set
+
         discussion = np.array([x[IMRaDType.DISCUSSION.value] for x in y])
         discussion_pos = np.where(discussion >= THRESHOLD)[0]
-        self.__set_section_in_paper(paper, discussion_pos, IMRaDType.DISCUSSION)
 
         result = np.array([x[IMRaDType.RESULTS.value] for x in y])
         result_pos = np.where(result >= THRESHOLD)[0]
-        self.__set_section_in_paper(paper, result_pos, IMRaDType.RESULTS)
 
-        # DISCUSSION and RESULT not set - Try simple classification
+
         if not len(list(discussion_pos) + list(result_pos)):
             discussion_pos = np.where(intro >= THRESHOLD)[0]
-            self.__set_section_in_paper(paper, discussion_pos, IMRaDType.DISCUSSION)
-
             result_pos = np.where(intro >= THRESHOLD)[0]
-            self.__set_section_in_paper(paper, result_pos, IMRaDType.RESULTS)
 
-        if not len(list(discussion_pos) + list(result_pos)):
-            raise ClassificationError("Discussion and Results can't be extracted from pdf-file.")
+        imrad[IMRaDType.DISCUSSION] = discussion_pos
+        all_pos.extend(discussion_pos)
+
+        imrad[IMRaDType.RESULTS] = result_pos
+        all_pos.extend(result_pos)
+
+        if not len(discussion_pos) or not len(result_pos) or not len(intro_pos):
+            return imrad, all_pos
 
         disc_res_max = max(list(discussion_pos) + list(result_pos))
-        indro_min = min(list(intro_pos))
-
-        # Intro have to be before result/discussion...
-        if disc_res_max <= indro_min:
-            raise ClassificationError("Introduction is on the wrong position.")
+        intro_min = min(list(intro_pos))
 
         # Unset chapters between INTRO and DISCUSSION/RESULT are methods
-        for pos in np.arange(indro_min + 1, disc_res_max):
-            if not len(paper.sections[pos].imrad_types):
-                paper.sections[pos].add_to_imrad(IMRaDType.METHODS)
+        for pos in np.arange(intro_min + 1, disc_res_max):
+            if pos not in all_pos:
+                imrad[IMRaDType.METHODS].append(pos)
+
+        return imrad, all_pos

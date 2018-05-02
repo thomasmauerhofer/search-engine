@@ -24,6 +24,10 @@ class TextProcessor(object):
             self.remove_stopwords_from_section(subsection)
 
 
+    def proceed_list(self, texts):
+        return [self.proceed_string(text) for text in texts]
+
+
     @staticmethod
     def proceed_string(text):
         text = remove_single_digits(text)
