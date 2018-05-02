@@ -106,7 +106,9 @@ def create_file(folder):
             else:
                 citation["references"].append(references[int(index) - 1])
 
-        all_citations.extend(citations)
+        for citation in citations:
+            if len(citation["search_query"]) > 2:
+                all_citations.append(citation)
 
     file1 = open(os.path.join(REQ_DATA_PATH, "citations.txt"), "w")
     file2 = open(os.path.join(REQ_DATA_PATH, "citations_pprint.txt"), "w")
