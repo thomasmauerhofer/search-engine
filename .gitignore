@@ -4,3 +4,4 @@ flask_session/
 .idea/
 *.pdf
 keys/
+*_pprint.txt

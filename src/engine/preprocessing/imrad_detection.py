@@ -95,8 +95,11 @@ class IMRaDDetection(object):
 
 
         if not len(list(discussion_pos) + list(result_pos)):
-            discussion_pos = np.where(intro >= THRESHOLD)[0]
-            result_pos = np.where(intro >= THRESHOLD)[0]
+            discussion = np.array([x[IMRaDType.DISCUSSION.value] for x in y_simple])
+            discussion_pos = np.where(discussion >= THRESHOLD)[0]
+
+            result = np.array([x[IMRaDType.RESULTS.value] for x in y_simple])
+            result_pos = np.where(result >= THRESHOLD)[0]
 
         imrad[IMRaDType.DISCUSSION] = discussion_pos
         all_pos.extend(discussion_pos)

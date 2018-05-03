@@ -20,7 +20,7 @@ def create_file(folder):
     text_processor = TextProcessor()
     all_citations = []
 
-    #  files = ["Bhatia, Majumdar - 2011 - Query suggestions in the absence of query logs.pdf"]
+    #  files = ["Stonebraker, Çetintemel, Zdonik - 2005 - The 8 requirements of real-time stream processing.pdf"]
     for filename in os.listdir(os.path.abspath(folder)):
         if not filename.endswith('.pdf'):
             continue
@@ -45,7 +45,7 @@ def create_file(folder):
             parent = feature.parentNode
             start = int(parent.getAttribute("start"))
             end = int(parent.getAttribute("end"))
-            text = data[start:end]
+            text = data[start:end].strip()
 
             if value == "main":
                 sentences = text.split("\n")
@@ -65,10 +65,10 @@ def create_file(folder):
                                            "section": sections[-1]} for value in citation_texts])
 
             elif value == "reference":
-                references.append(text.strip())
+                references.append(text)
 
             elif value == "section":
-                sections.append(text.strip())
+                sections.append(text)
 
         if not len(citations) or not len(references):
             continue
