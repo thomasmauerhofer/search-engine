@@ -20,6 +20,7 @@ def create_file(folder):
     text_processor = TextProcessor()
     all_citations = []
 
+    #  files = ["Bhatia, Majumdar - 2011 - Query suggestions in the absence of query logs.pdf"]
     for filename in os.listdir(os.path.abspath(folder)):
         if not filename.endswith('.pdf'):
             continue
@@ -44,21 +45,30 @@ def create_file(folder):
             parent = feature.parentNode
             start = int(parent.getAttribute("start"))
             end = int(parent.getAttribute("end"))
-            text = data[start:end].strip()
+            text = data[start:end]
 
             if value == "main":
-                regex = re.compile(r'.*?\[[0-9]+[–,\-]?[0-9]*\]')
-                values = re.findall(regex, text)
+                sentences = text.split("\n")
+                for sentence in sentences:
+                    # There are two possible formats of citations:
+                    # text [1] text
+                    # text [1] text [2]
+                    if sentence.count("[") > 1:
+                        regex = re.compile(r'.*?\[[0-9]+[–,\-]?[0-9]*\]')
+                    else:
+                        regex = re.compile(r'.*?\[[0-9]+[–,\-]?[0-9]*\].*')
 
-                if values:
-                    citations.extend([{"filename": filename, "full_citation": value, "references": [],
-                                       "section": sections[-1]} for value in values])
+                    citation_texts = re.findall(regex, sentence)
+
+                    if citation_texts:
+                        citations.extend([{"filename": filename, "full_citation": value, "references": [],
+                                           "section": sections[-1]} for value in citation_texts])
 
             elif value == "reference":
-                references.append(text)
+                references.append(text.strip())
 
             elif value == "section":
-                sections.append(text)
+                sections.append(text.strip())
 
         if not len(citations) or not len(references):
             continue
@@ -94,9 +104,13 @@ def create_file(folder):
         for citation in citations:
             citation["section"] = [section for section in sections if citation["section"] == section["name"]]
 
-            regex = re.compile(r'(.*?)\[([0-9]+[–,\-]?[0-9]*)\]')
+            regex = re.compile(r'(.*?)\[([0-9]+[–,\-]?[0-9]*)\](.*)')
             values = re.match(regex, citation["full_citation"])
             citation["search_query"] = values.group(1)
+
+            if values.group(3) and values.group(3) != ".":
+                citation["search_query"] += " " + values.group(3)
+
             index = values.group(2)
 
             if re.match(r'[0-9]+[–,\-][0-9]+', index):
@@ -109,6 +123,7 @@ def create_file(folder):
         for citation in citations:
             if len(citation["search_query"]) > 2:
                 all_citations.append(citation)
+
 
     file1 = open(os.path.join(REQ_DATA_PATH, "citations.txt"), "w")
     file2 = open(os.path.join(REQ_DATA_PATH, "citations_pprint.txt"), "w")
