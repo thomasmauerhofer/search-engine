@@ -10,6 +10,7 @@ import re
 from config import TEAMBEAM_EXE, REQ_DATA_PATH
 from engine.preprocessing.imrad_detection import IMRaDDetection
 from engine.preprocessing.text_processor import TextProcessor
+from engine.utils.exceptions.import_exceptions import ClassificationError
 
 EXTENSION_TEXT = ".txt"
 EXTENSION_STRUCTURE = ".xml"
@@ -92,8 +93,11 @@ def create_file(folder):
             print("NOPE: {}, {}".format(len(references), last_cited))
             continue
 
-
-        imrad, all_chapters = chapter_detection.proceed_chapters(text_processor.proceed_list(sections))
+        try:
+            imrad = chapter_detection.proceed_chapters_simple(text_processor.proceed_list(sections))
+        except ClassificationError as e:
+            print("Can't use paper: {}".format(e))
+            continue
 
         sections = [{"name": name, "imrad": []} for name in sections]
         for imrad_type, chapters in imrad.items():
@@ -132,6 +136,7 @@ def create_file(folder):
     file1.close()
     file2.write(pprint.pformat(all_citations))
     file2.close()
+    print("{} citations saved!".format(len(all_citations)))
 
 
 if __name__ == "__main__":

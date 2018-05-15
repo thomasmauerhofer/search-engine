@@ -34,22 +34,71 @@ class IMRaDDetection(object):
         if not len(chapter_names):
             raise ClassificationError("Chapters can't be extracted from pdf-file.")
 
-        imrad, all_pos = self.proceed_chapters(chapter_names)
-
-        # INTRO have to be in the set:
-        if not len(imrad[IMRaDType.INDRODUCTION]):
-            raise ClassificationError("Introduction can't be extracted from pdf-file.")
-
-        if not len(imrad[IMRaDType.DISCUSSION]) and not len(imrad[IMRaDType.RESULTS]):
-            raise ClassificationError("Discussion and Results can't be extracted from pdf-file.")
+        imrad = self.proceed_chapters_simple(chapter_names)
 
         for imrad_type, chapters in imrad.items():
             self.__set_section_in_paper(paper, chapters, imrad_type)
 
 
+    def proceed_chapters_simple(self, chapters):
+        y_simple = self.classifierSimple.predict_chapter(chapters)
+        imrad = {}
+
+
+        intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y_simple])
+        intro_pos = np.where(intro >= THRESHOLD)[0]
+        imrad[IMRaDType.INDRODUCTION] = intro_pos
+
+
+        # if no Background -> Background is in Indroduction
+        background = np.array([x[IMRaDType.BACKGROUND.value] for x in y_simple])
+        background_pos = np.where(background >= THRESHOLD)[0]
+        if not len(background_pos):
+            background_pos = intro_pos
+        imrad[IMRaDType.BACKGROUND] = background_pos
+
+
+        abstract = np.array([x[IMRaDType.ABSTRACT.value] for x in y_simple])
+        abstract_pos = np.where(abstract >= THRESHOLD)[0]
+        imrad[IMRaDType.ABSTRACT] = abstract_pos
+
+
+        acknowledge = np.array([x[IMRaDType.ACKNOWLEDGE.value] for x in y_simple])
+        acknowledge_pos = np.where(acknowledge >= THRESHOLD)[0]
+        imrad[IMRaDType.ACKNOWLEDGE] = acknowledge_pos
+
+
+        discussion = np.array([x[IMRaDType.DISCUSSION.value] for x in y_simple])
+        discussion_pos = np.where(discussion >= THRESHOLD)[0]
+        imrad[IMRaDType.DISCUSSION] = discussion_pos
+
+
+        result = np.array([x[IMRaDType.RESULTS.value] for x in y_simple])
+        result_pos = np.where(result >= THRESHOLD)[0]
+        imrad[IMRaDType.RESULTS] = result_pos
+
+
+        try:
+            disc_res_max = np.amax(np.append(discussion_pos, result_pos))
+        except ValueError as e:
+            raise ClassificationError("Result and Discussion not set: {}".format(e))
+
+        try:
+            intro_min = np.amin(intro_pos)
+        except ValueError as e:
+            raise ClassificationError("Introduction not set: {}".format(e))
+
+        # Unset chapters between INTRO and DISCUSSION/RESULT are methods
+        all_pos = np.concatenate((intro_pos, background_pos, abstract_pos, acknowledge_pos, discussion_pos, result_pos))
+        method_pos = [x for x in np.arange(intro_min + 1, disc_res_max) if x not in all_pos]
+        imrad[IMRaDType.METHODS] = np.array(method_pos)
+
+        return imrad
+
+
     def proceed_chapters(self, chapters):
-        imrad = {IMRaDType.METHODS: []}
-        all_pos = []
+        # By now uses simple classification as helper
+        imrad = {}
 
         y = self.classifierNN.predict_chapter(chapters)
         y_simple = self.classifierSimple.predict_chapter(chapters)
@@ -62,7 +111,6 @@ class IMRaDDetection(object):
             intro_pos = np.where(intro >= THRESHOLD)[0]
 
         imrad[IMRaDType.INDRODUCTION] = intro_pos
-        all_pos.extend(intro_pos)
 
 
         # if no Background -> Background is in Indroduction
@@ -72,19 +120,16 @@ class IMRaDDetection(object):
             background_pos = intro_pos
 
         imrad[IMRaDType.BACKGROUND] = background_pos
-        all_pos.extend(background_pos)
 
 
         abstract = np.array([x[IMRaDType.ABSTRACT.value] for x in y])
         abstract_pos = np.where(abstract >= THRESHOLD)[0]
         imrad[IMRaDType.ABSTRACT] = abstract_pos
-        all_pos.extend(abstract_pos)
 
 
         acknowledge = np.array([x[IMRaDType.ACKNOWLEDGE.value] for x in y])
         acknowledge_pos = np.where(acknowledge >= THRESHOLD)[0]
         imrad[IMRaDType.ACKNOWLEDGE] = acknowledge_pos
-        all_pos.extend(acknowledge_pos)
 
 
         discussion = np.array([x[IMRaDType.DISCUSSION.value] for x in y])
@@ -102,20 +147,21 @@ class IMRaDDetection(object):
             result_pos = np.where(result >= THRESHOLD)[0]
 
         imrad[IMRaDType.DISCUSSION] = discussion_pos
-        all_pos.extend(discussion_pos)
-
         imrad[IMRaDType.RESULTS] = result_pos
-        all_pos.extend(result_pos)
 
-        if not len(discussion_pos) or not len(result_pos) or not len(intro_pos):
-            return imrad, all_pos
+        try:
+            disc_res_max = np.amax(np.append(discussion_pos, result_pos))
+        except ValueError as e:
+            raise ClassificationError("Result and Discussion not set: {}".format(e))
 
-        disc_res_max = max(list(discussion_pos) + list(result_pos))
-        intro_min = min(list(intro_pos))
+        try:
+            intro_min = np.amin(intro_pos)
+        except ValueError as e:
+            raise ClassificationError("Introduction not set: {}".format(e))
 
         # Unset chapters between INTRO and DISCUSSION/RESULT are methods
-        for pos in np.arange(intro_min + 1, disc_res_max):
-            if pos not in all_pos:
-                imrad[IMRaDType.METHODS].append(pos)
+        all_pos = np.concatenate((intro_pos, background_pos, abstract_pos, acknowledge_pos, discussion_pos, result_pos))
+        method_pos = [x for x in np.arange(intro_min + 1, disc_res_max) if x not in all_pos]
+        imrad[IMRaDType.METHODS] = np.array(method_pos)
 
-        return imrad, all_pos
+        return imrad

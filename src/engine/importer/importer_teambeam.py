@@ -2,11 +2,9 @@
 
 import contextlib
 import os
-import subprocess
-from shutil import copy, move
 from xml.dom import minidom
 
-from config import CREATE_OUTPUT, TEAMBEAM_EXE_WIN, TEAMBEAM_EXE, UPLOAD_FOLDER
+from config import CREATE_OUTPUT, TEAMBEAM_EXE, UPLOAD_FOLDER
 from engine.datastore.structure.paper import Paper
 from engine.datastore.structure.reference import ReferenceType
 from engine.datastore.structure.section import TextType
@@ -149,20 +147,7 @@ class ImporterTeambeam(ImporterBase):
         path_to_file = UPLOAD_FOLDER + filename
 
         if self.run_exe:
-            if os.name == 'nt':  # Windows
-                os.chdir(TEAMBEAM_EXE_WIN)
-                copy(path_to_file, TEAMBEAM_EXE_WIN)
-                subprocess.call('bash pdf-to-xml -a \"' + filename + '\"')
-
-                try:
-                    os.remove(filename)
-                    move(TEAMBEAM_EXE_WIN + filename + EXTENSION_TEXT, UPLOAD_FOLDER)
-                    move(TEAMBEAM_EXE_WIN + filename + EXTENSION_STRUCTURE, UPLOAD_FOLDER)
-                except FileNotFoundError:
-                    print("ERROR: Can't move output files:" + filename)
-                    return None
-            else:  # Linux
-                os.system('cd ' + TEAMBEAM_EXE + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
+            os.system('cd ' + TEAMBEAM_EXE + ' &&  sh pdf-to-xml -a \"' + path_to_file + '\"')
 
         with open(path_to_file + EXTENSION_TEXT, "r", encoding="utf8") as textfile:
             data = textfile.read()
@@ -224,4 +209,5 @@ class ImporterTeambeam(ImporterBase):
         self.__add_values_to_references(paper, reference_values)
         self.__add_values_to_authors(paper, author_values)
         self.__delete_files(filename)
+
         return paper

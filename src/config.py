@@ -13,7 +13,6 @@ ALLOWED_EXTENSIONS = {'pdf'}
 # importer
 CREATE_OUTPUT = False
 TEAMBEAM_EXE = '/home/thomas11/program/teambeam/bin/'
-TEAMBEAM_EXE_WIN = 'D:/MongoDB/teambeam/bin/'
 
 
 # classifier
