@@ -15,13 +15,18 @@ class Paper(PaperStructure):
         self.filename = data.get('filename')
         self.title = data.get('title') if 'title' in data else ''
         self.id = data.get('_id') if '_id' in data else ''
-        self.file = data.get('file') if 'file' in data else open(UPLOAD_FOLDER + self.filename, "rb").read()
 
         self.authors = [Authors(author) for author in data.get('authors')] if 'authors' in data else []
         self.sections = [Section(section) for section in data.get('sections')] if 'sections' in data else []
         self.references = [Reference(reference) for reference in data.get('references')] if 'references' in data else []
 
         self.word_hist = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
+
+        try:
+            self.file = data.get('file') if 'file' in data else open(UPLOAD_FOLDER + self.filename, "rb").read()
+        except FileNotFoundError as e:
+            print("Cant import file: {}. This should only happen in Tests".format(e))
+            self.file = ''
 
 
     def __str__(self):

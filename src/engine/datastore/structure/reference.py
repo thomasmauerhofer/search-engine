@@ -12,6 +12,7 @@ class Reference(PaperStructure):
     def __init__(self, data):
         self.complete_reference = data.get('complete_reference')
         self.title = data.get('title') if 'title' in data else ''
+        self.paper_id = data.get('paper_id') if 'paper_id' in data else ''
 
         self.authors = [[ReferenceType[author.get('author_type')], Author(author.get('author'))]
                         for author in data.get('authors')] if 'authors' in data else []

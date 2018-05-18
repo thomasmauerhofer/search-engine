@@ -13,6 +13,7 @@ ALLOWED_EXTENSIONS = {'pdf'}
 # importer
 CREATE_OUTPUT = False
 TEAMBEAM_EXE = '/home/thomas11/program/teambeam/bin/'
+REFERENCE_SIMULARITY_THRESHOLD = 0.5
 
 
 # classifier

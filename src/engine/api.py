@@ -28,7 +28,9 @@ class API(object):
 
     def add_paper(self, filename):
         paper = self.get_imported_paper(filename)
-        return self.client.add_paper(paper)
+        self.client.add_paper(paper)
+        self.preprocessor.link_references(paper)
+        return paper.id
 
 
     def get_imported_paper(self, filename):

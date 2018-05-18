@@ -9,6 +9,10 @@ from engine.api import API
 
 def evaluate():
     api = API()
+
+    for paper in api.get_all_paper():
+        api.preprocessor.link_references(paper)
+
     with open(os.path.join(REQ_DATA_PATH, "citations.txt"), encoding='utf-8') as data_file:
         data = ast.literal_eval(data_file.read())
 
@@ -33,9 +37,12 @@ def evaluate():
 
     settings = {"importance_sections": False}
     for citation in data:
-        raking = api.get_papers_simple_ranking({"whole-document": citation["search_query"]}, settings)
-        print(raking)
-        #exit()
+        ranking = api.get_papers_simple_ranking({"whole-document": citation["search_query"]}, settings)
+
+        index = [x["paper"].filename for x in ranking].index(citation["filename"])
+        print(index)
+
+
 
 
 if __name__ == "__main__":

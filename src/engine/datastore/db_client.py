@@ -62,8 +62,11 @@ class DBClient(object):
 
     def add_paper(self, paper):
         post = paper.to_dict()
-        post_id = self.papers.insert_one(post).inserted_id
-        return post_id
+        paper.id = self.papers.insert_one(post).inserted_id
+
+
+    def update_paper(self, paper):
+        self.papers.update({"_id": ObjectId(paper.id)}, paper.to_dict())
 
 
     def get_paper(self, paper_id):
