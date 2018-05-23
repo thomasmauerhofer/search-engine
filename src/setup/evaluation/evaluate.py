@@ -10,8 +10,14 @@ from engine.api import API
 def evaluate():
     api = API()
 
+    tmp = []
     for paper in api.get_all_paper():
-        api.preprocessor.link_references(paper)
+        tmp = api.preprocessor.link_references(paper)
+
+    for ele in tmp:
+        print(ele["val"])
+    exit()
+
 
     with open(os.path.join(REQ_DATA_PATH, "citations.txt"), encoding='utf-8') as data_file:
         data = ast.literal_eval(data_file.read())
@@ -29,7 +35,7 @@ def evaluate():
 
 
     ''',
-               IMRaDType.INDRODUCTION.name: "paper",
+               IMRaDType.INTRODUCTION.name: "paper",
                IMRaDType.BACKGROUND: "",
                IMRaDType.METHODS.name: "inhom scenario allow user control home",
                IMRaDType.RESULTS.name: "",

@@ -83,7 +83,7 @@ def create_dataset():
             paper = importer.import_paper(filename)
             text_processing = TextProcessor()
 
-            text_processing.proceed(paper)
+            text_processing.proceed_paper(paper)
             chapter_names = [name.heading for name in paper.sections if
                              not (name.heading.isspace() or name.heading is '')]
 
@@ -96,8 +96,8 @@ def create_dataset():
                 tmp = ""
                 if prob[i][IMRaDType.ABSTRACT.value] == 1:
                     tmp += IMRaDType.ABSTRACT.name + " "
-                if prob[i][IMRaDType.INDRODUCTION.value] == 1:
-                    tmp += IMRaDType.INDRODUCTION.name + " "
+                if prob[i][IMRaDType.INTRODUCTION.value] == 1:
+                    tmp += IMRaDType.INTRODUCTION.name + " "
                 if prob[i][IMRaDType.BACKGROUND.value] == 1:
                     tmp += IMRaDType.BACKGROUND.name + " "
                 if prob[i][IMRaDType.RESULTS.value] == 1:

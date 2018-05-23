@@ -30,7 +30,7 @@ class ClassifierSimple(ClassifierBase):
                 y[-1][IMRaDType.ABSTRACT.value] = 1
 
             if any(token in chapter for token in self.INTRO_TOKENS):
-                y[-1][IMRaDType.INDRODUCTION.value] = 1
+                y[-1][IMRaDType.INTRODUCTION.value] = 1
 
             if any(token in chapter for token in self.RESULT_TOKENS):
                 y[-1][IMRaDType.RESULTS.value] = 1

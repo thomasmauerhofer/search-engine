@@ -19,12 +19,12 @@ class DBClient(object):
     @staticmethod
     def __add_query_for_imrad_type(imrad, words, query):
         for word in words:
-            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "heading": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "text.text": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.heading": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.text.text": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.heading": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.text.text": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "heading_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "text.text_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.heading_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.text.text_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.heading_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"imrad_types": imrad, "subsections.subsections.text.text_proceed": {'$regex': word}}}})
 
 
     @staticmethod
@@ -38,13 +38,13 @@ class DBClient(object):
     @staticmethod
     def __add_query_for_whole_doc(words, query):
         for word in words:
-            query["$or"].append({"title": {'$regex': word}})
-            query["$or"].append({"sections": {"$elemMatch": {"heading": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"text.text": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"subsections.heading": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"subsections.text.text": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"subsections.subsections.heading": {'$regex': word}}}})
-            query["$or"].append({"sections": {"$elemMatch": {"subsections.subsections.text.text": {'$regex': word}}}})
+            query["$or"].append({"title_proceed": {'$regex': word}})
+            query["$or"].append({"sections": {"$elemMatch": {"heading_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"text.text_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.heading_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.text.text_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.subsections.heading_proceed": {'$regex': word}}}})
+            query["$or"].append({"sections": {"$elemMatch": {"subsections.subsections.text.text_proceed": {'$regex': word}}}})
 
     @staticmethod
     def __add_query_for_whole_doc_hist(words, query):
@@ -118,7 +118,7 @@ class DBClient(object):
 
     def get_paper_which_contains_query_in_introduction(self, introduction_words):
         search_query = {"$or": []}
-        self.__add_query_for_imrad_type(IMRaDType.INDRODUCTION.name, introduction_words, search_query)
+        self.__add_query_for_imrad_type(IMRaDType.INTRODUCTION.name, introduction_words, search_query)
         cursor = self.papers.find(search_query)
         return self.__cursor_to_list(cursor)
 

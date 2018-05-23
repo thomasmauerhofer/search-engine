@@ -6,15 +6,19 @@ from config import UPLOAD_FOLDER
 from engine.datastore.structure.author import Authors
 from engine.datastore.structure.paper_structure import PaperStructure
 from engine.datastore.structure.reference import Reference
-from engine.datastore.structure.section import Section, IMRaDType, SectionType, TextType
+from engine.datastore.structure.section import Section, IMRaDType, SectionType
+from engine.datastore.structure.text import TextType
+from engine.preprocessing.text_processor import TextProcessor
 from engine.utils.objects.word_hist import WordHist
 
 
 class Paper(PaperStructure):
     def __init__(self, data):
-        self.filename = data.get('filename')
-        self.title = data.get('title') if 'title' in data else ''
         self.id = data.get('_id') if '_id' in data else ''
+        self.filename = data.get('filename')
+
+        self.title_raw = data.get('title_raw') if 'title_raw' in data else ''
+        self.title_proceed = data.get('title_proceed') if 'title_proceed' in data else TextProcessor.proceed_string(self.title_raw)
 
         self.authors = [Authors(author) for author in data.get('authors')] if 'authors' in data else []
         self.sections = [Section(section) for section in data.get('sections')] if 'sections' in data else []
@@ -26,7 +30,7 @@ class Paper(PaperStructure):
             self.file = data.get('file') if 'file' in data else open(UPLOAD_FOLDER + self.filename, "rb").read()
         except FileNotFoundError as e:
             print("Cant import file: {}. This should only happen in Tests".format(e))
-            self.file = ''
+            self.file = bytearray()
 
 
     def __str__(self):
@@ -40,9 +44,9 @@ class Paper(PaperStructure):
 
 
     def get_sections_with_an_imrad_type(self):
-        return [chapter for chapter in self.sections if (IMRaDType.INDRODUCTION in chapter.imrad_types or
-                IMRaDType.BACKGROUND in chapter.imrad_types or IMRaDType.METHODS in chapter.imrad_types or
-                IMRaDType.RESULTS in chapter.imrad_types or IMRaDType.DISCUSSION in chapter.imrad_types)]
+        return [chapter for chapter in self.sections if (IMRaDType.INTRODUCTION in chapter.imrad_types or
+                                                         IMRaDType.BACKGROUND in chapter.imrad_types or IMRaDType.METHODS in chapter.imrad_types or
+                                                         IMRaDType.RESULTS in chapter.imrad_types or IMRaDType.DISCUSSION in chapter.imrad_types)]
 
 
     def get_sections_without_an_imrad_type(self):
@@ -51,8 +55,8 @@ class Paper(PaperStructure):
 
 
     def to_dict(self):
-        data = {'filename': self.filename, 'title': self.title, 'file': self.file, 'authors': [], 'sections': [],
-                'references': [], 'word_hist': self.word_hist}
+        data = {'filename': self.filename, 'title_raw': self.title_raw, 'title_proceed': self.title_proceed,
+                'file': self.file, 'authors': [], 'sections': [], 'references': [], 'word_hist': self.word_hist}
 
         for author in self.authors:
             data['authors'].append(author.to_dict())
@@ -66,8 +70,7 @@ class Paper(PaperStructure):
 
     def get_combined_word_hist(self):
         if not self.word_hist:
-            for word in self.title.split():
-                word = word.replace('.', " ")
+            for word in self.title_proceed.split():
                 self.word_hist[word] = self.word_hist[word] + 1 if word in self.word_hist else 1
 
             for section in self.sections:
@@ -76,19 +79,20 @@ class Paper(PaperStructure):
         return WordHist(self.word_hist.copy())
 
 
-    def set_title(self, title):
-        if title is not '':
-            self.title = title
+    def set_title(self, title_raw):
+        if title_raw != '':
+            self.title_raw = title_raw
+            self.title_proceed = TextProcessor.proceed_string(title_raw)
 
 
     def add_abstract(self, text):
-        self.sections.append(Section({'section_type': SectionType.ABSTRACT.name, 'heading': 'abstract'}))
+        self.sections.append(Section({'section_type': SectionType.ABSTRACT.name, 'heading_raw': 'abstract'}))
         self.sections[-1].imrad_types.append(IMRaDType.ABSTRACT)
         self.add_text_to_current_section(TextType.MAIN, text)
 
 
     def add_section(self, section_name):
-        self.sections.append(Section({'section_type': SectionType.SECTION.name, 'heading': section_name}))
+        self.sections.append(Section({'section_type': SectionType.SECTION.name, 'heading_raw': section_name}))
 
 
     def add_subsection(self, section_name):
@@ -114,7 +118,7 @@ class Paper(PaperStructure):
 
 
     def add_reference(self, full_reference):
-        self.references.append(Reference({'complete_reference': full_reference}))
+        self.references.append(Reference({'complete_ref_raw': full_reference}))
 
 
     def add_authors_text(self, full_authors):
@@ -122,7 +126,7 @@ class Paper(PaperStructure):
 
 
     def get_introduction(self):
-        return self.get_sections_with_imrad_type(IMRaDType.INDRODUCTION)
+        return self.get_sections_with_imrad_type(IMRaDType.INTRODUCTION)
 
 
     def get_background(self):

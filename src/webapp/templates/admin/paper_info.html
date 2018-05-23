@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td style="width: 132px;"><b> Title </b></td>
-            <td>{{ paper.title }}</td>
+            <td>{{ paper.title_proceed }}</td>
         </tr>
     </table>
 
@@ -110,7 +110,7 @@
             </tr>
             <tr>
                 <td style="width: 132px;"><b> Heading </b></td>
-                <td>{{ section.heading }}</td>
+                <td>{{ section.heading_proceed }}</td>
             </tr>
             <tr>
                 <td style="width: 132px;"><b> IMRaD Types </b></td>
@@ -122,8 +122,8 @@
             </tr>
             {% for val in section.text %}
                 <tr>
-                    <td style="width: 132px;"> {{ val[0].name }} </td>
-                    <td> {{ val[1] }} </td>
+                    <td style="width: 132px;"> {{ val.text_type }} </td>
+                    <td> {{ val.text_proceed }} </td>
                 </tr>
             {% endfor %}
         </table>
@@ -161,12 +161,12 @@
                     </tr>
                     <tr>
                         <td style="width: 132px;"><b> Heading </b></td>
-                        <td>{{ subsec.heading }}</td>
+                        <td>{{ subsec.heading_proceed }}</td>
                     </tr>
                     {% for val in subsec.text %}
                         <tr>
-                            <td style="width: 132px;"> {{ val[0].name }} </td>
-                            <td> {{ val[1] }} </td>
+                            <td style="width: 132px;"> {{ val.text_type.name }} </td>
+                            <td> {{ val.text_proceed }} </td>
                         </tr>
                     {% endfor %}
                 </table>
@@ -204,12 +204,12 @@
                             </tr>
                             <tr>
                                 <td style="width: 132px;"><b> Heading </b></td>
-                                <td>{{ subsubsec.heading }}</td>
+                                <td>{{ subsubsec.heading_proceed }}</td>
                             </tr>
                             {% for val in subsubsec.text %}
                                 <tr>
-                                    <td style="width: 132px;"> {{ val[0].name }} </td>
-                                    <td> {{ val[1] }} </td>
+                                    <td style="width: 132px;"> {{ val.text_type.name }} </td>
+                                    <td> {{ val.text_proceed }} </td>
                                 </tr>
                             {% endfor %}
                         </table>
@@ -227,12 +227,18 @@
             <table class="table table-bordered">
                 <tr>
                     <td style="width: 132px;"><b> Complete </b></td>
-                    <td>{{ ref.complete_reference }}</td>
+                    <td>{{ ref.complete_ref_proceed }}</td>
                 </tr>
                 <tr>
                     <td style="width: 132px;"><b> Title </b></td>
                     <td>{{ ref.title }}</td>
                 </tr>
+                {% if ref.id != '' %}
+                    <tr>
+                        <td style="width: 132px;"><b> ID </b></td>
+                        <td>{{ ref.id }}</td>
+                    </tr>
+                {% endif %}
                 {% for author in ref.authors %}
                     <tr>
                         <td style="width: 132px;">{{ author[0].name }}</td>

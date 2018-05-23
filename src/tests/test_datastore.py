@@ -17,7 +17,7 @@ class TestDB(TestCase):
 
 
     def test_simple_ranking(self):
-        queries = {IMRaDType.INDRODUCTION.name: "paper",
+        queries = {IMRaDType.INTRODUCTION.name: "paper",
                    IMRaDType.BACKGROUND: "",
                    IMRaDType.METHODS.name: "inhom scenario allow user control home",
                    IMRaDType.RESULTS.name: "",
@@ -37,7 +37,7 @@ class TestDB(TestCase):
         paper_id = db.add_paper(paper)
         self.assertIsNotNone(paper_id)
 
-        paper.title = "new_title"
+        paper.title_raw = "new_title"
         paper.filename = "new_filename.pdf"
         db.update_paper(paper)
 

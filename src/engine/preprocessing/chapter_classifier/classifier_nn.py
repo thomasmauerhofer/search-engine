@@ -51,8 +51,8 @@ class ClassifierNN(ClassifierBase):
 
             for imrad in imrad_types:
                 imrad = imrad.rstrip()
-                if imrad == IMRaDType.INDRODUCTION.name:
-                    dataset[-1][1][IMRaDType.INDRODUCTION.value] = 1
+                if imrad == IMRaDType.INTRODUCTION.name:
+                    dataset[-1][1][IMRaDType.INTRODUCTION.value] = 1
                 elif imrad == IMRaDType.BACKGROUND.name:
                     dataset[-1][1][IMRaDType.BACKGROUND.value] = 1
                 elif imrad == IMRaDType.RESULTS.name:

@@ -30,7 +30,7 @@ class IMRaDDetection(object):
 
 
     def proceed(self, paper):
-        chapter_names = [name.heading for name in paper.sections]
+        chapter_names = [name.heading_proceed for name in paper.sections]
         if not len(chapter_names):
             raise ClassificationError("Chapters can't be extracted from pdf-file.")
 
@@ -45,9 +45,9 @@ class IMRaDDetection(object):
         imrad = {}
 
 
-        intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y_simple])
+        intro = np.array([x[IMRaDType.INTRODUCTION.value] for x in y_simple])
         intro_pos = np.where(intro >= THRESHOLD)[0]
-        imrad[IMRaDType.INDRODUCTION] = intro_pos
+        imrad[IMRaDType.INTRODUCTION] = intro_pos
 
 
         # if no Background -> Background is in Indroduction
@@ -103,14 +103,14 @@ class IMRaDDetection(object):
         y = self.classifierNN.predict_chapter(chapters)
         y_simple = self.classifierSimple.predict_chapter(chapters)
 
-        intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y])
+        intro = np.array([x[IMRaDType.INTRODUCTION.value] for x in y])
         intro_pos = np.where(intro >= THRESHOLD)[0]
 
         if not len(intro_pos):
-            intro = np.array([x[IMRaDType.INDRODUCTION.value] for x in y_simple])
+            intro = np.array([x[IMRaDType.INTRODUCTION.value] for x in y_simple])
             intro_pos = np.where(intro >= THRESHOLD)[0]
 
-        imrad[IMRaDType.INDRODUCTION] = intro_pos
+        imrad[IMRaDType.INTRODUCTION] = intro_pos
 
 
         # if no Background -> Background is in Indroduction

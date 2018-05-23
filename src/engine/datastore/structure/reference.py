@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-
+import pprint
 from enum import Enum
 
 from engine.datastore.structure.author import Author
 from engine.datastore.structure.paper_structure import PaperStructure
+from engine.preprocessing.text_processor import TextProcessor
 from engine.utils.exceptions.import_exceptions import WrongReferenceError
 
 
 class Reference(PaperStructure):
     def __init__(self, data):
-        self.complete_reference = data.get('complete_reference')
+        self.complete_ref_raw = data.get('complete_ref_raw')
+        self.complete_ref_proceed = data.get('complete_ref_proceed') if 'complete_ref_proceed' in data else \
+            TextProcessor.proceed_string(data.get('complete_ref_raw'))
+
         self.title = data.get('title') if 'title' in data else ''
         self.paper_id = data.get('paper_id') if 'paper_id' in data else ''
 
@@ -21,21 +25,13 @@ class Reference(PaperStructure):
 
 
     def __str__(self):
-        ref_str = self.complete_reference + '\n\n'
-        ref_str += self.title + '\n'
-
-        for author in self.authors:
-            ref_str += author[0].name + ": " + author[1].surname + " " + author[1].prename + '\n'
-
-        for info in self.reference_info:
-            ref_str += info[0].name + ": " + info[1] + '\n'
-
-        ref_str += '\n'
-        return ref_str
+        pp = pprint.PrettyPrinter(indent=4)
+        return pp.pformat(self.to_dict())
 
 
     def to_dict(self):
-        data = {'complete_reference': self.complete_reference, 'title': self.title, 'reference_info': [], 'authors': []}
+        data = {'complete_ref_raw': self.complete_ref_raw, 'complete_ref_proceed': self.complete_ref_proceed,
+                'title': self.title, 'reference_info': [], 'authors': []}
 
         for reference in self.reference_info:
             dic = {'reference_type': reference[0].name, 'reference_text': reference[1]}
@@ -49,7 +45,7 @@ class Reference(PaperStructure):
 
 
     def add_author(self, author_type, prename, surname):
-        if surname not in self.complete_reference:
+        if surname not in self.complete_ref_raw:
             raise WrongReferenceError('Error: Reference does not contain author', 'author',
                                       str(Author({'prename': prename, 'surname': surname})))
 
@@ -57,14 +53,14 @@ class Reference(PaperStructure):
 
 
     def add_title(self, title):
-        if title not in self.complete_reference:
+        if title not in self.complete_ref_raw:
             raise WrongReferenceError('Error: Reference does not contain title', 'title', title)
 
         self.title += title
 
 
     def add_reference_info(self, reference_type, text):
-        if text not in self.complete_reference:
+        if text not in self.complete_ref_raw:
             raise WrongReferenceError('Error: Reference does not contain text', 'info', text)
 
         self.reference_info.append([reference_type, text])

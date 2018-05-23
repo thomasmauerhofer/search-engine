@@ -15,7 +15,7 @@ def sections_to_word_hist(sections):
 def paper_to_queries(paper, mode):
     queries = {
         "whole-document": "",
-        IMRaDType.INDRODUCTION.name: "",
+        IMRaDType.INTRODUCTION.name: "",
         IMRaDType.BACKGROUND.name: "",
         IMRaDType.METHODS.name: "",
         IMRaDType.RESULTS.name: "",
@@ -32,7 +32,7 @@ def paper_to_queries(paper, mode):
         queries[IMRaDType.BACKGROUND.name] = sections_to_word_hist(paper.get_background()).keys_to_query()
 
     if mode == "sections-categorized" or mode == "sections-uncategorized-sec" or mode == "sections-uncategorized-doc":
-        queries[IMRaDType.INDRODUCTION.name] = sections_to_word_hist(paper.get_introduction()).keys_to_query()
+        queries[IMRaDType.INTRODUCTION.name] = sections_to_word_hist(paper.get_introduction()).keys_to_query()
         queries[IMRaDType.METHODS.name] = sections_to_word_hist(paper.get_methods()).keys_to_query()
         queries[IMRaDType.RESULTS.name] = sections_to_word_hist(paper.get_results()).keys_to_query()
         queries[IMRaDType.DISCUSSION.name] = sections_to_word_hist(paper.get_discussion()).keys_to_query()

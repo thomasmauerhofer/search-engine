@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+import pprint
+
 from engine.datastore.structure.paper_structure import PaperStructure
 from engine.utils.string_utils import is_valid_email, remove_special_chars, longest_subsequence
 
@@ -12,12 +14,8 @@ class Authors(PaperStructure):
 
 
     def __str__(self):
-        str_authors = self.all_authors_text + "\n\n"
-
-        for author in self.authors:
-            str_authors += str(author)
-
-        return str_authors
+        pp = pprint.PrettyPrinter(indent=4)
+        return pp.pformat(self.to_dict())
 
 
     def to_dict(self):
@@ -96,16 +94,8 @@ class Author(PaperStructure):
 
 
     def __str__(self):
-        str_author = self.surname + '\n'
-
-        if self.middle_name is not None:
-            str_author = self.middle_name + '\n'
-
-        str_author += self.prename + '\n'
-        str_author += self.email + '\n'
-        str_author += self.affiliation + '\n'
-        str_author += '\n'
-        return str_author
+        pp = pprint.PrettyPrinter(indent=4)
+        return pp.pformat(self.to_dict())
 
 
     def to_dict(self):

@@ -6,6 +6,7 @@ from config import REFERENCE_SIMULARITY_THRESHOLD
 from engine.datastore.db_client import DBClient
 from engine.preprocessing.imrad_detection import IMRaDDetection
 from engine.preprocessing.text_processor import TextProcessor
+from engine.utils.list_utils import insert_dict_into_sorted_list
 
 
 class Preprocessor(object):
@@ -14,20 +15,26 @@ class Preprocessor(object):
         self.text_processor = TextProcessor()
         self.client = DBClient()
 
+        self.tmp = []
+
 
     def __add_paper_to_reference(self, paper1, paper2):
-        if not paper2.title:
+        if not paper2.title_proceed:
             return
 
         for ref in paper1.references:
-            similarity = SequenceMatcher(None, ref.complete_reference.lower(), paper2.title.lower()).ratio()
+            similarity = SequenceMatcher(None, ref.complete_ref_proceed, paper2.title_proceed).ratio()
             if similarity > REFERENCE_SIMULARITY_THRESHOLD:
                 ref.paper_id = paper2.id
                 self.client.update_paper(paper1)
 
+                # tmp
+                value = "{}: {} -> {}".format(similarity, paper2.title_proceed, ref.complete_ref_proceed)
+                insert_dict_into_sorted_list(self.tmp, {"sim": similarity, "val": value}, "sim")
+
 
     def proceed_paper(self, paper):
-        self.text_processor.proceed(paper)
+        self.text_processor.proceed_paper(paper)
         self.imrad_detector.proceed(paper)
 
 
@@ -41,4 +48,5 @@ class Preprocessor(object):
     def link_references(self, new_paper):
         for paper in self.client.get_all_paper():
             self.__add_paper_to_reference(paper, new_paper)
-            self.__add_paper_to_reference(new_paper, paper)
+            #self.__add_paper_to_reference(new_paper, paper)
+        return self.tmp

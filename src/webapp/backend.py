@@ -21,7 +21,7 @@ def index():
 
     queries = {
         "whole-document": request.form['whole_text'],
-        IMRaDType.INDRODUCTION.name: request.form['intro_text'],
+        IMRaDType.INTRODUCTION.name: request.form['intro_text'],
         IMRaDType.BACKGROUND.name: request.form['background_text'],
         IMRaDType.METHODS.name: request.form['methods_text'],
         IMRaDType.RESULTS.name: request.form['results_text'],
