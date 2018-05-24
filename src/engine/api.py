@@ -86,7 +86,7 @@ class API(object):
         return ret
 
 
-    def get_papers_with_paper(self, algo, filename, settings):
+    def get_papers_with_paper(self, filename, settings, ranking_algo=RankingSimple):
         ret = []
         settings["importance_sections"] = True if settings["mode"] == "sections-uncategorized-sec" else False
 
@@ -99,7 +99,7 @@ class API(object):
             if paper.filename == filename:
                 continue
 
-            rank, info = RankingSimple.get_ranking(paper, queries_proceed, settings)
+            rank, info = ranking_algo.get_ranking(paper, queries_proceed, settings)
             element = {"paper": paper, "rank": rank, "info": info}
             insert_dict_into_sorted_list(ret, element, "rank")
 

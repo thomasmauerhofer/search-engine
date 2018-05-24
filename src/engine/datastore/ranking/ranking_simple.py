@@ -1,6 +1,7 @@
 # encoding: utf-8
 from engine.datastore.ranking.ranking_base import RankingBase
 from engine.utils.paper_utils import sections_to_word_hist
+from engine.utils.ranking_utils import get_query_keys
 
 
 class RankingSimple(RankingBase):
@@ -8,30 +9,20 @@ class RankingSimple(RankingBase):
     def get_ranking(paper, queries, settings):
         paper_rank = 0.0
         info = {}
-        section_ignored_keys = []
-        doc_ignored_keys = []
+        query_keys, ignored_keys = get_query_keys(paper, queries, settings["importance_sections"])
 
 
-        if not settings["importance_sections"]:
-            section_ignored_keys = paper.word_hist.query_to_keys(queries["whole-document"])
+        for imrad_type, keys in query_keys.items():
+            if imrad_type == "whole-document":
+                hist = paper.word_hist
+            else:
+                sections = paper.get_sections_with_imrad_type(imrad_type)
+                hist = sections_to_word_hist(sections)
 
-
-        for imrad_type, query in queries.items():
-            if query == "" or imrad_type == "whole-document":
-                continue
-
-            sections = paper.get_sections_with_imrad_type(imrad_type)
-            raking_hist = sections_to_word_hist(sections)
-
-            ranking, key_value, ignored = raking_hist.get_normalized_query_value(query, section_ignored_keys)
-            info[imrad_type] = {"rank": ranking, "sumwords": sum(raking_hist.values()), "keyvalues": key_value, "ignored": ignored}
+            ranking, key_value = hist.get_rank_with_keys(keys)
+            info[imrad_type] = {"rank": ranking, "sumwords": sum(hist.values()), "keyvalues": key_value,
+                                "ignored": ignored_keys[imrad_type]}
             paper_rank += ranking
 
-            if settings["importance_sections"]:
-                doc_ignored_keys += [item[0] for item in key_value]
-
-        ranking, key_values, ignored = paper.word_hist.get_normalized_query_value(queries["whole-document"], doc_ignored_keys)
-        paper_rank += ranking
-        info["whole-document"] = {"rank": ranking, "keyvalues": key_values, "ignored": ignored}
 
         return paper_rank, info

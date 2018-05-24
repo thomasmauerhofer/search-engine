@@ -9,39 +9,26 @@ class WordHist(dict):
             self[key] = self[key] + value if key in self else value
 
 
-    def get_normalized_key_value(self, key):
+    def get_rank(self, key):
         ret = float(self[key]) if key in self else 0.0
         return ret / sum(self.values())
 
 
-    def get_normalized_query_value(self, query, ignored_keys=None):
-        if ignored_keys is None:
-            ignored_keys = []
-
-        query = query.split() if isinstance(query, str) else query
+    def get_rank_with_keys(self, keys):
         ranking = 0.0
         key_value = []
-        ignored = []
 
-        keys = self.query_to_keys(query)
         for key in keys:
-            if key in ignored_keys:
-                ignored.append(key)
-            else:
-                rank = self.get_normalized_key_value(key)
-                key_value.append([key, rank, self[key]])
-                ranking += rank
+            rank = self.get_rank(key)
+            key_value.append([key, rank, self[key]])
+            ranking += rank
 
-        return ranking, key_value, ignored
+        return ranking, key_value
 
 
     def query_to_keys(self, query):
-        query = query.split() if isinstance(query, str) else query
-        ret = []
+        return set([key for key in self.keys() for word in query.split() if word in key])
 
-        for word in query:
-            ret += [key for key, value in self.items() if (word in key.lower()) and (key.lower() not in ret)]
-        return ret
 
     def keys_to_query(self):
         query = ""

@@ -5,6 +5,8 @@ import os
 
 from flask import Blueprint, render_template, request, current_app, send_file
 
+from config import WEIGHT_TITLE, WEIGHT_SECTION_TITLE, WEIGHT_SECTION_TEXT, WEIGHT_SUBSECTION_TITLE, \
+    WEIGHT_SUBSECTION_TEXT, WEIGHT_SUBSUBSECTION_TITLE, WEIGHT_SUBSUBSECTION_TEXT
 from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBooleanRetrieval
 from engine.datastore.ranking.ranking_simple import RankingSimple
@@ -28,7 +30,14 @@ def index():
         IMRaDType.RESULTS.name: request.form['results_text'],
         IMRaDType.DISCUSSION.name: request.form['discussion_text']}
 
-    settings = {"importance_sections": bool(request.form['importance'])}
+    settings = {"importance_sections": bool(request.form['importance']),
+                "ranking-algo-params": {"weight-title": WEIGHT_TITLE,
+                                        "weight-section-title": WEIGHT_SECTION_TITLE,
+                                        "weight-section-text": WEIGHT_SECTION_TEXT,
+                                        "weight-subsection-title": WEIGHT_SUBSECTION_TITLE,
+                                        "weight-subsection-text": WEIGHT_SUBSECTION_TEXT,
+                                        "weight-subsubsection-title": WEIGHT_SUBSUBSECTION_TITLE,
+                                        "weight-subsubsection-text": WEIGHT_SUBSUBSECTION_TEXT}}
 
     if all(not query for query in queries.values()):
         return '', 204

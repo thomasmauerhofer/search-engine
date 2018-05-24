@@ -3,6 +3,7 @@ from unittest import TestCase
 import engine.datastore.datastore_utils.crypto as crypto
 from engine.api import API
 from engine.datastore.db_client import DBClient
+from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.datastore.structure.paper import Paper
 from engine.datastore.structure.section import IMRaDType
 
@@ -17,17 +18,18 @@ class TestDB(TestCase):
 
 
     def test_simple_ranking(self):
-        queries = {IMRaDType.INTRODUCTION.name: "paper",
+        queries = {IMRaDType.INTRODUCTION.name: "aaa",
                    IMRaDType.BACKGROUND: "",
-                   IMRaDType.METHODS.name: "inhom scenario allow user control home",
+                   IMRaDType.METHODS.name: "aaa bbb ccc ddd eee fff",
                    IMRaDType.RESULTS.name: "",
                    IMRaDType.DISCUSSION.name: "",
-                   "whole-document": ""}
+                   "whole-document": "ggg aaa ccc"}
 
         settings = {"importance_sections": True}
 
         api = API()
-        ret = api.get_papers(queries, settings)
+        ret = api.get_papers(queries, settings, RankingSimple)
+
         self.assertGreater(len(ret), 0)
 
 

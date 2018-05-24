@@ -48,12 +48,10 @@ class Section(PaperStructure):
     def get_combined_word_hist(self):
         if not self.word_hist:
             for word in self.heading_proceed.split():
-                word = word.replace('.', " ")
                 self.word_hist[word] = self.word_hist[word] + 1 if word in self.word_hist else 1
 
             for text in self.text:
                 for word in text.text_proceed.split():
-                    word = word.replace('.', " ")
                     self.word_hist[word] = self.word_hist[word] + 1 if word in self.word_hist else 1
 
         ret = WordHist(self.word_hist.copy())

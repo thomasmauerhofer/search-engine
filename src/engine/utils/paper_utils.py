@@ -6,7 +6,6 @@ from engine.utils.objects.word_hist import WordHist
 
 def sections_to_word_hist(sections):
     hist = WordHist()
-
     for section in sections:
         hist.append(section.get_combined_word_hist())
     return hist

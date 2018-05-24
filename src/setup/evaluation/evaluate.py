@@ -7,7 +7,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from config import REQ_DATA_PATH
 from engine.api import API
-
+from engine.datastore.ranking.ranking_simple import RankingSimple
 
 
 def histogram(data, title, filename):
@@ -40,7 +40,7 @@ def calculate_ranking(name, mode):
                 query[imrad_type] = citation["search_query"]
 
 
-        ranking = api.get_papers(query, settings)
+        ranking = api.get_papers(query, settings, RankingSimple)
 
         for reference in citation["references"]:
             referred_paper = api.get_paper(reference["paper_id"])

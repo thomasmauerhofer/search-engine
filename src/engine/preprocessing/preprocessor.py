@@ -36,6 +36,7 @@ class Preprocessor(object):
         for imrad_type, query in queries.items():
             queries_proceed[imrad_type] = self.text_processor.proceed_string(query)
 
+
         return queries_proceed
 
 

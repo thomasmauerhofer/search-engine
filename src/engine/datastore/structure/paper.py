@@ -39,6 +39,8 @@ class Paper(PaperStructure):
 
 
     def get_sections_with_imrad_type(self, imrad_type):
+        if imrad_type == "whole-document":
+            return self.sections
         imrad_type = IMRaDType[imrad_type] if isinstance(imrad_type, str) else imrad_type
         return [chapter for chapter in self.sections if imrad_type in chapter.imrad_types]
 
