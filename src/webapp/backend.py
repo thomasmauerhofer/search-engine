@@ -6,6 +6,7 @@ import os
 from flask import Blueprint, render_template, request, current_app, send_file
 
 from engine.api import API
+from engine.datastore.ranking.ranked_boolean_retrieval import RankedBooleanRetrieval
 from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.datastore.structure.section import IMRaDType
 from engine.utils.exceptions.import_exceptions import ClassificationError
@@ -32,7 +33,7 @@ def index():
     if all(not query for query in queries.values()):
         return '', 204
 
-    result = api.get_papers_simple_ranking(queries, settings)
+    result = api.get_papers(queries, settings, RankedBooleanRetrieval)
     return render_template('result.html', queries=queries, settings=settings, result=result)
 
 
@@ -46,7 +47,7 @@ def search_with_pdf():
 
     file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
     try:
-        result, queries = api.get_papers_simple_ranking_with_paper(file.filename, settings)
+        result, queries = api.get_papers_with_paper(file.filename, settings)
         return render_template('result.html', queries=queries, settings=settings, result=result)
     except EnvironmentError as e:
         return render_template('index.html', settings=settings, error=str(e))

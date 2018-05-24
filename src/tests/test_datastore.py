@@ -27,7 +27,7 @@ class TestDB(TestCase):
         settings = {"importance_sections": True}
 
         api = API()
-        ret = api.get_papers_simple_ranking(queries, settings)
+        ret = api.get_papers(queries, settings)
         self.assertGreater(len(ret), 0)
 
 

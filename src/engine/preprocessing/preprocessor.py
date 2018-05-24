@@ -32,9 +32,10 @@ class Preprocessor(object):
 
 
     def proceed_queries(self, queries):
-        queries_proceed = {}
+        queries_proceed = {} if "whole-document" in queries else {"whole-document": ""}
         for imrad_type, query in queries.items():
             queries_proceed[imrad_type] = self.text_processor.proceed_string(query)
+
         return queries_proceed
 
 

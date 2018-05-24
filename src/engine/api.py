@@ -70,7 +70,7 @@ class API(object):
             os.remove(file_path)
 
 
-    def get_papers_simple_ranking(self, queries, settings):
+    def get_papers(self, queries, settings, ranking_algo=RankingSimple):
         ret = []
         queries_proceed = self.preprocessor.proceed_queries(queries)
 
@@ -79,14 +79,14 @@ class API(object):
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
         for paper in papers:
-            rank, info = RankingSimple.get_ranking(paper, queries_proceed, settings)
+            rank, info = ranking_algo.get_ranking(paper, queries_proceed, settings)
             element = {"paper": paper, "rank": rank, "info": info}
             insert_dict_into_sorted_list(ret, element, "rank")
 
         return ret
 
 
-    def get_papers_simple_ranking_with_paper(self, filename, settings):
+    def get_papers_with_paper(self, algo, filename, settings):
         ret = []
         settings["importance_sections"] = True if settings["mode"] == "sections-uncategorized-sec" else False
 
@@ -104,7 +104,6 @@ class API(object):
             insert_dict_into_sorted_list(ret, element, "rank")
 
         return ret, queries_proceed
-
 
 
     # -------------------------------------------------------------------------------
