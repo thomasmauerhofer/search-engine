@@ -3,53 +3,39 @@
 
 import os
 import pprint
-from xml.dom import minidom
-
 import re
 
-from config import TEAMBEAM_EXE, REQ_DATA_PATH
-from engine.preprocessing.imrad_detection import IMRaDDetection
-from engine.preprocessing.text_processor import TextProcessor
-from engine.utils.exceptions.import_exceptions import ClassificationError
-
-EXTENSION_TEXT = ".txt"
-EXTENSION_STRUCTURE = ".xml"
+from config import REQ_DATA_PATH
+from engine.api import API
+from engine.datastore.structure.section import IMRaDType
+from engine.datastore.structure.text import TextType
 
 
-def create_file(folder):
-    chapter_detection = IMRaDDetection()
-    text_processor = TextProcessor()
-    all_citations = []
+def __check_citations_to_references(citations, references):
+    last_cited = 0
+    for citation in citations:
+        regex = re.compile(r'(.*?)\[([0-9]+[–,\-]?[0-9]*)\]')
+        values = re.match(regex, citation["full_citation"])
+        index = values.group(2)
 
-    #  files = ["Stonebraker, Çetintemel, Zdonik - 2005 - The 8 requirements of real-time stream processing.pdf"]
-    for filename in os.listdir(os.path.abspath(folder)):
-        if not filename.endswith('.pdf'):
-            continue
+        if re.match(r'[0-9]+[–,\-][0-9]+', index):
+            start, end = re.split("[–,\\-]", index)
+        else:
+            end = index
 
-        file_path = folder + filename
-        print(filename)
-        if not (os.path.exists(file_path + EXTENSION_TEXT) and os.path.exists(file_path + EXTENSION_STRUCTURE)):
-            os.system('cd ' + TEAMBEAM_EXE + ' &&  sh pdf-to-xml -a \"' + file_path + '\"')
+        last_cited = int(end) if int(end) > last_cited else last_cited
 
-        with open(file_path + EXTENSION_TEXT, "r", encoding="utf8") as textfile:
-            data = textfile.read()
+    # Highest reference should be cited -> No missing references
+    return len(references) == last_cited
 
-        tree = minidom.parse(file_path + EXTENSION_STRUCTURE)
-        features = tree.getElementsByTagName("feature")
 
-        references = []
-        citations = []
-        sections = ["NO SECTION"]
-        for feature in features:
-            value = feature.getAttribute("value").strip()
+def __get_citations(filename, sections):
+    citations = []
 
-            parent = feature.parentNode
-            start = int(parent.getAttribute("start"))
-            end = int(parent.getAttribute("end"))
-            text = data[start:end].strip()
-
-            if value == "main":
-                sentences = text.split("\n")
+    for section in sections:
+        for text in section.text:
+            if text.text_type == TextType.MAIN:
+                sentences = text.text_raw.split("\n")
                 for sentence in sentences:
                     # There are two possible formats of citations:
                     # text [1] text
@@ -62,52 +48,37 @@ def create_file(folder):
                     citation_texts = re.findall(regex, sentence)
 
                     if citation_texts:
-                        citations.extend([{"filename": filename, "full_citation": value, "references": [],
-                                           "section": sections[-1]} for value in citation_texts])
+                        values = [{"filename": filename, "full_citation": value, "references": [],
+                                   "section": {"name": section.heading_raw.strip(),
+                                               "imrad": [imrad.name for imrad in section.imrad_types]}}
+                                  for value in citation_texts]
+                        citations.extend(values)
 
-            elif value == "reference":
-                references.append(text)
+        citations.extend(__get_citations(filename, section.subsections))
+    return citations
 
-            elif value == "section":
-                sections.append(text)
 
-        if not len(citations) or not len(references):
+def create_file():
+    api = API()
+    all_citations = []
+
+    for paper in api.get_all_paper():
+        if not any([ref.paper_id for ref in paper.references]):
             continue
 
-        last_cited = 0
-        for citation in citations:
-            regex = re.compile(r'(.*?)\[([0-9]+[–,\-]?[0-9]*)\]')
-            values = re.match(regex, citation["full_citation"])
-            index = values.group(2)
+        citations = []
+        citations.extend(__get_citations(paper.filename, paper.get_sections_with_imrad_type(IMRaDType.ABSTRACT)))
+        citations.extend(__get_citations(paper.filename, paper.get_sections_with_imrad_type(IMRaDType.INTRODUCTION)))
+        citations.extend(__get_citations(paper.filename, paper.get_sections_with_imrad_type(IMRaDType.BACKGROUND)))
+        citations.extend(__get_citations(paper.filename, paper.get_sections_with_imrad_type(IMRaDType.METHODS)))
+        citations.extend(__get_citations(paper.filename, paper.get_sections_with_imrad_type(IMRaDType.RESULTS)))
+        citations.extend(__get_citations(paper.filename, paper.get_sections_with_imrad_type(IMRaDType.DISCUSSION)))
+        citations.extend(__get_citations(paper.filename, paper.get_sections_with_imrad_type(IMRaDType.ACKNOWLEDGE)))
 
-            if re.match(r'[0-9]+[–,\-][0-9]+', index):
-                start, end = re.split("[–,\\-]", index)
-            else:
-                end = index
-
-            last_cited = int(end) if int(end) > last_cited else last_cited
-
-
-        # Highest reference should be cited -> No missing references
-        if len(references) != last_cited:
-            print("NOPE: {}, {}".format(len(references), last_cited))
+        if not len(citations) or not len(paper.references): #or not __check_citations_to_references(citations, paper.references):
             continue
-
-        try:
-            imrad = chapter_detection.proceed_chapters_simple(text_processor.proceed_list(sections))
-        except ClassificationError as e:
-            print("Can't use paper: {}".format(e))
-            continue
-
-        sections = [{"name": name, "imrad": []} for name in sections]
-        for imrad_type, chapters in imrad.items():
-            for pos in chapters:
-                sections[pos]["imrad"].append(imrad_type.name)
-
 
         for citation in citations:
-            citation["section"] = [section for section in sections if citation["section"] == section["name"]]
-
             regex = re.compile(r'(.*?)\[([0-9]+[–,\-]?[0-9]*)\](.*)')
             values = re.match(regex, citation["full_citation"])
             citation["search_query"] = values.group(1)
@@ -117,16 +88,22 @@ def create_file(folder):
 
             index = values.group(2)
 
+            indices = []
             if re.match(r'[0-9]+[–,\-][0-9]+', index):
                 start, end = re.split("[–,\\-]", index)
-                for i in range(int(start) - 1, int(end)):
-                    citation["references"].append(references[i])
+                indices.extend(range(int(start) - 1, int(end)))
             else:
-                citation["references"].append(references[int(index) - 1])
+                indices.append(int(index) - 1)
+
+            for i in indices:
+                if i < len(paper.references) and paper.references[i].paper_id != '':
+                    citation["references"].append({"complete": paper.references[i].complete_ref_raw,
+                                                   "paper_id": str(paper.references[i].paper_id)})
 
         for citation in citations:
-            if len(citation["search_query"]) > 2:
+            if len(citation["search_query"]) > 2 and citation["references"]:
                 all_citations.append(citation)
+
 
 
     file1 = open(os.path.join(REQ_DATA_PATH, "citations.txt"), "w")
@@ -140,4 +117,4 @@ def create_file(folder):
 
 
 if __name__ == "__main__":
-    create_file("/media/thomas11/ad34827c-b739-48f3-87bc-98e376545686/thesis/all_data/data/")
+    create_file()

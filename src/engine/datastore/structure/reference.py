@@ -31,7 +31,7 @@ class Reference(PaperStructure):
 
     def to_dict(self):
         data = {'complete_ref_raw': self.complete_ref_raw, 'complete_ref_proceed': self.complete_ref_proceed,
-                'title': self.title, 'reference_info': [], 'authors': []}
+                'title': self.title, 'paper_id': self.paper_id, 'reference_info': [], 'authors': []}
 
         for reference in self.reference_info:
             dic = {'reference_type': reference[0].name, 'reference_text': reference[1]}

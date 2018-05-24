@@ -97,13 +97,13 @@ class Paper(PaperStructure):
 
     def add_subsection(self, section_name):
         if not len(self.sections):
-            self.add_section('')
+            self.add_abstract('')
         self.sections[-1].add_subsection(SectionType.SUBSECTION, section_name)
 
 
     def add_subsubsection(self, section_name):
         if not len(self.sections):
-            self.add_section('')
+            self.add_abstract('')
 
         if not len(self.sections[-1].subsections):
             self.add_subsection('')

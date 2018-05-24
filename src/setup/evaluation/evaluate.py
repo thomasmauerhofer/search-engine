@@ -10,13 +10,9 @@ from engine.api import API
 def evaluate():
     api = API()
 
-    tmp = []
-    for paper in api.get_all_paper():
-        tmp = api.preprocessor.link_references(paper)
-
-    for ele in tmp:
-        print(ele["val"])
     exit()
+    for paper in api.get_all_paper():
+        api.preprocessor.link_references(paper)
 
 
     with open(os.path.join(REQ_DATA_PATH, "citations.txt"), encoding='utf-8') as data_file:

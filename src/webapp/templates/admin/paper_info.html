@@ -225,18 +225,24 @@
     {% else %}
         {% for ref in paper.references %}
             <table class="table table-bordered">
+                {% if ref.paper_id != '' %}
+                    <tr>
+                        <td style="width: 132px;"></td>
+                        <td>
+                            <form action="/admin/paper_info/{{ ref.paper_id }}" method="get" target="_blank">
+                                <input type="submit" value="Open referred Paper" class="btn btn-primary btn-xs">
+                            </form>
+                        </td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <td style="width: 132px;"><b> Complete </b></td>
-                    <td>{{ ref.complete_ref_proceed }}</td>
+                    <td>{{ ref.complete_ref_raw }}</td>
                 </tr>
-                <tr>
-                    <td style="width: 132px;"><b> Title </b></td>
-                    <td>{{ ref.title }}</td>
-                </tr>
-                {% if ref.id != '' %}
+                {% if ref.title != '' %}
                     <tr>
-                        <td style="width: 132px;"><b> ID </b></td>
-                        <td>{{ ref.id }}</td>
+                        <td style="width: 132px;"><b> Title </b></td>
+                        <td>{{ ref.title }}</td>
                     </tr>
                 {% endif %}
                 {% for author in ref.authors %}
