@@ -6,19 +6,21 @@
         <div id="complete-query">
             {% for key, value in queries.items() %}
                 {% if value %}
-                    <h4>{{ key }}</h4>
-                    {% set query_words = value.split(' ') %}
-                    <table class="table table-striped">
-                        <tbody>
-                        {% for wordrow in query_words | sort | batch(8) %}
-                            <tr>
-                                {% for word in wordrow %}
-                                    <td>{{ word }}</td>
-                                {% endfor %}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="inner-div">
+                        <h4>{{ key }}</h4>
+                        {% set query_words = value.split(' ') %}
+                        <table class="table table-striped">
+                            <tbody>
+                            {% for wordrow in query_words | sort | batch(8) %}
+                                <tr>
+                                    {% for word in wordrow %}
+                                        <td>{{ word }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 {% endif %}
             {% endfor %}
         </div>
@@ -28,7 +30,7 @@
 
         {% for key, value in result.info.items() %}
             {% if value.ignored or value.keyvalues %}
-                <div class="info">
+                <div class="info inner-div">
                     <h4>{{ key }}</h4>
                     {% if value.keyvalues %}
                         <p class="result-info-text"><b>Rank:</b> {{ value.rank | round(6, 'floor') }}</p>
@@ -38,7 +40,7 @@
                                     data-target="#table-{{ key }}">Show Table
                             </button>
                         </div>
-                        <div id="table-{{ key }}" class="collapse">
+                        <div id="table-{{ key }}" class="collapse ">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -61,18 +63,20 @@
                     {% endif %}
 
                     {% if value.ignored %}
-                        <h4>Ignored Words</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                            {% for wordrow in value.ignored | sort | batch(8) %}
-                                <tr>
-                                    {% for word in wordrow %}
-                                        <td>{{ word }}</td>
+                        <div class="inner-div">
+                            <h5>Ignored Words</h5>
+                            <table class="table table-striped">
+                                <tbody>
+                                    {% for wordrow in value.ignored | sort | batch(8) %}
+                                        <tr>
+                                            {% for word in wordrow %}
+                                                <td>{{ word }}</td>
+                                            {% endfor %}
+                                        </tr>
                                     {% endfor %}
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     {% endif %}
                 </div>
             {% endif %}

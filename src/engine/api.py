@@ -2,15 +2,17 @@
 # encoding: utf-8
 import contextlib
 import os
-import engine.datastore.datastore_utils.crypto as crypto
 
+import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
+from engine.datastore.ranking.ranked_boolean_retrieval import RankedBooleanRetrieval
 from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.preprocessor import Preprocessor
 from engine.utils.list_utils import insert_dict_into_sorted_list
 from engine.utils.paper_utils import paper_to_queries
+from engine.utils.ranking_utils import remove_ignored_words_from_query, combine_info
 
 
 class API(object):
@@ -18,6 +20,17 @@ class API(object):
         self.importer = ImporterTeambeam(run_importer_exe)
         self.client = DBClient()
         self.preprocessor = Preprocessor()
+
+
+    @staticmethod
+    def get_ranking_info(paper, queries, settings):
+        ranking_algo = RankingSimple
+        if settings["algorithm"] == RankedBooleanRetrieval.get_name():
+            ranking_algo = RankedBooleanRetrieval
+
+        reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, settings["importance_sections"])
+        rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings)
+        return {"paper": paper, "rank": rank, "info": combine_info(info, ignored)}
 
 
     @staticmethod
@@ -70,7 +83,7 @@ class API(object):
             os.remove(file_path)
 
 
-    def get_papers(self, queries, settings, ranking_algo=RankingSimple):
+    def get_papers(self, queries, settings):
         ret = []
         queries_proceed = self.preprocessor.proceed_queries(queries)
 
@@ -79,14 +92,13 @@ class API(object):
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
         for paper in papers:
-            rank, info = ranking_algo.get_ranking(paper, queries_proceed, settings)
-            element = {"paper": paper, "rank": rank, "info": info}
+            element = self.get_ranking_info(paper, queries_proceed, settings)
             insert_dict_into_sorted_list(ret, element, "rank")
 
         return ret
 
 
-    def get_papers_with_paper(self, filename, settings, ranking_algo=RankingSimple):
+    def get_papers_with_paper(self, filename, settings):
         ret = []
         settings["importance_sections"] = True if settings["mode"] == "sections-uncategorized-sec" else False
 
@@ -99,8 +111,7 @@ class API(object):
             if paper.filename == filename:
                 continue
 
-            rank, info = ranking_algo.get_ranking(paper, queries_proceed, settings)
-            element = {"paper": paper, "rank": rank, "info": info}
+            element = self.get_ranking_info(paper, queries_proceed, settings)
             insert_dict_into_sorted_list(ret, element, "rank")
 
         return ret, queries_proceed

@@ -3,7 +3,6 @@ import numpy as np
 
 from engine.datastore.ranking.ranking_base import RankingBase
 from engine.utils.exceptions.ranking_exceptions import RankingParameterError
-from engine.utils.ranking_utils import get_query_keys
 
 
 def mean(values):
@@ -57,17 +56,13 @@ class RankedBooleanRetrieval(RankingBase):
     @staticmethod
     def get_ranking(paper, queries, settings):
         sec_title_s, subsec_title_s, subsubsec_title_s, sec_text_s, subsec_text_s, subsubsec_text_s = [], [], [], [], [], []
-        info, ignored = {}, []
+        info = {}
         weights = RankedBooleanRetrieval.__get_params(settings)
-        query_keys, ignored_keys = get_query_keys(paper, queries, settings["importance_sections"])
 
         title_s = 1 if any(i in queries["whole-document"] for i in paper.title_proceed.split()) else 1
 
         for imrad_type, query in queries.items():
             for query_word in query.split():
-                if any([key for key in ignored_keys[imrad_type] if query_word in key]):
-                    ignored.append(query_word)
-                    continue
 
                 for sec in paper.get_sections_with_imrad_type(imrad_type):
                     sec_title_s.append(1 if any(query_word in title_word for title_word in sec.heading_proceed.split()) else 0)
@@ -90,8 +85,7 @@ class RankedBooleanRetrieval(RankingBase):
             key_value.append(["Weight SubSection Title", mean(subsubsec_title_s), len(sec_title_s)])
             key_value.append(["Weight SubSection Text", mean(subsubsec_text_s), len(sec_title_s)])
 
-            info[imrad_type] = {"rank": 0, "sumwords": "Can't be displayed with Ranked Boolean Retrieval",
-                                "keyvalues": key_value, "ignored": ignored}
+            info[imrad_type] = {"rank": 0, "sumwords": "Can't be displayed with Ranked Boolean Retrieval", "keyvalues": key_value}
 
         mean_sec_title = mean(sec_title_s)
         mean_sec_text = mean(sec_text_s)

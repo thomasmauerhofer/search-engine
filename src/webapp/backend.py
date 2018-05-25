@@ -8,7 +8,6 @@ from config import WEIGHT_TITLE, WEIGHT_SECTION_TITLE, WEIGHT_SECTION_TEXT, WEIG
     WEIGHT_SUBSECTION_TEXT, WEIGHT_SUBSUBSECTION_TITLE, WEIGHT_SUBSUBSECTION_TEXT, USED_ALGORITHM
 from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBooleanRetrieval
-from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.datastore.structure.section import IMRaDType
 from engine.utils.exceptions.import_exceptions import ClassificationError
 from engine.utils.string_utils import load_json
@@ -49,12 +48,10 @@ def index():
     settings = {"importance_sections": bool(request.form['importance']),
                 "algorithm": request.form["algorithm"]}
 
-    ranking_algo = RankingSimple
     if settings["algorithm"] == RankedBooleanRetrieval.get_name():
-        ranking_algo = RankedBooleanRetrieval
         settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
 
-    result = api.get_papers(queries, settings, ranking_algo)
+    result = api.get_papers(queries, settings)
     return render_template('result.html', queries=queries, settings=settings, result=result)
 
 
@@ -68,14 +65,12 @@ def search_with_pdf():
     settings = {"importance_sections": bool(request.form['importance']),
                 "algorithm": request.form["algorithm"]}
 
-    ranking_algo = RankingSimple
     if settings["algorithm"] == RankedBooleanRetrieval.get_name():
-        ranking_algo = RankedBooleanRetrieval
         settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
 
     file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
     try:
-        result, queries = api.get_papers_with_paper(file.filename, settings, ranking_algo)
+        result, queries = api.get_papers_with_paper(file.filename, settings)
         return render_template('result.html', queries=queries, settings=settings, result=result)
     except EnvironmentError as e:
         return render_template('index.html', settings=settings, error=str(e))
@@ -106,6 +101,10 @@ def upload():
 def get_ranking_info(paper_id):
     settings = {"importance_sections": bool(request.form['importance']),
                 "algorithm": request.form["algorithm"]}
+
+    if settings["algorithm"] == RankedBooleanRetrieval.get_name():
+        settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
+
     queries = {
         "whole-document": request.form["whole-document"],
         IMRaDType.INTRODUCTION.name: request.form[IMRaDType.INTRODUCTION.name],
@@ -114,16 +113,11 @@ def get_ranking_info(paper_id):
         IMRaDType.RESULTS.name: request.form[IMRaDType.RESULTS.name],
         IMRaDType.DISCUSSION.name: request.form[IMRaDType.DISCUSSION.name]}
 
-    ranking_algo = RankingSimple
-    if settings["algorithm"] == RankedBooleanRetrieval.get_name():
-        ranking_algo = RankedBooleanRetrieval
-        settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
-
     paper = api.get_paper(paper_id)
     queries_proceed = api.preprocessor.proceed_queries(queries)
+    ret = api.get_ranking_info(paper, queries_proceed, settings)
 
-    rank, info = ranking_algo.get_ranking(paper, queries_proceed, settings)
-    return render_template('result_info.html', queries=queries, result={"paper": paper, "rank": rank, "info": info})
+    return render_template('result_info.html', queries=queries, result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
 
 
 @backend.route('/view_pdf/<paper_id>', methods=["GET", "POST"])

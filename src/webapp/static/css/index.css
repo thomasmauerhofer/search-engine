@@ -87,3 +87,13 @@ div#query-settings {
     padding-top: 35px;
     padding-bottom: 65px;
 }
+
+div.inner-div {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+div.info table.table.table-striped {
+    padding-left: 20px;
+    padding-right: 20px;
+}
