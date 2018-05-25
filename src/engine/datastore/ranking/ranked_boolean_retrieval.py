@@ -76,14 +76,15 @@ class RankedBooleanRetrieval(RankingBase):
         r5 = mean(s5) * weights[RetrievalType.SUBSUBSECTION_TITLE.name]
         r6 = mean(s6) * weights[RetrievalType.SUBSUBSECTION_TEXT.name]
 
-        ret = {"rating": r0 + r1 + r2 + r3 + r4 + r5 + r6, "keys": keys,
-               RetrievalType.TITLE: {"sum_of1": (np.array(s0) == 1).sum(), "all": len(s0), "mean": mean(s0), "rank": r0},
-               RetrievalType.SECTION_TITLE.name: {"sum_of1": (np.array(s1) == 1).sum(), "all": len(s1), "mean": mean(s1), "rank": r1},
-               RetrievalType.SECTION_TEXT.name: {"sum_of1": (np.array(s2) == 1).sum(), "all": len(s2), "mean": mean(s2), "rank": r2},
-               RetrievalType.SUBSECTION_TITLE.name: {"sum_of1": (np.array(s3) == 1).sum(), "all": len(s3), "mean": mean(s3), "rank": r3},
-               RetrievalType.SUBSECTION_TEXT.name: {"sum_of1": (np.array(s4) == 1).sum(), "all": len(s4), "mean": mean(s4), "rank": r4},
-               RetrievalType.SUBSUBSECTION_TITLE.name: {"sum_of1": (np.array(s5) == 1).sum(), "all": len(s5), "mean": mean(s5), "rank": r5},
-               RetrievalType.SUBSUBSECTION_TEXT.name: {"sum_of1": (np.array(s6) == 1).sum(), "all": len(s6), "mean": mean(s6), "rank": r6}}
+        ret = {"rank": r0 + r1 + r2 + r3 + r4 + r5 + r6, "keys": keys,
+               "info": {
+                   RetrievalType.TITLE.name: {"sum_of1": (np.array(s0) == 1).sum(), "all": len(s0), "mean": mean(s0), "rank": r0},
+                   RetrievalType.SECTION_TITLE.name: {"sum_of1": (np.array(s1) == 1).sum(), "all": len(s1), "mean": mean(s1), "rank": r1},
+                   RetrievalType.SECTION_TEXT.name: {"sum_of1": (np.array(s2) == 1).sum(), "all": len(s2), "mean": mean(s2), "rank": r2},
+                   RetrievalType.SUBSECTION_TITLE.name: {"sum_of1": (np.array(s3) == 1).sum(), "all": len(s3), "mean": mean(s3), "rank": r3},
+                   RetrievalType.SUBSECTION_TEXT.name: {"sum_of1": (np.array(s4) == 1).sum(), "all": len(s4), "mean": mean(s4), "rank": r4},
+                   RetrievalType.SUBSUBSECTION_TITLE.name: {"sum_of1": (np.array(s5) == 1).sum(), "all": len(s5), "mean": mean(s5), "rank": r5},
+                   RetrievalType.SUBSUBSECTION_TEXT.name: {"sum_of1": (np.array(s6) == 1).sum(), "all": len(s6), "mean": mean(s6), "rank": r6}}}
 
         return ret
 
@@ -138,8 +139,10 @@ class RankedBooleanRetrieval(RankingBase):
         weights = RankedBooleanRetrieval.__get_params(settings)
 
         for imrad_type, query in queries.items():
-            ts0, ts1, ts2, ts3, ts4, ts5, ts6, tkeys = RankedBooleanRetrieval.__get_zone_lists(imrad_type, query, paper)
+            if not query:
+                continue
 
+            ts0, ts1, ts2, ts3, ts4, ts5, ts6, tkeys = RankedBooleanRetrieval.__get_zone_lists(imrad_type, query, paper)
             info[imrad_type] = RankedBooleanRetrieval.__get_info(ts0, ts1, ts2, ts3, ts4, ts5, ts6, weights, keys)
 
             s0.extend(ts0)
@@ -152,7 +155,7 @@ class RankedBooleanRetrieval(RankingBase):
             keys.extend(tkeys)
 
         info["overall"] = RankedBooleanRetrieval.__get_info(s0, s1, s2, s3, s4, s5, s6, weights, keys)
-        return info["overall"]["rating"], info
+        return info["overall"]["rank"], info
 
 
 class RetrievalType(Enum):

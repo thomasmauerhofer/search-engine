@@ -43,6 +43,8 @@ def combine_info(dict1, dict2):
     ret = copy.deepcopy(dict1)
     for imrad, value in dict2.items():
         for c_key, c_value in value.items():
+            if imrad not in ret:
+                ret[imrad] = {}
             ret[imrad][c_key] = c_value
     return ret
 

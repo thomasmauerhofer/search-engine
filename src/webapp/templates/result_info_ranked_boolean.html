@@ -26,61 +26,72 @@
         </div>
 
         <h3>Statistics</h3>
-        <p class="result-info-text"><b>Complete Rank:</b> {{ result.rank | round(6, 'floor') }}</p>
-
-        {% for key, value in result.info.items() %}
-            {% if value.ignored or value.keyvalues %}
-                <div class="info inner-div">
-                    <h4>{{ key }}</h4>
-                    {% if value.keyvalues %}
-                        <p class="result-info-text"><b>Rank:</b> {{ value.rank | round(6, 'floor') }}</p>
-                        <p class="result-info-text"><b>Sum of Words:</b> {{ value.sumwords }}</p>
-                        <div class="text-center">
-                            <button class="btn btn-primary btn-md hist" data-toggle="collapse"
-                                    data-target="#table-{{ key }}">Show Table
-                            </button>
-                        </div>
-                        <div id="table-{{ key }}" class="collapse ">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Key</th>
-                                    <th>Rank</th>
-                                    <th># Count</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for item in value.keyvalues %}
-                                    <tr>
-                                        <td> {{ item[0] }}</td>
-                                        <td> {{ item[1] | round(6, 'floor') }}</td>
-                                        <td> {{ item[2] }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% endif %}
-
-                    {% if value.ignored %}
-                        <div class="inner-div">
-                            <h5>Ignored Words</h5>
-                            <table class="table table-striped">
-                                <tbody>
-                                    {% for wordrow in value.ignored | sort | batch(8) %}
-                                        <tr>
-                                            {% for word in wordrow %}
-                                                <td>{{ word }}</td>
-                                            {% endfor %}
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% endif %}
-                </div>
-            {% endif %}
-        {% endfor %}
+        <p class="result-info-text"><b>Rank:</b> {{ result.overall.rank | round(6, 'floor') }}</p>
+        <div class="info inner-div">
+            <h4>Overall</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>zone</th>
+                    <th># of true elements</th>
+                    <th># elements</th>
+                    <th>mean</th>
+                    <th>rank</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ "TITLE" }}</td>
+                        <td>{{ result.overall.info["TITLE"].sum_of1 }} </td>
+                        <td>{{ result.overall.info["TITLE"].all }}</td>
+                        <td>{{ result.overall.info["TITLE"].mean | round(6, 'floor') }}</td>
+                        <td>{{ result.overall.info["TITLE"].rank | round(6, 'floor') }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ "SECTION_TITLE" }}</td>
+                        <td>{{ result.overall.info["SECTION_TITLE"].sum_of1 }} </td>
+                        <td>{{ result.overall.info["SECTION_TITLE"].all }}</td>
+                        <td>{{ result.overall.info["SECTION_TITLE"].mean | round(6, 'floor') }}</td>
+                        <td>{{ result.overall.info["SECTION_TITLE"].rank | round(6, 'floor') }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ "SECTION_TEXT" }}</td>
+                        <td>{{ result.overall.info["SECTION_TEXT"].sum_of1 }} </td>
+                        <td>{{ result.overall.info["SECTION_TEXT"].all }}</td>
+                        <td>{{ result.overall.info["SECTION_TEXT"].mean | round(6, 'floor') }}</td>
+                        <td>{{ result.overall.info["SECTION_TEXT"].rank | round(6, 'floor') }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ "SUBSECTION_TITLE" }}</td>
+                        <td>{{ result.overall.info["SUBSECTION_TITLE"].sum_of1 }} </td>
+                        <td>{{ result.overall.info["SUBSECTION_TITLE"].all }}</td>
+                        <td>{{ result.overall.info["SUBSECTION_TITLE"].mean | round(6, 'floor') }}</td>
+                        <td>{{ result.overall.info["SUBSECTION_TITLE"].rank | round(6, 'floor') }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ "SUBSECTION_TEXT" }}</td>
+                        <td>{{ result.overall.info["SUBSECTION_TEXT"].sum_of1 }} </td>
+                        <td>{{ result.overall.info["SUBSECTION_TEXT"].all }}</td>
+                        <td>{{ result.overall.info["SUBSECTION_TEXT"].mean | round(6, 'floor') }}</td>
+                        <td>{{ result.overall.info["SUBSECTION_TEXT"].rank | round(6, 'floor') }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ "SUBSUBSECTION_TITLE" }}</td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TITLE"].sum_of1 }} </td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TITLE"].all }}</td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TITLE"].mean | round(6, 'floor') }}</td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TITLE"].rank | round(6, 'floor') }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ "SUBSUBSECTION_TEXT" }}</td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TEXT"].sum_of1 }} </td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TEXT"].all }}</td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TEXT"].mean | round(6, 'floor') }}</td>
+                        <td>{{ result.overall.info["SUBSUBSECTION_TEXT"].rank | round(6, 'floor') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 {% endblock %}

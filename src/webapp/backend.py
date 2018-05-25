@@ -112,7 +112,13 @@ def get_ranking_info(paper_id):
     queries_proceed = api.preprocessor.proceed_queries(queries)
     ret = api.get_ranking_info(paper, queries_proceed, settings)
 
-    return render_template('result_info_simple.html', queries=queries, result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
+    if settings["algorithm"] == RankedBooleanRetrieval.get_name():
+        overall = ret["info"].pop("overall")
+        return render_template('result_info_ranked_boolean.html', queries=queries,
+                               result={"paper": paper, "overall": overall, "info": ret["info"]})
+    else:
+        return render_template('result_info_simple.html', queries=queries,
+                               result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
 
 
 @backend.route('/view_pdf/<paper_id>', methods=["GET", "POST"])
