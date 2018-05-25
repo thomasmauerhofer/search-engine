@@ -50,6 +50,10 @@
                         <option value="">Higher importance to Words in whole Document</option>
                         <option value="True">Higher importance to Words in Sections</option>
                     </select>
+                    <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
+                    {% if settings["ranking-algo-params"] %}
+                        <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
+                    {% endif %}
                 </div>
 
                 <div class="div-submit text-center">
@@ -95,6 +99,10 @@
                             <option value="doc-all">Without importance into Sections AND use all Sections</option>
                             <option value="background">Use Background Section only</option>
                         </select>
+                        <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
+                        {% if settings["ranking-algo-params"] %}
+                            <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
+                        {% endif %}
                     </div>
                     <div class="div-submit text-center">
                         <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>

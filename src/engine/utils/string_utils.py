@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-
+import json
 import re
 from difflib import SequenceMatcher
 from email.utils import parseaddr
@@ -12,9 +12,13 @@ from nltk.stem import PorterStemmer
 # if there is an error as Resource 'corpora/stopwords' not found. Use:
 # import nltk
 # nltk.download('all-corpora')
-pattern = re.compile(r'\b(' + r'|'.join(stopwords.words('english')) + r')\b\s*')
 
 stemmer = PorterStemmer()
+
+
+def load_json(json_string):
+    json_string = json_string.replace("'", "\"")
+    return json.loads(json_string)
 
 
 def is_valid_email(email):
@@ -32,6 +36,7 @@ def stem_words(text):
 
 
 def remove_stopwords(text):
+    pattern = re.compile(r'\b(' + r'|'.join(stopwords.words('english')) + r')\b\s*')
     return pattern.sub('', text.lower())
 
 

@@ -66,8 +66,11 @@
                                 Higher importance to Words in Sections
                             </option>
                         </select>
+                        <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
+                        {% if settings["ranking-algo-params"] %}
+                            <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
+                        {% endif %}
                     </div>
-
                     <div class="div-submit text-center">
                         <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
                         <button id="button-use-pdf" class="btn btn-primary btn-lg b-nml" type=button>Use PDF</button>
@@ -116,6 +119,10 @@
                                         selected {% endif %}>Use Background Section only
                                 </option>
                             </select>
+                            <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
+                            {% if settings["ranking-algo-params"] %}
+                                <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
+                            {% endif %}
                         </div>
                         <div class="div-submit text-center">
                             <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
@@ -138,10 +145,19 @@
                             <div id="info">
                                 <div id="raking">{{ value.rank | round(4, 'floor') }}</div>
                                 <form action="get_ranking_info/{{ value.paper.id }}" method="POST">
-                                    <button class="btn btn-primary btn-xs" type="submit" name="ranking"
-                                            value="{settings:{importance_sections:{{ settings["importance_sections"] | lower }}},queries:{whole-document:'{{ queries["whole-document"] }}',DISCUSSION:'{{ queries["DISCUSSION"] }}',INTRODUCTION:'{{ queries["INTRODUCTION"] }}',BACKGROUND:'{{ queries["BACKGROUND"] }}',METHODS:'{{ queries["METHODS"] }}',RESULTS:'{{ queries["RESULTS"] }}'}}">
-                                        Additional Info
-                                    </button>
+                                    <input type="hidden" name="importance" value="{{ settings["importance_sections"] }}" />
+                                    <input type="hidden" name="whole-document" value="{{ queries["whole-document"] }}" />
+                                    <input type="hidden" name="DISCUSSION" value="{{ queries["DISCUSSION"] }}" />
+                                    <input type="hidden" name="INTRODUCTION" value="{{ queries["INTRODUCTION"] }}" />
+                                    <input type="hidden" name="BACKGROUND" value="{{ queries["BACKGROUND"] }}" />
+                                    <input type="hidden" name="METHODS" value="{{ queries["METHODS"] }}" />
+                                    <input type="hidden" name="RESULTS" value="{{ queries["RESULTS"] }}" />
+                                    <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
+                                    {% if settings["ranking-algo-params"] %}
+                                        <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
+                                    {% endif %}
+
+                                    <button class="btn btn-primary btn-xs" type="submit">Additional Info</button>
                                 </form>
                             </div>
                         </div>

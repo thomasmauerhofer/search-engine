@@ -6,7 +6,16 @@ from engine.utils.exceptions.ranking_exceptions import RankingParameterError
 from engine.utils.ranking_utils import get_query_keys
 
 
+def mean(values):
+    return np.mean(values) if len(values) else 0
+
+
 class RankedBooleanRetrieval(RankingBase):
+    @staticmethod
+    def get_name():
+        return "Ranked Boolean Retrieval"
+
+
     @staticmethod
     def __get_params(settings):
 
@@ -74,22 +83,22 @@ class RankedBooleanRetrieval(RankingBase):
                                                      for text in subsubsec.text])
 
             key_value = [["Weight Title", title_s, 1]] if imrad_type == "whole-document" else []
-            key_value.append(["Weight Section Title", np.mean(sec_title_s), len(sec_title_s)])
-            key_value.append(["Weight Section Text", np.mean(sec_text_s), len(sec_title_s)])
-            key_value.append(["Weight SubSection Title", np.mean(subsec_title_s), len(sec_title_s)])
-            key_value.append(["Weight SubSection Text", np.mean(subsec_text_s), len(sec_title_s)])
-            key_value.append(["Weight SubSection Title", np.mean(subsubsec_title_s), len(sec_title_s)])
-            key_value.append(["Weight SubSection Text", np.mean(subsubsec_text_s), len(sec_title_s)])
+            key_value.append(["Weight Section Title", mean(sec_title_s), len(sec_title_s)])
+            key_value.append(["Weight Section Text", mean(sec_text_s), len(sec_title_s)])
+            key_value.append(["Weight SubSection Title", mean(subsec_title_s), len(sec_title_s)])
+            key_value.append(["Weight SubSection Text", mean(subsec_text_s), len(sec_title_s)])
+            key_value.append(["Weight SubSection Title", mean(subsubsec_title_s), len(sec_title_s)])
+            key_value.append(["Weight SubSection Text", mean(subsubsec_text_s), len(sec_title_s)])
 
-            info[imrad_type] = {"rank": "Can't be displayed with Ranked Boolean Retrieval", "sumwords": "-- nicht vorhanden --",
+            info[imrad_type] = {"rank": 0, "sumwords": "Can't be displayed with Ranked Boolean Retrieval",
                                 "keyvalues": key_value, "ignored": ignored}
 
-        mean_sec_title = np.mean(sec_title_s) if len(sec_title_s) else 0
-        mean_sec_text = np.mean(sec_text_s) if len(sec_text_s) else 0
-        mean_subsec_title = np.mean(subsec_title_s) if len(subsec_title_s) else 0
-        mean_subsec_text = np.mean(subsec_text_s) if len(subsec_text_s) else 0
-        mean_subsubsec_title = np.mean(subsubsec_title_s) if len(subsubsec_title_s) else 0
-        mean_subsubsec_text = np.mean(subsubsec_text_s) if len(subsubsec_text_s) else 0
+        mean_sec_title = mean(sec_title_s)
+        mean_sec_text = mean(sec_text_s)
+        mean_subsec_title = mean(subsec_title_s)
+        mean_subsec_text = mean(subsec_text_s)
+        mean_subsubsec_title = mean(subsubsec_title_s)
+        mean_subsubsec_text = mean(subsubsec_text_s)
 
         paper_rank = weights["weight-title"] * title_s
         paper_rank += weights["weight-section-title"] * mean_sec_title

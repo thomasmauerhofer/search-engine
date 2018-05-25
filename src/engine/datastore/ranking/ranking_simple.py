@@ -6,6 +6,10 @@ from engine.utils.ranking_utils import get_query_keys
 
 class RankingSimple(RankingBase):
     @staticmethod
+    def get_name():
+        return "Ranking Simple"
+
+    @staticmethod
     def get_ranking(paper, queries, settings):
         paper_rank = 0.0
         info = {}
