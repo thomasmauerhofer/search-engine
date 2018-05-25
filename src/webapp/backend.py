@@ -4,10 +4,10 @@ import os
 
 from flask import Blueprint, render_template, request, current_app, send_file
 
-from config import WEIGHT_TITLE, WEIGHT_SECTION_TITLE, WEIGHT_SECTION_TEXT, WEIGHT_SUBSECTION_TITLE, \
-    WEIGHT_SUBSECTION_TEXT, WEIGHT_SUBSUBSECTION_TITLE, WEIGHT_SUBSUBSECTION_TEXT, USED_ALGORITHM
+from config import USED_ALGORITHM
 from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBooleanRetrieval
+from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.datastore.structure.section import IMRaDType
 from engine.utils.exceptions.import_exceptions import ClassificationError
 from engine.utils.string_utils import load_json
@@ -17,16 +17,11 @@ api = API()
 
 
 def __get_settings():
-    settings = {"algorithm": USED_ALGORITHM}
-
     if USED_ALGORITHM == RankedBooleanRetrieval.get_name():
-        settings["ranking-algo-params"] = {"weight-title": WEIGHT_TITLE, "weight-section-title": WEIGHT_SECTION_TITLE,
-                                           "weight-section-text": WEIGHT_SECTION_TEXT,
-                                           "weight-subsection-title": WEIGHT_SUBSECTION_TITLE,
-                                           "weight-subsection-text": WEIGHT_SUBSECTION_TEXT,
-                                           "weight-subsubsection-title": WEIGHT_SUBSUBSECTION_TITLE,
-                                           "weight-subsubsection-text": WEIGHT_SUBSUBSECTION_TEXT}
-    return settings
+        return RankedBooleanRetrieval.get_configuration()
+    else:
+        return RankingSimple.get_configuration()
+
 
 
 @backend.route('/', methods=["GET", "POST"])

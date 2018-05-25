@@ -6,6 +6,12 @@ from abc import ABCMeta, abstractmethod
 class RankingBase(metaclass=ABCMeta):
     @staticmethod
     @abstractmethod
+    def get_configuration():
+        """Gets the configuration for the used ranking algorithm"""
+        return
+
+    @staticmethod
+    @abstractmethod
     def get_name():
         """Returns the name of the Algorithm"""
         return

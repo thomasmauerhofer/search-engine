@@ -8,6 +8,12 @@ class RankingSimple(RankingBase):
     def get_name():
         return "Ranking Simple"
 
+
+    @staticmethod
+    def get_configuration():
+        return {"algorithm": RankingSimple.get_name()}
+
+
     @staticmethod
     def get_ranking(paper, queries, settings):
         paper_rank = 0.0
