@@ -67,94 +67,92 @@ class RankedBooleanRetrieval(RankingBase):
 
 
     @staticmethod
-    def __get_zone_lists_for_sections(query, sections):
-        keys, s1, s2, s3, s4, s5, s6 = [], [], [], [], [], [], []
+    def __get_info(s0, s1, s2, s3, s4, s5, s6, weights, keys):
+        r0 = mean(s0) * weights[RetrievalType.TITLE.name]
+        r1 = mean(s1) * weights[RetrievalType.SECTION_TITLE.name]
+        r2 = mean(s2) * weights[RetrievalType.SECTION_TEXT.name]
+        r3 = mean(s3) * weights[RetrievalType.SUBSECTION_TITLE.name]
+        r4 = mean(s4) * weights[RetrievalType.SUBSECTION_TEXT.name]
+        r5 = mean(s5) * weights[RetrievalType.SUBSUBSECTION_TITLE.name]
+        r6 = mean(s6) * weights[RetrievalType.SUBSUBSECTION_TEXT.name]
+
+        ret = {"rating": r0 + r1 + r2 + r3 + r4 + r5 + r6, "keys": keys,
+               RetrievalType.TITLE: {"sum_of1": (np.array(s0) == 1).sum(), "all": len(s0), "mean": mean(s0), "rank": r0},
+               RetrievalType.SECTION_TITLE.name: {"sum_of1": (np.array(s1) == 1).sum(), "all": len(s1), "mean": mean(s1), "rank": r1},
+               RetrievalType.SECTION_TEXT.name: {"sum_of1": (np.array(s2) == 1).sum(), "all": len(s2), "mean": mean(s2), "rank": r2},
+               RetrievalType.SUBSECTION_TITLE.name: {"sum_of1": (np.array(s3) == 1).sum(), "all": len(s3), "mean": mean(s3), "rank": r3},
+               RetrievalType.SUBSECTION_TEXT.name: {"sum_of1": (np.array(s4) == 1).sum(), "all": len(s4), "mean": mean(s4), "rank": r4},
+               RetrievalType.SUBSUBSECTION_TITLE.name: {"sum_of1": (np.array(s5) == 1).sum(), "all": len(s5), "mean": mean(s5), "rank": r5},
+               RetrievalType.SUBSUBSECTION_TEXT.name: {"sum_of1": (np.array(s6) == 1).sum(), "all": len(s6), "mean": mean(s6), "rank": r6}}
+
+        return ret
+
+
+    @staticmethod
+    def __get_zone_lists(imrad, query, paper):
+        keys, s0, s1, s2, s3, s4, s5, s6 = [], [], [], [], [], [], [], []
+
+        if imrad == "whole-document":
+            title_keys = [title_word for title_word in paper.title_proceed.split() if any(word in title_word for word in query.split())]
+            s0.append(1.0 if title_keys else 0.0)
+            keys.extend([[key, RetrievalType.TITLE.name] for key in title_keys])
+
 
         for query_word in query.split():
-            for section in sections:
+            for section in paper.get_sections_with_imrad_type(imrad):
                 title_keys = [title_word for title_word in section.heading_proceed.split() if query_word in title_word]
                 s1.append(1 if title_keys else 0)
-                if title_keys:
-                    keys.extend([[key, RetrievalType.SECTION_TITLE.name] for key in title_keys])
+                keys.extend([[key, RetrievalType.SECTION_TITLE.name] for key in title_keys])
 
                 for text in section.text:
                     text_keys = [text_word for text_word in text.text_proceed.split() if query_word in text_word]
                     s2.append(1 if text_keys else 0)
-                    if text_keys:
-                        keys.extend([[key, RetrievalType.SECTION_TEXT.name] for key in text_keys])
+                    keys.extend([[key, RetrievalType.SECTION_TEXT.name] for key in text_keys])
 
                 for subsection in section.subsections:
                     title_keys = [title_word for title_word in subsection.heading_proceed.split() if query_word in title_word]
                     s1.append(1 if title_keys else 0)
-                    if title_keys:
-                        keys.extend([[key, RetrievalType.SUBSECTION_TITLE.name] for key in title_keys])
+                    keys.extend([[key, RetrievalType.SUBSECTION_TITLE.name] for key in title_keys])
 
                     for text in subsection.text:
                         text_keys = [text_word for text_word in text.text_proceed.split() if query_word in text_word]
                         s2.append(1 if text_keys else 0)
-                        if text_keys:
-                            keys.extend([[key, RetrievalType.SUBSECTION_TEXT.name] for key in text_keys])
+                        keys.extend([[key, RetrievalType.SUBSECTION_TEXT.name] for key in text_keys])
 
                     for subsubsection in subsection.subsections:
                         title_keys = [title_word for title_word in subsubsection.heading_proceed.split() if query_word in title_word]
                         s1.append(1 if title_keys else 0)
-                        if title_keys:
-                            keys.extend([[key, RetrievalType.SUBSUBSECTION_TITLE.name] for key in title_keys])
+                        keys.extend([[key, RetrievalType.SUBSUBSECTION_TITLE.name] for key in title_keys])
 
                         for text in subsubsection.text:
                             text_keys = [text_word for text_word in text.text_proceed.split() if query_word in text_word]
                             s2.append(1 if text_keys else 0)
-                            if text_keys:
-                                keys.extend([[key, RetrievalType.SUBSUBSECTION_TEXT.name] for key in text_keys])
+                            keys.extend([[key, RetrievalType.SUBSUBSECTION_TEXT.name] for key in text_keys])
 
-        return s1, s2, s3, s4, s5, s6, keys
+        return s0, s1, s2, s3, s4, s5, s6, keys
 
 
     @staticmethod
     def get_ranking(paper, queries, settings):
-        info, s0, s1, s2, s3, s4, s5, s6 = {}, 0.0, [], [], [], [], [], []
+        info, keys, s0, s1, s2, s3, s4, s5, s6 = {}, [], [], [], [], [], [], [], []
         weights = RankedBooleanRetrieval.__get_params(settings)
 
         for imrad_type, query in queries.items():
-            sections = paper.get_sections_with_imrad_type(imrad_type)
-            ts1, ts2, ts3, ts4, ts5, ts6, keys = RankedBooleanRetrieval.__get_zone_lists_for_sections(query, sections)
+            ts0, ts1, ts2, ts3, ts4, ts5, ts6, tkeys = RankedBooleanRetrieval.__get_zone_lists(imrad_type, query, paper)
 
-            r1 = mean(ts1) * weights[RetrievalType.SECTION_TITLE.name]
-            r2 = mean(ts2) * weights[RetrievalType.SECTION_TEXT.name]
-            r3 = mean(ts3) * weights[RetrievalType.SUBSECTION_TITLE.name]
-            r4 = mean(ts4) * weights[RetrievalType.SUBSECTION_TEXT.name]
-            r5 = mean(ts5) * weights[RetrievalType.SUBSUBSECTION_TITLE.name]
-            r6 = mean(ts6) * weights[RetrievalType.SUBSUBSECTION_TEXT.name]
+            info[imrad_type] = RankedBooleanRetrieval.__get_info(ts0, ts1, ts2, ts3, ts4, ts5, ts6, weights, keys)
 
-            info[imrad_type] = {"rating": r1 + r2 + r3 + r4 + r5 + r6, "keys": keys,
-                                RetrievalType.SECTION_TITLE.name: {"sum_of1": (np.array(ts1) == 1).sum(), "all": len(ts1), "mean": mean(ts1), "rank": r1},
-                                RetrievalType.SECTION_TEXT.name: {"sum_of1": (np.array(ts2) == 1).sum(), "all": len(ts2), "mean": mean(ts2), "rank": r2},
-                                RetrievalType.SUBSECTION_TITLE.name: {"sum_of1": (np.array(ts3) == 1).sum(), "all": len(ts3), "mean": mean(ts3), "rank": r3},
-                                RetrievalType.SUBSECTION_TEXT.name: {"sum_of1": (np.array(ts4) == 1).sum(), "all": len(ts4), "mean": mean(ts4), "rank": r4},
-                                RetrievalType.SUBSUBSECTION_TITLE.name: {"sum_of1": (np.array(ts5) == 1).sum(), "all": len(ts5), "mean": mean(ts5), "rank": r5},
-                                RetrievalType.SUBSUBSECTION_TEXT.name: {"sum_of1": (np.array(ts6) == 1).sum(), "all": len(ts6), "mean": mean(ts6), "rank": r6}}
-
-            if imrad_type == "whole-document":
-                title_keys = [title_word for title_word in paper.title_proceed.split() if any(word in title_word for word in query.split())]
-                s0 = 1.0 if title_keys else 0.0
-                info[imrad_type][RetrievalType.TITLE] = {"sum_of1": s0, "all": 1, "mean": s0, "rank": s0 * weights[RetrievalType.TITLE.name]}
-
+            s0.extend(ts0)
             s1.extend(ts1)
             s2.extend(ts2)
             s3.extend(ts3)
             s4.extend(ts4)
             s5.extend(ts5)
             s6.extend(ts6)
+            keys.extend(tkeys)
 
-        paper_rank = s0 * weights[RetrievalType.TITLE.name]
-        paper_rank += mean(s1) * weights[RetrievalType.SECTION_TITLE.name]
-        paper_rank += mean(s2) * weights[RetrievalType.SECTION_TEXT.name]
-        paper_rank += mean(s3) * weights[RetrievalType.SUBSECTION_TITLE.name]
-        paper_rank += mean(s4) * weights[RetrievalType.SUBSECTION_TEXT.name]
-        paper_rank += mean(s5) * weights[RetrievalType.SUBSUBSECTION_TITLE.name]
-        paper_rank += mean(s6) * weights[RetrievalType.SUBSUBSECTION_TEXT.name]
-
-        return paper_rank, info
+        info["overall"] = RankedBooleanRetrieval.__get_info(s0, s1, s2, s3, s4, s5, s6, weights, keys)
+        return info["overall"]["rating"], info
 
 
 class RetrievalType(Enum):

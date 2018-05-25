@@ -112,7 +112,7 @@ def get_ranking_info(paper_id):
     queries_proceed = api.preprocessor.proceed_queries(queries)
     ret = api.get_ranking_info(paper, queries_proceed, settings)
 
-    return render_template('result_info.html', queries=queries, result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
+    return render_template('result_info_simple.html', queries=queries, result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
 
 
 @backend.route('/view_pdf/<paper_id>', methods=["GET", "POST"])

@@ -1,0 +1,86 @@
+{% extends "layout.html" %} {% block body %}
+    <div class="inner-container">
+        <h2> {{ result.paper.filename }}</h2>
+
+        <h3>Query</h3>
+        <div id="complete-query">
+            {% for key, value in queries.items() %}
+                {% if value %}
+                    <div class="inner-div">
+                        <h4>{{ key }}</h4>
+                        {% set query_words = value.split(' ') %}
+                        <table class="table table-striped">
+                            <tbody>
+                            {% for wordrow in query_words | sort | batch(8) %}
+                                <tr>
+                                    {% for word in wordrow %}
+                                        <td>{{ word }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <h3>Statistics</h3>
+        <p class="result-info-text"><b>Complete Rank:</b> {{ result.rank | round(6, 'floor') }}</p>
+
+        {% for key, value in result.info.items() %}
+            {% if value.ignored or value.keyvalues %}
+                <div class="info inner-div">
+                    <h4>{{ key }}</h4>
+                    {% if value.keyvalues %}
+                        <p class="result-info-text"><b>Rank:</b> {{ value.rank | round(6, 'floor') }}</p>
+                        <p class="result-info-text"><b>Sum of Words:</b> {{ value.sumwords }}</p>
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-md hist" data-toggle="collapse"
+                                    data-target="#table-{{ key }}">Show Table
+                            </button>
+                        </div>
+                        <div id="table-{{ key }}" class="collapse ">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Rank</th>
+                                    <th># Count</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in value.keyvalues %}
+                                    <tr>
+                                        <td> {{ item[0] }}</td>
+                                        <td> {{ item[1] | round(6, 'floor') }}</td>
+                                        <td> {{ item[2] }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+
+                    {% if value.ignored %}
+                        <div class="inner-div">
+                            <h5>Ignored Words</h5>
+                            <table class="table table-striped">
+                                <tbody>
+                                    {% for wordrow in value.ignored | sort | batch(8) %}
+                                        <tr>
+                                            {% for word in wordrow %}
+                                                <td>{{ word }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
