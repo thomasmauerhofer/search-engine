@@ -33,6 +33,19 @@ class RankedBooleanRetrieval(RankingBase):
 
 
     @staticmethod
+    def __add_keys(new_keys, keys=None):
+        if not keys:
+            keys = {}
+
+        for key in new_keys:
+            if not key[0] in keys:
+                keys[key[0]] = {}
+
+            keys[key[0]][key[1]] = keys[key[0]][key[1]] + 1 if key[1] in keys[key[0]] else 1
+        return keys
+
+
+    @staticmethod
     def __get_params(settings):
         if "ranking-algo-params" not in settings:
             raise RankingParameterError("No config found!")
@@ -76,7 +89,7 @@ class RankedBooleanRetrieval(RankingBase):
         r5 = mean(s5) * weights[RetrievalType.SUBSUBSECTION_TITLE.name]
         r6 = mean(s6) * weights[RetrievalType.SUBSUBSECTION_TEXT.name]
 
-        ret = {"rank": r0 + r1 + r2 + r3 + r4 + r5 + r6, "keys": keys,
+        ret = {"rank": r0 + r1 + r2 + r3 + r4 + r5 + r6, "keys": RankedBooleanRetrieval.__add_keys(keys),
                "info": {
                    RetrievalType.TITLE.name: {"sum_of1": (np.array(s0) == 1).sum(), "all": len(s0), "mean": mean(s0), "rank": r0},
                    RetrievalType.SECTION_TITLE.name: {"sum_of1": (np.array(s1) == 1).sum(), "all": len(s1), "mean": mean(s1), "rank": r1},
@@ -143,7 +156,7 @@ class RankedBooleanRetrieval(RankingBase):
                 continue
 
             ts0, ts1, ts2, ts3, ts4, ts5, ts6, tkeys = RankedBooleanRetrieval.__get_zone_lists(imrad_type, query, paper)
-            info[imrad_type] = RankedBooleanRetrieval.__get_info(ts0, ts1, ts2, ts3, ts4, ts5, ts6, weights, keys)
+            info[imrad_type] = RankedBooleanRetrieval.__get_info(ts0, ts1, ts2, ts3, ts4, ts5, ts6, weights, tkeys)
 
             s0.extend(ts0)
             s1.extend(ts1)
