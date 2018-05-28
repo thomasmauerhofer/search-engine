@@ -6,7 +6,7 @@ import os
 import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
-from engine.datastore.ranking.ranked_boolean_retrieval import RankedBooleanRetrieval
+from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.preprocessor import Preprocessor
@@ -25,8 +25,8 @@ class API(object):
     @staticmethod
     def get_ranking_info(paper, queries, settings):
         ranking_algo = RankingSimple
-        if settings["algorithm"] == RankedBooleanRetrieval.get_name():
-            ranking_algo = RankedBooleanRetrieval
+        if settings["algorithm"] == RankedBoolean.get_name():
+            ranking_algo = RankedBoolean
 
         reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, settings["importance_sections"])
         rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings)

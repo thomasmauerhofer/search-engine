@@ -13,7 +13,7 @@ def mean(values):
     return np.mean(values) if len(values) else 0
 
 
-class RankedBooleanRetrieval(RankingBase):
+class RankedBoolean(RankingBase):
     @staticmethod
     def get_name():
         return "Ranked Boolean Retrieval"
@@ -21,7 +21,7 @@ class RankedBooleanRetrieval(RankingBase):
 
     @staticmethod
     def get_configuration():
-        settings = {"algorithm": RankedBooleanRetrieval.get_name(),
+        settings = {"algorithm": RankedBoolean.get_name(),
                     "ranking-algo-params": {RetrievalType.TITLE.name: WEIGHT_TITLE,
                                             RetrievalType.SECTION_TITLE.name: WEIGHT_SECTION_TITLE,
                                             RetrievalType.SECTION_TEXT.name: WEIGHT_SECTION_TEXT,
@@ -89,7 +89,7 @@ class RankedBooleanRetrieval(RankingBase):
         r5 = mean(s5) * weights[RetrievalType.SUBSUBSECTION_TITLE.name]
         r6 = mean(s6) * weights[RetrievalType.SUBSUBSECTION_TEXT.name]
 
-        ret = {"rank": r0 + r1 + r2 + r3 + r4 + r5 + r6, "keys": RankedBooleanRetrieval.__add_keys(keys),
+        ret = {"rank": r0 + r1 + r2 + r3 + r4 + r5 + r6, "keys": RankedBoolean.__add_keys(keys),
                "info": {
                    RetrievalType.TITLE.name: {"sum_of1": (np.array(s0) == 1).sum(), "all": len(s0), "mean": mean(s0), "rank": r0},
                    RetrievalType.SECTION_TITLE.name: {"sum_of1": (np.array(s1) == 1).sum(), "all": len(s1), "mean": mean(s1), "rank": r1},
@@ -149,14 +149,14 @@ class RankedBooleanRetrieval(RankingBase):
     @staticmethod
     def get_ranking(paper, queries, settings):
         info, keys, s0, s1, s2, s3, s4, s5, s6 = {}, [], [], [], [], [], [], [], []
-        weights = RankedBooleanRetrieval.__get_params(settings)
+        weights = RankedBoolean.__get_params(settings)
 
         for imrad_type, query in queries.items():
             if not query:
                 continue
 
-            ts0, ts1, ts2, ts3, ts4, ts5, ts6, tkeys = RankedBooleanRetrieval.__get_zone_lists(imrad_type, query, paper)
-            info[imrad_type] = RankedBooleanRetrieval.__get_info(ts0, ts1, ts2, ts3, ts4, ts5, ts6, weights, tkeys)
+            ts0, ts1, ts2, ts3, ts4, ts5, ts6, tkeys = RankedBoolean.__get_zone_lists(imrad_type, query, paper)
+            info[imrad_type] = RankedBoolean.__get_info(ts0, ts1, ts2, ts3, ts4, ts5, ts6, weights, tkeys)
 
             s0.extend(ts0)
             s1.extend(ts1)
@@ -167,7 +167,7 @@ class RankedBooleanRetrieval(RankingBase):
             s6.extend(ts6)
             keys.extend(tkeys)
 
-        info["overall"] = RankedBooleanRetrieval.__get_info(s0, s1, s2, s3, s4, s5, s6, weights, keys)
+        info["overall"] = RankedBoolean.__get_info(s0, s1, s2, s3, s4, s5, s6, weights, keys)
         return info["overall"]["rank"], info
 
 

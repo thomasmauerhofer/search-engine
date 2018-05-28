@@ -6,7 +6,7 @@ from flask import Blueprint, render_template, request, current_app, send_file
 
 from config import USED_ALGORITHM
 from engine.api import API
-from engine.datastore.ranking.ranked_boolean_retrieval import RankedBooleanRetrieval
+from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.datastore.structure.section import IMRaDType
 from engine.utils.exceptions.import_exceptions import ClassificationError
@@ -17,8 +17,8 @@ api = API()
 
 
 def __get_settings():
-    if USED_ALGORITHM == RankedBooleanRetrieval.get_name():
-        return RankedBooleanRetrieval.get_configuration()
+    if USED_ALGORITHM == RankedBoolean.get_name():
+        return RankedBoolean.get_configuration()
     else:
         return RankingSimple.get_configuration()
 
@@ -43,7 +43,7 @@ def index():
     settings = {"importance_sections": bool(request.form['importance']),
                 "algorithm": request.form["algorithm"]}
 
-    if settings["algorithm"] == RankedBooleanRetrieval.get_name():
+    if settings["algorithm"] == RankedBoolean.get_name():
         settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
 
     result = api.get_papers(queries, settings)
@@ -60,7 +60,7 @@ def search_with_pdf():
     settings = {"importance_sections": bool(request.form['importance']),
                 "algorithm": request.form["algorithm"]}
 
-    if settings["algorithm"] == RankedBooleanRetrieval.get_name():
+    if settings["algorithm"] == RankedBoolean.get_name():
         settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
 
     file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
@@ -97,7 +97,7 @@ def get_ranking_info(paper_id):
     settings = {"importance_sections": bool(request.form['importance']),
                 "algorithm": request.form["algorithm"]}
 
-    if settings["algorithm"] == RankedBooleanRetrieval.get_name():
+    if settings["algorithm"] == RankedBoolean.get_name():
         settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
 
     queries = {
@@ -112,7 +112,7 @@ def get_ranking_info(paper_id):
     queries_proceed = api.preprocessor.proceed_queries(queries)
     ret = api.get_ranking_info(paper, queries_proceed, settings)
 
-    if settings["algorithm"] == RankedBooleanRetrieval.get_name():
+    if settings["algorithm"] == RankedBoolean.get_name():
         overall = ret["info"].pop("overall")
         return render_template('result_info_ranked_boolean.html', queries=queries,
                                result={"paper": paper, "overall": overall, "info": ret["info"]})
