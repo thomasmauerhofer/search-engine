@@ -6,6 +6,7 @@ from engine.datastore.db_client import DBClient
 from engine.datastore.ranking.ranking_simple import RankingSimple
 from engine.datastore.structure.paper import Paper
 from engine.datastore.structure.section import IMRaDType
+from engine.datastore.structure.text import TextType
 
 
 class TestDB(TestCase):
@@ -25,10 +26,10 @@ class TestDB(TestCase):
                    IMRaDType.DISCUSSION.name: "",
                    "whole-document": "ggg aaa ccc"}
 
-        settings = {"importance_sections": True}
+        settings = {**{"importance_sections": False}, **RankingSimple.get_configuration()}
 
         api = API()
-        ret = api.get_papers(queries, settings, RankingSimple)
+        ret = api.get_papers(queries, settings)
 
         self.assertGreater(len(ret), 0)
 
@@ -47,3 +48,77 @@ class TestDB(TestCase):
         self.assertEquals(updated_paper.filename, "new_filename.pdf")
         self.assertEquals(updated_paper.title, "new_title")
         db.delete_paper(paper_id)
+
+
+    def test_paper(self):
+        paper = Paper({"filename": "testfile.pdf"})
+        self.assertFalse(paper.title_exist())
+        self.assertFalse(paper.section_title_exist())
+        self.assertFalse(paper.section_text_exist())
+        self.assertFalse(paper.subsection_title_exist())
+        self.assertFalse(paper.subsection_text_exist())
+        self.assertFalse(paper.subsubsection_title_exist())
+        self.assertFalse(paper.subsubsection_text_exist())
+
+        paper.set_title("test")
+        self.assertTrue(paper.title_exist())
+        self.assertFalse(paper.section_title_exist())
+        self.assertFalse(paper.section_text_exist())
+        self.assertFalse(paper.subsection_title_exist())
+        self.assertFalse(paper.subsection_text_exist())
+        self.assertFalse(paper.subsubsection_title_exist())
+        self.assertFalse(paper.subsubsection_text_exist())
+
+        paper.add_section("test")
+        self.assertTrue(paper.title_exist())
+        self.assertTrue(paper.section_title_exist())
+        self.assertFalse(paper.section_text_exist())
+        self.assertFalse(paper.subsection_title_exist())
+        self.assertFalse(paper.subsection_text_exist())
+        self.assertFalse(paper.subsubsection_title_exist())
+        self.assertFalse(paper.subsubsection_text_exist())
+
+        paper.add_text_to_current_section(TextType.MAIN, "test test")
+        self.assertTrue(paper.title_exist())
+        self.assertTrue(paper.section_title_exist())
+        self.assertTrue(paper.section_text_exist())
+        self.assertFalse(paper.subsection_title_exist())
+        self.assertFalse(paper.subsection_text_exist())
+        self.assertFalse(paper.subsubsection_title_exist())
+        self.assertFalse(paper.subsubsection_text_exist())
+
+        paper.add_subsection("test")
+        self.assertTrue(paper.title_exist())
+        self.assertTrue(paper.section_title_exist())
+        self.assertTrue(paper.section_text_exist())
+        self.assertTrue(paper.subsection_title_exist())
+        self.assertFalse(paper.subsection_text_exist())
+        self.assertFalse(paper.subsubsection_title_exist())
+        self.assertFalse(paper.subsubsection_text_exist())
+
+        paper.add_text_to_current_section(TextType.MAIN, "test")
+        self.assertTrue(paper.title_exist())
+        self.assertTrue(paper.section_title_exist())
+        self.assertTrue(paper.section_text_exist())
+        self.assertTrue(paper.subsection_title_exist())
+        self.assertTrue(paper.subsection_text_exist())
+        self.assertFalse(paper.subsubsection_title_exist())
+        self.assertFalse(paper.subsubsection_text_exist())
+
+        paper.add_subsubsection("test")
+        self.assertTrue(paper.title_exist())
+        self.assertTrue(paper.section_title_exist())
+        self.assertTrue(paper.section_text_exist())
+        self.assertTrue(paper.subsection_title_exist())
+        self.assertTrue(paper.subsection_text_exist())
+        self.assertTrue(paper.subsubsection_title_exist())
+        self.assertFalse(paper.subsubsection_text_exist())
+
+        paper.add_text_to_current_section(TextType.MAIN, "test")
+        self.assertTrue(paper.title_exist())
+        self.assertTrue(paper.section_title_exist())
+        self.assertTrue(paper.section_text_exist())
+        self.assertTrue(paper.subsection_title_exist())
+        self.assertTrue(paper.subsection_text_exist())
+        self.assertTrue(paper.subsubsection_title_exist())
+        self.assertTrue(paper.subsubsection_text_exist())

@@ -150,3 +150,33 @@ class Paper(PaperStructure):
     def save_file_to_path(self, path):
         open(path + self.filename, 'wb').write(self.file)
         return path + self.filename
+
+
+    def title_exist(self):
+        return bool(self.title_proceed)
+
+
+    def section_title_exist(self):
+        return any([section.title_exist() for section in self.sections])
+
+
+    def section_text_exist(self):
+        return any([section.text_exist() for section in self.sections])
+
+
+    def subsection_title_exist(self):
+        return any(subsection.title_exist() for section in self.sections for subsection in section.subsections)
+
+
+    def subsection_text_exist(self):
+        return any(subsection.text_exist() for section in self.sections for subsection in section.subsections)
+
+
+    def subsubsection_title_exist(self):
+        return any(subsubsection.title_exist() for section in self.sections for subsection in section.subsections
+                   for subsubsection in subsection.subsections)
+
+
+    def subsubsection_text_exist(self):
+        return any(subsubsection.text_exist() for section in self.sections for subsection in section.subsections
+                   for subsubsection in subsection.subsections)

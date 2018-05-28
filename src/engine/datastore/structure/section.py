@@ -77,8 +77,12 @@ class Section(PaperStructure):
             self.imrad_types.append(imrad_type)
 
 
-    def get_ranking(self, query):
-        return self.get_combined_word_hist().get_normalized_query_value(query)
+    def title_exist(self):
+        return bool(self.heading_proceed)
+
+
+    def text_exist(self):
+        return any([text for text in self.text if text.text_proceed])
 
 
 
