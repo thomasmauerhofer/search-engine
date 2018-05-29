@@ -1,10 +1,11 @@
 # encoding: utf-8
 from enum import Enum
 
+import copy
 import numpy as np
 
 from config import WEIGHT_TITLE, WEIGHT_SECTION_TEXT, WEIGHT_SUBSECTION_TITLE, WEIGHT_SUBSECTION_TEXT, \
-    WEIGHT_SUBSUBSECTION_TITLE, WEIGHT_SUBSUBSECTION_TEXT, WEIGHT_SECTION_TITLE
+    WEIGHT_SUBSUBSECTION_TITLE, WEIGHT_SUBSUBSECTION_TEXT, WEIGHT_SECTION_TITLE, DEFAULT_EXTENDED
 from engine.datastore.ranking.ranking_base import RankingBase
 from engine.utils.exceptions.ranking_exceptions import RankingParameterError
 
@@ -20,8 +21,9 @@ class RankedBoolean(RankingBase):
 
 
     @staticmethod
-    def get_configuration():
+    def get_default_config():
         settings = {"algorithm": RankedBoolean.get_name(),
+                    "extended": DEFAULT_EXTENDED,
                     "ranking-algo-params": {RetrievalType.TITLE.name: WEIGHT_TITLE,
                                             RetrievalType.SECTION_TITLE.name: WEIGHT_SECTION_TITLE,
                                             RetrievalType.SECTION_TEXT.name: WEIGHT_SECTION_TEXT,
@@ -46,11 +48,11 @@ class RankedBoolean(RankingBase):
 
 
     @staticmethod
-    def __get_params(settings):
+    def __get_params(settings, paper):
         if "ranking-algo-params" not in settings:
             raise RankingParameterError("No config found!")
 
-        weights = settings.get("ranking-algo-params")
+        weights = copy.deepcopy(settings.get("ranking-algo-params"))
 
         if RetrievalType.TITLE.name not in weights:
             raise RankingParameterError("weight-title not in config!")
@@ -75,6 +77,24 @@ class RankedBoolean(RankingBase):
 
         if not np.isclose(sum(weights.values()), 1.0):
             raise RankingParameterError("Sum of all weights have to be 1 but is {}!".format(sum(weights.values())))
+
+
+
+        if not bool(settings.get("extended")):
+            return weights
+
+        present = [paper.title_exist(), paper.section_title_exist(), paper.section_text_exist(), paper.subsection_title_exist(),
+                   paper.subsection_text_exist(), paper.subsubsection_title_exist(), paper.subsubsection_text_exist()]
+
+        missing_zones = [i for i, x in enumerate(present) if not x]
+        missing_weights = [weights[RetrievalType(i).name] for i in missing_zones]
+
+        if not missing_weights:
+            return weights
+
+        present_zones = [i for i, x in enumerate(present) if x]
+        for i in present_zones:
+            weights[RetrievalType(i).name] += sum(missing_weights) / len(missing_weights)
 
         return weights
 
@@ -149,7 +169,7 @@ class RankedBoolean(RankingBase):
     @staticmethod
     def get_ranking(paper, queries, settings):
         info, keys, s0, s1, s2, s3, s4, s5, s6 = {}, [], [], [], [], [], [], [], []
-        weights = RankedBoolean.__get_params(settings)
+        weights = RankedBoolean.__get_params(settings, paper)
 
         for imrad_type, query in queries.items():
             if not query:

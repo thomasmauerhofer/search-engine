@@ -7,7 +7,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from config import REQ_DATA_PATH
 from engine.api import API
-from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
+from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean, RetrievalType
 from engine.datastore.ranking.ranking_simple import RankingSimple
 
 
@@ -20,7 +20,7 @@ def histogram(data, title, filename):
     plt.savefig(filename + ".png")
 
 
-def calculate_ranking(name, mode, settings):
+def calculate_ranking(name, mode, settings, plot=True):
     api = API()
 
     ranks = []
@@ -52,16 +52,18 @@ def calculate_ranking(name, mode, settings):
                 # print("Error: {} -> {}".format(citation["full_citation"], reference["complete"]))
                 pass
 
+    if plot:
+        print(name + ":")
+        print("Mean: {} | {}".format(np.mean(ranks), np.mean(ranks_norm)))
+        print("Standard Deviation: {} | {}".format(np.std(ranks), np.std(ranks_norm)))
+        histogram(ranks, name, name)
+        histogram(ranks_norm, name, name + "_norm")
 
-    print(name + ":")
-    print("Mean: {} | {}".format(np.mean(ranks), np.mean(ranks_norm)))
-    print("Standard Deviation: {} | {}".format(np.std(ranks), np.std(ranks_norm)))
-    histogram(ranks, name, name)
-    histogram(ranks_norm, name, name + "_norm")
+    return np.mean(ranks), np.std(ranks)
 
 
 def evaluate_simple_approach():
-    settings = {**{"importance_sections": False}, **RankingSimple.get_configuration()}
+    settings = {**{"importance_sections": False}, **RankingSimple.get_default_config()}
     calculate_ranking("Simple Approach - without importance to sections", 0, settings)
     settings["importance_sections"] = True
     calculate_ranking("Simple Approach - only background", 1, settings)
@@ -69,13 +71,40 @@ def evaluate_simple_approach():
 
 
 def evaluate_ranked_boolean():
-    settings = {**{"importance_sections": False}, **RankedBoolean.get_configuration()}
+    settings = {"importance_sections": False,
+                "algorithm": RankedBoolean.get_name(),
+                "extended": False,
+                "ranking-algo-params": {RetrievalType.TITLE.name: 0.2,
+                                        RetrievalType.SECTION_TITLE.name: 0.3,
+                                        RetrievalType.SECTION_TEXT.name: 0.2,
+                                        RetrievalType.SUBSECTION_TITLE.name: 0.18,
+                                        RetrievalType.SUBSECTION_TEXT.name: 0.05,
+                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.05,
+                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.02}}
     calculate_ranking("Ranked Boolean - without importance to sections", 0, settings)
     settings["importance_sections"] = True
     calculate_ranking("Ranked Boolean - only background", 1, settings)
     calculate_ranking("Ranked Boolean - importance to sections", 2, settings)
 
 
+def evaluate_ranked_boolean_extended():
+    settings = {"importance_sections": False,
+                "algorithm": RankedBoolean.get_name(),
+                "extended": True,
+                "ranking-algo-params": {RetrievalType.TITLE.name: 0.05,
+                                        RetrievalType.SECTION_TITLE.name: 0.05,
+                                        RetrievalType.SECTION_TEXT.name: 0.8,
+                                        RetrievalType.SUBSECTION_TITLE.name: 0.05,
+                                        RetrievalType.SUBSECTION_TEXT.name: 0.03,
+                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.01,
+                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.01}}
+    calculate_ranking("Ranked Boolean extended - without importance to sections", 0, settings)
+    settings["importance_sections"] = True
+    calculate_ranking("Ranked Boolean extended - only background", 1, settings)
+    calculate_ranking("Ranked Boolean extended - importance to sections", 2, settings)
+
+
 if __name__ == "__main__":
     #evaluate_simple_approach()
     evaluate_ranked_boolean()
+    evaluate_ranked_boolean_extended()

@@ -26,7 +26,7 @@ class TestDB(TestCase):
                    IMRaDType.DISCUSSION.name: "",
                    "whole-document": "ggg aaa ccc"}
 
-        settings = {**{"importance_sections": False}, **RankingSimple.get_configuration()}
+        settings = {**{"importance_sections": False}, **RankingSimple.get_default_config()}
 
         api = API()
         ret = api.get_papers(queries, settings)

@@ -6,7 +6,7 @@ from abc import ABCMeta, abstractmethod
 class RankingBase(metaclass=ABCMeta):
     @staticmethod
     @abstractmethod
-    def get_configuration():
+    def get_default_config():
         """Gets the configuration for the used ranking algorithm"""
         return
 

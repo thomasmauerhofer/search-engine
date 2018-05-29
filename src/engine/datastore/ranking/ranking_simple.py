@@ -10,7 +10,7 @@ class RankingSimple(RankingBase):
 
 
     @staticmethod
-    def get_configuration():
+    def get_default_config():
         return {"algorithm": RankingSimple.get_name()}
 
 

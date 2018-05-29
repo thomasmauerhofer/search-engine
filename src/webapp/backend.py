@@ -18,9 +18,9 @@ api = API()
 
 def __get_settings():
     if USED_ALGORITHM == RankedBoolean.get_name():
-        return RankedBoolean.get_configuration()
+        return RankedBoolean.get_default_config()
     else:
-        return RankingSimple.get_configuration()
+        return RankingSimple.get_default_config()
 
 
 
