@@ -67,7 +67,7 @@ class TFIDF(RankingBase):
             key_values = {}
             for key in keys:
                 key_values[key] = {"tfidf": hist.get_tf(key) * idf[imrad][key][0], "tf": hist.get_tf(key),
-                                   "idf": idf[imrad][key][0], "count": idf[imrad][key][1]}
+                                   "idf": idf[imrad][key][0], "count": hist[key], "count_docs": idf[imrad][key][1]}
 
             tfidf[imrad] = {"sumwords": sum(hist.values()), "keys": key_values,
                             "score": sum([val["tfidf"] for val in key_values.values()])}

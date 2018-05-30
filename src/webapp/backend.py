@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+import json
 import os
 
 from flask import Blueprint, render_template, request, current_app, send_file
@@ -97,7 +97,7 @@ def upload():
 
 @backend.route('/get_ranking_info/<paper_id>', methods=["GET", "POST"])
 def get_ranking_info(paper_id):
-    settings = {"importance_sections": bool(request.form['importance']),
+    settings = {"importance_sections": json.loads(request.form['importance'].lower()),
                 "algorithm": request.form["algorithm"]}
 
     if settings["algorithm"] == RankedBoolean.get_name():
@@ -126,7 +126,7 @@ def get_ranking_info(paper_id):
                                result={"paper": paper, "overall": overall, "info": ret["info"]})
     elif settings["algorithm"] == TFIDF.get_name():
         return render_template('ranking_info_pages/result_info_tfidf.html', queries=queries,
-                               result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
+                               result={"paper": paper, "rank": ret["rank"], "info": ret["info"], "N": len(papers)})
     else:
         return render_template('ranking_info_pages/result_info_tf.html', queries=queries,
                                result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})

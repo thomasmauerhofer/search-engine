@@ -35,6 +35,7 @@
                     {% if value["keys"] %}
                         <p class="result-info-text"><b>Rank:</b> {{ value.score | round(8, 'floor') }}</p>
                         <p class="result-info-text"><b>Sum of Words:</b> {{ value.sumwords }}</p>
+                        <p class="result-info-text"><b>Sum of Papers(N):</b> {{ result.N }}</p>
                         <div class="text-center">
                             <button class="btn btn-primary btn-md hist" data-toggle="collapse"
                                     data-target="#table-{{ key }}">Show Table
@@ -47,20 +48,22 @@
                                     <th>Key</th>
                                     <th>Tf-idf</th>
                                     <th>Tf</th>
+                                    <th># Term counted</th>
                                     <th>idf</th>
-                                    <th># Count</th>
+                                    <th># Papers</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for key, item in value["keys"].items() %}
-                                    <tr>
-                                        <td> {{ key }}</td>
-                                        <td> {{ item.tfidf | round(8, 'floor') }}</td>
-                                        <td> {{ item.tf }}</td>
-                                        <td> {{ item.idf }}</td>
-                                        <td> {{ item.count }}</td>
-                                    </tr>
-                                {% endfor %}
+                                    {% for key, item in value["keys"].items() %}
+                                        <tr>
+                                            <td> {{ key }}</td>
+                                            <td> {{ item.tfidf | round(8, 'floor') }}</td>
+                                            <td> {{ item.tf }}</td>
+                                            <td> {{ item.count }}</td>
+                                            <td> {{ item.idf }}</td>
+                                            <td> {{ item.count_docs }}</td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
