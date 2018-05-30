@@ -2,9 +2,12 @@
 # encoding: utf-8
 import contextlib
 import os
+import queue
+import threading
+from threading import Thread
 
 import engine.datastore.datastore_utils.crypto as crypto
-from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
+from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, MAX_WORKERS
 from engine.datastore.db_client import DBClient
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tf import TF
@@ -21,11 +24,34 @@ class API(object):
         self.importer = ImporterTeambeam(run_importer_exe)
         self.client = DBClient()
         self.preprocessor = Preprocessor()
+
         self.ranking_algos = {
             TFIDF.get_name(): TFIDF,
             TF.get_name(): TF,
             RankedBoolean.get_name(): RankedBoolean
         }
+
+
+    def __get_ratings(self, papers, queries_proceed, settings):
+        ratings, ratings_lock, q = [], threading.Lock(), queue.Queue()
+        q.queue = queue.deque(papers)
+
+        for i in range(MAX_WORKERS):
+            worker = Thread(target=self.__rate_parallel, args=(q, queries_proceed, settings, ratings, ratings_lock))
+            worker.setDaemon(True)
+            worker.start()
+
+        q.join()
+        return ratings
+
+
+    def __rate_parallel(self, q, queries_proceed, settings, ratings, ratings_lock):
+        while not q.empty():
+            paper = q.get()
+
+            element = self.get_ranking_info(paper, queries_proceed, settings)
+            with ratings_lock:
+                insert_dict_into_sorted_list(ratings, element, "rank")
 
 
     def get_ranking_info(self, paper, queries, settings):
@@ -87,44 +113,25 @@ class API(object):
 
 
     def get_papers(self, queries, settings):
-        ret = []
         queries_proceed = self.preprocessor.proceed_queries(queries)
 
         if all(not query for query in queries_proceed.values()):
-            return ret
+            return []
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
 
         if settings["algorithm"] == TFIDF.get_name():
             settings["idf"] = TFIDF.get_idf(queries_proceed, papers)
 
-        for paper in papers:
-            element = self.get_ranking_info(paper, queries_proceed, settings)
-            insert_dict_into_sorted_list(ret, element, "rank")
-
-        return ret
+        return self.__get_ratings(papers, queries_proceed, settings)
 
 
     def get_papers_with_paper(self, filename, settings):
-        ret = []
         settings["importance_sections"] = True if settings["mode"] == "sections-uncategorized-sec" else False
-
         paper = self.get_imported_paper(filename)
-        queries_proceed = paper_to_queries(paper, settings["mode"])
+        queries = paper_to_queries(paper, settings["mode"])
+        return self.get_papers(queries, settings), queries
 
-        papers = self.client.get_paper_which_contains_queries(queries_proceed)
-
-        if settings["algorithm"] == TFIDF.get_name():
-            settings["idf"] = TFIDF.get_idf(queries_proceed, papers)
-
-        for paper in papers:
-            if paper.filename == filename:
-                continue
-
-            element = self.get_ranking_info(paper, queries_proceed, settings)
-            insert_dict_into_sorted_list(ret, element, "rank")
-
-        return ret, queries_proceed
 
 
     # -------------------------------------------------------------------------------
