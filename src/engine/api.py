@@ -7,7 +7,8 @@ import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
-from engine.datastore.ranking.ranking_simple import RankingSimple
+from engine.datastore.ranking.tf import TF
+from engine.datastore.ranking.tfidf import TFIDF
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.preprocessor import Preprocessor
 from engine.utils.list_utils import insert_dict_into_sorted_list
@@ -24,9 +25,11 @@ class API(object):
 
     @staticmethod
     def get_ranking_info(paper, queries, settings):
-        ranking_algo = RankingSimple
+        ranking_algo = TF
         if settings["algorithm"] == RankedBoolean.get_name():
             ranking_algo = RankedBoolean
+        elif settings["algorithm"] == TFIDF.get_name():
+            ranking_algo = TFIDF
 
         reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, settings["importance_sections"])
         rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings)
@@ -91,6 +94,10 @@ class API(object):
             return ret
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
+
+        if settings["algorithm"] == TFIDF.get_name():
+            settings["idf"] = TFIDF.get_idf(queries_proceed, papers)
+
         for paper in papers:
             element = self.get_ranking_info(paper, queries_proceed, settings)
             insert_dict_into_sorted_list(ret, element, "rank")
@@ -102,11 +109,14 @@ class API(object):
         ret = []
         settings["importance_sections"] = True if settings["mode"] == "sections-uncategorized-sec" else False
 
-
         paper = self.get_imported_paper(filename)
         queries_proceed = paper_to_queries(paper, settings["mode"])
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
+
+        if settings["algorithm"] == TFIDF.get_name():
+            settings["idf"] = TFIDF.get_idf(queries_proceed, papers)
+
         for paper in papers:
             if paper.filename == filename:
                 continue

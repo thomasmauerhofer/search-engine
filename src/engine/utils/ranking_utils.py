@@ -30,11 +30,11 @@ def remove_ignored_words_from_query(paper, queries, importance_sections):
             continue
 
         if (importance_sections and imrad_type == "whole-document") or (not importance_sections and imrad_type != "whole-document"):
-            for word in query.split():
-                keys_to_ignore = [key for key in ignoring_keys if word in key]
+            for term in query.split():
+                keys_to_ignore = [key for key in ignoring_keys if term in key]
                 if len(keys_to_ignore):
                     info[imrad_type]["ignored"].extend(keys_to_ignore)
-                    ret[imrad_type] = remove_multiple_spaces(query.replace(word, ""))
+                    ret[imrad_type] = remove_multiple_spaces(query.replace(term, ""))
 
     return ret, info
 

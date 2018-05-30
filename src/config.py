@@ -21,7 +21,7 @@ DATASET = CLASSIFIER_DATA + "dataset/"
 THRESHOLD = 0.85
 
 # ranking
-USED_ALGORITHM = "Ranked Boolean Retrieval"
+USED_ALGORITHM = "tf-idf"
 
 # keys
 KEYS = REQ_DATA_PATH + "keys/"

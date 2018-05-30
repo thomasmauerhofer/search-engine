@@ -7,7 +7,8 @@ from flask import Blueprint, render_template, request, current_app, send_file
 from config import USED_ALGORITHM
 from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
-from engine.datastore.ranking.ranking_simple import RankingSimple
+from engine.datastore.ranking.tf import TF
+from engine.datastore.ranking.tfidf import TFIDF
 from engine.datastore.structure.section import IMRaDType
 from engine.utils.exceptions.import_exceptions import ClassificationError
 from engine.utils.string_utils import load_json
@@ -19,8 +20,10 @@ api = API()
 def __get_settings():
     if USED_ALGORITHM == RankedBoolean.get_name():
         return RankedBoolean.get_default_config()
+    elif USED_ALGORITHM == TFIDF.get_name():
+        return TFIDF.get_default_config()
     else:
-        return RankingSimple.get_default_config()
+        return TF.get_default_config()
 
 
 
@@ -117,7 +120,7 @@ def get_ranking_info(paper_id):
         return render_template('result_info_ranked_boolean.html', queries=queries,
                                result={"paper": paper, "overall": overall, "info": ret["info"]})
     else:
-        return render_template('result_info_simple.html', queries=queries,
+        return render_template('result_info_tf.html', queries=queries,
                                result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
 
 

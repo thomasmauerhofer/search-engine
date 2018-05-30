@@ -9,17 +9,17 @@ class WordHist(dict):
             self[key] = self[key] + value if key in self else value
 
 
-    def get_rank(self, key):
+    def get_tf(self, key):
         ret = float(self[key]) if key in self else 0.0
         return ret / sum(self.values())
 
 
-    def get_rank_with_keys(self, keys):
+    def get_tf_of_keys(self, keys):
         ranking = 0.0
         key_value = []
 
         for key in keys:
-            rank = self.get_rank(key)
+            rank = self.get_tf(key)
             key_value.append([key, rank, self[key]])
             ranking += rank
 

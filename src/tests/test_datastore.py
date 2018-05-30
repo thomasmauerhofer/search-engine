@@ -3,7 +3,7 @@ from unittest import TestCase
 import engine.datastore.datastore_utils.crypto as crypto
 from engine.api import API
 from engine.datastore.db_client import DBClient
-from engine.datastore.ranking.ranking_simple import RankingSimple
+from engine.datastore.ranking.tf import TF
 from engine.datastore.structure.paper import Paper
 from engine.datastore.structure.section import IMRaDType
 from engine.datastore.structure.text import TextType
@@ -26,7 +26,7 @@ class TestDB(TestCase):
                    IMRaDType.DISCUSSION.name: "",
                    "whole-document": "ggg aaa ccc"}
 
-        settings = {**{"importance_sections": False}, **RankingSimple.get_default_config()}
+        settings = {**{"importance_sections": False}, **TF.get_default_config()}
 
         api = API()
         ret = api.get_papers(queries, settings)

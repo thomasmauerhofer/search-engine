@@ -132,34 +132,34 @@ class RankedBoolean(RankingBase):
             keys.extend([[key, RetrievalType.TITLE.name] for key in title_keys])
 
 
-        for query_word in query.split():
+        for term in query.split():
             for section in paper.get_sections_with_imrad_type(imrad):
-                title_keys = [title_word for title_word in section.heading_proceed.split() if query_word in title_word]
+                title_keys = [title_word for title_word in section.heading_proceed.split() if term in title_word]
                 s1.append(1 if title_keys else 0)
                 keys.extend([[key, RetrievalType.SECTION_TITLE.name] for key in title_keys])
 
                 for text in section.text:
-                    text_keys = [text_word for text_word in text.text_proceed.split() if query_word in text_word]
+                    text_keys = [text_word for text_word in text.text_proceed.split() if term in text_word]
                     s2.append(1 if text_keys else 0)
                     keys.extend([[key, RetrievalType.SECTION_TEXT.name] for key in text_keys])
 
                 for subsection in section.subsections:
-                    title_keys = [title_word for title_word in subsection.heading_proceed.split() if query_word in title_word]
+                    title_keys = [title_word for title_word in subsection.heading_proceed.split() if term in title_word]
                     s1.append(1 if title_keys else 0)
                     keys.extend([[key, RetrievalType.SUBSECTION_TITLE.name] for key in title_keys])
 
                     for text in subsection.text:
-                        text_keys = [text_word for text_word in text.text_proceed.split() if query_word in text_word]
+                        text_keys = [text_word for text_word in text.text_proceed.split() if term in text_word]
                         s2.append(1 if text_keys else 0)
                         keys.extend([[key, RetrievalType.SUBSECTION_TEXT.name] for key in text_keys])
 
                     for subsubsection in subsection.subsections:
-                        title_keys = [title_word for title_word in subsubsection.heading_proceed.split() if query_word in title_word]
+                        title_keys = [title_word for title_word in subsubsection.heading_proceed.split() if term in title_word]
                         s1.append(1 if title_keys else 0)
                         keys.extend([[key, RetrievalType.SUBSUBSECTION_TITLE.name] for key in title_keys])
 
                         for text in subsubsection.text:
-                            text_keys = [text_word for text_word in text.text_proceed.split() if query_word in text_word]
+                            text_keys = [text_word for text_word in text.text_proceed.split() if term in text_word]
                             s2.append(1 if text_keys else 0)
                             keys.extend([[key, RetrievalType.SUBSUBSECTION_TEXT.name] for key in text_keys])
 

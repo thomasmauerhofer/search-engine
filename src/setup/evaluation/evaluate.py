@@ -8,7 +8,8 @@ from matplotlib import pyplot as plt
 from config import REQ_DATA_PATH
 from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean, RetrievalType
-from engine.datastore.ranking.ranking_simple import RankingSimple
+from engine.datastore.ranking.tf import TF
+from engine.datastore.ranking.tfidf import TFIDF
 
 
 def histogram(data, title, filename):
@@ -62,12 +63,20 @@ def calculate_ranking(name, mode, settings, plot=True):
     return np.mean(ranks), np.std(ranks)
 
 
-def evaluate_simple_approach():
-    settings = {**{"importance_sections": False}, **RankingSimple.get_default_config()}
-    calculate_ranking("Simple Approach - without importance to sections", 0, settings)
+def evaluate_tf():
+    settings = {**{"importance_sections": False}, **TF.get_default_config()}
+    calculate_ranking("tf - without importance to sections", 0, settings)
     settings["importance_sections"] = True
-    calculate_ranking("Simple Approach - only background", 1, settings)
-    calculate_ranking("Simple Approach - importance to sections", 2, settings)
+    calculate_ranking("tf - only background", 1, settings)
+    calculate_ranking("tf - importance to sections", 2, settings)
+
+
+def evaluate_tfidf():
+    settings = {**{"importance_sections": False}, **TFIDF.get_default_config()}
+    calculate_ranking("tf-idf - without importance to sections", 0, settings)
+    settings["importance_sections"] = True
+    calculate_ranking("tf-idf - only background", 1, settings)
+    calculate_ranking("tf-idf - importance to sections", 2, settings)
 
 
 def evaluate_ranked_boolean():
@@ -105,6 +114,7 @@ def evaluate_ranked_boolean_extended():
 
 
 if __name__ == "__main__":
-    #evaluate_simple_approach()
-    evaluate_ranked_boolean()
-    evaluate_ranked_boolean_extended()
+    evaluate_tf()
+    #evaluate_ranked_boolean()
+    #evaluate_ranked_boolean_extended()
+    evaluate_tfidf()
