@@ -21,15 +21,15 @@ class API(object):
         self.importer = ImporterTeambeam(run_importer_exe)
         self.client = DBClient()
         self.preprocessor = Preprocessor()
+        self.ranking_algos = {
+            TFIDF.get_name(): TFIDF,
+            TF.get_name(): TF,
+            RankedBoolean.get_name(): RankedBoolean
+        }
 
 
-    @staticmethod
-    def get_ranking_info(paper, queries, settings):
-        ranking_algo = TF
-        if settings["algorithm"] == RankedBoolean.get_name():
-            ranking_algo = RankedBoolean
-        elif settings["algorithm"] == TFIDF.get_name():
-            ranking_algo = TFIDF
+    def get_ranking_info(self, paper, queries, settings):
+        ranking_algo = self.ranking_algos[settings["algorithm"]]
 
         reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, settings["importance_sections"])
         rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings)

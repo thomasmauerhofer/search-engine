@@ -4,10 +4,8 @@ import os
 
 from flask import Blueprint, render_template, request, current_app, send_file
 
-from config import USED_ALGORITHM
 from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
-from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.datastore.structure.section import IMRaDType
 from engine.utils.exceptions.import_exceptions import ClassificationError
@@ -17,20 +15,11 @@ backend = Blueprint('backend', __name__)
 api = API()
 
 
-def __get_settings():
-    if USED_ALGORITHM == RankedBoolean.get_name():
-        return RankedBoolean.get_default_config()
-    elif USED_ALGORITHM == TFIDF.get_name():
-        return TFIDF.get_default_config()
-    else:
-        return TF.get_default_config()
-
-
-
 @backend.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        return render_template('index.html', settings=__get_settings(), error=None)
+        algo_name = list(api.ranking_algos.keys())[0]
+        return render_template('index.html', settings=api.ranking_algos[algo_name].get_default_config(), error=None)
 
     queries = {
         "whole-document": request.form['whole_text'],
@@ -100,9 +89,6 @@ def get_ranking_info(paper_id):
     settings = {"importance_sections": json.loads(request.form['importance'].lower()),
                 "algorithm": request.form["algorithm"]}
 
-    if settings["algorithm"] == RankedBoolean.get_name():
-        settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
-
     queries = {
         "whole-document": request.form["whole-document"],
         IMRaDType.INTRODUCTION.name: request.form[IMRaDType.INTRODUCTION.name],
@@ -111,8 +97,11 @@ def get_ranking_info(paper_id):
         IMRaDType.RESULTS.name: request.form[IMRaDType.RESULTS.name],
         IMRaDType.DISCUSSION.name: request.form[IMRaDType.DISCUSSION.name]}
 
-    paper = api.get_paper(paper_id)
+    paper, papers = api.get_paper(paper_id), []
     queries_proceed = api.preprocessor.proceed_queries(queries)
+
+    if settings["algorithm"] == RankedBoolean.get_name():
+        settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
 
     if settings["algorithm"] == TFIDF.get_name():
         papers = api.client.get_paper_which_contains_queries(queries_proceed)

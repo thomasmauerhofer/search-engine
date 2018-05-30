@@ -143,7 +143,7 @@
                                 <a href="/view_pdf/{{ value.paper.id }}" target="_blank">{{ value.paper.filename }}</a>
                             </div>
                             <div id="info">
-                                <div id="raking">{{ value.rank | round(4, 'floor') }}</div>
+                                <div id="raking">{{ value.rank | round(8, 'floor') }}</div>
                                 <form action="get_ranking_info/{{ value.paper.id }}" method="POST">
                                     <input type="hidden" name="importance" value="{{ settings["importance_sections"] }}" />
                                     <input type="hidden" name="whole-document" value="{{ queries["whole-document"] }}" />
