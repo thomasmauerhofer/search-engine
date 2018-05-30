@@ -57,7 +57,6 @@ class TFIDF(RankingBase):
         idf = settings["idf"]
 
         for imrad, query in queries.items():
-            tfidf[imrad] = {}
             if imrad == "whole-document":
                 hist = paper.word_hist
             else:
@@ -65,11 +64,13 @@ class TFIDF(RankingBase):
                 hist = sections_to_word_hist(sections)
 
             keys = hist.query_to_keys(query)
+            key_values = {}
             for key in keys:
-                tfidf[imrad][key] = {"tfidf": hist.get_tf(key) * idf[imrad][key][0], "tf": hist.get_tf(key),
-                                     "idf": idf[imrad][key][0], "count": idf[imrad][key][1]}
+                key_values[key] = {"tfidf": hist.get_tf(key) * idf[imrad][key][0], "tf": hist.get_tf(key),
+                                   "idf": idf[imrad][key][0], "count": idf[imrad][key][1]}
 
-            tfidf[imrad]["score"] = sum([val["tfidf"] for val in tfidf[imrad].values()])
+            tfidf[imrad] = {"sumwords": sum(hist.values()), "keys": key_values,
+                            "score": sum([val["tfidf"] for val in key_values.values()])}
 
         return sum([rating["score"] for rating in tfidf.values()]), tfidf
 

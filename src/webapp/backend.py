@@ -113,14 +113,22 @@ def get_ranking_info(paper_id):
 
     paper = api.get_paper(paper_id)
     queries_proceed = api.preprocessor.proceed_queries(queries)
+
+    if settings["algorithm"] == TFIDF.get_name():
+        papers = api.client.get_paper_which_contains_queries(queries_proceed)
+        settings["idf"] = TFIDF.get_idf(queries_proceed, papers)
+
     ret = api.get_ranking_info(paper, queries_proceed, settings)
 
     if settings["algorithm"] == RankedBoolean.get_name():
         overall = ret["info"].pop("overall")
-        return render_template('result_info_ranked_boolean.html', queries=queries,
+        return render_template('ranking_info_pages/result_info_ranked_boolean.html', queries=queries,
                                result={"paper": paper, "overall": overall, "info": ret["info"]})
+    elif settings["algorithm"] == TFIDF.get_name():
+        return render_template('ranking_info_pages/result_info_tfidf.html', queries=queries,
+                               result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
     else:
-        return render_template('result_info_tf.html', queries=queries,
+        return render_template('ranking_info_pages/result_info_tf.html', queries=queries,
                                result={"paper": paper, "rank": ret["rank"], "info": ret["info"]})
 
 
