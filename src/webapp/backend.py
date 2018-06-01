@@ -8,7 +8,6 @@ from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.datastore.structure.section import IMRaDType
-from engine.utils.exceptions.import_exceptions import ClassificationError
 from engine.utils.string_utils import load_json
 
 backend = Blueprint('backend', __name__)
@@ -66,21 +65,14 @@ def search_with_pdf():
 @backend.route('/upload', methods=["GET", "POST"])
 def upload():
     if request.method == 'POST':
-        file = request.files['file']
+        files = request.files.getlist('files')
 
-        if file.filename == '' or not api.allowed_upload_file(file.filename):
+        if not files:
             return '', 204
 
-        file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
-        try:
-            api.add_paper(file.filename)
-        except IOError as e:
-            print(e)
-        except OSError as e:
-            print(e)
-        except ClassificationError as e:
-            print(e)
-
+        for file in files:
+            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
+        api.add_papers(files)
     return render_template('upload.html')
 
 

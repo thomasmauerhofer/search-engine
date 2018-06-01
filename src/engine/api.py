@@ -6,6 +6,8 @@ import queue
 import threading
 from threading import Thread
 
+from flask import current_app
+
 import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, MAX_WORKERS
 from engine.datastore.db_client import DBClient
@@ -14,6 +16,7 @@ from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.preprocessor import Preprocessor
+from engine.utils.exceptions.import_exceptions import ClassificationError
 from engine.utils.list_utils import insert_dict_into_sorted_list
 from engine.utils.paper_utils import paper_to_queries
 from engine.utils.ranking_utils import remove_ignored_words_from_query, combine_info
@@ -30,6 +33,11 @@ class API(object):
             TF.get_name(): TF,
             RankedBoolean.get_name(): RankedBoolean
         }
+
+
+    @staticmethod
+    def allowed_upload_file(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
     def __get_ratings(self, papers, queries_proceed, settings):
@@ -54,6 +62,24 @@ class API(object):
                 insert_dict_into_sorted_list(ratings, element, "rank")
 
 
+    def __add_paper_parallel(self, q, db_lock, paper_ids, id_lock):
+        while not q.empty():
+            file = q.get()
+
+            if not self.allowed_upload_file(file.filename):
+                continue
+
+            try:
+                paper = self.get_imported_paper(file.filename)
+                with db_lock:
+                    self.client.add_paper(paper)
+                self.preprocessor.link_references(paper, db_lock)
+                with id_lock:
+                    paper_ids.append(paper.id)
+            except (IOError, OSError, ClassificationError) as e:
+                print(e)
+
+
     def get_ranking_info(self, paper, queries, settings):
         ranking_algo = self.ranking_algos[settings["algorithm"]]
 
@@ -62,17 +88,17 @@ class API(object):
         return {"paper": paper, "rank": rank, "info": combine_info(info, ignored)}
 
 
-    @staticmethod
-    def allowed_upload_file(filename):
-        return '.' in filename and \
-               filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    def add_papers(self, filenames):
+        paper_ids, id_lock, db_lock, q = [], threading.Lock(), threading.Lock(), queue.Queue()
+        q.queue = queue.deque(filenames)
 
+        for i in range(MAX_WORKERS):
+            worker = Thread(target=self.__add_paper_parallel, args=(q, db_lock, paper_ids, id_lock))
+            worker.setDaemon(True)
+            worker.start()
 
-    def add_paper(self, filename):
-        paper = self.get_imported_paper(filename)
-        self.client.add_paper(paper)
-        self.preprocessor.link_references(paper)
-        return paper.id
+        q.join()
+        return paper_ids
 
 
     def get_imported_paper(self, filename):
