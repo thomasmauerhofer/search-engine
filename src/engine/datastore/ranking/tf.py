@@ -6,7 +6,7 @@ from engine.utils.paper_utils import sections_to_word_hist
 class TF(RankingBase):
     @staticmethod
     def get_name():
-        return "TF"
+        return "tf"
 
 
     @staticmethod

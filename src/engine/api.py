@@ -29,9 +29,9 @@ class API(object):
         self.preprocessor = Preprocessor()
 
         self.ranking_algos = {
-            TFIDF.get_name(): TFIDF,
+            RankedBoolean.get_name(): RankedBoolean,
             TF.get_name(): TF,
-            RankedBoolean.get_name(): RankedBoolean
+            TFIDF.get_name(): TFIDF
         }
 
 
@@ -78,6 +78,12 @@ class API(object):
                     paper_ids.append(paper.id)
             except (IOError, OSError, ClassificationError) as e:
                 print(e)
+
+
+    def get_ranking_algos(self):
+        algos = list(self.ranking_algos)
+        algos.sort(reverse=True)
+        return algos
 
 
     def get_ranking_info(self, paper, queries, settings):

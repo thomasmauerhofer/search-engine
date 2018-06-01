@@ -7,7 +7,7 @@ textarea {
 }
 
 .div-submit {
-    padding-top: 15px;
+    padding-top: 30px;
 }
 
 .result {
@@ -100,4 +100,8 @@ div.info table.table.table-striped {
 
 .small-distance {
     padding-top: 10px;
+}
+
+.dist-right {
+    margin-right: 20px;
 }

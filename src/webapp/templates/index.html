@@ -46,14 +46,16 @@
 
                 <div id="query-settings">
                     <h4>Settings</h4>
-                    <select name="importance" class="form-control settings-select" title="importance">
+                    <select class="settings-select dist-right" name="algorithm" class="form-control settings-select" title="used ranking algorithm">
+                        {% for algo in algorithm %}
+                            <option value="{{ algo }}">{{ algo }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select name="importance" class="settings-select" title="importance">
                         <option value="">Higher importance to Words in whole Document</option>
                         <option value="True">Higher importance to Words in Sections</option>
                     </select>
-                    <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
-                    {% if settings["ranking-algo-params"] %}
-                        <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
-                    {% endif %}
                 </div>
 
                 <div class="div-submit text-center">
@@ -83,7 +85,13 @@
 
                     <div id="settings-pdf">
                         <h4>Settings</h4>
-                        <select name="importance" class="form-control" title="importance">
+                        <select class="settings-select dist-right" name="algorithm" class="settings-select" title="used ranking algorithm">
+                            {% for algo in algorithm %}
+                                <option value="{{ algo }}">{{ algo }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <select name="importance" class="settings-select" title="importance">
                             <option value="sections-categorized">Importance into Sections AND use only categorized
                                 Sections
                             </option>
@@ -99,15 +107,10 @@
                             <option value="doc-all">Without importance into Sections AND use all Sections</option>
                             <option value="background">Use Background Section only</option>
                         </select>
-                        <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
-                        {% if settings["ranking-algo-params"] %}
-                            <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
-                        {% endif %}
                     </div>
                     <div class="div-submit text-center">
                         <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
-                        <button id="button-use-queries" class="btn btn-primary btn-lg b-nml" type=button>Use Queries
-                        </button>
+                        <button id="button-use-queries" class="btn btn-primary btn-lg b-nml" type=button>Use Queries</button>
                     </div>
                 </form>
             </div>

@@ -59,17 +59,21 @@
 
                     <div id="settings">
                         <h4>Settings</h4>
-                        <select name="importance" class="form-control settings-select" title="importance">
+                        <select class="dist-right" name="algorithm" class="settings-select" title="used ranking algorithm">
+                            {% for algo in algorithm %}
+                                <option value="{{ algo }}" {% if algo == settings["algorithm"] %}
+                                    selected {% endif %}>
+                                    {{ algo }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <select name="importance" class="settings-select" title="importance">
                             <option value="">Higher importance to Words in whole Document</option>
                             <option value="True" {% if "mode" not in settings and settings["importance_sections"] %}
                                     selected {% endif %}>
                                 Higher importance to Words in Sections
                             </option>
                         </select>
-                        <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
-                        {% if settings["ranking-algo-params"] %}
-                            <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
-                        {% endif %}
                     </div>
                     <div class="div-submit text-center">
                         <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
@@ -91,7 +95,14 @@
                         </div>
                         <div id="settings-pdf">
                             <h4>Settings</h4>
-                            <select name="importance" class="form-control" title="importance">
+                            <select class="dist-right" name="algorithm" class="form-control settings-select" title="used ranking algorithm">
+                                {% for algo in algorithm %}
+                                    <option value="{{ algo }}" {% if algo == settings["algorithm"] %} selected {% endif %}>
+                                        {{ algo }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <select name="importance" class="settings-select" title="importance">
                                 <option value="sections-categorized"
                                         {% if "mode" in settings and settings["mode"] == "sections-categorized" %}
                                         selected {% endif %}>Importance into Sections AND use only categorized Sections
@@ -119,15 +130,10 @@
                                         selected {% endif %}>Use Background Section only
                                 </option>
                             </select>
-                            <input type="hidden" name="algorithm" value="{{ settings["algorithm"] }}" />
-                            {% if settings["ranking-algo-params"] %}
-                                <input type="hidden" name="ranking-algo-params" value="{{ settings["ranking-algo-params"] }}" />
-                            {% endif %}
                         </div>
                         <div class="div-submit text-center">
                             <button class="btn btn-primary btn-lg b-nml" type="submit">Submit</button>
-                            <button id="button-use-queries" class="btn btn-primary btn-lg b-nml" type=button>Use Queries
-                            </button>
+                            <button id="button-use-queries" class="btn btn-primary btn-lg b-nml" type=button>Use Queries</button>
                         </div>
                     </form>
                 </div>

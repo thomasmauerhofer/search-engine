@@ -8,7 +8,6 @@ from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.datastore.structure.section import IMRaDType
-from engine.utils.string_utils import load_json
 
 backend = Blueprint('backend', __name__)
 api = API()
@@ -17,8 +16,7 @@ api = API()
 @backend.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        algo_name = list(api.ranking_algos.keys())[0]
-        return render_template('index.html', settings=api.ranking_algos[algo_name].get_default_config(), error=None)
+        return render_template('index.html', error=None, algorithm=api.get_ranking_algos())
 
     queries = {
         "whole-document": request.form['whole_text'],
@@ -35,10 +33,10 @@ def index():
                 "algorithm": request.form["algorithm"]}
 
     if settings["algorithm"] == RankedBoolean.get_name():
-        settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
+        settings.update(RankedBoolean.get_default_config())
 
     result = api.get_papers(queries, settings)
-    return render_template('result.html', queries=queries, settings=settings, result=result)
+    return render_template('result.html', queries=queries, settings=settings, result=result, algorithm=api.get_ranking_algos())
 
 
 @backend.route('/search_with_pdf', methods=["GET", "POST"])
@@ -48,18 +46,17 @@ def search_with_pdf():
     if file.filename == '' or not api.allowed_upload_file(file.filename):
         return '', 204
 
-    settings = {"importance_sections": bool(request.form['importance']),
-                "algorithm": request.form["algorithm"]}
+    settings = {"importance_sections": bool(request.form['importance']), "algorithm": request.form["algorithm"]}
 
     if settings["algorithm"] == RankedBoolean.get_name():
-        settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
+        settings.update(RankedBoolean.get_default_config())
 
     file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename))
     try:
         result, queries = api.get_papers_with_paper(file.filename, settings)
-        return render_template('result.html', queries=queries, settings=settings, result=result)
+        return render_template('result.html', queries=queries, settings=settings, result=result, algorithm=api.get_ranking_algos())
     except EnvironmentError as e:
-        return render_template('index.html', settings=settings, error=str(e))
+        return render_template('index.html', settings=settings, error=str(e), algorithm=api.get_ranking_algos())
 
 
 @backend.route('/upload', methods=["GET", "POST"])
@@ -93,7 +90,7 @@ def get_ranking_info(paper_id):
     queries_proceed = api.preprocessor.proceed_queries(queries)
 
     if settings["algorithm"] == RankedBoolean.get_name():
-        settings["ranking-algo-params"] = load_json(request.form["ranking-algo-params"])
+        settings.update(RankedBoolean.get_default_config())
 
     if settings["algorithm"] == TFIDF.get_name():
         papers = api.client.get_paper_which_contains_queries(queries_proceed)
