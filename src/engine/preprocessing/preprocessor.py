@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-import threading
 from difflib import SequenceMatcher
 
 from config import REFERENCE_SIMULARITY_THRESHOLD
@@ -16,7 +15,7 @@ class Preprocessor(object):
         self.client = DBClient()
 
 
-    def __add_paper_to_reference(self, paper1, paper2, lock):
+    def __add_paper_to_reference(self, paper1, paper2):
         if not paper2.title_proceed:
             return
 
@@ -24,8 +23,7 @@ class Preprocessor(object):
             similarity = SequenceMatcher(None, ref.complete_ref_raw.lower(), paper2.title_raw.lower()).ratio()
             if similarity >= REFERENCE_SIMULARITY_THRESHOLD:
                 ref.paper_id = paper2.id
-                with lock:
-                    self.client.update_paper(paper1)
+                self.client.update_paper(paper1)
 
 
     def proceed_paper(self, paper):
@@ -37,12 +35,10 @@ class Preprocessor(object):
         queries_proceed = {} if "whole-document" in queries else {"whole-document": ""}
         for imrad_type, query in queries.items():
             queries_proceed[imrad_type] = self.text_processor.proceed_string(query)
-
-
         return queries_proceed
 
 
-    def link_references(self, new_paper, lock=threading.Lock()):
+    def link_references(self, new_paper):
         for paper in self.client.get_all_paper():
-            self.__add_paper_to_reference(paper, new_paper, lock)
-            self.__add_paper_to_reference(new_paper, paper, lock)
+            self.__add_paper_to_reference(paper, new_paper)
+            self.__add_paper_to_reference(new_paper, paper)

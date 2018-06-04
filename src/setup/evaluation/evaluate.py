@@ -18,7 +18,9 @@ def histogram(data, title, filename):
     ax.set_ylabel("frequency")
     ax.set_xlabel("rank")
     ax.set_title(title)
+    ax.set_ylim([0, 70])
     plt.savefig(filename + ".png")
+    plt.close()
 
 
 def calculate_ranking(name, mode, settings, plot=True):
@@ -55,6 +57,7 @@ def calculate_ranking(name, mode, settings, plot=True):
 
     if plot:
         print(name + ":")
+        print("# ratings: {}".format(len(ranks_norm)))
         print("Mean: {} | {}".format(np.mean(ranks), np.mean(ranks_norm)))
         print("Standard Deviation: {} | {}".format(np.std(ranks), np.std(ranks_norm)))
         histogram(ranks, name, name)
@@ -115,6 +118,7 @@ def evaluate_ranked_boolean_extended():
 
 if __name__ == "__main__":
     evaluate_tf()
-    #evaluate_ranked_boolean()
-    #evaluate_ranked_boolean_extended()
     evaluate_tfidf()
+    evaluate_ranked_boolean()
+    evaluate_ranked_boolean_extended()
+

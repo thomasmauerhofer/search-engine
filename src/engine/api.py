@@ -2,21 +2,15 @@
 # encoding: utf-8
 import contextlib
 import os
-import queue
-import threading
-from threading import Thread
-
-from flask import current_app
 
 import engine.datastore.datastore_utils.crypto as crypto
-from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, MAX_WORKERS
+from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.preprocessor import Preprocessor
-from engine.utils.exceptions.import_exceptions import ClassificationError
 from engine.utils.list_utils import insert_dict_into_sorted_list
 from engine.utils.paper_utils import paper_to_queries
 from engine.utils.ranking_utils import remove_ignored_words_from_query, combine_info
@@ -41,43 +35,11 @@ class API(object):
 
 
     def __get_ratings(self, papers, queries_proceed, settings):
-        ratings, ratings_lock, q = [], threading.Lock(), queue.Queue()
-        q.queue = queue.deque(papers)
-
-        for i in range(MAX_WORKERS):
-            worker = Thread(target=self.__rate_parallel, args=(q, queries_proceed, settings, ratings, ratings_lock))
-            worker.setDaemon(True)
-            worker.start()
-
-        q.join()
-        return ratings
-
-
-    def __rate_parallel(self, q, queries_proceed, settings, ratings, ratings_lock):
-        while not q.empty():
-            paper = q.get()
-
+        ratings = []
+        for paper in papers:
             element = self.get_ranking_info(paper, queries_proceed, settings)
-            with ratings_lock:
-                insert_dict_into_sorted_list(ratings, element, "rank")
-
-
-    def __add_paper_parallel(self, q, db_lock, paper_ids, id_lock):
-        while not q.empty():
-            file = q.get()
-
-            if not self.allowed_upload_file(file.filename):
-                continue
-
-            try:
-                paper = self.get_imported_paper(file.filename)
-                with db_lock:
-                    self.client.add_paper(paper)
-                self.preprocessor.link_references(paper, db_lock)
-                with id_lock:
-                    paper_ids.append(paper.id)
-            except (IOError, OSError, ClassificationError) as e:
-                print(e)
+            insert_dict_into_sorted_list(ratings, element, "rank")
+        return ratings
 
 
     def get_ranking_algos(self):
@@ -95,15 +57,12 @@ class API(object):
 
 
     def add_papers(self, filenames):
-        paper_ids, id_lock, db_lock, q = [], threading.Lock(), threading.Lock(), queue.Queue()
-        q.queue = queue.deque(filenames)
-
-        for i in range(MAX_WORKERS):
-            worker = Thread(target=self.__add_paper_parallel, args=(q, db_lock, paper_ids, id_lock))
-            worker.setDaemon(True)
-            worker.start()
-
-        q.join()
+        paper_ids = []
+        for filename in filenames:
+            paper = self.get_imported_paper(filename)
+            self.client.add_paper(paper)
+            self.preprocessor.link_references(paper)
+            paper_ids.append(paper.id)
         return paper_ids
 
 
