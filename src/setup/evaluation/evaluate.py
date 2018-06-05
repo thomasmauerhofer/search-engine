@@ -18,7 +18,7 @@ def histogram(data, title, filename):
     ax.set_ylabel("frequency")
     ax.set_xlabel("rank")
     ax.set_title(title)
-    ax.set_ylim([0, 70])
+    #ax.set_ylim([0, 70])
     plt.savefig(filename + ".png")
     plt.close()
 
@@ -52,7 +52,7 @@ def calculate_ranking(name, mode, settings, plot=True):
                 ranks.append(index)
                 ranks_norm.append(index / len(ranking))
             except ValueError:
-                # print("Error: {} -> {}".format(citation["full_citation"], reference["complete"]))
+                print("Error: {} -> {}".format(citation["full_citation"], reference["complete"]))
                 pass
 
     if plot:

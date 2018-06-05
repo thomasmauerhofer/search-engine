@@ -22,7 +22,7 @@ class Preprocessor(object):
         for ref in paper1.references:
             similarity = SequenceMatcher(None, ref.complete_ref_raw.lower(), paper2.title_raw.lower()).ratio()
             if similarity >= REFERENCE_SIMULARITY_THRESHOLD:
-                ref.paper_id = paper2.id
+                ref.paper_id = [paper2.id, "automated"]
                 self.client.update_paper(paper1)
 
 
