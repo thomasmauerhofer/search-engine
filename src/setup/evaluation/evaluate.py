@@ -4,7 +4,6 @@ import ast
 import os
 from enum import Enum
 
-import numpy as np
 from matplotlib import pyplot as plt
 from config import REQ_DATA_PATH
 from engine.api import API
@@ -24,48 +23,41 @@ class Mode(Enum):
     only_discussion = 6
 
 
-# TODO: Refactor - old version...
-def calculate_ranking(name, mode, settings, plot=True):
+def calculate_ranking(mode, settings, plot=True):
     api = API()
-
-    ranks = []
-    ranks_norm = []
+    mean_ap = []
 
     with open(os.path.join(REQ_DATA_PATH, "citations.txt"), encoding='utf-8') as data_file:
         data = ast.literal_eval(data_file.read())
 
     for citation in data:
-        if mode == 0:
+        query = {}
+        if mode == Mode.without_importance_to_sections:
             query = {"whole-document": citation["search_query"]}
-        elif mode == 1:
-            query = {"BACKGROUND": citation["search_query"]}
-        else:
-            query = {}
+        elif mode == Mode.only_introduction:
+            query = {IMRaDType.INTRODUCTION.name: citation["search_query"]}
+        elif mode == Mode.only_background:
+            query = {IMRaDType.BACKGROUND.name: citation["search_query"]}
+        elif mode == Mode.only_methods:
+            query = {IMRaDType.METHODS.name: citation["search_query"]}
+        elif mode == Mode.only_discussion:
+            query = {IMRaDType.DISCUSSION.name: citation["search_query"]}
+        elif mode == Mode.only_results:
+            query = {IMRaDType.RESULTS.name: citation["search_query"]}
+        elif mode == Mode.importance_to_sections:
             for imrad_type in citation["section"]["imrad"]:
                 query[imrad_type] = citation["search_query"]
 
+        ranked_papers = api.get_papers(query, settings)
+        relevant_paper = [api.get_paper(reference["paper_id"]) for reference in citation["references"]]
+        ap = average_precision(ranked_papers, relevant_paper)
 
-        ranking = api.get_papers(query, settings)
+        if ap:
+            mean_ap.append(ap)
 
-        for reference in citation["references"]:
-            referred_paper = api.get_paper(reference["paper_id"])
-            try:
-                index = [x["paper"].filename for x in ranking].index(referred_paper.filename)
-                ranks.append(index)
-                ranks_norm.append(index / len(ranking))
-            except ValueError:
-                #print("Error: {} -> {}".format(citation["full_citation"], reference["complete"]))
-                pass
-
-    print(name + ":")
-    print("# ratings: {}".format(len(ranks_norm)))
-    print("Mean: {} | {}".format(np.mean(ranks), np.mean(ranks_norm)))
-    print("Standard Deviation: {} | {}".format(np.std(ranks), np.std(ranks_norm)))
+    print("{} & {} & {} \\\\ \hline".format(mode.name.replace("_", " "), len(mean_ap), sum(mean_ap) / len(mean_ap)))
     if plot:
-        histogram(ranks, name, name)
-        histogram(ranks_norm, name, name + "_norm")
-
-    return np.mean(ranks), np.std(ranks)
+        histogram(mean_ap, mode.name.replace("_", " "), mode.name.replace("_", " "))
 
 
 def histogram(data, title, filename):
@@ -154,14 +146,25 @@ def evaluate_algorithm(settings, plot, n):
     print("\hline")
     print("\multicolumn{1}{|c}{} & \multicolumn{1}{|c}{\\textbf{\# queries}} & \multicolumn{1}{|c|}{\\textbf{MAP}} \\\\ \hline")
     settings["importance_sections"] = False
-    calculate_ranking_ngramm(Mode.without_importance_to_sections, settings, plot, n)
-    settings["importance_sections"] = True
-    calculate_ranking_ngramm(Mode.importance_to_sections, settings, plot, n)
-    calculate_ranking_ngramm(Mode.only_introduction, settings, plot, n)
-    calculate_ranking_ngramm(Mode.only_background, settings, plot, n)
-    calculate_ranking_ngramm(Mode.only_methods, settings, plot, n)
-    calculate_ranking_ngramm(Mode.only_results, settings, plot, n)
-    calculate_ranking_ngramm(Mode.only_discussion, settings, plot, n)
+
+    if n:
+        calculate_ranking_ngramm(Mode.without_importance_to_sections, settings, plot, n)
+        settings["importance_sections"] = True
+        calculate_ranking_ngramm(Mode.importance_to_sections, settings, plot, n)
+        calculate_ranking_ngramm(Mode.only_introduction, settings, plot, n)
+        calculate_ranking_ngramm(Mode.only_background, settings, plot, n)
+        calculate_ranking_ngramm(Mode.only_methods, settings, plot, n)
+        calculate_ranking_ngramm(Mode.only_results, settings, plot, n)
+        calculate_ranking_ngramm(Mode.only_discussion, settings, plot, n)
+    else:
+        calculate_ranking(Mode.without_importance_to_sections, settings, plot)
+        settings["importance_sections"] = True
+        calculate_ranking(Mode.importance_to_sections, settings, plot)
+        calculate_ranking(Mode.only_introduction, settings, plot)
+        calculate_ranking(Mode.only_background, settings, plot)
+        calculate_ranking(Mode.only_methods, settings, plot)
+        calculate_ranking(Mode.only_results, settings, plot)
+        calculate_ranking(Mode.only_discussion, settings, plot)
     print("\end{tabular}")
     print("\end{center}\n")
 
@@ -204,9 +207,45 @@ def evaluate_ranked_boolean_extended(plot, n):
     evaluate_algorithm(settings, plot, n)
 
 
+def tmp(plot):
+    print("Term Frequency")
+    evaluate_algorithm(TF.get_default_config(), plot, None)
+
+    print("Term Frequency-Inverse Document Frequency")
+    evaluate_algorithm(TFIDF.get_default_config(), plot, None)
+
+    print("Ranked Boolean Retrieval")
+    settings = {"algorithm": RankedBoolean.get_name(),
+                "extended": False,
+                "ranking-algo-params": {RetrievalType.TITLE.name: 0.2,
+                                        RetrievalType.SECTION_TITLE.name: 0.3,
+                                        RetrievalType.SECTION_TEXT.name: 0.2,
+                                        RetrievalType.SUBSECTION_TITLE.name: 0.18,
+                                        RetrievalType.SUBSECTION_TEXT.name: 0.05,
+                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.05,
+                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.02}}
+    evaluate_algorithm(settings, plot, None)
+
+    print("Ranked Boolean Retrieval-Extended Version")
+    settings = {"algorithm": RankedBoolean.get_name(),
+                "extended": True,
+                "ranking-algo-params": {RetrievalType.TITLE.name: 0.05,
+                                        RetrievalType.SECTION_TITLE.name: 0.05,
+                                        RetrievalType.SECTION_TEXT.name: 0.8,
+                                        RetrievalType.SUBSECTION_TITLE.name: 0.05,
+                                        RetrievalType.SUBSECTION_TEXT.name: 0.03,
+                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.01,
+                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.01}}
+    evaluate_algorithm(settings, plot, None)
+
+
+
 
 if __name__ == "__main__":
     save_plots = False
+    tmp(save_plots)
+    exit(0)
+
     for N in range(1, 4):
         print("\subsection{N =", N, "}")
         evaluate_tf(save_plots, N)
