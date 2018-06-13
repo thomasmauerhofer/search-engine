@@ -5,6 +5,8 @@ import os
 import pprint
 import re
 
+from textblob import TextBlob
+
 from config import REQ_DATA_PATH
 from engine.api import API
 from engine.datastore.structure.section import IMRaDType
@@ -61,8 +63,9 @@ def __get_citations(filename, sections):
 def create_file():
     api = API()
     all_citations = []
+    papers = api.get_all_paper()
 
-    for paper in api.get_all_paper():
+    for paper in papers:
         if not any([ref.paper_id for ref in paper.references]):
             continue
 
@@ -86,6 +89,10 @@ def create_file():
             if values.group(3) and values.group(3) != ".":
                 citation["search_query"] += " " + values.group(3)
 
+            # Use nous only -> People only search for Keywords in explicit search
+            nouns = TextBlob(citation["search_query"]).noun_phrases
+            citation["search_query"] = " ".join(nouns)
+
             index = values.group(2)
 
             indices = []
@@ -96,14 +103,13 @@ def create_file():
                 indices.append(int(index) - 1)
 
             for i in indices:
-                if i < len(paper.references) and paper.references[i].paper_id != '':
+                if i < len(paper.references) and paper.references[i].paper_id:
                     citation["references"].append({"complete": paper.references[i].complete_ref_raw,
-                                                   "paper_id": str(paper.references[i].paper_id)})
+                                                   "paper_id": str(paper.references[i].get_paper_id())})
 
         for citation in citations:
-            if len(citation["search_query"]) > 2 and citation["references"]:
+            if citation["search_query"] and citation["references"]:
                 all_citations.append(citation)
-
 
 
     file1 = open(os.path.join(REQ_DATA_PATH, "citations.txt"), "w")

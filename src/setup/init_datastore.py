@@ -97,13 +97,6 @@ def __link_references_to_paper():
                         nope_choices[ref.complete_ref_raw.lower()] = other_paper.title_raw.lower()
 
 
-
-    """TODO: Save database!!!"""
-
-    """Next step in other method: [citation] to reference correct? save nouns of citation, if there is a noun. Need only 
-        nouns, because it is more natural to search for keys, and not whole sentences"""
-
-
 if __name__ == "__main__":
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 

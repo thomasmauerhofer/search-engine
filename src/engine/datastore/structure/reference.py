@@ -65,6 +65,9 @@ class Reference(PaperStructure):
 
         self.reference_info.append([reference_type, text])
 
+    def get_paper_id(self):
+        return self.paper_id[0]
+
 
 class ReferenceType(Enum):
     SOURCE = 50
