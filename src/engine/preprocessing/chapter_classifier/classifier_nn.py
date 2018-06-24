@@ -33,10 +33,9 @@ class ClassifierNN(ClassifierBase):
         # Output-Layer holds all members of the IMRaDTypes; softmax = give the actual output class label probabilities
         self.model.add(Dense(len(IMRaDType), activation='softmax'))
 
-        if load_weights:
-            self.model.load_weights(HDF5 + "weights_04.hdf5")
-        self.model.compile(loss='categorical_crossentropy', optimizer='adam',
-                           metrics=['accuracy', recall, precision, f1])
+        # if load_weights:
+        #    self.model.load_weights(HDF5 + "weights_04.hdf5")
+        self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', recall, precision, f1])
 
 
     def __load_dataset(self, filename):
