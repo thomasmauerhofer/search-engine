@@ -11,8 +11,8 @@ from engine.datastore.structure.section import IMRaDType
 class DBClient(object):
     def __init__(self):
         self.client = MongoClient('localhost', 27017)  # 'mongodb://localhost:27017/'
-        self.db = self.client['test-database']
-        self.papers = self.db.posts
+        self.db = self.client['searchengine']
+        self.papers = self.db.papers
         self.users = self.db.users
 
 
@@ -158,6 +158,8 @@ class DBClient(object):
 
     def get_user(self, user_name):
         cursor = self.users.find({'username': user_name})
+        if not cursor.retrieved:
+            return None
         return cursor[0]
 
 

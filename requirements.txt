@@ -9,3 +9,4 @@ matplotlib
 pymongo
 argon2_cffi
 sklearn
+TextBlob

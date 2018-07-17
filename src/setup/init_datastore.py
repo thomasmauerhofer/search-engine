@@ -39,6 +39,10 @@ def __add_files(folder):
                 print(e)
 
 
+def __import_json(filepath):
+    os.popen("mongoimport --db searchengine --collection papers --file ", filepath)
+
+
 def __check_database():
     api = API()
     papers = api.get_all_paper()
@@ -103,6 +107,8 @@ if __name__ == "__main__":
     parser = OptionParser()
     parser.add_option("-f", "--folder", dest="folder",
                       help="import all data from folder to database", metavar="FOLDER")
+    parser.add_option("-j", "--json", dest="json",
+                      help="import data from json into database", metavar="JSON")
     parser.add_option("-c", "--check", action="store_true", dest="check", default=False,
                       help="Check if there are values in the database")
     parser.add_option("-u", "--user", action="store_true", dest="user", default=False,
@@ -113,6 +119,8 @@ if __name__ == "__main__":
 
     if options.folder:
         __add_files(options.folder)
+    elif options.json:
+        __import_json(options.json)
     elif options.check:
         __check_database()
     elif options.user:

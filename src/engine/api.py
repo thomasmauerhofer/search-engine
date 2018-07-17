@@ -11,6 +11,7 @@ from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.preprocessor import Preprocessor
+from engine.utils.exceptions.import_exceptions import ClassificationError
 from engine.utils.list_utils import insert_dict_into_sorted_list
 from engine.utils.paper_utils import paper_to_queries
 from engine.utils.ranking_utils import remove_ignored_words_from_query, combine_info
@@ -59,11 +60,18 @@ class API(object):
     def add_papers(self, filenames):
         paper_ids = []
         for filename in filenames:
+            paper_ids.append(self.add_paper(filename).id)
+        return paper_ids
+
+
+    def add_paper(self, filename):
+        try:
             paper = self.get_imported_paper(filename)
             self.client.add_paper(paper)
-            self.preprocessor.link_references(paper)
-            paper_ids.append(paper.id)
-        return paper_ids
+            # self.preprocessor.link_references(paper)
+            return paper
+        except ClassificationError:
+            return None
 
 
     def get_imported_paper(self, filename):

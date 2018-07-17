@@ -23,6 +23,7 @@ class Paper(PaperStructure):
         self.authors = [Authors(author) for author in data.get('authors')] if 'authors' in data else []
         self.sections = [Section(section) for section in data.get('sections')] if 'sections' in data else []
         self.references = [Reference(reference) for reference in data.get('references')] if 'references' in data else []
+        self.cited_by = data.get('cited_by') if 'cited_by' in data else []
 
         self.word_hist = WordHist(data.get('word_hist')) if "word_hist" in data else WordHist()
 
@@ -58,7 +59,7 @@ class Paper(PaperStructure):
 
     def to_dict(self):
         data = {'filename': self.filename, 'title_raw': self.title_raw, 'title_proceed': self.title_proceed,
-                'file': self.file, 'authors': [], 'sections': [], 'references': [], 'word_hist': self.word_hist}
+                'file': self.file, 'authors': [], 'sections': [], 'references': [], 'cited_by': self.cited_by, 'word_hist': self.word_hist}
 
         for author in self.authors:
             data['authors'].append(author.to_dict())
