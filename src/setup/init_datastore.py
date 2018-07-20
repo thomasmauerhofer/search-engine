@@ -13,29 +13,18 @@ from engine.utils.exceptions.import_exceptions import ClassificationError
 
 
 def __add_files(folder):
-    api = API(False)
-    api.delete_all_paper()
+    api = API()
 
     for filename in os.listdir(os.path.abspath(folder)):
-        try:
-            if filename.endswith('.pdf'):
-                print('CURRENT FILE: ' + str(filename))
-        except UnicodeError:
-            print("ERROR: Can't decode filename - Remove Special Characters!")
-            continue
+        print('CURRENT FILE: ' + str(filename))
 
         if filename.endswith('.pdf'):
             src = folder + "/" + filename
             dst = UPLOAD_FOLDER + filename
-            shutil.copy(src, dst)
+            shutil.move(src, dst)
             try:
-                paper_id = api.add_papers([filename])
-                print(paper_id)
-            except IOError as e:
-                print(e)
-            except OSError as e:
-                print(e)
-            except ClassificationError as e:
+                api.add_paper(filename)
+            except (IOError, OSError, ClassificationError) as e:
                 print(e)
 
 
@@ -43,10 +32,14 @@ def __import_json(filepath):
     os.popen("mongoimport --db searchengine --collection papers --file ", filepath)
 
 
-def __check_database():
-    api = API()
-    papers = api.get_all_paper()
-    print(len(papers))
+def __export_json(name):
+    if not name:
+        print("Error: Enter a valid name")
+        exit(-1)
+
+    if not name.endswith(".json"):
+        name += ".json"
+    os.popen("mongoexport --db searchengine --collection papers --out ", name)
 
 
 def __add_user():
@@ -107,10 +100,10 @@ if __name__ == "__main__":
     parser = OptionParser()
     parser.add_option("-f", "--folder", dest="folder",
                       help="import all data from folder to database", metavar="FOLDER")
-    parser.add_option("-j", "--json", dest="json",
-                      help="import data from json into database", metavar="JSON")
-    parser.add_option("-c", "--check", action="store_true", dest="check", default=False,
-                      help="Check if there are values in the database")
+    parser.add_option("-i", "--imp", dest="folder",
+                      help="import data from json into database", metavar="FOLDER")
+    parser.add_option("-e", "--exp", dest="folder",
+                      help="export data from database in json format", metavar="FOLDER")
     parser.add_option("-u", "--user", action="store_true", dest="user", default=False,
                       help="Add a new Adminuser to the database")
     parser.add_option("-r", "--link_references", action="store_true", dest="link_ref", default=False,
@@ -119,10 +112,10 @@ if __name__ == "__main__":
 
     if options.folder:
         __add_files(options.folder)
-    elif options.json:
-        __import_json(options.json)
-    elif options.check:
-        __check_database()
+    elif options.imp:
+        __import_json(options.folder)
+    elif options.exp:
+        __export_json(options.folder)
     elif options.user:
         __add_user()
     elif options.link_ref:

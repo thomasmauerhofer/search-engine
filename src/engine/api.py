@@ -3,6 +3,8 @@
 import contextlib
 import os
 
+from pymongo.errors import DocumentTooLarge
+
 import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
@@ -70,7 +72,7 @@ class API(object):
             self.client.add_paper(paper)
             # self.preprocessor.link_references(paper)
             return paper
-        except ClassificationError:
+        except (ClassificationError, DocumentTooLarge):
             return None
 
 

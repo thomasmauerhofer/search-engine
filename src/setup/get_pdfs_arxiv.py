@@ -38,8 +38,13 @@ import arxiv
 #                   'journal_reference': None,
 #                   'doi': None
 #                  }
-papers = arxiv.query(search_query="unsipervised document structure analysis of digital scientific articles")
 
-arxiv.download(papers[0], "tmp/")
 
+
+#papers = arxiv.query(search_query="unsipervised document structure analysis of digital scientific articles")
+#arxiv.download(papers[0], "tmp/")
+from engine.api import API
+
+api = API()
+print(len(api.get_all_paper()))
 

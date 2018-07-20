@@ -158,9 +158,10 @@ class DBClient(object):
 
     def get_user(self, user_name):
         cursor = self.users.find({'username': user_name})
-        if not cursor.retrieved:
+        user = list(cursor)
+        if not len(user):
             return None
-        return cursor[0]
+        return user[0]
 
 
     def get_all_user(self):
