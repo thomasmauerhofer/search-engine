@@ -67,6 +67,7 @@ def __link_references_to_paper():
     yes_choices, nope_choices = {}, {}
     i = 0
     for paper in papers:
+        i += 1
         print("(", i, "/", len(papers), ")")
 
         if paper.id in finished_files:
@@ -101,7 +102,7 @@ def __link_references_to_paper():
                 similarity = SequenceMatcher(None, ref.complete_ref_raw.lower(), other_paper.title_raw.lower()).ratio()
                 if similarity >= 0.49:
                     choice = ''
-                    while choice.lower() != 'y' and choice.lower() != 'n':
+                    while choice.lower() != 'y' and choice.lower() != 'n' and choice.lower() != "exit":
                         choice = input("{}\n ---> {}\n(y/n)".format(other_paper.title_raw.lower(), ref.complete_ref_raw.lower()))
 
                     if choice.lower() == 'y':
@@ -116,6 +117,7 @@ def __link_references_to_paper():
                         with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
                             pickle.dump(finished_files, fp)
                         print("bye!")
+                        exit(0)
 
         finished_files.append(paper.id)
         with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
@@ -129,9 +131,9 @@ if __name__ == "__main__":
     parser = OptionParser()
     parser.add_option("-f", "--folder", dest="folder",
                       help="import all data from folder to database", metavar="FOLDER")
-    parser.add_option("-i", "--imp", dest="folder",
+    parser.add_option("-i", "--imp", dest="imp",
                       help="import data from json into database", metavar="FOLDER")
-    parser.add_option("-e", "--exp", dest="folder",
+    parser.add_option("-e", "--exp", dest="exp",
                       help="export data from database in json format", metavar="FOLDER")
     parser.add_option("-u", "--user", action="store_true", dest="user", default=False,
                       help="Add a new Adminuser to the database")
