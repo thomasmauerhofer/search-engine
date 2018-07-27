@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+import pickle
 
 import arxiv
 
@@ -43,8 +44,19 @@ import arxiv
 
 #papers = arxiv.query(search_query="unsipervised document structure analysis of digital scientific articles")
 #arxiv.download(papers[0], "tmp/")
+from config import REQ_DATA_PATH
 from engine.api import API
 
 api = API()
-print(len(api.get_all_paper()))
+#print(len(api.get_all_paper()))
+
+tmp = ["aaaa", "bbbb"]
+#with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
+#    pickle.dump(tmp, fp)
+
+with open (REQ_DATA_PATH + "finished_papers.txt", 'rb') as fp:
+    tmplist = pickle.load(fp)
+
+print(tmplist)
+
 

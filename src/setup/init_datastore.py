@@ -2,12 +2,13 @@
 # encoding: utf-8
 
 import os
+import pickle
 import shutil
 from difflib import SequenceMatcher
 from getpass import getpass
 from optparse import OptionParser
 
-from config import UPLOAD_FOLDER
+from config import UPLOAD_FOLDER, REQ_DATA_PATH
 from engine.api import API
 from engine.utils.exceptions.import_exceptions import ClassificationError
 
@@ -53,9 +54,24 @@ def __add_user():
 
 def __link_references_to_paper():
     api = API()
+
+    finished_files = []
+    if not os.path.isfile(REQ_DATA_PATH + "finished_papers.txt"):
+        with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
+            pickle.dump(finished_files, fp)
+
+    with open(REQ_DATA_PATH + "finished_papers.txt", 'rb') as fp:
+        finished_files = pickle.load(fp)
+
     papers = api.get_all_paper()
     yes_choices, nope_choices = {}, {}
+    i = 0
     for paper in papers:
+        print("(", i, "/", len(papers), ")")
+
+        if paper.id in finished_files:
+            continue
+
         other_papers = [p for p in papers if p.filename != paper.filename]
         for other_paper in other_papers:
             if not other_paper.title_raw:
@@ -73,6 +89,8 @@ def __link_references_to_paper():
                         yes_choices[ref.complete_ref_raw.lower()][0] == other_paper.title_raw.lower():
                     ref.paper_id = [other_paper.id, "manual"]
                     api.client.update_paper(paper)
+                    other_paper.cited_by.append(paper.id)
+                    api.client.update_paper(other_paper)
                     continue
 
                 if ref.complete_ref_raw.lower() in nope_choices and \
@@ -89,9 +107,20 @@ def __link_references_to_paper():
                     if choice.lower() == 'y':
                         ref.paper_id = [other_paper.id, "manual"]
                         api.client.update_paper(paper)
+                        other_paper.cited_by.append(paper.id)
+                        api.client.update_paper(other_paper)
                         yes_choices[ref.complete_ref_raw.lower()] = [other_paper.title_raw.lower(), other_paper.id]
                     elif choice.lower() == 'n':
                         nope_choices[ref.complete_ref_raw.lower()] = other_paper.title_raw.lower()
+                    elif choice.lower() == 'exit':
+                        with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
+                            pickle.dump(finished_files, fp)
+                        print("bye!")
+
+        finished_files.append(paper.id)
+        with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
+            pickle.dump(finished_files, fp)
+
 
 
 if __name__ == "__main__":

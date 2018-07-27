@@ -128,7 +128,8 @@ class API(object):
 
 
     def get_papers_with_paper(self, filename, settings):
-        settings["importance_sections"] = True if settings["mode"] == "sections-uncategorized-sec" else False
+        # todo
+        settings["importance_sections"] = settings["mode"] == "sections-uncategorized-sec"
         paper = self.get_imported_paper(filename)
         queries = paper_to_queries(paper, settings["mode"])
         return self.get_papers(queries, settings), queries
