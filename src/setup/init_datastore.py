@@ -73,7 +73,7 @@ def __link_references_to_paper():
         if paper.id in finished_files:
             continue
 
-        other_papers = [p for p in papers if p.filename != paper.filename]
+        other_papers = [p for p in papers if p.id != paper.id]
         for other_paper in other_papers:
             if not other_paper.title_raw:
                 continue
@@ -81,8 +81,8 @@ def __link_references_to_paper():
             for ref in paper.references:
                 # Don't reannotate references
                 if ref.paper_id and isinstance(ref.paper_id, list) and ref.paper_id[1] == "manual":
-                    paper = api.get_paper(ref.paper_id[0])
-                    yes_choices[ref.complete_ref_raw.lower()] = [paper.title_raw.lower(), paper.id]
+                    referred_paper = api.get_paper(ref.paper_id[0])
+                    yes_choices[ref.complete_ref_raw.lower()] = [referred_paper.title_raw.lower(), referred_paper.id]
                     continue
 
                 # if already annotated set the same paper again
@@ -118,6 +118,7 @@ def __link_references_to_paper():
                             pickle.dump(finished_files, fp)
                         print("bye!")
                         exit(0)
+
 
         finished_files.append(paper.id)
         with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
