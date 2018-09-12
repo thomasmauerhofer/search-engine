@@ -66,6 +66,8 @@ class Reference(PaperStructure):
         self.reference_info.append([reference_type, text])
 
     def get_paper_id(self):
+        if not self.paper_id:
+            return []
         return self.paper_id[0]
 
 

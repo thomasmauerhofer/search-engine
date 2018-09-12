@@ -38,6 +38,9 @@ class Paper(PaperStructure):
         pp = pprint.PrettyPrinter(indent=4)
         return pp.pformat(self.to_dict())
 
+    def __eq__(self, other):
+        return self.file == other.file
+
 
     def get_sections_with_imrad_type(self, imrad_type):
         if imrad_type == "whole-document":

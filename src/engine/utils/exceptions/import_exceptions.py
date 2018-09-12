@@ -2,6 +2,13 @@
 # encoding: utf-8
 
 
+class PaperInStorage(BaseException):
+    """Raised when paper exist in storage"""
+
+    def __init__(self, message):
+        self.message = message
+
+
 class WrongReferenceError(BaseException):
     """Raised when reference don't contain text"""
 

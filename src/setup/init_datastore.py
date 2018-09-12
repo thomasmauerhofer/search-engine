@@ -8,13 +8,16 @@ from difflib import SequenceMatcher
 from getpass import getpass
 from optparse import OptionParser
 
+from pymongo.errors import DocumentTooLarge
+
 from config import UPLOAD_FOLDER, REQ_DATA_PATH
 from engine.api import API
-from engine.utils.exceptions.import_exceptions import ClassificationError
+from engine.utils.exceptions.import_exceptions import ClassificationError, PaperInStorage
 
 
 def __add_files(folder):
     api = API()
+    text_file = open("newpapers.txt", "a+")
 
     for filename in os.listdir(os.path.abspath(folder)):
         print('CURRENT FILE: ' + str(filename))
@@ -24,9 +27,11 @@ def __add_files(folder):
             dst = UPLOAD_FOLDER + filename
             shutil.move(src, dst)
             try:
-                api.add_paper(filename)
-            except (IOError, OSError, ClassificationError) as e:
+                paper = api.add_paper(filename)
+                text_file.write(str(paper.id) + "\n")
+            except (IOError, OSError, ClassificationError, DocumentTooLarge, PaperInStorage) as e:
                 print(e)
+    text_file.close()
 
 
 def __import_json(filepath):
@@ -52,8 +57,35 @@ def __add_user():
     print("Welcome on board {}".format(name))
 
 
+
+def __link_references_to_paper_check_references(paper, other_paper, api):
+    if not other_paper.title_raw:
+        return
+
+    for ref in paper.references:
+        if ref.paper_id:
+            continue
+
+        similarity = SequenceMatcher(None, ref.complete_ref_raw.lower(), other_paper.title_raw.lower()).ratio()
+        if similarity >= 0.49:
+            choice = ''
+            while choice.lower() != 'y' and choice.lower() != 'n' and choice.lower() != "exit":
+                choice = input(
+                    "{}\n ---> {}\n(y/n)".format(other_paper.title_raw.lower(), ref.complete_ref_raw.lower()))
+
+            if choice.lower() == 'y':
+                ref.paper_id = [other_paper.id, "manual"]
+                api.client.update_paper(paper)
+                other_paper.cited_by.append(paper.id)
+                api.client.update_paper(other_paper)
+            elif choice.lower() == 'exit':
+                print("bye!")
+                exit(0)
+
+
 def __link_references_to_paper():
     api = API()
+    all_papers = api.get_all_paper()
 
     finished_files = []
     if not os.path.isfile(REQ_DATA_PATH + "finished_papers.txt"):
@@ -63,8 +95,15 @@ def __link_references_to_paper():
     with open(REQ_DATA_PATH + "finished_papers.txt", 'rb') as fp:
         finished_files = pickle.load(fp)
 
-    papers = api.get_all_paper()
-    yes_choices, nope_choices = {}, {}
+    if os.path.isfile("newpapers.txt"):
+        papers = []
+        with open("newpapers.txt", 'r') as fp:
+            for paper_id in fp:
+                papers.append(api.get_paper(paper_id.rstrip()))
+    else:
+        papers = api.get_all_paper()
+
+
     i = 0
     for paper in papers:
         i += 1
@@ -73,52 +112,12 @@ def __link_references_to_paper():
         if paper.id in finished_files:
             continue
 
-        other_papers = [p for p in papers if p.id != paper.id]
+        other_papers = [p for p in all_papers if p.id != paper.id]
         for other_paper in other_papers:
-            if not other_paper.title_raw:
-                continue
+            if os.path.isfile("newpapers.txt"):
+                __link_references_to_paper_check_references(other_paper, paper, api)
 
-            for ref in paper.references:
-                # Don't reannotate references
-                if ref.paper_id and isinstance(ref.paper_id, list) and ref.paper_id[1] == "manual":
-                    referred_paper = api.get_paper(ref.paper_id[0])
-                    yes_choices[ref.complete_ref_raw.lower()] = [referred_paper.title_raw.lower(), referred_paper.id]
-                    continue
-
-                # if already annotated set the same paper again
-                if ref.complete_ref_raw.lower() in yes_choices and \
-                        yes_choices[ref.complete_ref_raw.lower()][0] == other_paper.title_raw.lower():
-                    ref.paper_id = [other_paper.id, "manual"]
-                    api.client.update_paper(paper)
-                    other_paper.cited_by.append(paper.id)
-                    api.client.update_paper(other_paper)
-                    continue
-
-                if ref.complete_ref_raw.lower() in nope_choices and \
-                        nope_choices[ref.complete_ref_raw.lower()] == other_paper.title_raw.lower():
-                    continue
-
-                # annotate
-                similarity = SequenceMatcher(None, ref.complete_ref_raw.lower(), other_paper.title_raw.lower()).ratio()
-                if similarity >= 0.49:
-                    choice = ''
-                    while choice.lower() != 'y' and choice.lower() != 'n' and choice.lower() != "exit":
-                        choice = input("{}\n ---> {}\n(y/n)".format(other_paper.title_raw.lower(), ref.complete_ref_raw.lower()))
-
-                    if choice.lower() == 'y':
-                        ref.paper_id = [other_paper.id, "manual"]
-                        api.client.update_paper(paper)
-                        other_paper.cited_by.append(paper.id)
-                        api.client.update_paper(other_paper)
-                        yes_choices[ref.complete_ref_raw.lower()] = [other_paper.title_raw.lower(), other_paper.id]
-                    elif choice.lower() == 'n':
-                        nope_choices[ref.complete_ref_raw.lower()] = other_paper.title_raw.lower()
-                    elif choice.lower() == 'exit':
-                        with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
-                            pickle.dump(finished_files, fp)
-                        print("bye!")
-                        exit(0)
-
+            __link_references_to_paper_check_references(paper, other_paper, api)
 
         finished_files.append(paper.id)
         with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:

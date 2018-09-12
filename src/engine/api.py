@@ -13,7 +13,7 @@ from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.preprocessor import Preprocessor
-from engine.utils.exceptions.import_exceptions import ClassificationError
+from engine.utils.exceptions.import_exceptions import ClassificationError, PaperInStorage
 from engine.utils.list_utils import insert_dict_into_sorted_list
 from engine.utils.paper_utils import paper_to_queries
 from engine.utils.ranking_utils import remove_ignored_words_from_query, combine_info
@@ -62,18 +62,22 @@ class API(object):
     def add_papers(self, filenames):
         paper_ids = []
         for filename in filenames:
-            paper_ids.append(self.add_paper(filename).id)
+            try:
+                paper_ids.append(self.add_paper(filename).id)
+            except (ClassificationError, DocumentTooLarge, PaperInStorage):
+                pass
         return paper_ids
 
 
     def add_paper(self, filename):
-        try:
-            paper = self.get_imported_paper(filename)
-            self.client.add_paper(paper)
-            # self.preprocessor.link_references(paper)
-            return paper
-        except (ClassificationError, DocumentTooLarge):
-            return None
+        paper = self.get_imported_paper(filename)
+
+        if [x for x in self.get_all_paper() if paper == x]:
+            raise PaperInStorage('Paper already exists in storage')
+
+        self.client.add_paper(paper)
+        # self.preprocessor.link_references(paper)
+        return paper
 
 
     def get_imported_paper(self, filename):

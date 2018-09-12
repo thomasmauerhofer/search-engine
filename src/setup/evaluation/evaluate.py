@@ -243,10 +243,10 @@ def tmp(plot):
 
 if __name__ == "__main__":
     save_plots = False
-    tmp(save_plots)
-    exit(0)
+    #tmp(save_plots)
+    #exit(0)
 
-    for N in range(1, 4):
+    for N in range(2, 5):
         print("\subsection{N =", N, "}")
         evaluate_tf(save_plots, N)
         evaluate_tfidf(save_plots, N)
