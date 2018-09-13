@@ -4,8 +4,8 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-from engine.datastore.structure.paper import Paper
-from engine.datastore.structure.section import IMRaDType
+from engine.datastore.models.paper import Paper
+from engine.datastore.models.section import IMRaDType
 
 
 class DBClient(object):

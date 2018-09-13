@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-from engine.datastore.structure.section import IMRaDType
+from engine.datastore.models.section import IMRaDType
 from engine.utils.objects.word_hist import WordHist
 
 

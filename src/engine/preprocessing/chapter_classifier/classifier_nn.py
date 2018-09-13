@@ -6,7 +6,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.callbacks import ModelCheckpoint
 from config import DATASET, HDF5
-from engine.datastore.structure.section import IMRaDType
+from engine.datastore.models.section import IMRaDType
 from engine.preprocessing.chapter_classifier.bag_of_words import BagOfWords
 from engine.preprocessing.chapter_classifier.classifier_base import ClassifierBase
 from engine.preprocessing.chapter_classifier.classifier_utils.metrics import recall, precision, f1

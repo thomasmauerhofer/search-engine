@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from operator import itemgetter
 from optparse import OptionParser
 from config import DATASET, UPLOAD_FOLDER
-from engine.datastore.structure.section import IMRaDType
+from engine.datastore.models.section import IMRaDType
 from engine.importer.importer_teambeam import ImporterTeambeam
 from engine.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
 from engine.preprocessing.chapter_classifier.classifier_simple import ClassifierSimple

@@ -3,8 +3,8 @@
 import pprint
 from enum import Enum
 
-from engine.datastore.structure.paper_structure import PaperStructure
-from engine.datastore.structure.text import Text
+from engine.datastore.models.paper_structure import PaperStructure
+from engine.datastore.models.text import Text
 from engine.preprocessing.text_processor import TextProcessor
 from engine.utils.objects.word_hist import WordHist
 
@@ -75,6 +75,8 @@ class Section(PaperStructure):
         if not any(imrad_type is x for x in self.imrad_types) and \
                 (not (self.heading_raw.isspace() or self.heading_raw is '')):
             self.imrad_types.append(imrad_type)
+            for subsection in self.subsections:
+                subsection.add_to_imrad(imrad_type)
 
 
     def title_exist(self):

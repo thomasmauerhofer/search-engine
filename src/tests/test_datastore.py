@@ -4,9 +4,9 @@ import engine.datastore.datastore_utils.crypto as crypto
 from engine.api import API
 from engine.datastore.db_client import DBClient
 from engine.datastore.ranking.tf import TF
-from engine.datastore.structure.paper import Paper
-from engine.datastore.structure.section import IMRaDType
-from engine.datastore.structure.text import TextType
+from engine.datastore.models.paper import Paper
+from engine.datastore.models.section import IMRaDType
+from engine.datastore.models.text import TextType
 
 
 class TestDB(TestCase):

@@ -5,9 +5,9 @@ import os
 from xml.dom import minidom
 
 from config import CREATE_OUTPUT, TEAMBEAM_EXE, UPLOAD_FOLDER
-from engine.datastore.structure.paper import Paper
-from engine.datastore.structure.reference import ReferenceType
-from engine.datastore.structure.text import TextType
+from engine.datastore.models.paper import Paper
+from engine.datastore.models.reference import ReferenceType
+from engine.datastore.models.text import TextType
 from engine.importer.importer_base import ImporterBase
 from engine.utils.exceptions.import_exceptions import WrongReferenceError
 

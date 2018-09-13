@@ -6,3 +6,4 @@ flask_session/
 keys/
 *_pprint.txt
 *.png
+citations.txt

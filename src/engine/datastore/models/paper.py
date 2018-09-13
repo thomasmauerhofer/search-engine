@@ -3,11 +3,11 @@
 import pprint
 
 from config import UPLOAD_FOLDER
-from engine.datastore.structure.author import Authors
-from engine.datastore.structure.paper_structure import PaperStructure
-from engine.datastore.structure.reference import Reference
-from engine.datastore.structure.section import Section, IMRaDType, SectionType
-from engine.datastore.structure.text import TextType
+from engine.datastore.models.author import Authors
+from engine.datastore.models.paper_structure import PaperStructure
+from engine.datastore.models.reference import Reference
+from engine.datastore.models.section import Section, IMRaDType, SectionType
+from engine.datastore.models.text import TextType
 from engine.preprocessing.text_processor import TextProcessor
 from engine.utils.objects.word_hist import WordHist
 

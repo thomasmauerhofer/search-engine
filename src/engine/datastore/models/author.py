@@ -2,7 +2,7 @@
 # encoding: utf-8
 import pprint
 
-from engine.datastore.structure.paper_structure import PaperStructure
+from engine.datastore.models.paper_structure import PaperStructure
 from engine.utils.string_utils import is_valid_email, remove_special_chars, longest_subsequence
 
 

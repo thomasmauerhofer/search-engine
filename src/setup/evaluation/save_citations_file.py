@@ -9,8 +9,8 @@ from textblob import TextBlob
 
 from config import REQ_DATA_PATH
 from engine.api import API
-from engine.datastore.structure.section import IMRaDType
-from engine.datastore.structure.text import TextType
+from engine.datastore.models.section import IMRaDType
+from engine.datastore.models.text import TextType
 
 
 def __check_citations_to_references(citations, references):

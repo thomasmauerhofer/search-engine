@@ -3,7 +3,7 @@
 
 import numpy as np
 
-from engine.datastore.structure.section import IMRaDType
+from engine.datastore.models.section import IMRaDType
 from engine.preprocessing.chapter_classifier.classifier_base import ClassifierBase
 
 

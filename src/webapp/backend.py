@@ -7,7 +7,7 @@ from flask import Blueprint, render_template, request, current_app, send_file
 from engine.api import API
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tfidf import TFIDF
-from engine.datastore.structure.section import IMRaDType
+from engine.datastore.models.section import IMRaDType
 
 backend = Blueprint('backend', __name__)
 api = API()

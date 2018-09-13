@@ -3,7 +3,7 @@
 import pprint
 from enum import Enum
 
-from engine.datastore.structure.paper_structure import PaperStructure
+from engine.datastore.models.paper_structure import PaperStructure
 from engine.preprocessing.text_processor import TextProcessor
 
 
