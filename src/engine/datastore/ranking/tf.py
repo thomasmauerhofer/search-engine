@@ -17,6 +17,8 @@ class TF(RankingBase):
     @staticmethod
     def get_ranking(paper, queries, settings):
         info = {}
+        word_value = []
+        ranking = 0.0
 
         for imrad_type, query in queries.items():
             if imrad_type == "whole-document":
@@ -25,8 +27,11 @@ class TF(RankingBase):
                 sections = paper.get_sections_with_imrad_type(imrad_type)
                 hist = sections_to_word_hist(sections)
 
-            keys = hist.query_to_keys(query)
-            ranking, key_value = hist.get_tf_of_keys(keys)
-            info[imrad_type] = {"rank": ranking, "sumwords": sum(hist.values()), "keyvalues": key_value}
+            for word in query.split():
+                rank = hist.get_tf(word)
+                ranking += rank
+                word_value.append([word, rank])
+
+            info[imrad_type] = {"rank": ranking, "sumwords": sum(hist.values()), "keyvalues": word_value}
 
         return sum([ranking["rank"] for ranking in info.values()]), info

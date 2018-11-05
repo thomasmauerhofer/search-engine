@@ -35,26 +35,25 @@ class TFIDF(RankingBase):
 
 
     @staticmethod
-    def get_idf(queries, papers):
-        idf = {}
+    def get_df(queries, papers):
+        df = {}
         hists = TFIDF.__create_hists(queries, papers)
         for imrad, query in queries.items():
-            idf[imrad] = {}
-            for paper in papers:
-                keys = hists[imrad][paper.id].query_to_keys(query)
+            df[imrad] = {}
+            for querie_word in query.split():
+                if querie_word not in df[imrad]:
+                    # df = #papers where querie_word is part of it -> paper-histogram keys contains querie_word
+                    # structure of hists: { imrad: { paperid: wordhist } }
+                    df[imrad][querie_word] = len([hist for hist in hists[imrad].values() if querie_word in hist.keys()])
+        return df
 
-                for key in keys:
-                    if key not in idf[imrad]:
-                        df = len([hist for hist in hists[imrad].values() if key in hist.keys()])
-                        idf[imrad][key] = [math.log10(len(papers) / df), df]
-
-        return idf
 
 
     @staticmethod
     def get_ranking(paper, queries, settings):
         tfidf = {}
-        idf = settings["idf"]
+        df = settings["df"]
+        num_paper = settings["number_paper"]
 
         for imrad, query in queries.items():
             if imrad == "whole-document":
@@ -63,11 +62,23 @@ class TFIDF(RankingBase):
                 sections = paper.get_sections_with_imrad_type(imrad)
                 hist = sections_to_word_hist(sections)
 
-            keys = hist.query_to_keys(query)
             key_values = {}
-            for key in keys:
-                key_values[key] = {"tfidf": hist.get_tf(key) * idf[imrad][key][0], "tf": hist.get_tf(key),
-                                   "idf": idf[imrad][key][0], "count": hist[key], "count_docs": idf[imrad][key][1]}
+            queries = query.split()
+            for querie_word in queries:
+                df_val = df[imrad][querie_word]
+
+                # query word is in no other paper -> protect against dividing by 0
+                if not df_val:
+                    continue
+
+                tf_val = hist.get_tf(querie_word)
+                idf_val = math.log10(num_paper / df_val)
+                tfidf_val = tf_val * idf_val
+
+                if tfidf_val < 0:
+                    print("sadasda")
+
+                key_values[querie_word] = {"tfidf": tfidf_val, "tf": tf_val, "idf": idf_val}
 
             tfidf[imrad] = {"sumwords": sum(hist.values()), "keys": key_values,
                             "score": sum([val["tfidf"] for val in key_values.values()])}

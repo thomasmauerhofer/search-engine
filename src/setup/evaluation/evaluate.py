@@ -3,27 +3,34 @@
 import ast
 import copy
 import os
-import random
-from enum import Enum
 
 from matplotlib import pyplot as plt
 from config import REQ_DATA_PATH
 from engine.api import API
+from engine.datastore.ranking.mode import Mode
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean, RetrievalType
 from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
 from engine.datastore.models.section import IMRaDType
 
 
-class Mode(Enum):
-    without_importance_to_sections = 0
-    importance_to_sections = 1
-    only_introduction = 2
-    only_background = 3
-    only_methods = 4
-    only_results = 5
-    only_discussion = 6
+def average_precision(papers, relevant_papers):
+    indexes = []
+    ap = 0
+    for relevant in relevant_papers:
+        try:
+            indexes.append([x["paper"].file for x in papers].index(relevant.file) + 1)
+        except ValueError:
+            pass
 
+        if not indexes:
+            return None
+
+        indexes = sorted(indexes)
+        for i in range(len(indexes)):
+            ap += (i + 1) / indexes[i]
+
+    return ap / len(indexes)
 
 
 def histogram(data, title, filename):
@@ -37,6 +44,9 @@ def histogram(data, title, filename):
     plt.close()
 
 
+# ---------------------------------------------------------
+#                Explict search
+# ---------------------------------------------------------
 def extract_query_ngramm(query, n):
     queries = []
     words = query.split()
@@ -70,46 +80,52 @@ def create_queries(n=None):
     return queries
 
 
-def average_precision(papers, relevant_papers):
-    indexes = []
-    ap = 0
-    for relevant in relevant_papers:
-        try:
-            indexes.append([x["paper"].file for x in papers].index(relevant.file) + 1)
-        except ValueError:
-            pass
-
-        if not indexes:
-            return None
-
-        indexes = sorted(indexes)
-        for i in range(len(indexes)):
-            ap += (i + 1) / indexes[i]
-
-    return ap / len(indexes)
-
-
-def calculate_ranking_sections(raw_queries, mode, settings, plot=True):
+def calculate_ranking_sections(raw_queries, settings, plot=True):
     api = API()
-    mean_ap = []
+    mean_ap_intro, mean_ap_background, mean_ap_methods, mean_ap_result, mean_ap_discussion = [], [], [], [], []
 
-    min_val = min([len(raw_queries[IMRaDType.INTRODUCTION.name]), len(raw_queries[IMRaDType.BACKGROUND.name]),
-                   len(raw_queries[IMRaDType.METHODS.name]), len(raw_queries[IMRaDType.RESULTS.name]),
-                   len(raw_queries[IMRaDType.DISCUSSION.name])])
-
-    queries = random.sample(raw_queries[IMRaDType(mode.value - 1).name], min_val)
+    queries = raw_queries[IMRaDType.INTRODUCTION.name] + raw_queries[IMRaDType.BACKGROUND.name] + \
+              raw_queries[IMRaDType.METHODS.name] + raw_queries[IMRaDType.RESULTS.name] + \
+              raw_queries[IMRaDType.DISCUSSION.name]
 
     for query in queries:
-        ranked_papers = api.get_papers({query["imrad"]: query["search_query"]}, settings)
         relevant_paper = [api.get_paper(reference["paper_id"]) for reference in query["references"]]
-        ap = average_precision(ranked_papers, relevant_paper)
 
-        if ap:
-            mean_ap.append(ap)
+        ranked_papers_intro = api.get_papers({IMRaDType.INTRODUCTION.name: query["search_query"]}, settings)
+        ranked_papers_background = api.get_papers({IMRaDType.BACKGROUND.name: query["search_query"]}, settings)
+        ranked_papers_methods = api.get_papers({IMRaDType.METHODS.name: query["search_query"]}, settings)
+        ranked_papers_result = api.get_papers({IMRaDType.RESULTS.name: query["search_query"]}, settings)
+        ranked_papers_discussion = api.get_papers({IMRaDType.DISCUSSION.name: query["search_query"]}, settings)
 
-    print("{} & {} & {} \\\\ \hline".format(mode.name.replace("_", " "), len(mean_ap), sum(mean_ap) / len(mean_ap)))
+        ap_intro = average_precision(ranked_papers_intro, relevant_paper)
+        ap_background = average_precision(ranked_papers_background, relevant_paper)
+        ap_methods = average_precision(ranked_papers_methods, relevant_paper)
+        ap_result = average_precision(ranked_papers_result, relevant_paper)
+        ap_discussion = average_precision(ranked_papers_discussion, relevant_paper)
+
+        if ap_intro and ap_background and ap_methods and ap_result and ap_discussion:
+            mean_ap_intro.append(ap_intro)
+            mean_ap_background.append(ap_background)
+            mean_ap_methods.append(ap_methods)
+            mean_ap_result.append(ap_result)
+            mean_ap_discussion.append(ap_discussion)
+
+    print("{} & {} & {} \\\\ \hline".format(Mode.only_introduction.name.replace("_", " "),
+                                            len(mean_ap_intro), sum(mean_ap_intro) / len(mean_ap_intro)))
+    print("{} & {} & {} \\\\ \hline".format(Mode.only_background.name.replace("_", " "),
+                                            len(mean_ap_background), sum(mean_ap_background) / len(mean_ap_background)))
+    print("{} & {} & {} \\\\ \hline".format(Mode.only_methods.name.replace("_", " "),
+                                            len(mean_ap_methods), sum(mean_ap_methods) / len(mean_ap_methods)))
+    print("{} & {} & {} \\\\ \hline".format(Mode.only_results.name.replace("_", " "),
+                                            len(mean_ap_result), sum(mean_ap_result) / len(mean_ap_result)))
+    print("{} & {} & {} \\\\ \hline".format(Mode.only_discussion.name.replace("_", " "),
+                                            len(mean_ap_discussion), sum(mean_ap_discussion) / len(mean_ap_discussion)))
     if plot:
-        histogram(mean_ap, mode.name.replace("_", " "), mode.name.replace("_", " "))
+        histogram(mean_ap_intro, Mode.only_introduction.name.replace("_", " "), Mode.only_introduction.name.replace("_", " "))
+        histogram(mean_ap_background, Mode.only_background.name.replace("_", " "), Mode.only_background.name.replace("_", " "))
+        histogram(mean_ap_methods, Mode.only_methods.name.replace("_", " "), Mode.only_methods.name.replace("_", " "))
+        histogram(mean_ap_result, Mode.only_results.name.replace("_", " "), Mode.only_results.name.replace("_", " "))
+        histogram(mean_ap_discussion, Mode.only_discussion.name.replace("_", " "), Mode.only_discussion.name.replace("_", " "))
 
 
 def calculate_ranking(raw_queries, settings, plot=True):
@@ -121,8 +137,9 @@ def calculate_ranking(raw_queries, settings, plot=True):
               raw_queries[IMRaDType.METHODS.name] + raw_queries[IMRaDType.RESULTS.name] + \
               raw_queries[IMRaDType.DISCUSSION.name]
 
+    settings["mode"] = Mode.without_importance_to_sections
     settings_sec = copy.deepcopy(settings)
-    settings_sec["importance_sections"] = True
+    settings_sec["mode"] = Mode.importance_to_sections
 
     for query in queries:
         ranked_papers_whole = api.get_papers({"whole-document": query["search_query"]}, settings)
@@ -153,16 +170,12 @@ def evaluate_algorithm(settings, plot, n):
     print("\\begin{tabular}{ | c | c | l | }")
     print("\hline")
     print("\multicolumn{1}{|c}{} & \multicolumn{1}{|c}{\\textbf{\# queries}} & \multicolumn{1}{|c|}{\\textbf{MAP}} \\\\ \hline")
-    settings["importance_sections"] = False
 
     raw_queries = create_queries(n)
     calculate_ranking(raw_queries, settings, plot)
-    settings["importance_sections"] = True
-    calculate_ranking_sections(raw_queries, Mode.only_introduction, settings, plot)
-    calculate_ranking_sections(raw_queries, Mode.only_background, settings, plot)
-    calculate_ranking_sections(raw_queries, Mode.only_methods, settings, plot)
-    calculate_ranking_sections(raw_queries, Mode.only_results, settings, plot)
-    calculate_ranking_sections(raw_queries, Mode.only_discussion, settings, plot)
+    settings["mode"] = Mode.importance_to_sections
+    calculate_ranking_sections(raw_queries, settings, plot)
+
     print("\end{tabular}")
     print("\end{center}\n")
 
@@ -205,7 +218,7 @@ def evaluate_ranked_boolean_extended(plot, n=None):
     evaluate_algorithm(settings, plot, n)
 
 
-if __name__ == "__main__":
+def evaluate_explicit_search():
     save_plots = False
 
     for N in range(2, 5):
@@ -220,3 +233,100 @@ if __name__ == "__main__":
     evaluate_tfidf(save_plots)
     evaluate_ranked_boolean(save_plots)
     evaluate_ranked_boolean_extended(save_plots)
+
+
+# ---------------------------------------------------------
+#                More like this
+# ---------------------------------------------------------
+def calculate_ranking_mlt(settings):
+    api = API()
+    mean_ap = []
+
+    papers = api.get_all_paper()
+    for paper in papers:
+        relevant_papers = [api.get_paper(ref.get_paper_id()) for ref in paper.references if ref.paper_id]
+        if not relevant_papers:
+            continue
+
+        ranked_papers, queries = api.get_papers_with_paper(paper.filename, settings)
+        ap = average_precision(ranked_papers, relevant_papers)
+        if ap:
+            mean_ap.append(ap)
+
+    print("{} & {} & {} \\\\ \hline".format(settings["mode"].name.replace("_", " "), len(mean_ap), sum(mean_ap) / len(mean_ap)))
+
+
+def evaluate_algorithm_mlt(settings):
+    print("\\begin{center}")
+    print("\\begin{tabular}{ | c | c | l | }")
+    print("\hline")
+    print("\multicolumn{1}{|c}{} & \multicolumn{1}{|c}{\\textbf{\# queries}} & \multicolumn{1}{|c|}{\\textbf{MAP}} \\\\ \hline")
+
+    settings["mode"] = Mode.without_importance_to_sections
+    calculate_ranking_mlt(settings)
+    settings["mode"] = Mode.importance_to_sections
+    calculate_ranking_mlt(settings)
+    settings["mode"] = Mode.only_introduction
+    calculate_ranking_mlt(settings)
+    settings["mode"] = Mode.only_background
+    calculate_ranking_mlt(settings)
+    settings["mode"] = Mode.only_methods
+    calculate_ranking_mlt(settings)
+    settings["mode"] = Mode.only_results
+    calculate_ranking_mlt(settings)
+    settings["mode"] = Mode.only_discussion
+    calculate_ranking_mlt(settings)
+
+    print("\end{tabular}")
+    print("\end{center}\n")
+
+
+def evaluate_tf_mlt():
+    print("Term Frequency")
+    evaluate_algorithm_mlt(TF.get_default_config())
+
+
+def evaluate_tfidf_mlt():
+    print("Term Frequency-Inverse Document Frequency")
+    evaluate_algorithm_mlt(TFIDF.get_default_config())
+
+
+def evaluate_ranked_boolean_mlt():
+    print("Ranked Boolean Retrieval")
+    settings = {"algorithm": RankedBoolean.get_name(),
+                "extended": False,
+                "ranking-algo-params": {RetrievalType.TITLE.name: 0.2,
+                                        RetrievalType.SECTION_TITLE.name: 0.3,
+                                        RetrievalType.SECTION_TEXT.name: 0.2,
+                                        RetrievalType.SUBSECTION_TITLE.name: 0.18,
+                                        RetrievalType.SUBSECTION_TEXT.name: 0.05,
+                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.05,
+                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.02}}
+    evaluate_algorithm_mlt(settings)
+
+
+def evaluate_ranked_boolean_extended_mlt():
+    print("Ranked Boolean Retrieval-Extended Version")
+    settings = {"algorithm": RankedBoolean.get_name(),
+                "extended": True,
+                "ranking-algo-params": {RetrievalType.TITLE.name: 0.05,
+                                        RetrievalType.SECTION_TITLE.name: 0.05,
+                                        RetrievalType.SECTION_TEXT.name: 0.8,
+                                        RetrievalType.SUBSECTION_TITLE.name: 0.05,
+                                        RetrievalType.SUBSECTION_TEXT.name: 0.03,
+                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.01,
+                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.01}}
+    evaluate_algorithm_mlt(settings)
+
+
+def evaluate_more_like_this():
+    print("\section{More Like This}")
+    # evaluate_tf_mlt()
+    evaluate_tfidf_mlt()
+    evaluate_ranked_boolean_mlt()
+    evaluate_ranked_boolean_extended_mlt()
+
+
+if __name__ == "__main__":
+    # evaluate_explicit_search()
+    evaluate_more_like_this()

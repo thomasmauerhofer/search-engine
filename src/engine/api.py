@@ -8,6 +8,7 @@ from pymongo.errors import DocumentTooLarge
 import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
+from engine.datastore.ranking.mode import Mode
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
@@ -54,7 +55,11 @@ class API(object):
     def get_ranking_info(self, paper, queries, settings):
         ranking_algo = self.ranking_algos[settings["algorithm"]]
 
-        reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, settings["importance_sections"])
+        importance_to_section = settings["mode"] == Mode.importance_to_sections or settings["mode"] == Mode.only_introduction or \
+                                settings["mode"] == Mode.only_background or settings["mode"] == Mode.only_methods or \
+                                settings["mode"] == Mode.only_results or settings["mode"] == Mode.only_discussion
+
+        reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, importance_to_section)
         rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings)
         return {"paper": paper, "rank": rank, "info": combine_info(info, ignored)}
 
@@ -126,15 +131,15 @@ class API(object):
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
 
         if settings["algorithm"] == TFIDF.get_name():
-            settings["idf"] = TFIDF.get_idf(queries_proceed, papers)
+            settings["df"] = TFIDF.get_df(queries_proceed, papers)
+            settings["number_paper"] = len(papers)
 
         return self.__get_ratings(papers, queries_proceed, settings)
 
 
     def get_papers_with_paper(self, filename, settings):
-        # todo
-        settings["importance_sections"] = settings["mode"] == "sections-uncategorized-sec"
-        paper = self.get_imported_paper(filename)
+        papers = self.client.get_papers_with_filename(filename)
+        paper = papers[0] if papers else self.get_imported_paper(filename)
         queries = paper_to_queries(paper, settings["mode"])
         return self.get_papers(queries, settings), queries
 

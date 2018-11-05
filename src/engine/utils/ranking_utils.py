@@ -3,7 +3,6 @@
 import copy
 
 from engine.utils.paper_utils import sections_to_word_hist
-from engine.utils.string_utils import remove_multiple_spaces
 
 
 def get_ignoring_keys(paper, queries, importance_sections):
@@ -30,11 +29,17 @@ def remove_ignored_words_from_query(paper, queries, importance_sections):
             continue
 
         if (importance_sections and imrad_type == "whole-document") or (not importance_sections and imrad_type != "whole-document"):
+            query = " " + query + " "
             for term in query.split():
+                # ignoring_keys contain all keywords of the paper which can be
+                # created for the whole doc/sections with the query
                 keys_to_ignore = [key for key in ignoring_keys if term in key]
+
+                # remove the term from the query
                 if len(keys_to_ignore):
                     info[imrad_type]["ignored"].extend(keys_to_ignore)
-                    ret[imrad_type] = remove_multiple_spaces(query.replace(term, ""))
+                    query = query.replace(" " + term + " ", " ")
+            ret[imrad_type] = query
 
     return ret, info
 
