@@ -9,3 +9,4 @@ class Mode(Enum):
     only_methods = 4
     only_results = 5
     only_discussion = 6
+

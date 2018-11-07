@@ -140,7 +140,7 @@ class API(object):
     def get_papers_with_paper(self, filename, settings):
         papers = self.client.get_papers_with_filename(filename)
         paper = papers[0] if papers else self.get_imported_paper(filename)
-        queries = paper_to_queries(paper, settings["mode"])
+        queries = paper_to_queries(paper, settings)
         return self.get_papers(queries, settings), queries
 
 

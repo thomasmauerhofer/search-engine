@@ -264,8 +264,15 @@ def evaluate_algorithm_mlt(settings):
 
     settings["mode"] = Mode.without_importance_to_sections
     calculate_ranking_mlt(settings)
+
     settings["mode"] = Mode.importance_to_sections
+    print("Next line don't use unclassified chapters")
+    settings["use-unclassified-chapters"] = False
     calculate_ranking_mlt(settings)
+    print("Next line use unclassified chapters")
+    settings["use-unclassified-chapters"] = True
+    calculate_ranking_mlt(settings)
+
     settings["mode"] = Mode.only_introduction
     calculate_ranking_mlt(settings)
     settings["mode"] = Mode.only_background
@@ -323,8 +330,8 @@ def evaluate_more_like_this():
     print("\section{More Like This}")
     # evaluate_tf_mlt()
     evaluate_tfidf_mlt()
-    evaluate_ranked_boolean_mlt()
-    evaluate_ranked_boolean_extended_mlt()
+    #evaluate_ranked_boolean_mlt()
+    #evaluate_ranked_boolean_extended_mlt()
 
 
 if __name__ == "__main__":
