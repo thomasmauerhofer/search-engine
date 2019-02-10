@@ -33,6 +33,9 @@ class RankedBoolean(RankingBase):
                                             RetrievalType.SUBSUBSECTION_TEXT.name: WEIGHT_SUBSUBSECTION_TEXT}}
         return settings
 
+    @staticmethod
+    def add_papers_params(papers, queries, settings):
+        pass
 
     @staticmethod
     def __add_keys(new_keys, keys=None):

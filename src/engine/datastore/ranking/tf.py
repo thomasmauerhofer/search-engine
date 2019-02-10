@@ -13,6 +13,10 @@ class TF(RankingBase):
     def get_default_config():
         return {"algorithm": TF.get_name()}
 
+    @staticmethod
+    def add_papers_params(papers, queries, settings):
+        pass
+
 
     @staticmethod
     def get_ranking(paper, queries, settings):

@@ -173,8 +173,9 @@ def evaluate_algorithm(settings, plot, n):
 
     raw_queries = create_queries(n)
     calculate_ranking(raw_queries, settings, plot)
-    settings["mode"] = Mode.importance_to_sections
-    calculate_ranking_sections(raw_queries, settings, plot)
+    # TODO: split into own call....
+    # settings["mode"] = Mode.importance_to_sections
+    # calculate_ranking_sections(raw_queries, settings, plot)
 
     print("\end{tabular}")
     print("\end{center}\n")
@@ -204,20 +205,6 @@ def evaluate_ranked_boolean(plot, n=None):
     evaluate_algorithm(settings, plot, n)
 
 
-def evaluate_ranked_boolean_extended(plot, n=None):
-    print("Ranked Boolean Retrieval-Extended Version")
-    settings = {"algorithm": RankedBoolean.get_name(),
-                "extended": True,
-                "ranking-algo-params": {RetrievalType.TITLE.name: 0.05,
-                                        RetrievalType.SECTION_TITLE.name: 0.05,
-                                        RetrievalType.SECTION_TEXT.name: 0.8,
-                                        RetrievalType.SUBSECTION_TITLE.name: 0.05,
-                                        RetrievalType.SUBSECTION_TEXT.name: 0.03,
-                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.01,
-                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.01}}
-    evaluate_algorithm(settings, plot, n)
-
-
 def evaluate_explicit_search():
     save_plots = False
 
@@ -226,13 +213,11 @@ def evaluate_explicit_search():
         evaluate_tf(save_plots, N)
         evaluate_tfidf(save_plots, N)
         evaluate_ranked_boolean(save_plots, N)
-        evaluate_ranked_boolean_extended(save_plots, N)
 
     print("\subsection{Full queries}")
     evaluate_tf(save_plots)
     evaluate_tfidf(save_plots)
     evaluate_ranked_boolean(save_plots)
-    evaluate_ranked_boolean_extended(save_plots)
 
 
 # ---------------------------------------------------------
@@ -253,7 +238,8 @@ def calculate_ranking_mlt(settings):
         if ap:
             mean_ap.append(ap)
 
-    print("{} & {} & {} \\\\ \hline".format(settings["mode"].name.replace("_", " "), len(mean_ap), sum(mean_ap) / len(mean_ap)))
+    round_map = round(sum(mean_ap) / len(mean_ap), 4)
+    print("{} & {} & {} \\\\ \hline".format(settings["mode"].name.replace("_", " "), len(mean_ap), round_map))
 
 
 def evaluate_algorithm_mlt(settings):
@@ -273,16 +259,16 @@ def evaluate_algorithm_mlt(settings):
     settings["use-unclassified-chapters"] = True
     calculate_ranking_mlt(settings)
 
-    settings["mode"] = Mode.only_introduction
-    calculate_ranking_mlt(settings)
-    settings["mode"] = Mode.only_background
-    calculate_ranking_mlt(settings)
-    settings["mode"] = Mode.only_methods
-    calculate_ranking_mlt(settings)
-    settings["mode"] = Mode.only_results
-    calculate_ranking_mlt(settings)
-    settings["mode"] = Mode.only_discussion
-    calculate_ranking_mlt(settings)
+    # settings["mode"] = Mode.only_introduction
+    # calculate_ranking_mlt(settings)
+    # settings["mode"] = Mode.only_background
+    # calculate_ranking_mlt(settings)
+    # settings["mode"] = Mode.only_methods
+    # calculate_ranking_mlt(settings)
+    # settings["mode"] = Mode.only_results
+    # calculate_ranking_mlt(settings)
+    # settings["mode"] = Mode.only_discussion
+    # calculate_ranking_mlt(settings)
 
     print("\end{tabular}")
     print("\end{center}\n")
@@ -328,12 +314,12 @@ def evaluate_ranked_boolean_extended_mlt():
 
 def evaluate_more_like_this():
     print("\section{More Like This}")
-    # evaluate_tf_mlt()
+    evaluate_tf_mlt()
     evaluate_tfidf_mlt()
-    #evaluate_ranked_boolean_mlt()
-    #evaluate_ranked_boolean_extended_mlt()
+    evaluate_ranked_boolean_mlt()
+    # evaluate_ranked_boolean_extended_mlt()
 
 
 if __name__ == "__main__":
-    # evaluate_explicit_search()
-    evaluate_more_like_this()
+    evaluate_explicit_search()
+    # evaluate_more_like_this()

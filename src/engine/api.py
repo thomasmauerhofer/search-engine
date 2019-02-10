@@ -8,6 +8,7 @@ from pymongo.errors import DocumentTooLarge
 import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
+from engine.datastore.ranking.bm25 import BM25
 from engine.datastore.ranking.mode import Mode
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tf import TF
@@ -123,17 +124,14 @@ class API(object):
 
 
     def get_papers(self, queries, settings):
+        ranking_algo = self.ranking_algos[settings["algorithm"]]
         queries_proceed = self.preprocessor.proceed_queries(queries)
 
         if all(not query for query in queries_proceed.values()):
             return []
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
-
-        if settings["algorithm"] == TFIDF.get_name():
-            settings["df"] = TFIDF.get_df(queries_proceed, papers)
-            settings["number_paper"] = len(papers)
-
+        ranking_algo.add_papers_params(papers, queries_proceed, settings)
         return self.__get_ratings(papers, queries_proceed, settings)
 
 
