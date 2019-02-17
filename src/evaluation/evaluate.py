@@ -5,16 +5,20 @@ from engine.datastore.ranking.mode import Mode
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean, RetrievalType
 from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
+from evaluation.utils.explicit_evaluation import ExplicitEvaluation
+from evaluation.utils.mlt_evaluation import MltEvaluation
 
 
 def evaluate_tf(n=None):
     print("Term Frequency")
-    evaluate_algorithm(TF.get_default_config(), n)
+    explicit_evaluation = ExplicitEvaluation()
+    explicit_evaluation.calculate_ranking(TF.get_default_config(), n)
 
 
 def evaluate_tfidf(n=None):
     print("Term Frequency-Inverse Document Frequency")
-    evaluate_algorithm(TFIDF.get_default_config(), n)
+    explicit_evaluation = ExplicitEvaluation()
+    explicit_evaluation.calculate_ranking(TFIDF.get_default_config(), n)
 
 
 def evaluate_ranked_boolean(n=None):
@@ -28,7 +32,8 @@ def evaluate_ranked_boolean(n=None):
                                         RetrievalType.SUBSECTION_TEXT.name: 0.05,
                                         RetrievalType.SUBSUBSECTION_TITLE.name: 0.05,
                                         RetrievalType.SUBSUBSECTION_TEXT.name: 0.02}}
-    evaluate_algorithm(settings, n)
+    explicit_evaluation = ExplicitEvaluation()
+    explicit_evaluation.calculate_ranking(settings, n)
 
 
 def evaluate_explicit_search():
@@ -48,20 +53,21 @@ def evaluate_explicit_search():
 #                More like this
 # ---------------------------------------------------------
 def evaluate_algorithm_mlt(settings):
+    mlt_evaluation = MltEvaluation()
     print(" & # queries & MAP")
     api = API()
     papers = api.get_all_paper()
 
     settings["mode"] = Mode.without_importance_to_sections
-    calculate_ranking_mlt(settings, papers)
+    mlt_evaluation.calculate_ranking(settings, papers)
 
     settings["mode"] = Mode.importance_to_sections
     print("Next line don't use unclassified chapters")
     settings["use-unclassified-chapters"] = False
-    calculate_ranking_mlt(settings, papers)
+    mlt_evaluation.calculate_ranking(settings, papers)
     print("Next line use unclassified chapters")
     settings["use-unclassified-chapters"] = True
-    calculate_ranking_mlt(settings, papers)
+    mlt_evaluation.calculate_ranking(settings, papers)
 
     # settings["mode"] = Mode.only_introduction
     # calculate_ranking_mlt(settings, papers)
