@@ -30,7 +30,8 @@ class API(object):
         self.ranking_algos = {
             RankedBoolean.get_name(): RankedBoolean,
             TF.get_name(): TF,
-            TFIDF.get_name(): TFIDF
+            TFIDF.get_name(): TFIDF,
+            BM25.get_name(): BM25
         }
 
 
@@ -106,10 +107,6 @@ class API(object):
 
     def delete_paper(self, paper_id):
         self.client.delete_paper(paper_id)
-
-
-    def delete_all_paper(self):
-        self.client.delete_all_paper()
 
 
     def save_paper_as_pdf(self, paper_id):

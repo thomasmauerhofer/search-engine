@@ -8,10 +8,7 @@ from config import WEIGHT_TITLE, WEIGHT_SECTION_TEXT, WEIGHT_SUBSECTION_TITLE, W
     WEIGHT_SUBSUBSECTION_TITLE, WEIGHT_SUBSUBSECTION_TEXT, WEIGHT_SECTION_TITLE, DEFAULT_EXTENDED
 from engine.datastore.ranking.ranking_base import RankingBase
 from engine.utils.exceptions.ranking_exceptions import RankingParameterError
-
-
-def mean(values):
-    return np.mean(values) if len(values) else 0
+from engine.utils.math import mean
 
 
 class RankedBoolean(RankingBase):

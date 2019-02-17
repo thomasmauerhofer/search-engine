@@ -16,7 +16,11 @@ class WordHist(dict):
             if querie_word in key:
                 word_count += value
 
-        return word_count / sum(self.values()) if self.values() else 0
+        return word_count / self.number_of_words() if self.values() else 0
+
+
+    def number_of_words(self):
+        return sum(self.values())
 
 
     '''
