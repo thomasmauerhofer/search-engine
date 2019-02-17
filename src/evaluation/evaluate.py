@@ -321,5 +321,5 @@ def evaluate_more_like_this():
 
 
 if __name__ == "__main__":
-    evaluate_explicit_search()
-    # evaluate_more_like_this()
+    # evaluate_explicit_search()
+    evaluate_more_like_this()

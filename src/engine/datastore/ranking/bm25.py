@@ -23,7 +23,7 @@ class BM25(RankingBase):
     @staticmethod
     def add_papers_params(papers, queries, settings):
         settings["df"] = BM25.get_df(queries, papers)
-        settings["number_paper"] = len(papers)
+        settings["N"] = len(papers)
 
 
     @staticmethod
@@ -40,7 +40,7 @@ class BM25(RankingBase):
 
         bm25 = {}
         df = settings["df"]
-        num_paper = settings["number_paper"]
+        N = settings["N"]
 
         for imrad, query in queries.items():
             if imrad == "whole-document":
@@ -58,14 +58,11 @@ class BM25(RankingBase):
                 if not df_val:
                     continue
 
-                tf_val = hist.get_tf(querie_word)
-                # idf wie auf wikipedia - idf not summular to tfidf...
-                # N = num of documents which are relevant
-                # n(q_i) = number of documents which contains the i_th query term
-                idf_val = math.log10(num_paper / df_val)
-
                 doc_length = 0
                 avg_doc_length = 0
+
+                tf_val = hist.get_tf(querie_word)
+                idf_val = math.log10((N - df_val + 0.5) / (df_val + 0.5))
                 b25_val = idf_val * ((tf_val * (k1 + 1)) / (tf_val + k1 * (1 - b + b * (doc_length / avg_doc_length))))
 
                 key_values[querie_word] = {"b25": b25_val, "tf": tf_val, "idf": idf_val}

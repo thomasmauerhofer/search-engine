@@ -18,13 +18,13 @@ class TFIDF(RankingBase):
     @staticmethod
     def add_papers_params(papers, queries, settings):
         settings["df"] = TFIDF.get_df(queries, papers)
-        settings["number_paper"] = len(papers)
+        settings["N"] = len(papers)
 
     @staticmethod
     def get_ranking(paper, queries, settings):
         tfidf = {}
         df = settings["df"]
-        num_paper = settings["number_paper"]
+        N = settings["N"]
 
         for imrad, query in queries.items():
             if imrad == "whole-document":
@@ -43,7 +43,7 @@ class TFIDF(RankingBase):
                     continue
 
                 tf_val = hist.get_tf(querie_word)
-                idf_val = math.log10(num_paper / df_val)
+                idf_val = math.log10(N / df_val)
                 tfidf_val = tf_val * idf_val
 
                 key_values[querie_word] = {"tfidf": tfidf_val, "tf": tf_val, "idf": idf_val}
@@ -52,7 +52,3 @@ class TFIDF(RankingBase):
                             "score": sum([val["tfidf"] for val in key_values.values()])}
 
         return sum([rating["score"] for rating in tfidf.values()]), tfidf
-
-
-
-
