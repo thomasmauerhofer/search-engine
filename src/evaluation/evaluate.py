@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 from engine.api import API
+from engine.datastore.ranking.bm25 import BM25
 from engine.datastore.ranking.mode import Mode
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean, RetrievalType
 from engine.datastore.ranking.tf import TF
@@ -34,6 +35,23 @@ def evaluate_ranked_boolean(n=None):
                                         RetrievalType.SUBSUBSECTION_TEXT.name: 0.02}}
     explicit_evaluation = ExplicitEvaluation()
     explicit_evaluation.calculate_ranking(settings, n)
+
+
+def evaluate_bm25(k1=None):
+    print("BM25 - b: 0.75, k1:", k1)
+    settings = BM25.get_default_config()
+    settings["k1"] = k1
+
+    explicit_evaluation = ExplicitEvaluation()
+    for N in range(2, 5):
+        print("N = ", N)
+        explicit_evaluation.calculate_ranking(settings, N)
+
+    print("Full queries")
+    explicit_evaluation.calculate_ranking(settings, None)
+
+    print("More Like This")
+    evaluate_algorithm_mlt(settings)
 
 
 def evaluate_explicit_search():
@@ -129,4 +147,6 @@ def evaluate_more_like_this():
 
 if __name__ == "__main__":
     # evaluate_explicit_search()
-    evaluate_more_like_this()
+    # evaluate_more_like_this()
+    evaluate_bm25(1.2)
+    evaluate_bm25(2.0)

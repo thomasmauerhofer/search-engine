@@ -126,10 +126,13 @@ class ExplicitEvaluation(EvaluationBase):
 
     def calculate_ranking(self, settings, n, num_of_queries=0):
         raw_queries = self.create_queries(n)
-        num_of_queries = len(raw_queries) if num_of_queries == 0 or num_of_queries > len(raw_queries) else num_of_queries
 
-        shuffled_queries = raw_queries[:num_of_queries]
-        shuffle(shuffled_queries)
+        # TODO: Don't work at the moment - Structure {IMRAD: List<querie words>}.
+        # Have to be done for all imrad chapters
+        if num_of_queries > 0:
+            num_of_queries = len(raw_queries) if num_of_queries == 0 or num_of_queries > len(raw_queries) else num_of_queries
+            shuffled_queries = raw_queries[:num_of_queries]
+            shuffle(shuffled_queries)
 
         print(" & #queries & MAP")
         self.calculate_overall_ranking(raw_queries, settings)
