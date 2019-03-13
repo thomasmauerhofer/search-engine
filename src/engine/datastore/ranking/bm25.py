@@ -58,7 +58,7 @@ class BM25(RankingBase):
         bm25 = {}
         df = settings["df"]
         N = settings["N"]
-        avg_doc_length = settings["avg_doc_length"]
+        avg_doc_length_dict = settings["avg_doc_length"]
 
         for imrad, query in queries.items():
             if imrad == "whole-document":
@@ -68,7 +68,7 @@ class BM25(RankingBase):
                 hist = sections_to_word_hist(sections)
 
             doc_length = hist.number_of_words()
-            avg_doc_length = avg_doc_length[imrad]
+            avg_doc_length = avg_doc_length_dict[imrad]
 
             key_values = {}
             queries = query.split()
