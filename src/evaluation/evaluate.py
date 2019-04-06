@@ -42,13 +42,13 @@ def evaluate_bm25(k1=None):
     settings = BM25.get_default_config()
     settings["k1"] = k1
 
-    explicit_evaluation = ExplicitEvaluation()
-    for N in range(2, 5):
-        print("N = ", N)
-        explicit_evaluation.calculate_ranking(settings, N)
+    # explicit_evaluation = ExplicitEvaluation()
+    # for N in range(2, 5):
+    #    print("N = ", N)
+    #    explicit_evaluation.calculate_ranking(settings, N)
 
-    print("Full queries")
-    explicit_evaluation.calculate_ranking(settings, None)
+    # print("Full queries")
+    # explicit_evaluation.calculate_ranking(settings, None)
 
     print("More Like This")
     evaluate_algorithm_mlt(settings)
@@ -74,7 +74,7 @@ def evaluate_algorithm_mlt(settings):
     mlt_evaluation = MltEvaluation()
     print(" & # queries & MAP")
     api = API()
-    papers = api.get_all_paper()
+    papers = len(api.get_all_paper())
 
     settings["mode"] = Mode.without_importance_to_sections
     mlt_evaluation.calculate_ranking(settings, papers)

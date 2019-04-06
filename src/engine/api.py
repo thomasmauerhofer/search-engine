@@ -139,6 +139,12 @@ class API(object):
         return self.get_papers(queries, settings), queries
 
 
+    def get_number_of_papers(self, paper, settings):
+        queries = paper_to_queries(paper, settings)
+        queries_proceed = self.preprocessor.proceed_queries(queries)
+        found_papers = self.client.get_paper_which_contains_queries(queries_proceed)
+        return len(found_papers)
+
 
     # -------------------------------------------------------------------------------
     #                           User DB

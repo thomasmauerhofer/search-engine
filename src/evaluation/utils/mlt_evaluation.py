@@ -7,10 +7,10 @@ class MltEvaluation(EvaluationBase):
 
     def calculate_ranking(self, settings, num_of_papers=0):
         papers = self.api.get_all_paper()
-        num_of_papers = len(papers) if num_of_papers == 0 or num_of_papers > len(papers) else num_of_papers
+        # num_of_papers = len(papers) if num_of_papers == 0 or num_of_papers > len(papers) else num_of_papers
 
-        shuffled_papers = papers[:num_of_papers]
-        shuffle(shuffled_papers)
+        # shuffled_papers = papers[:num_of_papers]
+        # shuffle(shuffled_papers)
 
         mean_aps = []
 
