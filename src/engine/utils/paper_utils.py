@@ -34,25 +34,21 @@ def paper_to_queries(paper, settings):
             queries["whole-document"] = paper.title_proceed
             queries["whole-document"] += sections_to_word_hist(paper.get_sections_without_an_imrad_type()).keys_to_query()
 
-        # get areas
-        input_area = settings["input-area"] if "input-area" in settings else Area.All
-        search_area = settings["search-area"] if "search-area" in settings else Area.All
+        queries[IMRaDType.INTRODUCTION.name] = sections_to_word_hist(paper.get_introduction()).keys_to_query()
+        queries[IMRaDType.BACKGROUND.name] = sections_to_word_hist(paper.get_background()).keys_to_query()
+        queries[IMRaDType.METHODS.name] = sections_to_word_hist(paper.get_methods()).keys_to_query()
+        queries[IMRaDType.RESULTS.name] = sections_to_word_hist(paper.get_results()).keys_to_query()
+        queries[IMRaDType.DISCUSSION.name] = sections_to_word_hist(paper.get_discussion()).keys_to_query()
+        return queries
 
-        # use each input area at the associated search area:
-        if input_area == Area.All and search_area == Area.All:
-            queries[IMRaDType.INTRODUCTION.name] = sections_to_word_hist(paper.get_introduction()).keys_to_query()
-            queries[IMRaDType.BACKGROUND.name] = sections_to_word_hist(paper.get_background()).keys_to_query()
-            queries[IMRaDType.METHODS.name] = sections_to_word_hist(paper.get_methods()).keys_to_query()
-            queries[IMRaDType.RESULTS.name] = sections_to_word_hist(paper.get_results()).keys_to_query()
-            queries[IMRaDType.DISCUSSION.name] = sections_to_word_hist(paper.get_discussion()).keys_to_query()
-        # use specific input and search area
-        else:
-            input_imrad_area = __area_to_imrad(input_area)
-            search_imrad_area = __area_to_imrad(search_area)
+    if settings["mode"] == Mode.areas:
+        input_area = settings["input-area"]
+        search_area = settings["search-area"]
+        input_imrad_area = __area_to_imrad(input_area)
+        search_imrad_area = __area_to_imrad(search_area)
 
-            queries[search_imrad_area.name] = sections_to_word_hist(paper.get_sections_with_imrad_type(input_imrad_area)).keys_to_query()
-
-    return queries
+        queries[search_imrad_area.name] = sections_to_word_hist(paper.get_sections_with_imrad_type(input_imrad_area)).keys_to_query()
+        return queries
 
 
 def __area_to_imrad(area):

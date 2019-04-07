@@ -7,7 +7,7 @@ from engine.utils.paper_utils import paper_to_queries
 
 
 class TestUtils(TestCase):
-    def test_without_setting(self):
+    def test_importance_to_sections(self):
         api = API()
         papers = api.get_all_paper()
         settings = {"mode": Mode.importance_to_sections}
@@ -20,28 +20,12 @@ class TestUtils(TestCase):
         self.assertGreater(len(queries[IMRaDType.RESULTS.name]), 0)
         self.assertGreater(len(queries[IMRaDType.DISCUSSION.name]), 0)
 
-    def test_import_all_search_all(self):
-        api = API()
-        papers = api.get_all_paper()
-        settings = {
-            "mode": Mode.importance_to_sections,
-            "import-area": Area.All,
-            "search-area": Area.All
-        }
-
-        queries = paper_to_queries(papers[0], settings)
-        self.assertEqual(len(queries["whole-document"]), 0)
-        self.assertGreater(len(queries[IMRaDType.INTRODUCTION.name]), 0)
-        self.assertGreater(len(queries[IMRaDType.BACKGROUND.name]), 0)
-        self.assertGreater(len(queries[IMRaDType.METHODS.name]), 0)
-        self.assertGreater(len(queries[IMRaDType.RESULTS.name]), 0)
-        self.assertGreater(len(queries[IMRaDType.DISCUSSION.name]), 0)
 
     def test_import_intro_search_intro(self):
         api = API()
         papers = api.get_all_paper()
         settings = {
-            "mode": Mode.importance_to_sections,
+            "mode": Mode.areas,
             "input-area": Area.Introduction,
             "search-area": Area.Introduction
         }
@@ -58,7 +42,7 @@ class TestUtils(TestCase):
         api = API()
         papers = api.get_all_paper()
         settings = {
-            "mode": Mode.importance_to_sections,
+            "mode": Mode.areas,
             "input-area": Area.Introduction,
             "search-area": Area.Background
         }

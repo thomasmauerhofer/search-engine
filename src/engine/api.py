@@ -57,11 +57,9 @@ class API(object):
     def get_ranking_info(self, paper, queries, settings):
         ranking_algo = self.ranking_algos[settings["algorithm"]]
 
-        importance_to_section = settings["mode"] == Mode.importance_to_sections or settings["mode"] == Mode.only_introduction or \
-                                settings["mode"] == Mode.only_background or settings["mode"] == Mode.only_methods or \
-                                settings["mode"] == Mode.only_results or settings["mode"] == Mode.only_discussion
-
+        importance_to_section = settings["mode"] == Mode.importance_to_sections or settings["mode"] == Mode.areas
         reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, importance_to_section)
+
         rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings)
         return {"paper": paper, "rank": rank, "info": combine_info(info, ignored)}
 
