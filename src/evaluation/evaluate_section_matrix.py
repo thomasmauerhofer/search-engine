@@ -1,11 +1,9 @@
-from engine.api import API
 from engine.datastore.ranking.mode import Mode, Area
 from engine.datastore.ranking.tfidf import TFIDF
 from evaluation.utils.mlt_evaluation import MltEvaluation
 
 
 def evaluate():
-    api = API()
     mlt_evaluation = MltEvaluation()
 
     settings = TFIDF.get_default_config()
@@ -15,7 +13,7 @@ def evaluate():
             print("Input:", input_area, ",Search:", search_area)
             settings["input-area"] = input_area
             settings["search-area"] = search_area
-            mlt_evaluation.calculate_ranking(settings)
+            mlt_evaluation.compute_ranking_with_settings(settings)
 
 
 if __name__ == "__main__":

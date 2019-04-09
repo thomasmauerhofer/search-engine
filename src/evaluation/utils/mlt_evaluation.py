@@ -1,11 +1,29 @@
 from random import shuffle
 
+from engine.datastore.ranking.mode import Mode
 from evaluation.utils.evaluation_base import EvaluationBase
 
 
 class MltEvaluation(EvaluationBase):
 
-    def calculate_ranking(self, settings, num_of_papers=0):
+    def calculate_ranking(self, settings):
+        print(" & # queries & MAP")
+        papers = self.api.get_all_paper()
+
+        settings["mode"] = Mode.without_importance_to_sections
+        self.compute_ranking_with_settings(settings, papers)
+
+        settings["mode"] = Mode.importance_to_sections
+        print("Next line don't use unclassified chapters")
+        settings["use-unclassified-chapters"] = False
+        self.compute_ranking_with_settings(settings, papers)
+
+        print("Next line use unclassified chapters")
+        settings["use-unclassified-chapters"] = True
+        self.compute_ranking_with_settings(settings, papers)
+
+
+    def compute_ranking_with_settings(self, settings, num_of_papers=0):
         papers = self.api.get_all_paper()
         # num_of_papers = len(papers) if num_of_papers == 0 or num_of_papers > len(papers) else num_of_papers
 
