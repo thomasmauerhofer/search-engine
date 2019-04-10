@@ -39,8 +39,7 @@ class MltEvaluation(EvaluationBase):
 
             ranked_papers, queries = self.api.get_papers_with_paper(paper.filename, settings)
             ap = self.average_precision(ranked_papers, relevant_papers)
-            if ap:
-                mean_aps.append(ap)
+            mean_aps.append(ap)
 
         mean_ap = sum(mean_aps) / len(mean_aps)
         print("{} & {} & {}".format(settings["mode"].name.replace("_", " "), len(mean_aps), round(mean_ap, 4)))

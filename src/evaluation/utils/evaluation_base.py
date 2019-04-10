@@ -21,8 +21,9 @@ class EvaluationBase(metaclass=ABCMeta):
             except ValueError:
                 pass
 
+            # if no relevant document can be found add 0 to MAP
             if not indexes:
-                return None
+                return 0.0
 
             indexes = sorted(indexes)
             for i in range(len(indexes)):

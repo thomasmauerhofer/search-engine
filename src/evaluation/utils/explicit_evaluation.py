@@ -70,9 +70,8 @@ class ExplicitEvaluation(EvaluationBase):
             ap_whole = self.average_precision(ranked_papers_whole, relevant_paper)
             ap_doc = self.average_precision(ranked_papers_sec, relevant_paper)
 
-            if ap_whole and ap_doc:
-                mean_ap_whole.append(ap_whole)
-                mean_ap_doc.append(ap_doc)
+            mean_ap_whole.append(ap_whole)
+            mean_ap_doc.append(ap_doc)
 
         print("{} & {} & {}".format(Mode.without_importance_to_sections.name.replace("_", " "), len(mean_ap_whole),
                                     sum(mean_ap_whole) / len(mean_ap_whole)))
@@ -105,12 +104,11 @@ class ExplicitEvaluation(EvaluationBase):
             ap_result = self.average_precision(ranked_papers_result, relevant_paper)
             ap_discussion = self.average_precision(ranked_papers_discussion, relevant_paper)
 
-            if ap_intro and ap_background and ap_methods and ap_result and ap_discussion:
-                mean_ap_intro.append(ap_intro)
-                mean_ap_background.append(ap_background)
-                mean_ap_methods.append(ap_methods)
-                mean_ap_result.append(ap_result)
-                mean_ap_discussion.append(ap_discussion)
+            mean_ap_intro.append(ap_intro)
+            mean_ap_background.append(ap_background)
+            mean_ap_methods.append(ap_methods)
+            mean_ap_result.append(ap_result)
+            mean_ap_discussion.append(ap_discussion)
 
         print("{} & {} & {}".format(Mode.only_introduction.name.replace("_", " "),
                                     len(mean_ap_intro), sum(mean_ap_intro) / len(mean_ap_intro)))
