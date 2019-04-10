@@ -7,6 +7,7 @@ from config import REQ_DATA_PATH
 from engine.api import API
 from engine.datastore.models.section import IMRaDType
 from engine.datastore.ranking.mode import Mode
+from engine.utils.printing_utils import progressBar
 from evaluation.utils.evaluation_base import EvaluationBase
 
 
@@ -61,7 +62,8 @@ class ExplicitEvaluation(EvaluationBase):
         settings_sec = copy.deepcopy(settings)
         settings_sec["mode"] = Mode.importance_to_sections
 
-        for query in queries:
+        for i, query in enumerate(queries):
+            progressBar(i, len(queries))
             ranked_papers_whole = api.get_papers({"whole-document": query["search_query"]}, settings)
             ranked_papers_sec = api.get_papers({query["imrad"]: query["search_query"]}, settings_sec)
 
@@ -73,6 +75,7 @@ class ExplicitEvaluation(EvaluationBase):
             mean_ap_whole.append(ap_whole)
             mean_ap_doc.append(ap_doc)
 
+        print()
         print("{} & {} & {}".format(Mode.without_importance_to_sections.name.replace("_", " "), len(mean_ap_whole),
                                     sum(mean_ap_whole) / len(mean_ap_whole)))
         print("{} & {} & {}".format(Mode.importance_to_sections.name.replace("_", " "), len(mean_ap_doc),
@@ -89,7 +92,8 @@ class ExplicitEvaluation(EvaluationBase):
                   raw_queries[IMRaDType.RESULTS.name] + \
                   raw_queries[IMRaDType.DISCUSSION.name]
 
-        for query in queries:
+        for i, query in enumerate(queries):
+            progressBar(i, len(queries))
             relevant_paper = [api.get_paper(reference["paper_id"]) for reference in query["references"]]
 
             ranked_papers_intro = api.get_papers({IMRaDType.INTRODUCTION.name: query["search_query"]}, settings)
@@ -110,6 +114,7 @@ class ExplicitEvaluation(EvaluationBase):
             mean_ap_result.append(ap_result)
             mean_ap_discussion.append(ap_discussion)
 
+        print()
         print("{} & {} & {}".format(Mode.only_introduction.name.replace("_", " "),
                                     len(mean_ap_intro), sum(mean_ap_intro) / len(mean_ap_intro)))
         print("{} & {} & {}".format(Mode.only_background.name.replace("_", " "),

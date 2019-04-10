@@ -1,6 +1,7 @@
 from random import shuffle
 
 from engine.datastore.ranking.mode import Mode
+from engine.utils.printing_utils import progressBar
 from evaluation.utils.evaluation_base import EvaluationBase
 
 
@@ -32,7 +33,8 @@ class MltEvaluation(EvaluationBase):
 
         mean_aps = []
 
-        for paper in papers:
+        for i, paper in enumerate(papers):
+            progressBar(i, len(papers))
             relevant_papers = [self.api.get_paper(ref.get_paper_id()) for ref in paper.references if ref.paper_id]
             if not relevant_papers:
                 continue
@@ -42,4 +44,5 @@ class MltEvaluation(EvaluationBase):
             mean_aps.append(ap)
 
         mean_ap = sum(mean_aps) / len(mean_aps)
+        print()
         print("{} & {} & {}".format(settings["mode"].name.replace("_", " "), len(mean_aps), round(mean_ap, 4)))
