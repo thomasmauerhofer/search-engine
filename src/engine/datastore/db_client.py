@@ -74,6 +74,14 @@ class DBClient(object):
         return Paper(cursor[0])
 
 
+    def contains_paper(self, paper_id):
+        try:
+            cursor = self.papers.find({"_id": ObjectId(paper_id)})
+            return cursor[0] is not None
+        except IndexError:
+            return False
+
+
     def get_papers_with_filename(self, filename):
         cursor = self.papers.find({'filename': filename})
         return self.__cursor_to_list(cursor)

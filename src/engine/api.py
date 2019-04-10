@@ -99,6 +99,10 @@ class API(object):
         return self.client.get_paper(paper_id)
 
 
+    def contains_paper(self, paper_id):
+        return self.client.contains_paper(paper_id)
+
+
     def get_all_paper(self):
         return self.client.get_all_paper()
 

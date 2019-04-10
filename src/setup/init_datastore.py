@@ -4,7 +4,6 @@
 import os
 import pickle
 import shutil
-from difflib import SequenceMatcher
 from getpass import getpass
 from optparse import OptionParser
 
@@ -13,6 +12,7 @@ from pymongo.errors import DocumentTooLarge
 from config import UPLOAD_FOLDER, REQ_DATA_PATH
 from engine.api import API
 from engine.utils.exceptions.import_exceptions import ClassificationError, PaperInStorage
+from setup.utils.datastore_utils import link_references_to_paper_check_references
 
 
 def __add_files(folder):
@@ -57,32 +57,6 @@ def __add_user():
     print("Welcome on board {}".format(name))
 
 
-
-def __link_references_to_paper_check_references(paper, other_paper, api):
-    if not other_paper.title_raw:
-        return
-
-    for ref in paper.references:
-        if ref.paper_id:
-            continue
-
-        similarity = SequenceMatcher(None, ref.complete_ref_raw.lower(), other_paper.title_raw.lower()).ratio()
-        if similarity >= 0.49:
-            choice = ''
-            while choice.lower() != 'y' and choice.lower() != 'n' and choice.lower() != "exit":
-                choice = input(
-                    "{}\n ---> {}\n(y/n)".format(other_paper.title_raw.lower(), ref.complete_ref_raw.lower()))
-
-            if choice.lower() == 'y':
-                ref.paper_id = [other_paper.id, "manual"]
-                api.client.update_paper(paper)
-                other_paper.cited_by.append(paper.id)
-                api.client.update_paper(other_paper)
-            elif choice.lower() == 'exit':
-                print("bye!")
-                exit(0)
-
-
 def __link_references_to_paper():
     api = API()
     all_papers = api.get_all_paper()
@@ -115,9 +89,9 @@ def __link_references_to_paper():
         other_papers = [p for p in all_papers if p.id != paper.id]
         for other_paper in other_papers:
             if os.path.isfile("newpapers.txt"):
-                __link_references_to_paper_check_references(other_paper, paper, api)
+                link_references_to_paper_check_references(other_paper, paper, api)
 
-            __link_references_to_paper_check_references(paper, other_paper, api)
+            link_references_to_paper_check_references(paper, other_paper, api)
 
         finished_files.append(paper.id)
         with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
