@@ -1,7 +1,6 @@
 from abc import ABCMeta
 
 from matplotlib import pyplot as plt
-
 from engine.api import API
 
 

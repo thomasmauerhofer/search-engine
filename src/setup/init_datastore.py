@@ -12,7 +12,7 @@ from pymongo.errors import DocumentTooLarge
 from config import UPLOAD_FOLDER, REQ_DATA_PATH
 from engine.api import API
 from engine.utils.exceptions.import_exceptions import ClassificationError, PaperInStorage
-from setup.utils.datastore_utils import link_references_to_paper_check_references
+from setup.utils.datastore_utils import link_references_to_paper
 
 
 def __add_files(folder):
@@ -35,6 +35,8 @@ def __add_files(folder):
 
 
 def __import_json(filepath):
+    # Dosen't work with v2.4, v2.6 (max size 18mb)
+    # works with v4.0.1
     os.popen("mongoimport --db searchengine --collection papers --file ", filepath)
 
 
@@ -89,9 +91,9 @@ def __link_references_to_paper():
         other_papers = [p for p in all_papers if p.id != paper.id]
         for other_paper in other_papers:
             if os.path.isfile("newpapers.txt"):
-                link_references_to_paper_check_references(other_paper, paper, api)
+                link_references_to_paper(other_paper, paper, api)
 
-            link_references_to_paper_check_references(paper, other_paper, api)
+            link_references_to_paper(paper, other_paper, api)
 
         finished_files.append(paper.id)
         with open(REQ_DATA_PATH + "finished_papers.txt", 'wb') as fp:
