@@ -120,7 +120,6 @@ def create_directed_graph():
     create_degree_distribution(out_degrees, 'Out-Degree Distribution', '#e65100', 7, 13.5, 6.5)
 
 
-
 if __name__ == "__main__":
     create_graph()
     create_directed_graph()
