@@ -99,6 +99,9 @@ def create_directed_graph():
         for ref_id in references:
             dg.add_edge(str(paper.id), str(ref_id))
 
+    print(list(nx.simple_cycles(dg)))
+    exit(0)
+
     in_degrees = []
     out_degrees = []
     for node in dg.nodes:
@@ -121,7 +124,8 @@ def create_directed_graph():
 
 
 if __name__ == "__main__":
-    create_graph()
+    # create_graph()
     create_directed_graph()
+
 
 

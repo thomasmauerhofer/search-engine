@@ -225,21 +225,26 @@
     {% else %}
         {% for ref in paper.references %}
             <table class="table table-bordered">
+                <tr>
+                    <td style="width: 132px;"><b> Complete Raw</b></td>
+                    <td>{{ ref.complete_ref_raw }}</td>
+                </tr>
                 {% if ref.paper_id != '' %}
                     <tr>
-                        <td style="width: 132px;"></td>
+                        <td style="width: 132px;">Referred Paper</td>
                         <td>
-                            <form action="/admin/paper_info/{{ ref.paper_id }}" method="get" target="_blank">
-                                <input type="submit" value="Open referred Paper" class="btn btn-primary btn-xs">
+                            <a href="/admin/paper_info/{{ ref.paper_id[0] }}">{{ id_to_filename[ref.paper_id[0]] }}</a>
+                            <form action="/view_pdf/{{ ref.paper_id[0] }}" method="post" target="_blank">
+                                <input type="submit" value="View" class="btn btn-primary btn-xs">
+                            </form>
+                            <form action="/admin/remove_link/{{ paper.id }}" method="post" target="_blank">
+                                <input type="hidden" value="{{ ref.paper_id[0] }}" name="ref_paper_id">
+                                <input type="submit" value="Remove Link" class="btn btn-primary btn-xs">
                             </form>
                         </td>
                     </tr>
                 {% endif %}
-                <tr>
-                    <td style="width: 132px;"><b> Complete </b></td>
-                    <td>{{ ref.complete_ref_raw }}</td>
-                </tr>
-                {% if ref.title != '' %}
+                <!--{% if ref.title != '' %}
                     <tr>
                         <td style="width: 132px;"><b> Title </b></td>
                         <td>{{ ref.title }}</td>
@@ -256,7 +261,7 @@
                         <td style="width: 132px;">{{ info[0].name }}</td>
                         <td>{{ info[1] }}</td>
                     </tr>
-                {% endfor %}
+                {% endfor %}-->
             </table>
         {% endfor %}
     {% endif %}

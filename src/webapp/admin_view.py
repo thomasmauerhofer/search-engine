@@ -39,8 +39,11 @@ def admin_logout():
 @admin.route('/admin/paper_info/<paper_id>', methods=['GET'])
 def paper_info(paper_id):
     api = API()
+    papers = api.get_all_paper()
+    id_to_filename = {paper.id: paper.filename for paper in papers}
     paper = api.get_paper(paper_id)
-    return render_template('admin/paper_info.html', paper=paper)
+
+    return render_template('admin/paper_info.html', paper=paper, id_to_filename=id_to_filename)
 
 
 @admin.route('/admin/user_info', methods=['GET'])
@@ -51,3 +54,13 @@ def user_info():
     api = API()
     users = api.get_all_user()
     return render_template('admin/users.html', users=users)
+
+
+@admin.route('/admin/remove_link/<paper_id>', methods=['POST'])
+def remove_link(paper_id):
+    print(paper_id)
+    print(request.form['ref_paper_id'])
+    api = API()
+    return "success"
+
+
