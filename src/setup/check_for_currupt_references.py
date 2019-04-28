@@ -66,3 +66,4 @@ def perform_checks():
 
 if __name__ == "__main__":
     perform_checks()
+    exit(0)

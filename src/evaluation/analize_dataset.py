@@ -99,8 +99,18 @@ def create_directed_graph():
         for ref_id in references:
             dg.add_edge(str(paper.id), str(ref_id))
 
-    print(list(nx.simple_cycles(dg)))
-    exit(0)
+    # Data cleaning - if not done 5 papers which cite each other in dataset
+    # preprints cited each other
+    dg.remove_edge('5c52a9b9bf51c50be97c5145', '5c529cbdbf51c5359dce35f3')
+    dg.remove_edge('5b0565406919df52a704f32c', '5b05673b6919df52a704f375')
+    dg.remove_edge('5b97b226bf51c561194d9f1f', '5b05682a6919df52a704f395')
+    dg.remove_edge('5c52a4f9bf51c50be97c5111', '5c533345bf51c5335baca21a')
+    dg.remove_edge('5b97b0aebf51c561194d9f09', '5b97b31ebf51c561194d9f2a')
+    print(len(list(nx.simple_cycles(dg))))
+    print("# nodes: ", dg.number_of_nodes())
+    print("# edges: ", dg.number_of_edges())
+    # print("# strongly connected components: ", len(list(nx.strongly_connected_components(dg))))
+    print("Dag longest path: ", len(nx.dag_longest_path(dg)))
 
     in_degrees = []
     out_degrees = []
@@ -123,9 +133,23 @@ def create_directed_graph():
     create_degree_distribution(out_degrees, 'Out-Degree Distribution', '#e65100', 7, 13.5, 6.5)
 
 
+def print_circles(circles):
+    api = API()
+    tmp = []
+    for circle in circles:
+        tmp_circle_array = []
+        for node in circle:
+            tmp_circle_array.append(api.get_paper(node).filename)
+        tmp.append(tmp_circle_array)
+    print(tmp)
+    print(circles)
+
+
 if __name__ == "__main__":
-    # create_graph()
+    create_graph()
     create_directed_graph()
+    exit(0)
+
 
 
 
