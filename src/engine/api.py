@@ -148,6 +148,17 @@ class API(object):
         return len(found_papers)
 
 
+    def remove__link_of_paper(self, paper, ref_paper_id):
+        ref_paper = self.get_paper(ref_paper_id)
+        ref = [ref.get_paper_id() for ref in paper.references if ref.get_paper_id()]
+        if ref:
+            ref[0] = []
+            self.client.update_paper(paper)
+            ref_paper.cited_by.remove(paper.id)
+            self.client.update_paper(ref_paper)
+
+
+
     # -------------------------------------------------------------------------------
     #                           User DB
     # -------------------------------------------------------------------------------

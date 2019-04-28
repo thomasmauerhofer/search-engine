@@ -232,14 +232,14 @@
                 {% if ref.paper_id != '' %}
                     <tr>
                         <td style="width: 132px;">Referred Paper</td>
-                        <td>
-                            <a href="/admin/paper_info/{{ ref.paper_id[0] }}">{{ id_to_filename[ref.paper_id[0]] }}</a>
+                        <td style="display: flex">
+                            <a href="/admin/paper_info/{{ ref.paper_id[0] }}">{{ ref.paper_id[0] }}: {{ id_to_filename[ref.paper_id[0]] }}</a>
                             <form action="/view_pdf/{{ ref.paper_id[0] }}" method="post" target="_blank">
-                                <input type="submit" value="View" class="btn btn-primary btn-xs">
+                                <input type="submit" value="View PDF" class="btn btn-primary btn-xs small-button">
                             </form>
                             <form action="/admin/remove_link/{{ paper.id }}" method="post" target="_blank">
                                 <input type="hidden" value="{{ ref.paper_id[0] }}" name="ref_paper_id">
-                                <input type="submit" value="Remove Link" class="btn btn-primary btn-xs">
+                                <input type="submit" value="Remove Link" class="btn btn-primary btn-xs  small-button">
                             </form>
                         </td>
                     </tr>

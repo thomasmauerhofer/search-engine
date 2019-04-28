@@ -58,9 +58,15 @@ def user_info():
 
 @admin.route('/admin/remove_link/<paper_id>', methods=['POST'])
 def remove_link(paper_id):
-    print(paper_id)
-    print(request.form['ref_paper_id'])
+    if not ('logged_in' in session.keys() and session['logged_in']):
+        return redirect('admin/')
+
     api = API()
-    return "success"
+    api.remove__link_of_paper(paper_id, request.form['ref_paper_id'])
+
+    papers = api.get_all_paper()
+    id_to_filename = {paper.id: paper.filename for paper in papers}
+    paper = api.get_paper(paper_id)
+    return render_template('admin/paper_info.html', paper=paper, id_to_filename=id_to_filename)
 
 

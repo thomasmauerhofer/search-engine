@@ -32,3 +32,8 @@ button.btn.btn-primary.btn-md.hist {
     text-align: center;
     font-weight: bold;
 }
+
+.small-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
