@@ -114,6 +114,7 @@ def create_directed_graph():
 
     in_degrees = []
     out_degrees = []
+    root_nodes = []
     for node in dg.nodes:
         if len(dg.in_edges(node)) > 0:
             in_degrees.append(len(dg.in_edges(node)))
@@ -121,6 +122,10 @@ def create_directed_graph():
         if len(dg.out_edges(node)) > 0:
             out_degrees.append(len(dg.out_edges(node)))
 
+        if len(dg.out_edges(node)) == 0:
+            root_nodes.append(node)
+
+    print("# root nodes: ", len(root_nodes))
     print("In Degree:")
     print("  max degree: ", max(in_degrees))
     print("  mean degree: ", round(mean(in_degrees), 4))
@@ -148,8 +153,3 @@ def print_circles(circles):
 if __name__ == "__main__":
     create_graph()
     create_directed_graph()
-    exit(0)
-
-
-
-
