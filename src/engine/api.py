@@ -9,6 +9,7 @@ import engine.datastore.datastore_utils.crypto as crypto
 from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER
 from engine.datastore.db_client import DBClient
 from engine.datastore.ranking.bm25 import BM25
+from engine.datastore.ranking.divergence_from_randomness import DivergenceFromRandomness
 from engine.datastore.ranking.mode import Mode
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean
 from engine.datastore.ranking.tf import TF
@@ -31,7 +32,8 @@ class API(object):
             RankedBoolean.get_name(): RankedBoolean,
             TF.get_name(): TF,
             TFIDF.get_name(): TFIDF,
-            BM25.get_name(): BM25
+            BM25.get_name(): BM25,
+            DivergenceFromRandomness.get_name(): DivergenceFromRandomness
         }
 
 

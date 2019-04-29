@@ -47,8 +47,7 @@ class BM25(RankingBase):
             avg_doc_length = avg_doc_length_dict[imrad]
 
             key_values = {}
-            queries = query.split()
-            for querie_word in queries:
+            for querie_word in query.split():
                 df_val = df[imrad][querie_word]
 
                 # query word is in no other paper -> protect against dividing by 0

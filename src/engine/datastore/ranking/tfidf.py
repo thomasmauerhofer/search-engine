@@ -34,8 +34,7 @@ class TFIDF(RankingBase):
                 hist = sections_to_word_hist(sections)
 
             key_values = {}
-            queries = query.split()
-            for querie_word in queries:
+            for querie_word in query.split():
                 df_val = df[imrad][querie_word]
 
                 # query word is in no other paper -> protect against dividing by 0

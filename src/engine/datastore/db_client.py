@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 from engine.datastore.models.paper import Paper
 from engine.datastore.models.section import IMRaDType
 from engine.utils.math import mean
+from engine.utils.objects.word_hist import WordHist
 from engine.utils.paper_utils import sections_to_word_hist
 
 
@@ -16,7 +17,10 @@ class DBClient(object):
         self.db = self.client['searchengine']
         self.papers = self.db.papers
         self.users = self.db.users
+
+        # precalculations
         self.avg_doc_length = self.db.avg_doc_length
+        self.overall_hist = self.db.overall_hist
 
 
     @staticmethod
@@ -185,6 +189,41 @@ class DBClient(object):
 
     def delete_all_users(self):
         self.users.remove({})
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Precalculations
+    def get_all_papers_hist(self):
+        cursor = self.overall_hist.find({})
+        overall_hist = list(cursor)
+        if len(overall_hist) > 0:
+            return overall_hist[0]
+        else:
+            overall_hist = self.__calculate_all_papers_hist()
+            self.overall_hist.insert_one(overall_hist)
+            return overall_hist
+
+
+
+    def __calculate_all_papers_hist(self):
+        papers = self.get_all_paper()
+        intro, background, methods, result, discussion, overall = WordHist(), WordHist(), WordHist(), WordHist(), WordHist(), WordHist()
+        for paper in papers:
+            overall.append(paper.get_combined_word_hist())
+            intro.append(sections_to_word_hist(paper.get_introduction()))
+            background.append(sections_to_word_hist(paper.get_background()))
+            methods.append(sections_to_word_hist(paper.get_methods()))
+            result.append(sections_to_word_hist(paper.get_results()))
+            discussion.append(sections_to_word_hist(paper.get_discussion()))
+        return {
+            "whole-document": overall,
+            IMRaDType.INTRODUCTION.name: intro,
+            IMRaDType.BACKGROUND.name: background,
+            IMRaDType.METHODS.name: methods,
+            IMRaDType.RESULTS.name: result,
+            IMRaDType.DISCUSSION.name: discussion
+        }
+
 
 
     def get_avg_doc_length(self):

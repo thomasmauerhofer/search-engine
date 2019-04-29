@@ -3,6 +3,7 @@
 from optparse import OptionParser
 
 from engine.datastore.ranking.bm25 import BM25
+from engine.datastore.ranking.divergence_from_randomness import DivergenceFromRandomness
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean, RetrievalType
 from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
@@ -47,6 +48,11 @@ def evaluate_tfidf():
     evaluate_algorithm(TFIDF.get_default_config())
 
 
+def evaluate_dfr():
+    print("Divergence from Randomness")
+    evaluate_algorithm(DivergenceFromRandomness.get_default_config())
+
+
 def evaluate_ranked_boolean():
     print("Ranked Boolean Retrieval")
     settings = {"algorithm": RankedBoolean.get_name(),
@@ -82,6 +88,7 @@ if __name__ == "__main__":
     parser.add_option("-t", "--tf", action="store_true", dest="tf", default=False, help="Evaluate TF")
     parser.add_option("-i", "--tfidf", action="store_true", dest="tfidf", default=False, help="Evaluate TFIDF")
     parser.add_option("-r", "--rbr", action="store_true", dest="rbr", default=False, help="Evaluate Ranked BooleanRetrieval")
+    parser.add_option("-d", "--dfr", action="store_true", dest="dfr", default=False, help="Evaluate Divergence from Randomness")
     (options, args) = parser.parse_args()
 
     if options.all or options.bm25:
@@ -93,3 +100,5 @@ if __name__ == "__main__":
     if options.all or options.rbr:
         evaluate_ranked_boolean()
         # evaluate_ranked_boolean_extended()
+    if options.all or options.dfr:
+        evaluate_dfr()
