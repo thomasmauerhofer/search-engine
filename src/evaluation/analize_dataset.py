@@ -106,9 +106,9 @@ def create_directed_graph():
     dg.remove_edge('5b97b226bf51c561194d9f1f', '5b05682a6919df52a704f395')
     dg.remove_edge('5c52a4f9bf51c50be97c5111', '5c533345bf51c5335baca21a')
     dg.remove_edge('5b97b0aebf51c561194d9f09', '5b97b31ebf51c561194d9f2a')
-    print(len(list(nx.simple_cycles(dg))))
     print("# nodes: ", dg.number_of_nodes())
     print("# edges: ", dg.number_of_edges())
+    print("# cycles: ", len(list(nx.simple_cycles(dg))))
     # print("# strongly connected components: ", len(list(nx.strongly_connected_components(dg))))
     print("Dag longest path: ", len(nx.dag_longest_path(dg)))
 
