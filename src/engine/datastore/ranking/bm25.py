@@ -50,7 +50,7 @@ class BM25(RankingBase):
 
 
     @staticmethod
-    def get_ranking(paper, queries, settings):
+    def get_ranking(paper, queries, settings, api):
         k1 = copy.deepcopy(settings.get("k1"))
         b = copy.deepcopy(settings.get("b"))
 
@@ -58,7 +58,7 @@ class BM25(RankingBase):
         bm25 = {}
         df = settings["df"]
         N = settings["N"]
-        avg_doc_length_dict = settings["avg_doc_length"]
+        avg_doc_length_dict = api.client.get_avg_doc_length()
 
         for imrad, query in queries.items():
             if imrad == "whole-document":

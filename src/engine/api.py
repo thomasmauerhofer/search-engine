@@ -60,7 +60,7 @@ class API(object):
         importance_to_section = settings["mode"] == Mode.importance_to_sections or settings["mode"] == Mode.areas
         reduced_queries, ignored = remove_ignored_words_from_query(paper, queries, importance_to_section)
 
-        rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings)
+        rank, info = ranking_algo.get_ranking(paper, reduced_queries, settings, self)
         return {"paper": paper, "rank": rank, "info": combine_info(info, ignored)}
 
 

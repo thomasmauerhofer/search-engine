@@ -167,7 +167,7 @@ class RankedBoolean(RankingBase):
 
 
     @staticmethod
-    def get_ranking(paper, queries, settings):
+    def get_ranking(paper, queries, settings, api):
         info, keys, s0, s1, s2, s3, s4, s5, s6 = {}, [], [], [], [], [], [], [], []
         weights = RankedBoolean.__get_params(settings, paper)
 

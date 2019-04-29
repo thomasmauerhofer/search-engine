@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 from abc import ABCMeta, abstractmethod
+
+from engine.datastore.models.section import IMRaDType
+from engine.utils.math import mean
 from engine.utils.paper_utils import sections_to_word_hist
 
 
@@ -19,7 +22,7 @@ class RankingBase(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def get_ranking(paper, queries, settings):
+    def get_ranking(paper, queries, settings, api):
         """Returns ranking of an Paper"""
         return
 

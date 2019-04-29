@@ -6,6 +6,8 @@ from bson.objectid import ObjectId
 
 from engine.datastore.models.paper import Paper
 from engine.datastore.models.section import IMRaDType
+from engine.utils.math import mean
+from engine.utils.paper_utils import sections_to_word_hist
 
 
 class DBClient(object):
@@ -14,6 +16,7 @@ class DBClient(object):
         self.db = self.client['searchengine']
         self.papers = self.db.papers
         self.users = self.db.users
+        self.avg_doc_length = self.db.avg_doc_length
 
 
     @staticmethod
@@ -182,3 +185,35 @@ class DBClient(object):
 
     def delete_all_users(self):
         self.users.remove({})
+
+
+    def get_avg_doc_length(self):
+        cursor = self.avg_doc_length.find({})
+        avg_doc_length = list(cursor)
+        if len(avg_doc_length) > 0:
+            return avg_doc_length[0]
+        else:
+            avg_doc_length = self.__calculate_avg_doc_length()
+            self.avg_doc_length.insert_one(avg_doc_length)
+            return avg_doc_length
+
+
+    def __calculate_avg_doc_length(self):
+        papers = self.get_all_paper()
+        intro, background, methods, result, discussion, overall = [], [], [], [], [], []
+        for paper in papers:
+            overall.append(paper.word_hist.number_of_words())
+            intro.append(sections_to_word_hist(paper.get_introduction()).number_of_words())
+            background.append(sections_to_word_hist(paper.get_background()).number_of_words())
+            methods.append(sections_to_word_hist(paper.get_methods()).number_of_words())
+            result.append(sections_to_word_hist(paper.get_results()).number_of_words())
+            discussion.append(sections_to_word_hist(paper.get_discussion()).number_of_words())
+
+        return {
+            "whole-document": mean(overall, True),
+            IMRaDType.INTRODUCTION.name: mean(intro, True),
+            IMRaDType.BACKGROUND.name: mean(background, True),
+            IMRaDType.METHODS.name: mean(methods, True),
+            IMRaDType.RESULTS.name: mean(result, True),
+            IMRaDType.DISCUSSION.name: mean(discussion, True)
+        }

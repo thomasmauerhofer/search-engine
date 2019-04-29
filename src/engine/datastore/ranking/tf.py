@@ -19,7 +19,7 @@ class TF(RankingBase):
 
 
     @staticmethod
-    def get_ranking(paper, queries, settings):
+    def get_ranking(paper, queries, settings, api):
         info = {}
         word_value = []
         ranking = 0.0

@@ -21,7 +21,7 @@ class TFIDF(RankingBase):
         settings["N"] = len(papers)
 
     @staticmethod
-    def get_ranking(paper, queries, settings):
+    def get_ranking(paper, queries, settings, api):
         tfidf = {}
         df = settings["df"]
         N = settings["N"]
