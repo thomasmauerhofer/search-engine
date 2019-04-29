@@ -19,11 +19,7 @@ class DivergenceFromRandomness(RankingBase):
     @staticmethod
     def get_ranking(paper, queries, settings, api):
         avg_doc_length_dict = api.client.get_avg_doc_length()
-
-        f_iq = 0
-        f_ij = 0
-        p_kic = 0
-        p_kidi = 0
+        N = len(api.get_all_paper())
 
         for imrad, query in queries.items():
             if imrad == "whole-document":
@@ -35,6 +31,20 @@ class DivergenceFromRandomness(RankingBase):
             doc_length = hist.number_of_words()
             avg_doc_length = avg_doc_length_dict[imrad]
 
+            key_values = {}
+            queries = query.split()
+            for querie_word in queries:
+                # f_ij == term frequency
+                f_ij_norm = hist.get_tf(querie_word) * (avg_doc_length / doc_length)
 
-        w_ij = p_kic * p_kidi
-        rank = f_iq * w_ij
+                if f_ij_norm == 0:
+                    continue
+
+                pi_i = 0 / N
+                p_kic = 0
+                p_kidi = 0
+
+                w_ij = p_kic * p_kidi
+
+                f_iq = 0
+                rank = f_iq * w_ij
