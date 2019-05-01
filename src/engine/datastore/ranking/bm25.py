@@ -30,7 +30,6 @@ class BM25(RankingBase):
         k1 = copy.deepcopy(settings.get("k1"))
         b = copy.deepcopy(settings.get("b"))
 
-
         bm25 = {}
         df = settings["df"]
         N = settings["N"]

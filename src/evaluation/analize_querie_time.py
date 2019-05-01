@@ -44,5 +44,5 @@ if __name__ == "__main__":
     # evaluate_query_time(10)
     api = API()
     papers = api.get_all_paper()
-    # evaluate_ranking_time(papers[0], RankedBoolean.get_default_config())
+    evaluate_ranking_time(papers[0], RankedBoolean.get_default_config())
     evaluate_ranking_time(papers[0], DivergenceFromRandomness.get_default_config())

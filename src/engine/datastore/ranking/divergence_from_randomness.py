@@ -1,5 +1,3 @@
-import time
-
 import math
 from engine.datastore.ranking.ranking_base import RankingBase
 from engine.utils.paper_utils import sections_to_word_hist
@@ -22,13 +20,12 @@ class DivergenceFromRandomness(RankingBase):
     @staticmethod
     def get_ranking(paper, queries, settings, api):
         dfr = {}
-        start = time.time()
+
         avg_doc_length_dict = api.client.get_avg_doc_length()
         all_papers_hist_dict = api.client.get_all_papers_hist()
-        N = len(api.get_all_paper())
+        N = api.client.get_number_of_papers()
 
         for imrad, query in queries.items():
-            start3 = time.time()
             if imrad == "whole-document":
                 hist = paper.word_hist
             else:
@@ -43,7 +40,6 @@ class DivergenceFromRandomness(RankingBase):
 
             key_values = {}
             for querie_word in query.split():
-                start2 = time.time()
                 # f_ij == term frequency
                 f_ij_norm = hist.get_tf(querie_word) * (avg_doc_length / doc_length)
 
@@ -59,17 +55,7 @@ class DivergenceFromRandomness(RankingBase):
                 rank = f_iq * w_ij
 
                 key_values[querie_word] = {"rank": rank, "f_iq": f_iq, "f_ij_norm": f_ij_norm, "pi_i": pi_i, "p_kic": p_kic, "p_kidi": p_kidi}
-                end2 = time.time()
-                elapsed_time2 = start2 - end2
             dfr[imrad] = {"sumwords": sum(hist.values()), "keys": key_values,
                           "score": sum([val["rank"] for val in key_values.values()])}
-            end3 = time.time()
-            elapsed_time3 = start3 - end3
-            print("Imrad Elapsed time: ", elapsed_time3)
-
-
-        end = time.time()
-        elapsed_time = start - end
-        print("A Elapsed time: ", elapsed_time)
 
         return sum([rating["score"] for rating in dfr.values()]), dfr

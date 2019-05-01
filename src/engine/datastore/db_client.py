@@ -107,6 +107,10 @@ class DBClient(object):
         self.papers.remove({})
 
 
+    def get_number_of_papers(self):
+        return self.papers.count()
+
+
     def get_paper_which_contains_queries_in_hist(self, queries):
         search_query = {"$or": []}
         for imrad_type, query in queries.items():
@@ -196,13 +200,13 @@ class DBClient(object):
     def get_all_papers_hist(self):
         cursor = self.overall_hist.find({})
         overall_hist = list(cursor)
+
         if len(overall_hist) > 0:
             return overall_hist[0]
         else:
             overall_hist = self.__calculate_all_papers_hist()
             self.overall_hist.insert_one(overall_hist)
             return overall_hist
-
 
 
     def __calculate_all_papers_hist(self):
@@ -223,7 +227,6 @@ class DBClient(object):
             IMRaDType.RESULTS.name: result,
             IMRaDType.DISCUSSION.name: discussion
         }
-
 
 
     def get_avg_doc_length(self):
