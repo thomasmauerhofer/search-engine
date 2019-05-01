@@ -1,12 +1,13 @@
+from engine.datastore.ranking.bm25 import BM25
 from engine.datastore.ranking.mode import Mode, Area
 from engine.datastore.ranking.tfidf import TFIDF
 from evaluation.utils.mlt_evaluation import MltEvaluation
 
 
-def evaluate():
+def evaluate(settings):
+    print("Evaluate section matrix of: ", settings["algorithm"])
     mlt_evaluation = MltEvaluation()
 
-    settings = TFIDF.get_default_config()
     settings["mode"] = Mode.areas
     for input_area in Area:
         for search_area in Area:
@@ -17,4 +18,5 @@ def evaluate():
 
 
 if __name__ == "__main__":
-    evaluate()
+    # evaluate(TFIDF.get_default_config())
+    evaluate(BM25.get_default_config())

@@ -19,8 +19,8 @@ def evaluate_algorithm(settings):
         print("N = ", N)
         explicit_evaluation.calculate_ranking(settings, N)
 
-    print("Full queries")
-    explicit_evaluation.calculate_ranking(settings, None)
+    # print("Full queries")
+    # explicit_evaluation.calculate_ranking(settings, None)
 
     print("More Like This")
     mlt_evaluation.calculate_ranking(settings)

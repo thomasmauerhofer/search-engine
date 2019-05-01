@@ -43,7 +43,7 @@ class BM25(RankingBase):
                 sections = paper.get_sections_with_imrad_type(imrad)
                 hist = sections_to_word_hist(sections)
 
-            doc_length = hist.number_of_words()
+            doc_length = hist.number_of_words() + 1
             avg_doc_length = avg_doc_length_dict[imrad]
 
             key_values = {}
