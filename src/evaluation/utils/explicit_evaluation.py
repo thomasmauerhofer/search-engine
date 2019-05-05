@@ -75,11 +75,13 @@ class ExplicitEvaluation(EvaluationBase):
             mean_ap_whole.append(ap_whole)
             mean_ap_doc.append(ap_doc)
 
+        result_whole = sum(mean_ap_whole) / len(mean_ap_whole)
+        result_doc = sum(mean_ap_doc) / len(mean_ap_doc)
         print()
         print("{} & {} & {}".format(Mode.without_importance_to_sections.name.replace("_", " "), len(mean_ap_whole),
-                                    sum(mean_ap_whole) / len(mean_ap_whole)))
+                                    round(result_whole, 4)))
         print("{} & {} & {}".format(Mode.importance_to_sections.name.replace("_", " "), len(mean_ap_doc),
-                                    sum(mean_ap_doc) / len(mean_ap_doc)))
+                                    round(result_doc, 4)))
 
 
     def calculate_ranking_sections(self, raw_queries, settings):
