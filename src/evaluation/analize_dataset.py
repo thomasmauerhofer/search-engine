@@ -109,7 +109,7 @@ def create_directed_graph():
     print("# nodes: ", dg.number_of_nodes())
     print("# edges: ", dg.number_of_edges())
     print("# cycles: ", len(list(nx.simple_cycles(dg))))
-    # print("# strongly connected components: ", len(list(nx.strongly_connected_components(dg))))
+    print("# strongly connected components: ", len(list(nx.strongly_connected_components(dg))))
     print("Dag longest path: ", len(nx.dag_longest_path(dg)))
 
     in_degrees = []
@@ -151,5 +151,5 @@ def print_circles(circles):
 
 
 if __name__ == "__main__":
-    create_graph()
+    # create_graph()
     create_directed_graph()
