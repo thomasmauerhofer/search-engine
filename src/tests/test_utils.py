@@ -4,6 +4,7 @@ from engine.api import API
 from engine.datastore.models.section import IMRaDType
 from engine.datastore.ranking.mode import Mode, Area
 from engine.utils.paper_utils import paper_to_queries
+from evaluation.utils.explicit_evaluation import ExplicitEvaluation
 
 
 class TestUtils(TestCase):
@@ -54,3 +55,11 @@ class TestUtils(TestCase):
         self.assertEqual(len(queries[IMRaDType.METHODS.name]), 0)
         self.assertEqual(len(queries[IMRaDType.RESULTS.name]), 0)
         self.assertEqual(len(queries[IMRaDType.DISCUSSION.name]), 0)
+
+    def test_ngramm(self):
+        ngramm = ExplicitEvaluation.extract_query_ngramm("A B C D", 7)
+        self.assertEqual(0, len(ngramm))
+        ngramm = ExplicitEvaluation.extract_query_ngramm("A B C D", 4)
+        self.assertEqual(1, len(ngramm))
+        ngramm = ExplicitEvaluation.extract_query_ngramm("A B C D E F", 3)
+        self.assertEqual(4, len(ngramm))

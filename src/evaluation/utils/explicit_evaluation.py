@@ -13,7 +13,7 @@ from evaluation.utils.evaluation_base import EvaluationBase
 
 class ExplicitEvaluation(EvaluationBase):
     @staticmethod
-    def __extract_query_ngramm(query, n):
+    def extract_query_ngramm(query, n):
         queries = []
         words = query.split()
         rounds = len(words) if n == 1 else len(words) - 1
@@ -36,7 +36,7 @@ class ExplicitEvaluation(EvaluationBase):
                     queries[imrad_type] = []
 
                 if n:
-                    ngramm = self.__extract_query_ngramm(citation["search_query"], n)
+                    ngramm = self.extract_query_ngramm(citation["search_query"], n)
                     for query in ngramm:
                         entry = {"search_query": query, "references": citation["references"], "imrad": imrad_type}
                         queries[imrad_type].append(entry)
