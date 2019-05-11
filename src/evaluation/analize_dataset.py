@@ -150,6 +150,50 @@ def print_circles(circles):
     print(circles)
 
 
+def __is_word_in_titles(titles, words):
+    for title in titles:
+        for word in words:
+            if word in title:
+                return True
+    return False
+
+
+def analize_chapters():
+    api = API()
+    papers = api.get_all_paper()
+    introduction, background, methods, result, discussion = 0, 0, 0, 0, 0
+    print("# papers: ", len(papers))
+    for paper in papers:
+        intro_titles = [sec.heading_proceed for sec in paper.get_introduction()]
+        back_titles = [sec.heading_proceed for sec in paper.get_background()]
+        methods_titles = [sec.heading_proceed for sec in paper.get_methods()]
+        result_titles = [sec.heading_proceed for sec in paper.get_results()]
+        discuss_titles = [sec.heading_proceed for sec in paper.get_discussion()]
+
+        if __is_word_in_titles(intro_titles, ["introduct"]):
+            introduction += 1
+
+        if __is_word_in_titles(back_titles, ["relat work", "background"]):
+            background += 1
+
+        if __is_word_in_titles(methods_titles, ["method", "approach", "dataset", "model"]):
+            methods += 1
+
+        if __is_word_in_titles(result_titles, ["result", "experi", "evalu"]):
+            result += 1
+
+        if __is_word_in_titles(discuss_titles, ["discuss", "conclus", "futur work"]):
+            discussion += 1
+
+
+    print("introduction:", introduction, "papers, ", introduction / len(papers) * 100, "%")
+    print("related work:", background, "papers, ", round(background / len(papers) * 100, 2), "%")
+    print("methods:", methods, "papers, ", round(methods / len(papers) * 100, 2), "%")
+    print("result:", result, "papers, ", round(result / len(papers) * 100, 2), "%")
+    print("discussion:", discussion, "papers, ", round(discussion / len(papers) * 100, 2), "%")
+
+
 if __name__ == "__main__":
     # create_graph()
-    create_directed_graph()
+    # create_directed_graph()
+    analize_chapters()
