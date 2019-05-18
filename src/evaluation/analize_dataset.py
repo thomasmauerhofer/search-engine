@@ -9,7 +9,7 @@ from engine.api import API
 from engine.utils.math import mean
 
 
-def create_degree_distribution(data, title, color, subplot_x_min, subplot_x_max, subplot_y_max):
+def create_degree_distribution(data, title, color, subplot_x_min=None, subplot_x_max=None, subplot_y_max=None):
     matplotlib.rcParams['pdf.fonttype'] = 42
     matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.rcParams['font.size'] = 18
@@ -35,21 +35,23 @@ def create_degree_distribution(data, title, color, subplot_x_min, subplot_x_max,
 
     sns.despine(offset=4, trim=False)
 
-    a = plt.axes([0.45, 0.45, 0.45, 0.35])
-    sns.distplot(
-        data,
-        kde=False, norm_hist=False,
-        bins=max(data),
-        hist_kws=dict(align='mid', alpha=1, color=color),
-        ax=a
-    )
+    if subplot_x_min and subplot_x_max and subplot_y_max:
+        a = plt.axes([0.45, 0.45, 0.45, 0.35])
+        sns.distplot(
+            data,
+            kde=False, norm_hist=False,
+            bins=max(data),
+            hist_kws=dict(align='mid', alpha=1, color=color),
+            ax=a
+        )
 
-    a.tick_params('both', length=8, width=2, which='major')
-    a.tick_params('both', length=8, width=2, which='minor')
-    a.set_ylim(0, subplot_y_max)
-    a.set_xlim(subplot_x_min, subplot_x_max)
-    a.set_xlabel('degree')
-    a.set_ylabel('# nodes')
+        a.tick_params('both', length=8, width=2, which='major')
+        a.tick_params('both', length=8, width=2, which='minor')
+        a.set_ylim(0, subplot_y_max)
+        a.set_xlim(subplot_x_min, subplot_x_max)
+        a.set_xlabel('degree')
+        a.set_ylabel('# nodes')
+
 
     plt.tight_layout()
     plt.savefig(title.replace(" ", "_").lower() + '.pdf', dpi=600)
@@ -134,8 +136,8 @@ def create_directed_graph():
     print("  max degree: ", max(out_degrees))
     print("  mean degree: ", round(mean(out_degrees), 4))
     print("  median degree: ", statistics.median(out_degrees))
-    create_degree_distribution(in_degrees, 'In-Degree Distribution', '#33691e', 6, 100, 10)
-    create_degree_distribution(out_degrees, 'Out-Degree Distribution', '#e65100', 7, 13.5, 6.5)
+    create_degree_distribution(in_degrees, 'In-Degree Distribution', '#33691e', 20, 100, 10)
+    create_degree_distribution(out_degrees, 'Out-Degree Distribution', '#e65100')
 
 
 def print_circles(circles):
@@ -154,14 +156,14 @@ def __is_word_in_titles(titles, words):
     for title in titles:
         for word in words:
             if word in title:
-                return True
-    return False
+                return word
+    return None
 
 
 def analize_chapters():
     api = API()
     papers = api.get_all_paper()
-    introduction, background, methods, result, discussion = 0, 0, 0, 0, 0
+    introduction, background, methods, result, discussion = {}, {}, {}, {}, {}
     print("# papers: ", len(papers))
     for paper in papers:
         intro_titles = [sec.heading_proceed for sec in paper.get_introduction()]
@@ -170,30 +172,47 @@ def analize_chapters():
         result_titles = [sec.heading_proceed for sec in paper.get_results()]
         discuss_titles = [sec.heading_proceed for sec in paper.get_discussion()]
 
-        if __is_word_in_titles(intro_titles, ["introduct"]):
-            introduction += 1
+        intro_word = __is_word_in_titles(intro_titles, ["introduct"])
+        back_word = __is_word_in_titles(back_titles, ["relat work", "background"])
+        methods_word = __is_word_in_titles(methods_titles, ["method", "approach", "model"])
+        results_word = __is_word_in_titles(result_titles, ["result", "experi", "evalu"])
+        discuss_word = __is_word_in_titles(discuss_titles, ["discuss", "conclus", "futur work"])
 
-        if __is_word_in_titles(back_titles, ["relat work", "background"]):
-            background += 1
+        if intro_word:
+            introduction[intro_word] = introduction[intro_word] + 1 if intro_word in introduction else 1
 
-        if __is_word_in_titles(methods_titles, ["method", "approach", "dataset", "model"]):
-            methods += 1
+        if back_word:
+            background[back_word] = background[back_word] + 1 if back_word in background else 1
 
-        if __is_word_in_titles(result_titles, ["result", "experi", "evalu"]):
-            result += 1
+        if methods_word:
+            methods[methods_word] = methods[methods_word] + 1 if methods_word in methods else 1
 
-        if __is_word_in_titles(discuss_titles, ["discuss", "conclus", "futur work"]):
-            discussion += 1
+        if results_word:
+            result[results_word] = result[results_word] + 1 if results_word in result else 1
+
+        if discuss_word:
+            discussion[discuss_word] = discussion[discuss_word] + 1 if discuss_word in discussion else 1
+
+    print("introduction:")
+    print_imrad(introduction, len(papers))
+    print("related work:")
+    print_imrad(background, len(papers))
+    print("methods:")
+    print_imrad(methods, len(papers))
+    print("result:")
+    print_imrad(result, len(papers))
+    print("discussion:")
+    print_imrad(discussion, len(papers))
 
 
-    print("introduction:", introduction, "papers, ", introduction / len(papers) * 100, "%")
-    print("related work:", background, "papers, ", round(background / len(papers) * 100, 2), "%")
-    print("methods:", methods, "papers, ", round(methods / len(papers) * 100, 2), "%")
-    print("result:", result, "papers, ", round(result / len(papers) * 100, 2), "%")
-    print("discussion:", discussion, "papers, ", round(discussion / len(papers) * 100, 2), "%")
+def print_imrad(imrad, all_papers):
+    sum_imrad = sum(imrad.values())
+    print("All:", sum_imrad, "papers, ", round(sum_imrad / all_papers * 100, 2), "%")
+    for key in imrad:
+        print(key, ":", imrad[key], "papers", round(imrad[key] / all_papers * 100, 2), "%")
 
 
 if __name__ == "__main__":
     # create_graph()
-    # create_directed_graph()
-    analize_chapters()
+    create_directed_graph()
+    # analize_chapters()
