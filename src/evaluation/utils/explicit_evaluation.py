@@ -13,6 +13,23 @@ from evaluation.utils.evaluation_base import EvaluationBase
 
 class ExplicitEvaluation(EvaluationBase):
     @staticmethod
+    def init_dict():
+        api = API()
+        dict = {}
+        for ranking_algo in api.ranking_algos.values():
+            dict[ranking_algo.get_name()] = []
+        return dict
+
+
+    @staticmethod
+    def raw_queries_to_queries(raw_queries):
+        return raw_queries[IMRaDType.INTRODUCTION.name] + \
+                  raw_queries[IMRaDType.BACKGROUND.name] + \
+                  raw_queries[IMRaDType.METHODS.name] + \
+                  raw_queries[IMRaDType.RESULTS.name] + \
+                  raw_queries[IMRaDType.DISCUSSION.name]
+
+    @staticmethod
     def __extract_query_ngramm(query, n):
         queries = []
         words = query.split()
@@ -47,17 +64,63 @@ class ExplicitEvaluation(EvaluationBase):
         return queries
 
 
+    # performance - TODO: move doubled parts into function
+    def calculate_ranking_with_papers_from_db(self, N):
+        mean_ap_whole = self.init_dict()
+        mean_ap_imrad = self.init_dict()
+        api = API()
+
+        raw_queries = self.create_queries(N)
+        queries = self.raw_queries_to_queries(raw_queries)
+
+        print("# queries", len(queries))
+        for i, query in enumerate(queries):
+            progressBar(i, len(queries))
+            relevant_paper = [api.get_paper(reference["paper_id"]) for reference in query["references"]]
+
+            whole_search_query = api.preprocessor.proceed_queries({"whole-document": query["search_query"]})
+            imrad_search_query = api.preprocessor.proceed_queries({query["imrad"]: query["search_query"]})
+
+            # if all(not query for query in search_query.values()):
+            #    return []
+            whole_papers = api.client.get_paper_which_contains_queries(whole_search_query)
+            imrad_papers = api.client.get_paper_which_contains_queries(imrad_search_query)
+
+            for ranking_algo in api.ranking_algos.values():
+                whole_settings = ranking_algo.get_default_config()
+                imrad_settings = copy.deepcopy(whole_settings)
+                whole_settings["mode"] = Mode.without_importance_to_sections
+                imrad_settings["mode"] = Mode.importance_to_sections
+
+                ranking_algo.add_papers_params(whole_papers, whole_search_query, whole_settings)
+                ranking_algo.add_papers_params(whole_papers, imrad_search_query, imrad_settings)
+
+                ranked_papers_whole = api.get_ratings(whole_papers, whole_search_query, whole_settings)
+                ranked_papers_imrad = api.get_ratings(imrad_papers, imrad_search_query, imrad_settings)
+
+                ap_whole = self.average_precision(ranked_papers_whole, relevant_paper)
+                ap_imrad = self.average_precision(ranked_papers_imrad, relevant_paper)
+
+                mean_ap_whole[ranking_algo.get_name()].append(ap_whole)
+                mean_ap_imrad[ranking_algo.get_name()].append(ap_imrad)
+
+        print(Mode.without_importance_to_sections.name.replace("_", " "))
+        for algo_name, values in mean_ap_whole.items():
+            result_whole = sum(values) / len(values)
+            print(algo_name, " ", len(values), " ", round(result_whole, 4))
+
+        print(Mode.importance_to_sections.name.replace("_", " "))
+        for algo_name, values in mean_ap_imrad.items():
+            result_imrad = sum(values) / len(values)
+            print(algo_name, " ", len(values), " ", round(result_imrad, 4))
+
+
     def calculate_overall_ranking(self, raw_queries, settings):
         api = API()
         mean_ap_whole = []
         mean_ap_doc = []
 
-        queries = raw_queries[IMRaDType.INTRODUCTION.name] + \
-                  raw_queries[IMRaDType.BACKGROUND.name] + \
-                  raw_queries[IMRaDType.METHODS.name] + \
-                  raw_queries[IMRaDType.RESULTS.name] + \
-                  raw_queries[IMRaDType.DISCUSSION.name]
-
+        queries = self.raw_queries_to_queries(raw_queries)
         settings["mode"] = Mode.without_importance_to_sections
         settings_sec = copy.deepcopy(settings)
         settings_sec["mode"] = Mode.importance_to_sections
@@ -88,11 +151,7 @@ class ExplicitEvaluation(EvaluationBase):
         api = API()
         mean_ap_intro, mean_ap_background, mean_ap_methods, mean_ap_result, mean_ap_discussion = [], [], [], [], []
 
-        queries = raw_queries[IMRaDType.INTRODUCTION.name] + \
-                  raw_queries[IMRaDType.BACKGROUND.name] + \
-                  raw_queries[IMRaDType.METHODS.name] + \
-                  raw_queries[IMRaDType.RESULTS.name] + \
-                  raw_queries[IMRaDType.DISCUSSION.name]
+        queries = self.raw_queries_to_queries(raw_queries)
 
         for i, query in enumerate(queries):
             progressBar(i, len(queries))

@@ -42,7 +42,7 @@ class API(object):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-    def __get_ratings(self, papers, queries_proceed, settings):
+    def get_ratings(self, papers, queries_proceed, settings):
         ratings = []
         for paper in papers:
             element = self.get_ranking_info(paper, queries_proceed, settings)
@@ -133,7 +133,7 @@ class API(object):
 
         papers = self.client.get_paper_which_contains_queries(queries_proceed)
         ranking_algo.add_papers_params(papers, queries_proceed, settings)
-        return self.__get_ratings(papers, queries_proceed, settings)
+        return self.get_ratings(papers, queries_proceed, settings)
 
 
     def get_papers_with_paper(self, filename, settings):
@@ -141,13 +141,6 @@ class API(object):
         paper = papers[0] if papers else self.get_imported_paper(filename)
         queries = paper_to_queries(paper, settings)
         return self.get_papers(queries, settings), queries
-
-
-    def get_number_of_papers(self, paper, settings):
-        queries = paper_to_queries(paper, settings)
-        queries_proceed = self.preprocessor.proceed_queries(queries)
-        found_papers = self.client.get_paper_which_contains_queries(queries_proceed)
-        return len(found_papers)
 
 
     def remove__link_of_paper(self, paper, ref_paper_id):

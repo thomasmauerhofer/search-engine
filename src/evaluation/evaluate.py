@@ -2,11 +2,13 @@
 # encoding: utf-8
 from optparse import OptionParser
 
+from engine.api import API
 from engine.datastore.ranking.bm25 import BM25
 from engine.datastore.ranking.divergence_from_randomness import DivergenceFromRandomness
 from engine.datastore.ranking.ranked_boolean_retrieval import RankedBoolean, RetrievalType
 from engine.datastore.ranking.tf import TF
 from engine.datastore.ranking.tfidf import TFIDF
+from engine.utils.printing_utils import progressBar
 from evaluation.utils.explicit_evaluation import ExplicitEvaluation
 from evaluation.utils.mlt_evaluation import MltEvaluation
 
@@ -55,16 +57,7 @@ def evaluate_dfr():
 
 def evaluate_ranked_boolean():
     print("Ranked Boolean Retrieval")
-    settings = {"algorithm": RankedBoolean.get_name(),
-                "extended": False,
-                "ranking-algo-params": {RetrievalType.TITLE.name: 0.2,
-                                        RetrievalType.SECTION_TITLE.name: 0.3,
-                                        RetrievalType.SECTION_TEXT.name: 0.2,
-                                        RetrievalType.SUBSECTION_TITLE.name: 0.18,
-                                        RetrievalType.SUBSECTION_TEXT.name: 0.05,
-                                        RetrievalType.SUBSUBSECTION_TITLE.name: 0.05,
-                                        RetrievalType.SUBSUBSECTION_TEXT.name: 0.02}}
-    evaluate_algorithm(settings)
+    evaluate_algorithm(RankedBoolean.get_default_config())
 
 
 def evaluate_ranked_boolean_extended():
@@ -81,7 +74,19 @@ def evaluate_ranked_boolean_extended():
     evaluate_algorithm(settings)
 
 
+def more_ngramms():
+    api = API()
+    explicit_evaluation = ExplicitEvaluation()
+
+    for N in range(5, 7):
+        print("N = ", N)
+        explicit_evaluation.calculate_ranking_with_papers_from_db(N)
+
+
 if __name__ == "__main__":
+    more_ngramms()
+    exit(0)
+
     parser = OptionParser()
     parser.add_option("-a", "--all", action="store_true", dest="all", default=False, help="Evaluate all algorithms")
     parser.add_option("-b", "--bm25", action="store_true", dest="bm25", default=False, help="Evaluate BM25")

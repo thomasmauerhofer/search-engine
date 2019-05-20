@@ -1,5 +1,3 @@
-from random import shuffle
-
 from engine.datastore.ranking.mode import Mode
 from engine.utils.printing_utils import progressBar
 from evaluation.utils.evaluation_base import EvaluationBase
@@ -15,13 +13,13 @@ class MltEvaluation(EvaluationBase):
         self.compute_ranking_with_settings(settings, papers)
 
         settings["mode"] = Mode.importance_to_sections
-        print("Next line don't use unclassified chapters")
+        # print("Next line don't use unclassified chapters")
         settings["use-unclassified-chapters"] = False
         self.compute_ranking_with_settings(settings, papers)
 
-        print("Next line use unclassified chapters")
-        settings["use-unclassified-chapters"] = True
-        self.compute_ranking_with_settings(settings, papers)
+        # print("Next line use unclassified chapters")
+        # settings["use-unclassified-chapters"] = True
+        # self.compute_ranking_with_settings(settings, papers)
 
 
     def compute_ranking_with_settings(self, settings, num_of_papers=0):

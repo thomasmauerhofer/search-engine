@@ -3,9 +3,6 @@ from enum import Enum
 
 import copy
 import numpy as np
-
-from config import WEIGHT_TITLE, WEIGHT_SECTION_TEXT, WEIGHT_SUBSECTION_TITLE, WEIGHT_SUBSECTION_TEXT, \
-    WEIGHT_SUBSUBSECTION_TITLE, WEIGHT_SUBSUBSECTION_TEXT, WEIGHT_SECTION_TITLE, DEFAULT_EXTENDED
 from engine.datastore.ranking.ranking_base import RankingBase
 from engine.utils.exceptions.ranking_exceptions import RankingParameterError
 from engine.utils.math import mean
@@ -16,18 +13,17 @@ class RankedBoolean(RankingBase):
     def get_name():
         return "Ranked Boolean Retrieval"
 
-
     @staticmethod
     def get_default_config():
         settings = {"algorithm": RankedBoolean.get_name(),
-                    "extended": DEFAULT_EXTENDED,
-                    "ranking-algo-params": {RetrievalType.TITLE.name: WEIGHT_TITLE,
-                                            RetrievalType.SECTION_TITLE.name: WEIGHT_SECTION_TITLE,
-                                            RetrievalType.SECTION_TEXT.name: WEIGHT_SECTION_TEXT,
-                                            RetrievalType.SUBSECTION_TITLE.name: WEIGHT_SUBSECTION_TITLE,
-                                            RetrievalType.SUBSECTION_TEXT.name: WEIGHT_SUBSECTION_TEXT,
-                                            RetrievalType.SUBSUBSECTION_TITLE.name: WEIGHT_SUBSUBSECTION_TITLE,
-                                            RetrievalType.SUBSUBSECTION_TEXT.name: WEIGHT_SUBSUBSECTION_TEXT}}
+                    "extended": False,
+                    "ranking-algo-params": {RetrievalType.TITLE.name: 0.2,
+                                            RetrievalType.SECTION_TITLE.name: 0.3,
+                                            RetrievalType.SECTION_TEXT.name: 0.2,
+                                            RetrievalType.SUBSECTION_TITLE.name: 0.18,
+                                            RetrievalType.SUBSECTION_TEXT.name: 0.05,
+                                            RetrievalType.SUBSUBSECTION_TITLE.name: 0.05,
+                                            RetrievalType.SUBSUBSECTION_TEXT.name: 0.02}}
         return settings
 
     @staticmethod
