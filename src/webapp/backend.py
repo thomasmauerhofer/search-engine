@@ -29,7 +29,7 @@ def index():
     if all(not query for query in queries.values()):
         return '', 204
 
-    settings = {"importance_sections": bool(request.form['importance']),
+    settings = {"mode": bool(request.form['importance']),
                 "algorithm": request.form["algorithm"]}
 
     if settings["algorithm"] == RankedBoolean.get_name():
@@ -75,7 +75,7 @@ def upload():
 
 @backend.route('/get_ranking_info/<paper_id>', methods=["GET", "POST"])
 def get_ranking_info(paper_id):
-    settings = {"importance_sections": json.loads(request.form['importance'].lower()),
+    settings = {"mode": json.loads(request.form['importance'].lower()),
                 "algorithm": request.form["algorithm"]}
 
     queries = {
