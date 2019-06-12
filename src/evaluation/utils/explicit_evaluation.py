@@ -12,17 +12,9 @@ from evaluation.utils.evaluation_base import EvaluationBase
 
 
 class ExplicitEvaluation(EvaluationBase):
-    @staticmethod
-    def init_dict():
-        api = API()
-        dict = {}
-        for ranking_algo in api.ranking_algos.values():
-            dict[ranking_algo.get_name()] = []
-        return dict
-
 
     @staticmethod
-    def raw_queries_to_queries(raw_queries):
+    def __raw_queries_to_queries(raw_queries):
         return raw_queries[IMRaDType.INTRODUCTION.name] + \
                   raw_queries[IMRaDType.BACKGROUND.name] + \
                   raw_queries[IMRaDType.METHODS.name] + \
@@ -30,7 +22,7 @@ class ExplicitEvaluation(EvaluationBase):
                   raw_queries[IMRaDType.DISCUSSION.name]
 
     @staticmethod
-    def __extract_query_ngramm(query, n):
+    def extract_query_ngramm(query, n):
         queries = []
         words = query.split()
         rounds = len(words) if n == 1 else len(words) - 1
@@ -53,7 +45,7 @@ class ExplicitEvaluation(EvaluationBase):
                     queries[imrad_type] = []
 
                 if n:
-                    ngramm = self.__extract_query_ngramm(citation["search_query"], n)
+                    ngramm = self.extract_query_ngramm(citation["search_query"], n)
                     for query in ngramm:
                         entry = {"search_query": query, "references": citation["references"], "imrad": imrad_type}
                         queries[imrad_type].append(entry)
@@ -69,7 +61,7 @@ class ExplicitEvaluation(EvaluationBase):
         mean_ap_whole = []
         mean_ap_doc = []
 
-        queries = self.raw_queries_to_queries(raw_queries)
+        queries = self.__raw_queries_to_queries(raw_queries)
         settings["mode"] = Mode.without_importance_to_sections
         settings_sec = copy.deepcopy(settings)
         settings_sec["mode"] = Mode.importance_to_sections
@@ -100,7 +92,7 @@ class ExplicitEvaluation(EvaluationBase):
         api = API()
         mean_ap_intro, mean_ap_background, mean_ap_methods, mean_ap_result, mean_ap_discussion = [], [], [], [], []
 
-        queries = self.raw_queries_to_queries(raw_queries)
+        queries = self.__raw_queries_to_queries(raw_queries)
 
         for i, query in enumerate(queries):
             progressBar(i, len(queries))
