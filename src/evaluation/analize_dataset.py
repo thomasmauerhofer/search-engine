@@ -27,8 +27,8 @@ def create_degree_distribution(data, title, color, subplot_x_min=None, subplot_x
     ax.get_yaxis().set_major_formatter(plt.FuncFormatter(lambda x, loc: "{:,}".format(int(x))))
 
     # ax.set_title(title)
-    ax.set_xlabel('degree')
-    ax.set_ylabel('# nodes')
+    ax.set_xlabel('# of Citations')
+    ax.set_ylabel('# of Articles')
 
     ax.tick_params('both', length=8, width=2, which='major')
     ax.tick_params('both', length=8, width=2, which='minor')
@@ -49,8 +49,8 @@ def create_degree_distribution(data, title, color, subplot_x_min=None, subplot_x
         a.tick_params('both', length=8, width=2, which='minor')
         a.set_ylim(0, subplot_y_max)
         a.set_xlim(subplot_x_min, subplot_x_max)
-        a.set_xlabel('degree')
-        a.set_ylabel('# nodes')
+        a.set_xlabel('# of Citations')
+        a.set_ylabel('# of Articles')
 
 
     plt.tight_layout()
