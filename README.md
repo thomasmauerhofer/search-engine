@@ -10,6 +10,7 @@ This repository contains an information retrieval system for scientific literatu
 
 ## Structure
 
+Test:
 root
 +-- dir1
     +--file1
