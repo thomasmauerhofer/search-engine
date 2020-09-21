@@ -8,11 +8,17 @@ This repository contains an information retrieval system for scientific literatu
 4. Divergence from Randomness
 5. Ranked Boolean Retrieval
 
-## Structure
+## Folder Structure
 
-Test:
-root
-+-- dir1
-    +--file1
-+-- dir2
-    +-- file2
+```bash
+├── bin  # Contains various scripts to setup the system
+├── data # Dependencies
+│   └── classifier # Section classifier dependencies
+└── src
+    ├── engine     # Implementation of the information retrieval system
+    ├── evaluation # Helper scripts to evaluate our experiments
+    ├── setup      # Helper scripts to setup the system
+    ├── tests      # Test files
+    └── webapp     # Flask files (Frontend)
+
+```
