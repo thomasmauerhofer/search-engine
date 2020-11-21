@@ -37,7 +37,7 @@ textarea {
 }
 
 div.query {
-    height: 57px;
+    height: 34px;
 }
 
 .result-info-text {
@@ -54,11 +54,12 @@ div.query {
 }
 
 #whole-doc {
-    height: 55px !important;
+    height: 34px !important;
+    margin-top: 40px;
 }
 
 .section-query {
-    height: 55px !important;
+    height: 34px !important;
 }
 
 div.query label {
@@ -67,7 +68,6 @@ div.query label {
 
 .settings-select {
     display: inline-block;
-    width: 350px;
 }
 
 div#query-settings {
@@ -104,4 +104,12 @@ div.info table.table.table-striped {
 
 .dist-right {
     margin-right: 20px;
+}
+
+.tab-content {
+    padding-top: 70px;
+    height: 570px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
