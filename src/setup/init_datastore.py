@@ -53,7 +53,8 @@ def __export_json(name):
 def __add_user():
     print("Add new admin to the database")
     name = input("username: ")
-    password = getpass()
+    password = input("password: ")
+    # password = getpass()
     api = API()
     api.add_user(name, password)
     print("Welcome on board {}".format(name))

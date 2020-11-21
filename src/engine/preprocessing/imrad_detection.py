@@ -5,14 +5,14 @@ import numpy as np
 
 from config import THRESHOLD
 from engine.datastore.models.section import IMRaDType
-from engine.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
+# from engine.preprocessing.chapter_classifier.classifier_nn import ClassifierNN
 from engine.preprocessing.chapter_classifier.classifier_simple import ClassifierSimple
 from engine.utils.exceptions.import_exceptions import ClassificationError
 
 
 class IMRaDDetection(object):
     def __init__(self):
-        self.classifierNN = ClassifierNN()
+        # self.classifierNN = ClassifierNN()
         self.classifierSimple = ClassifierSimple()
 
 

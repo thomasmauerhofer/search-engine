@@ -25,7 +25,7 @@ app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 key = os.path.join(KEYS, "secret_key")
 
 try:
-    app.config['SECRET_KEY'] = open(key, 'rb').read()
+    app.config['SECRET_KEY'] = 'my secret_key'
 except IOError:
     os.makedirs(KEYS, exist_ok=True)
     os.system("head -c 24 /dev/urandom >" + key)
